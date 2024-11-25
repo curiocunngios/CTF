@@ -1,0 +1,3 @@
+- Use [[double-brackets]] for direct links
+- Use [[note#section]] for section links
+- Use [[note|alias]] for renamed links

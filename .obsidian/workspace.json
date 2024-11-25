@@ -1,0 +1,488 @@
+{
+  "main": {
+    "id": "53f34259354a6a27",
+    "type": "split",
+    "children": [
+      {
+        "id": "6f227a1cdbaeb2a9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "777fb80231b543be",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Templates/general notes.md",
+                "mode": "preview",
+                "backlinks": true,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "general notes"
+            }
+          },
+          {
+            "id": "f6ea9b167df6a996",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Templates/daily learning template.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "daily learning template"
+            }
+          },
+          {
+            "id": "f8fbcd4ed35e5803",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2024-11-20T163833.736+0800.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2024-11-20T163833.736+0800"
+            }
+          },
+          {
+            "id": "432ac9f9cbd45dfa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Templates/Journal_temp.md",
+                "mode": "preview",
+                "backlinks": true,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Journal_temp"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7dd5747abe46eb24",
+    "type": "split",
+    "children": [
+      {
+        "id": "1b9f823be649998e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1754b2dd447fe68b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "98623b2e89fed40a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cfd7b86aa4eccfcd",
+    "type": "split",
+    "children": [
+      {
+        "id": "15852911354d5cb7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "350b5b70e06e0178",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2024-10-19T004438.007+0800.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 2024-10-19T004438.007+0800"
+            }
+          },
+          {
+            "id": "dca6bf5fc6f12912",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2024-10-19T004438.007+0800.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 2024-10-19T004438.007+0800"
+            }
+          },
+          {
+            "id": "899f737f34e78e4c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "7d2d2fdeac1e8aa1",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "927f5bd05f99439a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2024-10-19T004438.007+0800.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 2024-10-19T004438.007+0800"
+            }
+          },
+          {
+            "id": "bfe793d03cd1f59c",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "2404f3c688bda47d",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "7bee7c4a49b29b5a",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "5b314de95f06c099",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "f9fdd3707bbce85a",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "ec4e566627b274af",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "74462f4cf57cd9ed",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "7652d90c00ef02fe",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "93a753360869134d",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "feb1013afc787988",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "1d906307b23e49f7",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "139a44081c5b87c4",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "57c3b6ba61c1ac45",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "ede96b61bd87473d",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "087c0b15d48b3e44",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "92408fc568327a3f",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "d2e2e3cc31ec0489",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "d35de19483ed9627",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "bdfc3891e8a1bcf2",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "35b6d8a8fcd76be6",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "6d69563ac9966bb2",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
+          },
+          {
+            "id": "a30ab849989750d6",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
+          }
+        ],
+        "currentTab": 26
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "command-palette:Open command palette": false,
+      "templates:Insert template": false,
+      "zk-prefixer:Create new unique note": false,
+      "obsidian-spaced-repetition:Review flashcards": false,
+      "obsidian42-brat:BRAT": false,
+      "terminal:Open terminal": false,
+      "vscode-editor:Create Code File": false
+    }
+  },
+  "active": "f6ea9b167df6a996",
+  "lastOpenFiles": [
+    "Templates/general notes.md",
+    "Templates/daily learning template.md",
+    "Untitled",
+    "Templates/Rough notes.md",
+    "Templates/LaTeX_template.md",
+    "Templates/Journal_temp.md",
+    "Templates/C++_temp.md",
+    "Templates",
+    ".git/logs/refs/remotes/origin/main",
+    ".git/logs/refs/heads/main",
+    ".git/refs/remotes/origin/main",
+    ".git/logs/refs/remotes/origin",
+    ".git/refs/heads/main",
+    ".git/refs/remotes/origin",
+    ".git/objects/7a/950280008c9b02b1158bfd959f11b62324a9f7",
+    ".git/objects/68/62e4ce78b697b4b9b1fb0b9ee51465b1bee88f",
+    "2024-11-21T203032.734+0800.md",
+    "2024-11-22T060656.991+0800.md",
+    "2024-11-21T140841.692+0800.md",
+    "2024-11-20T054516.262+0800.md",
+    "2024-11-20T163833.736+0800.md",
+    "2024-11-19T162510.731+0800.md",
+    "2024-11-18T061056.401+0800.md",
+    "2024-11-13T214710.184+0800.md",
+    "2024-11-14T073716.217+0800.md",
+    "2024-11-13T195237.550+0800.md",
+    "self/records/Additional_info.md",
+    "academic/COMP2012H/image.png",
+    "2024-11-11T064858.815+0800.md",
+    "2024-11-11T060458.655+0800.md",
+    "2024-11-11T064845.227+0800.md",
+    "聲明.md",
+    "academic/COMP2012H/pa3_notes.md",
+    "2024-11-11T055236.813+0800.md",
+    "2024-11-11T022221.794+0800.md",
+    "2633.md",
+    "2024-11-07T041853.986+0800.md",
+    "attachments/Pasted image 20241107042306.png",
+    "academic/MATH2411/ass/graph.png",
+    "academic/MATH2411/ass/image.png",
+    "academic/COMP2012H/mergetime.png",
+    "academic/COMP2012H/circular_sentinel.png",
+    "academic/COMP2012H/deque_visualization.png",
+    "academic/COMP2012H/sentinel.png",
+    "academic/COMP2012H/mergetime2.png",
+    "attachments/Pasted image 20241018011607.png"
+  ]
+}

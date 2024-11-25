@@ -1,0 +1,15 @@
+{
+  "baseFontSize": 16,
+  "translucency": true,
+  "theme": "obsidian",
+  "accentColor": "#ff8ac2",
+  "interfaceFontFamily": "Calibri,Arial",
+  "textFontFamily": "Courier New,Times New Roman,Courier,Arial",
+  "monospaceFontFamily": "Consolas,Arial",
+  "enabledCssSnippets": [
+    "increase audio min width",
+    "white content image background"
+  ],
+  "nativeMenus": false,
+  "baseFontSizeAction": true
+}

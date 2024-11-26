@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Templates/daily learning template.md",
+                "file": "2024-11-26T202006.022+0800.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "daily learning template"
+              "title": "2024-11-26T202006.022+0800"
             }
           },
           {
@@ -66,9 +66,24 @@
               "icon": "lucide-file",
               "title": "Journal_temp"
             }
+          },
+          {
+            "id": "81e54d8e484a50b6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2024-11-26T231313.468+0800.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2024-11-26T231313.468+0800"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -402,8 +417,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -415,9 +430,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "c3ecd8811a257ef9",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 26
+        "currentTab": 27
       }
     ],
     "direction": "horizontal",
@@ -436,53 +461,53 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "f6ea9b167df6a996",
+  "active": "81e54d8e484a50b6",
   "lastOpenFiles": [
-    "Templates/general notes.md",
+    "notes/Regex.md",
+    "notes/linux commands.md",
+    "notes/CLI.md",
+    "2024-11-26T215704.187+0800.md",
+    "2024-11-26T231313.468+0800.md",
+    "notes/form.md",
+    "linked images/php_pre.png",
+    "linked images",
+    "notes/php_pre.png",
+    "notes/image.png",
+    "notes/PHP codes.md",
+    "notes/URL encoding.md",
+    "notes/PHP and web server.md",
+    "notes/ssh.md",
+    "notes/Command injection.md",
+    "notes/COmmand injection.md",
+    "notes/Local file inclusion.md",
+    "notes/Magic numbers.md",
+    "notes/linux file system.md",
+    "notes/linux file permission.md",
+    "notes/buffer Overflow.md",
+    "2024-11-26T212742.022+0800.md",
+    "attachments/Pasted image 20241126212748.png",
+    "attachments",
+    "2024-11-26T202006.022+0800.md",
+    "nutrition.md",
+    "2024-11-26T175918.839+0800.md",
     "Templates/daily learning template.md",
-    "Untitled",
+    ".git/objects/01/bfc0d3dd187683ec2ae0c560fbadd0c2f8c2f6",
+    ".git/objects/01",
+    ".git/objects/79/71e072b5c879534d62aadf6084d9b97731ad36",
+    ".git/objects/79",
+    ".git/objects/3f/825eb02593a342568305f61d6b2d3946c0c0ab",
+    ".git/objects/3f",
+    ".git/objects/1c/f9f7edba3c3a700cdc5a285a731fb664833ee0",
+    ".git/objects/1c",
+    "Templates/general notes.md",
     "Templates/Rough notes.md",
     "Templates/LaTeX_template.md",
     "Templates/Journal_temp.md",
-    "Templates/C++_temp.md",
-    "Templates",
-    ".git/logs/refs/remotes/origin/main",
-    ".git/logs/refs/heads/main",
-    ".git/refs/remotes/origin/main",
-    ".git/logs/refs/remotes/origin",
-    ".git/refs/heads/main",
-    ".git/refs/remotes/origin",
-    ".git/objects/7a/950280008c9b02b1158bfd959f11b62324a9f7",
-    ".git/objects/68/62e4ce78b697b4b9b1fb0b9ee51465b1bee88f",
-    "2024-11-21T203032.734+0800.md",
-    "2024-11-22T060656.991+0800.md",
-    "2024-11-21T140841.692+0800.md",
-    "2024-11-20T054516.262+0800.md",
-    "2024-11-20T163833.736+0800.md",
-    "2024-11-19T162510.731+0800.md",
-    "2024-11-18T061056.401+0800.md",
-    "2024-11-13T214710.184+0800.md",
-    "2024-11-14T073716.217+0800.md",
-    "2024-11-13T195237.550+0800.md",
-    "self/records/Additional_info.md",
     "academic/COMP2012H/image.png",
-    "2024-11-11T064858.815+0800.md",
-    "2024-11-11T060458.655+0800.md",
-    "2024-11-11T064845.227+0800.md",
-    "聲明.md",
-    "academic/COMP2012H/pa3_notes.md",
-    "2024-11-11T055236.813+0800.md",
-    "2024-11-11T022221.794+0800.md",
-    "2633.md",
-    "2024-11-07T041853.986+0800.md",
     "attachments/Pasted image 20241107042306.png",
     "academic/MATH2411/ass/graph.png",
     "academic/MATH2411/ass/image.png",
     "academic/COMP2012H/mergetime.png",
-    "academic/COMP2012H/circular_sentinel.png",
-    "academic/COMP2012H/deque_visualization.png",
-    "academic/COMP2012H/sentinel.png",
-    "academic/COMP2012H/mergetime2.png",
-    "attachments/Pasted image 20241018011607.png"
+    "academic/COMP2012H/circular_sentinel.png"
   ]
 }

@@ -427,8 +427,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -440,9 +440,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "d76a1d12f3aad9c0",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 27
+        "currentTab": 28
       }
     ],
     "direction": "horizontal",
@@ -461,21 +471,22 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "81e54d8e484a50b6",
+  "active": "d76a1d12f3aad9c0",
   "lastOpenFiles": [
+    ".git/objects/db/b36661f840e5358942ba708223511676d4c002",
+    ".git/objects/db/0977e11e1dd9e81104d2c4d60ed63abb90295f",
+    ".git/objects/db",
+    ".git/objects/7e/3485ad621034358e9e3d3473fa68fc78baada5",
+    ".git/objects/7e",
+    ".git/objects/98/6eb4861c2c4f4c8b263cb57757b0d093e57fef",
+    ".git/objects/98",
+    ".git/objects/af/3679277e4cab59cebb71deb26b58dc4365bef6",
+    ".git/objects/af/tmp_obj_zj0sBp",
+    ".git/index.lock",
+    ".git/objects/ef/0d92387b3be46681f5023fb660afd88517fb2c",
     "notes/html load order.md",
     "notes/html form.md",
     "writeups/Command injection 1.md",
-    "writeups",
-    ".git/objects/82/6e2ca99a7d1a699b7830986d5c3b4e07b3ff0e",
-    ".git/objects/82",
-    ".git/objects/4a/a6c3d45bf27e2a921567cc4775c59896c5aaca",
-    ".git/objects/4a",
-    ".git/objects/7b/47d513327b1fd8753d08ba82d6f0f41ac4e9d8",
-    ".git/objects/5b/2f89418b31378d5710304e762028d0171bb755",
-    ".git/objects/5b",
-    ".git/objects/a1/d2e84e923c08aa7f053ef29568d99cf8728eed",
-    ".git/objects/fb/2f5024e9fabd1210857bd02d39c617009b2c10",
     "notes/Regex.md",
     "notes/linux commands.md",
     "notes/CLI.md",
@@ -502,7 +513,6 @@
     "nutrition.md",
     "2024-11-26T175918.839+0800.md",
     "Templates/daily learning template.md",
-    "Templates/general notes.md",
     "academic/COMP2012H/image.png",
     "attachments/Pasted image 20241107042306.png",
     "academic/MATH2411/ass/graph.png",

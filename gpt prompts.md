@@ -1,0 +1,3 @@
+Capture each of the key knowledge points in the attachment, for each of them, make a note in raw markdown format. For those points that you think is suitable, please write them in a format that obsidian plugin -- Space repetition (flashcard) can read and I am review them as flashcards.
+
+since I am a complete beginner, keep the notes basic and teaching examples easy to understand for beginners, but at the time time enough for me to be prepared for exploring relevant CTF challenges to learn more.

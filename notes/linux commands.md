@@ -56,3 +56,12 @@ tags:
 - `apt-get update`
 
 
+## Encoding / Decoding
+
+base64 -d / base64 --decode ::: decoding stuff that are encoded in base64
+
+## Hashing
+
+md5sum ::: hash strings
+
+sha1sum ::: hash strings

@@ -1,4 +1,18 @@
-# Pwntools Basics
+aliases:
+  - CTF Notes
+  - CTF Learning
+  - Capture The Flag
+  - Computer system
+  - commands 
+  - python
+  - connection
+  - network
+  - pwntools
+tags:
+  - flashcard/active/ctf
+  - function/index
+  - language/in/English
+---
 
 What is pwntools? :::
 A Python library specifically designed for CTF challenges and exploit development.

@@ -1,3 +1,16 @@
+---
+aliases:
+  - CTF Notes
+  - CTF Learning
+  - Capture The Flag
+  - Computer system
+  - buffer overflow
+tags:
+  - flashcard/active/ctf
+  - function/index
+  - language/in/English
+---
+
 # Buffer Overflow Basics
 
 ## Overview

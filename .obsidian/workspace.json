@@ -41,15 +41,10 @@
             "id": "f8fbcd4ed35e5803",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2024-11-20T163833.736+0800.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "2024-11-20T163833.736+0800"
+              "title": "New tab"
             }
           },
           {
@@ -73,13 +68,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2024-11-26T231313.468+0800.md",
+                "file": "2024-11-30T175142.043+0800.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024-11-26T231313.468+0800"
+              "title": "2024-11-30T175142.043+0800"
             }
           }
         ],
@@ -437,12 +432,42 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "d76a1d12f3aad9c0",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "acb291523bc6a7db",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "2e4c1f46aac69129",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
           },
           {
-            "id": "d76a1d12f3aad9c0",
+            "id": "8242766a9f8bd952",
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
@@ -452,7 +477,7 @@
             }
           }
         ],
-        "currentTab": 28
+        "currentTab": 31
       }
     ],
     "direction": "horizontal",
@@ -471,47 +496,47 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "d76a1d12f3aad9c0",
+  "active": "81e54d8e484a50b6",
   "lastOpenFiles": [
+    "notes/address ranges.md",
+    "notes/registers.md",
+    "notes/pwndbg_basic.md",
+    "notes/rip.md",
+    "rip.md",
+    "setup_GOT_hijacking.md",
+    "2024-11-30T122821.103+0800.md",
+    "2024-11-30T175142.043+0800.md",
+    "notes/assembly_lea.md",
+    "notes/gdb_command_examine.md",
+    "notes/PLT_GOT_linking.md",
+    "notes/libc.so.6.md",
+    "notes/offset.md",
+    "notes/pipe operator.md",
+    "day 1.md",
+    "schedule.md",
+    "Templates/Journal_temp.md",
+    "2024-11-26T231313.468+0800.md",
+    ".git/objects/f2/aede674b9ad15328bfe8a79aca4982c0b2c3e5",
+    ".git/objects/f2",
+    ".git/objects/bb/4f85177e03a31208fab933099863d4365656b1",
+    ".git/objects/bb",
+    ".git/objects/d7/74dcad181b8988ccf4a437e36a9d8eb847e523",
+    ".git/objects/d7",
+    ".git/objects/c7/0d46ee992e02ab6cf9151222d144ac4487e2d4",
+    ".git/objects/c7/tmp_obj_heFoBZ",
+    ".git/objects/c7",
+    ".git/index.lock",
     "notes/error handling.md",
     "notes/in operator.md",
     "notes/try_except.md",
     "notes/name equal main.md",
     "notes/CLI copy.md",
     "notes/byte_py.md",
-    ".git/objects/fb/8507f772ad756fa706de8fc294d4fc0b9675d6",
-    ".git/objects/20/2c1d904cb643760a1ada760bfd8fa148b25905",
-    ".git/objects/91/0b864a00ecc4e20f820a38a24ac645f1ec0d73",
-    ".git/objects/91",
-    ".git/objects/ae/f4e8388645f5a5c868a9613b2c186fc2e8bbf9",
-    ".git/objects/79/750b54bd7a1daf335d703edd271dc25febe3bb",
-    ".git/objects/82/f04a88f8cf11dbf40756de31646a630ba4411b",
-    ".git/objects/28/cd1d17a1213004ae0eabd465b592f355e5f8a5",
-    ".git/objects/28",
-    ".git/objects/45/32b0a608a01e8b216568bea4d682d4870f978d",
     "notes/html load order.md",
     "notes/html form.md",
-    "writeups/Command injection 1.md",
-    "notes/Regex.md",
-    "notes/linux commands.md",
-    "notes/CLI.md",
-    "2024-11-26T215704.187+0800.md",
-    "2024-11-26T231313.468+0800.md",
-    "notes/form.md",
     "linked images/php_pre.png",
     "notes/php_pre.png",
     "notes/image.png",
-    "notes/PHP codes.md",
-    "notes/URL encoding.md",
-    "notes/PHP and web server.md",
-    "notes/ssh.md",
-    "notes/Command injection.md",
-    "notes/COmmand injection.md",
-    "notes/Local file inclusion.md",
-    "notes/Magic numbers.md",
-    "notes/linux file system.md",
-    "notes/linux file permission.md",
-    "notes/buffer Overflow.md",
     "attachments/Pasted image 20241126212748.png",
     "academic/COMP2012H/image.png",
     "attachments/Pasted image 20241107042306.png",

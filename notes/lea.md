@@ -15,8 +15,9 @@ tags:
 
 lea ::: lea stands for load effective address. lea {{loads effective address of source into destination}}
 
-lea addr, dst ::: dst = addr
 
+lea addr, dst ::: dst = addr {{AT &T}}
+lea dst, addr ::: dst = addr {{Intel}}
 ```as
 lea    0xe3(%rip),%rdi # 
 ```

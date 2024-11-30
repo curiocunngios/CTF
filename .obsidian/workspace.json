@@ -462,8 +462,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -475,9 +475,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "f4892f569235948a",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 31
+        "currentTab": 32
       }
     ],
     "direction": "horizontal",
@@ -498,6 +508,11 @@
   },
   "active": "81e54d8e484a50b6",
   "lastOpenFiles": [
+    "notes/rbp.md",
+    "notes/rax.md",
+    "notes/string location calculation.md",
+    "notes/string location calculation.d",
+    "notes/lea.md",
     "notes/address ranges.md",
     "notes/registers.md",
     "notes/pwndbg_basic.md",
@@ -525,15 +540,10 @@
     ".git/objects/c7/0d46ee992e02ab6cf9151222d144ac4487e2d4",
     ".git/objects/c7/tmp_obj_heFoBZ",
     ".git/objects/c7",
-    ".git/index.lock",
     "notes/error handling.md",
     "notes/in operator.md",
     "notes/try_except.md",
     "notes/name equal main.md",
-    "notes/CLI copy.md",
-    "notes/byte_py.md",
-    "notes/html load order.md",
-    "notes/html form.md",
     "linked images/php_pre.png",
     "notes/php_pre.png",
     "notes/image.png",

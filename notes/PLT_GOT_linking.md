@@ -16,7 +16,7 @@ PLT (procedure linkage table) and GOT (Global offsets table) used for dynamicall
 
 ::: are inject in the linking process of of the compilation process
 
-::: they are added to the executable file (seemed to be a section in the .s file and if we go back to the .s file)
+::: they are added to the executable file (seemed to be a section in the .s file and if we go back to the .s file) <!--SR:!2024-12-02,1,230!2024-12-02,1,230-->
 Source code → Assembly → Object file → Executable
 (example.c) → (example.s) → (example.o) → (example)
 
@@ -28,10 +28,10 @@ source.c → preprocessor → compiler → assembler → linker
 
 #flashcard what GOT stores
 Before first call:
-GOT[printf] ::: address of "resolver" code
+GOT[printf] ::: address of "resolver" code <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 
 After first call:
-GOT[printf] ::: actual printf address in libc (0x7ff123456789) which is {{calculated with offset of printf + base address of libc which could be randomized by ALRS}}
+GOT[printf] ::: actual printf address in libc (0x7ff123456789) which is {{calculated with offset of printf + base address of libc which could be randomized by ALRS}} <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 
 
 

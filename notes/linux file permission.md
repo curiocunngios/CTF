@@ -21,7 +21,7 @@ tags:
 |
 |_ ( a file)
 
-- / d ::: - means a file, d means a folder
+- / d ::: - means a file, d means a folder <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 rwx ::: r = read, w = write, x = execute
 
 `chmod` ::: CHange MODe. Command used to change permissions for a file or directory on a Unix machine.

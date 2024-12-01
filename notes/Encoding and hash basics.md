@@ -32,7 +32,7 @@ difference between encoding and encryption? :::
 - Encoding: Reversible transformation for data representation
 - Encryption: Scrambles data using a key, only reversible with the correct key
 
-hash ::: A one-way function that converts any data to a fixed-length digest that cannot be mathematically reversed
+hash ::: A one-way function that converts any data to a fixed-length digest that cannot be mathematically reversed <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 
 Properties of hash functions :::
 - Easy to compute
@@ -49,9 +49,9 @@ Properties of hash functions :::
 
 ## Hashing Types
 - MD5 ::: Fast but insecure
-- SHA-1 ::: Better but still breakable
+- SHA-1 ::: Better but still breakable <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 - SHA-256 ::: Currently secure
-- SHA-512 ::: Very secure, longer hash
+- SHA-512 ::: Very secure, longer hash <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 
 ## Basic Commands
 ```bash

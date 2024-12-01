@@ -68,13 +68,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2024-11-30T175142.043+0800.md",
+                "file": "2024-12-01T155913.870+0800.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024-11-30T175142.043+0800"
+              "title": "2024-12-01T155913.870+0800"
             }
           }
         ],
@@ -472,12 +472,32 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "f4892f569235948a",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "a2c8cd3ffbe0d830",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
           },
           {
-            "id": "f4892f569235948a",
+            "id": "eca387bb6643a983",
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
@@ -487,7 +507,7 @@
             }
           }
         ],
-        "currentTab": 32
+        "currentTab": 34
       }
     ],
     "direction": "horizontal",
@@ -508,10 +528,22 @@
   },
   "active": "81e54d8e484a50b6",
   "lastOpenFiles": [
+    "2024-12-01T145052.261+0800.md",
+    "2024-12-01T155913.870+0800.md",
+    "2024-11-30T175142.043+0800.md",
+    ".git/objects/d3/b3434bd45fd9dd6362dd15f0a6a7989100726f",
+    ".git/objects/d3",
+    ".git/objects/18/a76c9cbee5e98a4a7b91381ca66df1a3c3ddff",
+    ".git/objects/18",
+    ".git/objects/bb/e9943a6cef541540903676c2f5dc2ca09a82ac",
+    ".git/objects/a9/a1dd5ed22e23df8c044d0872bab9648c2f1b3d",
+    ".git/objects/a9",
+    ".git/objects/89/4173328e5d2b64271604b869103b1dcbf73930",
+    ".git/objects/88/d123bb51627a6b324a186fe3823d619e40da7f",
+    ".git/objects/88/tmp_obj_JpqP23",
     "notes/rbp.md",
     "notes/rax.md",
     "notes/string location calculation.md",
-    "notes/string location calculation.d",
     "notes/lea.md",
     "notes/address ranges.md",
     "notes/registers.md",
@@ -520,7 +552,6 @@
     "rip.md",
     "setup_GOT_hijacking.md",
     "2024-11-30T122821.103+0800.md",
-    "2024-11-30T175142.043+0800.md",
     "notes/assembly_lea.md",
     "notes/gdb_command_examine.md",
     "notes/PLT_GOT_linking.md",
@@ -531,19 +562,8 @@
     "schedule.md",
     "Templates/Journal_temp.md",
     "2024-11-26T231313.468+0800.md",
-    ".git/objects/f2/aede674b9ad15328bfe8a79aca4982c0b2c3e5",
-    ".git/objects/f2",
-    ".git/objects/bb/4f85177e03a31208fab933099863d4365656b1",
-    ".git/objects/bb",
-    ".git/objects/d7/74dcad181b8988ccf4a437e36a9d8eb847e523",
-    ".git/objects/d7",
-    ".git/objects/c7/0d46ee992e02ab6cf9151222d144ac4487e2d4",
-    ".git/objects/c7/tmp_obj_heFoBZ",
-    ".git/objects/c7",
     "notes/error handling.md",
     "notes/in operator.md",
-    "notes/try_except.md",
-    "notes/name equal main.md",
     "linked images/php_pre.png",
     "notes/php_pre.png",
     "notes/image.png",

@@ -30,33 +30,33 @@ tags:
 ├── tmp/    # Temporary files
 └── usr/    # User programs, libraries, etc.  _(not sure what this is, might explore more and add exmaples here)_
 
-bin/ ::: Essential user binaries
+bin/ ::: Essential user binaries <!--SR:!2024-12-02,1,228!2024-12-02,1,228-->
 
-boot/ ::: Boot loader files 
+boot/ ::: Boot loader files <!--SR:!2024-12-02,1,228!2000-01-01,1,250-->
 
-dev/ ::: Device files
+dev/ ::: Device files <!--SR:!2000-01-01,1,250!2024-12-02,1,228-->
 
-etc/ ::: System configuration 
+etc/ ::: System configuration <!--SR:!2024-12-02,1,228!2000-01-01,1,250-->
 
 home/ ::: User home directories 
 
-lib/ ::: System libraries 
+lib/ ::: System libraries <!--SR:!2024-12-02,1,228!2024-12-02,1,228-->
 
 media/ ::: Mount point for removable media 
 
 mnt/ ::: Mount point for temporary filesystems 
 
-opt/ ::: Optional application software 
+opt/ ::: Optional application software <!--SR:!2000-01-01,1,250!2024-12-02,1,228-->
 
-proc/ ::: Virtual filesystem for process info 
+proc/ ::: Virtual filesystem for process info <!--SR:!2024-12-02,1,228!2024-12-02,1,228-->
 
-root/ ::: Root user's home directory 
+root/ ::: Root user's home directory <!--SR:!2024-12-02,1,228!2024-12-02,1,228-->
 
-sbin/ ::: System binaries <!--SR:!2024-11-27,1,230!2000-01-01,1,250-->
+sbin/ ::: System binaries <!--SR:!2024-12-02,1,210!2024-12-02,1,228-->
 
-tmp/ ::: Temporary files 
+tmp/ ::: Temporary files <!--SR:!2024-12-02,1,228!2000-01-01,1,250-->
 
-usr/ ::: User program,s, libraries, etc.
+usr/ ::: User program,s, libraries, etc. <!--SR:!2024-12-02,1,228!2000-01-01,1,250-->
 
 
 

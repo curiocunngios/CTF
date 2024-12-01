@@ -15,6 +15,6 @@ tags:
 ---
 
 so ::: shared library 
-.6 ::: version number
+.6 ::: version number <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 #flashcard what does the file contain?
 the implementation of standard C functions like printf, scanf, etc. 

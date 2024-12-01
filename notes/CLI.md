@@ -21,30 +21,30 @@ tags:
 - Help Commands:
   ::: `man <command>`
   ::: `<command> -h`
-  ::: `<command> --help`
+  ::: `<command> --help` <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 
 ## Essential Commands
 ### File Management
-- `ls` ::: List files (`ls -al` for detailed view)
-- `cd` ::: Change directory
+- `ls` ::: List files (`ls -al` for detailed view) <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+- `cd` ::: Change directory <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 - `mv <file> <new_loc>` ::: Move/rename file
-- `rm <file>` ::: Remove file (`rm -rf` for recursive force)
-- `chmod` ::: Change permissions
-- `touch` ::: Create blank file
+- `rm <file>` ::: Remove file (`rm -rf` for recursive force) <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+- `chmod` ::: Change permissions <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+- `touch` ::: Create blank file <!--SR:!2024-12-02,1,230!2024-12-02,1,230-->
 - `pwd` ::: Print working directory
 - `mkdir` ::: Create directory
 - `cat` ::: Show file content
-- `strings` ::: Show strings in file
+- `strings` ::: Show strings in file <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 
 ### Data Streams
-1. STDIN (0) ::: Input data
-2. STDOUT (1) ::: Output data
-3. STDERR (2) ::: Error messages
+1. STDIN (0) ::: Input data <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+2. STDOUT (1) ::: Output data <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
+3. STDERR (2) ::: Error messages <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 
 ### Stream Operators
 - `|` ::: Pipe STDOUT to STDIN
 - `>` ::: Redirect STDOUT to file
-- `<` ::: Redirect file to STDIN
+- `<` ::: Redirect file to STDIN <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 - `>>` ::: Append STDOUT to file
 - `2>/dev/null` ::: Redirect STDERR to null
 

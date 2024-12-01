@@ -43,7 +43,7 @@ tags:
 3. Can inspect HTTP headers
 
 ## Flashcards
-`nc -v google.com 80` {{establishes a verbose TCP connection to Google's web server on port 80}}
+`nc -v google.com 80` {{establishes a verbose TCP connection to Google's web server on port 80}} <!--SR:!2024-12-02,1,230-->
 
 #flashcard What is the difference between ports 80 and 443?
 Port 80 is for HTTP (unencrypted), 443 is for HTTPS (encrypted)

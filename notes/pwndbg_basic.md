@@ -81,3 +81,42 @@ EAX => 0
 RAX => 0x402012 ◂— 0x6520756f59007325 /* '%s' */
 
 ```
+
+
+# STACK section 
+
+```
+00:0000│ rbp rsp 0x7fffffffdc00 —▸ 0x7fffffffdc10 ◂— 1
+01:0008│+008     0x7fffffffdc08 —▸ 0x401199 (main+14) ◂— mov eax, 0
+02:0010│+010     0x7fffffffdc10 ◂— 1
+03:0018│+018     0x7fffffffdc18 —▸ 0x7ffff7ddbd68 (__libc_start_call_main+120)
+```
+> both RBP and RSP pointing to {{0x7fffffffdc00}}
+```
+XX:YYYY│+ZZZ     Address      —▸ Content/Reference
+│       │         │            │
+│       │         │            └─ What's stored at this address
+│       │         └─ Actual memory address
+│       └─ Offset from stack top in hex
+└─ Stack slot number
+```
+
+
+
+# BACKTRACE section 
+
+```
+► 0         0x40113a vulnerable_function+4    # Current function
+  1         0x401199 main+14                  # Called from main
+  2   0x7ffff7ddbd68 __libc_start_call_main+120  # libc startup
+  3   0x7ffff7ddbe25 __libc_start_main+133
+  4         0x401071 _start+33
+```
+
+Top entry (►) is {{current function}}
+Each subsequent entry shows {{where the function above was called from}}
+Reading bottom-up shows program execution flow:
+    _start (program entry)
+    __libc_start_main (C runtime setup)
+    main
+    vulnerable_function (current)

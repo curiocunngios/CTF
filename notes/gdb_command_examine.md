@@ -24,9 +24,9 @@ x/s $rip+0xe3
 Common x formats:
 x/s ::: examine as string
 x/x ::: examine as hex
-x/i ::: examine as instruction
+x/i ::: examine as instruction <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 
 
 (gdb) x/s $rip+0xe3    ::: View string
-(gdb) x/x $rip+0xe3    ::: View hex value
+(gdb) x/x $rip+0xe3    ::: View hex value <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 (gdb) x/10i $rip       ::: View next 10 instructions

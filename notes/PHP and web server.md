@@ -22,7 +22,7 @@ Browser                    Web Server
    | <-- Gets HTML response -- |
 ```
 
-PHP ::: server-side language that {{runs on web server}}
+PHP ::: server-side language that {{runs on web server}} <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 .php files contains {{both HTML and PHP code}}
 #flashcard what does PHP do?
 PHP processes user input and generates web pages dynamically
@@ -62,12 +62,12 @@ http://example.com/index.php?age=25&name=john
 parameter names {{depends on the server-side code. What names are used in the code would have to be used in URL}}
 ?page=     :::  Usually expects a page name (about.php, contact.php)
 ?file=     :::  Usually expects a filename (document.pdf, image.jpg)
-?include=  :::  Similar to page, expects file to include
-?doc=      :::  Usually expects a document name/ID
+?include=  :::  Similar to page, expects file to include <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
+?doc=      :::  Usually expects a document name/ID <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 ?view=     :::  Usually expects a view name or ID
 
 
-?param1=value1&param2=value2. Everything after ? in URL are {{parameters}}
+?param1=value1&param2=value2. Everything after ? in URL are {{parameters}} <!--SR:!2024-12-02,1,230-->
 
 ## PHP include
 
@@ -85,7 +85,7 @@ include("header.php");  // Includes header content here
 ```
 
 ## Null bye 
-%00 ::: a {{string terminator}} like \0 in C and C++ that terminates a string, but in PHP 
+%00 ::: a {{string terminator}} like \0 in C and C++ that terminates a string, but in PHP <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 
 
 ```

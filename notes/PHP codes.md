@@ -104,4 +104,5 @@ preg_match('/^[a-zA-Z0-9.-]+$/', 'google;cat')    // No match
 Similar to:
 Python: re.match(r'^[a-zA-Z0-9.-]+$', hostname)
 ```
+<!--SR:!2024-12-02,1,230-->
 

@@ -28,11 +28,11 @@ tags:
 - `/bin/` ::: Programs (?)
 - `/lib/` ::: Libraries (?)
 - `/usr/bin/` ::: Local programs (?)
-- `/tmp/` ::: Temporary files (?)
+- `/tmp/` ::: Temporary files (?) <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 
 ## User Management
 ### Privileges
-- `root` ::: Administrator
+- `root` ::: Administrator <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 - `su` ::: Switch user to root
 - `sudo command` ::: Execute as root
 - `chmod` ::: Change permissions
@@ -40,14 +40,14 @@ tags:
   - Example: `chmod a+r file`
 
 ## Network Commands
-- `ifconfig`/`ip address` ::: Network interfaces (?)
-- `netstat` ::: Network statistics (?)
+- `ifconfig`/`ip address` ::: Network interfaces (?) <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+- `netstat` ::: Network statistics (?) <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 - `ping` ::: Test connectivity (?)
-- `dig`/`nslookup` ::: DNS lookup (?)
+- `dig`/`nslookup` ::: DNS lookup (?) <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 
 ## Process Management
-- `top` ::: Task manager (?)
-- `ps` ::: Process list (?)
+- `top` ::: Task manager (?) <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
+- `ps` ::: Process list (?) <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 - `kill`/`killall` - Terminate process (?)
 - PID = Process ID
 

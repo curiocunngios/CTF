@@ -68,13 +68,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2024-12-01T155913.870+0800.md",
+                "file": "2024-12-02T202106.420+0800.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024-12-01T155913.870+0800"
+              "title": "2024-12-02T202106.420+0800"
             }
           }
         ],
@@ -492,8 +492,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -505,9 +505,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "345223caa80120ed",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 34
+        "currentTab": 35
       }
     ],
     "direction": "horizontal",
@@ -528,19 +538,20 @@
   },
   "active": "81e54d8e484a50b6",
   "lastOpenFiles": [
-    "2024-12-01T145052.261+0800.md",
     "2024-12-01T155913.870+0800.md",
+    "2024-12-02T202106.420+0800.md",
+    ".git/refs/remotes/origin/main.lock",
+    ".git/objects/fb/f66252bd5f80dc30fe95cfa28b71a61d8a4756",
+    ".git/objects/68/6342d7e23b88f643960c5146520d504a9a7cd0",
+    ".git/objects/68/tmp_obj_SNUi8m",
+    ".git/objects/6c/8f3546b74e794fe54e1acc0f77f2897fc68d4c",
+    ".git/objects/6c/tmp_obj_oWqDfO",
+    ".git/objects/84/94659d80a454c58746907c7cb81af861befd1d",
+    ".git/objects/84",
+    ".git/index.lock",
+    ".git/objects/a9/44163fd7a80fa123b62b042bfcdd43d7b00f9e",
+    "2024-12-01T145052.261+0800.md",
     "2024-11-30T175142.043+0800.md",
-    ".git/objects/d3/b3434bd45fd9dd6362dd15f0a6a7989100726f",
-    ".git/objects/d3",
-    ".git/objects/18/a76c9cbee5e98a4a7b91381ca66df1a3c3ddff",
-    ".git/objects/18",
-    ".git/objects/bb/e9943a6cef541540903676c2f5dc2ca09a82ac",
-    ".git/objects/a9/a1dd5ed22e23df8c044d0872bab9648c2f1b3d",
-    ".git/objects/a9",
-    ".git/objects/89/4173328e5d2b64271604b869103b1dcbf73930",
-    ".git/objects/88/d123bb51627a6b324a186fe3823d619e40da7f",
-    ".git/objects/88/tmp_obj_JpqP23",
     "notes/rbp.md",
     "notes/rax.md",
     "notes/string location calculation.md",
@@ -563,7 +574,6 @@
     "Templates/Journal_temp.md",
     "2024-11-26T231313.468+0800.md",
     "notes/error handling.md",
-    "notes/in operator.md",
     "linked images/php_pre.png",
     "notes/php_pre.png",
     "notes/image.png",

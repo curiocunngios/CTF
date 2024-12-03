@@ -30,10 +30,10 @@ format:
 - c = {{character}}
 
 ## If you enter "AAA"
-pwndbg> x/s $rsp          # {{Print as string: "AAA"}}
-pwndbg> x/3x $rsp         # {{Print 3 hex bytes: 0x41 0x41 0x41}}
-pwndbg> x/3c $rsp         # {{Print 3 chars: 'A' 'A' 'A'}}
-pwndbg> x/1wx $rsp        # {{Print one word (4 bytes) in hex:0x00414141}}
+pwndbg> x/s $rsp          # {{Print as string: "AAA"}}  
+pwndbg> x/3x $rsp         # {{Print 3 hex bytes: 0x41 0x41   0x41}}  
+pwndbg> x/3c $rsp         # {{Print 3 chars: 'A' 'A' 'A'}}  
+pwndbg> x/1wx $rsp        # {{Print one word (4 bytes) in hex:0x00414141}}  
 
 
 # break <location (memory addr, func name, etc.)>

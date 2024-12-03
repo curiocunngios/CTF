@@ -28,8 +28,8 @@ tags:
 - `ls` ::: List files (`ls -al` for detailed view) <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
 - `cd` ::: Change directory <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
 - `mv <file> <new_loc>` ::: Move/rename file
-- `rm <file>` ::: Remove file (`rm -rf` for recursive force) <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
-- `chmod` ::: Change permissions <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+- `rm <file>` (`rm -rf` for recursive force) ::: Remove file <!--SR:!2000-01-01,1,250!2024-12-04,1,250-->
+- `chmod` ::: Change permissions <!--SR:!2000-01-01,1,250!2024-12-06,3,250-->
 - `touch` ::: Create blank file <!--SR:!2024-12-02,1,230!2024-12-02,1,230-->
 - `pwd` ::: Print working directory
 - `mkdir` ::: Create directory
@@ -44,7 +44,7 @@ tags:
 ### Stream Operators
 - `|` ::: Pipe STDOUT to STDIN
 - `>` ::: Redirect STDOUT to file
-- `<` ::: Redirect file to STDIN <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+- `<` ::: Redirect file to STDIN <!--SR:!2000-01-01,1,250!2024-12-04,1,210-->
 - `>>` ::: Append STDOUT to file
 - `2>/dev/null` ::: Redirect STDERR to null
 

@@ -63,7 +63,7 @@ parameter names {{depends on the server-side code. What names are used in the co
 ?page=     :::  Usually expects a page name (about.php, contact.php)
 ?file=     :::  Usually expects a filename (document.pdf, image.jpg)
 ?include=  :::  Similar to page, expects file to include <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
-?doc=      :::  Usually expects a document name/ID <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+?doc=      :::  Usually expects a document name/ID <!--SR:!2000-01-01,1,250!2024-12-04,1,210-->
 ?view=     :::  Usually expects a view name or ID
 
 

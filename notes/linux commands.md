@@ -28,7 +28,7 @@ tags:
 - `/bin/` ::: Programs (?)
 - `/lib/` ::: Libraries (?)
 - `/usr/bin/` ::: Local programs (?)
-- `/tmp/` ::: Temporary files (?) <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
+- `/tmp/` ::: Temporary files (?) <!--SR:!2024-12-04,1,210!2000-01-01,1,250-->
 
 ## User Management
 ### Privileges

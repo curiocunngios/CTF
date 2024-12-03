@@ -40,7 +40,7 @@ etc/ ::: System configuration <!--SR:!2024-12-02,1,228!2000-01-01,1,250-->
 
 home/ ::: User home directories 
 
-lib/ ::: System libraries <!--SR:!2024-12-02,1,228!2024-12-02,1,228-->
+lib/ ::: System libraries <!--SR:!2024-12-02,1,228!2024-12-04,1,208-->
 
 media/ ::: Mount point for removable media 
 

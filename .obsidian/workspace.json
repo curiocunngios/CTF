@@ -68,13 +68,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2024-12-06T010219.601+0800.md",
+                "file": "2024-12-07T010203.371+0800.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024-12-06T010219.601+0800"
+              "title": "2024-12-07T010203.371+0800"
             }
           }
         ],
@@ -522,8 +522,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -535,9 +535,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "f6bbe3ce37d66156",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 37
+        "currentTab": 38
       }
     ],
     "direction": "horizontal",
@@ -558,20 +568,21 @@
   },
   "active": "81e54d8e484a50b6",
   "lastOpenFiles": [
+    "2024-12-06T010219.601+0800.md",
+    "2024-12-07T010203.371+0800.md",
+    ".git/objects/cf/eeb1caa46002ab56022c28584676a044d56752",
+    ".git/objects/cf",
+    ".git/objects/f6/3248678fd29b4385684310b28885533ad2f444",
+    ".git/objects/f6",
+    ".git/objects/d0/416b90ccd1c2cbfd9676fc9de0427b780e9f3f",
+    ".git/objects/02/fab9c7ffdd70d77ef6135e88a4b15b7931cdd2",
+    ".git/objects/92/afc78449ae85f0ff7fb48cb6d90bb7e14b788e",
+    ".git/objects/23/a71b782424bbc7e3e0bd288375a32e1360d40f",
+    ".git/objects/23",
+    ".git/objects/61/e6ae97b893933404a05a82d97156849535c491",
     "notes/TESTassembly_instructions.md",
-    ".git/objects/48/19f7c5fd7109a708bac44a6798d81442ae440d",
-    ".git/objects/8c/f77f683aa20e1de35495a9243233caabd02c0f",
-    ".git/objects/b1/724f32c883d36830782dbfcf241c7332e1ba70",
-    ".git/objects/81/58eb8eb63e411b8c9cfc1f4bd796a174ede8fe",
-    ".git/objects/81",
-    ".git/objects/4b/75f336b169f95c1aa3ffcb6b7b4084eebdf364",
-    ".git/objects/4b",
-    ".git/objects/3b/b1499f17cfbee25cfa807ed67271794fde2093",
-    ".git/objects/3b",
-    ".git/objects/69/2904bbde47a1bb77126077ec89ecfdb8885f8f",
     "notes/assembly_instructions.md",
     "2024-12-02T202106.420+0800.md",
-    "2024-12-06T010219.601+0800.md",
     "2024-12-01T155913.870+0800.md",
     "2024-12-01T145052.261+0800.md",
     "2024-11-30T175142.043+0800.md",
@@ -593,7 +604,6 @@
     "notes/offset.md",
     "notes/pipe operator.md",
     "day 1.md",
-    "schedule.md",
     "linked images/php_pre.png",
     "notes/php_pre.png",
     "notes/image.png",

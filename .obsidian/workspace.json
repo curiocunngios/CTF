@@ -61,24 +61,9 @@
               "icon": "lucide-file",
               "title": "Journal_temp"
             }
-          },
-          {
-            "id": "81e54d8e484a50b6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2024-12-07T010203.371+0800.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2024-12-07T010203.371+0800"
-            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -532,8 +517,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -545,9 +530,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "8c62ed956b8df002",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 38
+        "currentTab": 39
       }
     ],
     "direction": "horizontal",
@@ -566,10 +561,35 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "81e54d8e484a50b6",
+  "active": "8c62ed956b8df002",
   "lastOpenFiles": [
-    "2024-12-06T010219.601+0800.md",
-    "2024-12-07T010203.371+0800.md",
+    "notes/linux note set.md",
+    "notes/tools note set.md",
+    "notes/assembly_instructions_claude.md",
+    "notes/assembly instructions.md",
+    "journal/2024-12-07T010203.371+0800.md",
+    "journal/2024-12-06T010219.601+0800.md",
+    "journal/2024-12-02T202106.420+0800.md",
+    "journal/2024-12-01T155913.870+0800.md",
+    "journal/2024-11-26T231313.468+0800.md",
+    "journal/2024-12-01T145052.261+0800.md",
+    "journal/2024-11-26T175918.839+0800.md",
+    "journal/2024-11-30T175142.043+0800.md",
+    "journal/2024-11-26T212742.022+0800.md",
+    "journal/2024-11-26T215704.187+0800.md",
+    "journal/2024-11-30T122821.103+0800.md",
+    "journal/2024-11-26T202006.022+0800.md",
+    "journal",
+    "notes/shebang.md",
+    "notes/normal function return.md",
+    "notes/libc addr.md",
+    "notes/linking conventions.md",
+    "notes/ROP.md",
+    "notes/ret2libc.md",
+    "notes/PLT.md",
+    "notes/gadget.md",
+    "notes/gpt prompts.md",
+    "notes/GOT.MD",
     ".git/objects/cf/eeb1caa46002ab56022c28584676a044d56752",
     ".git/objects/cf",
     ".git/objects/f6/3248678fd29b4385684310b28885533ad2f444",
@@ -579,31 +599,6 @@
     ".git/objects/92/afc78449ae85f0ff7fb48cb6d90bb7e14b788e",
     ".git/objects/23/a71b782424bbc7e3e0bd288375a32e1360d40f",
     ".git/objects/23",
-    ".git/objects/61/e6ae97b893933404a05a82d97156849535c491",
-    "notes/TESTassembly_instructions.md",
-    "notes/assembly_instructions.md",
-    "2024-12-02T202106.420+0800.md",
-    "2024-12-01T155913.870+0800.md",
-    "2024-12-01T145052.261+0800.md",
-    "2024-11-30T175142.043+0800.md",
-    "notes/rbp.md",
-    "notes/rax.md",
-    "notes/string location calculation.md",
-    "notes/lea.md",
-    "notes/address ranges.md",
-    "notes/registers.md",
-    "notes/pwndbg_basic.md",
-    "notes/rip.md",
-    "rip.md",
-    "setup_GOT_hijacking.md",
-    "2024-11-30T122821.103+0800.md",
-    "notes/assembly_lea.md",
-    "notes/gdb_command_examine.md",
-    "notes/PLT_GOT_linking.md",
-    "notes/libc.so.6.md",
-    "notes/offset.md",
-    "notes/pipe operator.md",
-    "day 1.md",
     "linked images/php_pre.png",
     "notes/php_pre.png",
     "notes/image.png",

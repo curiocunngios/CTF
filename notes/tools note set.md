@@ -12,7 +12,7 @@ tags:
 ---
 
 #### Pwndbg Commands
-Basic Commands :::  
+Basic Commands   
 ??
 - `continue` / `c`: {{Continue execution}}
 - `next` / `n`: {{Step over}}
@@ -21,7 +21,7 @@ Basic Commands :::
 - `break` / `b`: {{Set breakpoint}}
 - `info registers` / `i r`: {{Show registers}}
 
-Memory Examination :::
+Memory Examination 
 `x/[count][format][size] address` command formats:  
 ??
 - Count: {{number of items to display}}
@@ -79,7 +79,7 @@ rop = ROP(elf)
 pop_rdi = rop.find_gadget(['pop rdi', 'ret']).address
 ```
 
-Common I/O Operations :::  
+Common I/O Operations   
 ??  
 ```py
 # Receiving
@@ -145,7 +145,7 @@ stack 20          # Show 20 entries of stack
 ```
 
 ## Common Exploits Pattern
-Buffer Overflow Basic Pattern :::  
+Buffer Overflow Basic Pattern   
 ??  
 ```py
 payload = b'A' * offset    # Padding

@@ -12,7 +12,7 @@ tags:
 ---
 
 #### Linux File System Structure  
-Essential Directories :::  
+Essential Directories   
 ??
 - `/bin`: {{Essential command binaries}}
 - `/sbin`: {{System binaries}}
@@ -26,7 +26,7 @@ Essential Directories :::
 - `/home`: {{User home directories}}
 - `/root`: {{Root user's home directory}}
 
-Important /proc Files :::  
+Important /proc Files   
 ??
 - `/proc/self/maps`: {{Memory mappings of current process}}
 - `/proc/self/mem`: {{Memory of current process}}
@@ -57,7 +57,7 @@ r-- = 4
 ```
 
 #### Essential Commands
-File Operations :::   
+File Operations    
 ??  
 ```bash
 ls -la           # List all files with details
@@ -69,7 +69,7 @@ chmod 755 file   # Change permissions
 chown user file  # Change owner
 ```
 
-File Analysis :::  
+File Analysis   
 ??  
 ```bash
 file binary           # Determine file type
@@ -79,7 +79,7 @@ xxd file            # Another hex dumper
 diff file1 file2    # Compare files
 ```
 
-Text Processing :::  
+Text Processing   
 ??  
 ```bash
 cat file           # Print file content
@@ -91,7 +91,7 @@ sort file          # Sort lines
 uniq               # Remove duplicates
 ```
 
-Process Management :::  
+Process Management   
 ??  
 ```bash
 ps aux            # List all processes
@@ -103,7 +103,7 @@ bg                # Background job
 jobs              # List jobs
 ```
 
-Network Commands :::  
+Network Commands   
 ??  
 ```bash
 netstat -tuln     # List listening ports
@@ -115,7 +115,7 @@ scp file dest     # Secure copy
 ```
 
 #### System Information
-System Analysis :::  
+System Analysis   
 ??  
 ```bash
 uname -a          # System information
@@ -127,7 +127,7 @@ whoami            # Current user
 id                # User/group IDs
 ```
 
-Hardware Info :::  
+Hardware Info   
 ??  
 ```bash
 lscpu             # CPU information
@@ -138,7 +138,7 @@ lspci             # PCI devices
 ```
 
 #### Useful CTF Commands
-File Transfer Methods :::  
+File Transfer Methods   
 ??  
 ```bash
 # Host server
@@ -152,7 +152,7 @@ wget http://host:8000/file
 curl http://host:8000/file -o file
 ```
 
-Binary Analysis :::  
+Binary Analysis   
 ??  
 ```bash
 ldd binary         # List dependencies
@@ -163,7 +163,7 @@ ltrace ./binary    # Trace library calls
 ```
 
 #### Shell Tips
-Command Line Shortcuts :::  
+Command Line Shortcuts   
 ??  
 
 - Ctrl+C: {{Kill current process}}
@@ -172,9 +172,9 @@ Command Line Shortcuts :::
 - Ctrl+L: {{Clear screen}}
 - Ctrl+R: {{Search command history}}
 - Ctrl+A: {{Move to start of line}}
-- Ctrl+E: {{Move to end of line}}
+- Ctrl+E: {{Move to end of line}} <!--SR:!2000-01-01,1,250!2000-01-01,1,250!2000-01-01,1,250!2024-12-08,1,230!2000-01-01,1,250!2000-01-01,1,250!2000-01-01,1,250-->
 
-Shell Redirections :::  
+Shell Redirections   
 ??  
 ```bash
 command > file     # Output to file
@@ -186,7 +186,7 @@ command1 | command2 # Pipe output
 ```
 
 #### Special Files
-Device Files :::
+Device Files 
 ??
 
 - /dev/null: {{Discard output}}
@@ -197,7 +197,7 @@ Device Files :::
 - /dev/tcp/host/port: {{TCP connections}}
 - Environment Variables
 
-Common Variables :::  
+Common Variables   
 ??  
 ```bash
 $PATH      # Command search path

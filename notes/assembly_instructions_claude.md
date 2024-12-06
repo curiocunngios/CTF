@@ -16,7 +16,7 @@ Memory operand :: A location in memory that is used as a source or destination f
 Register :: {{A small, fast storage location}} built directly into the processor  
 
 #### Common Registers  
-General Purpose Registers :::  
+General Purpose Registers   
 ??  
 - RAX: {{Accumulator, used for arithmetic operations and return values}}  
 - RBX: {{Base register, used as a pointer to data}}
@@ -25,7 +25,7 @@ General Purpose Registers :::
 - RSI: {{Source Index, source in string operations}}
 - RDI: {{Destination Index, destination in string operations}}
 
-Special Purpose Registers :::  
+Special Purpose Registers   
 ??  
 - RIP: {{Instruction Pointer, points to next instruction}}
 - RSP: {{Stack Pointer, points to top of stack}}
@@ -89,7 +89,7 @@ dest = dest - source
 cmp operand1, operand2 ::: Compare two values by subtraction (without storing result)  
 test operand1, operand2 ::: Compare two values by AND operation (without storing result)  
   
-Conditional Jumps :::
+Conditional Jumps
 ??
 
 - je/jz: {{Jump if equal/zero}}

@@ -1,3 +1,15 @@
+---
+aliases:
+  - CTF Notes
+  - CTF Learning
+  - Capture The Flag
+  - Computer system
+tags:
+  - flashcard/active/ctf
+  - function/index
+  - language/in/English
+---
+
 ```less
 When program starts:
 - Binary has external functions like puts() but doesn't know their real addresses

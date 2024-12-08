@@ -135,3 +135,136 @@ Digest & Recharge (12:30 PM - 12:45 PM): Take a walk or listen to calming music.
 Ease Into Work (12:45 PM - 1:00 PM): Organize your desk, review light materials.
 Focus Session (1:00 PM - 1:25 PM): Begin with a low-effort task using the Pomodoro technique.
 Experiment with these strategies to see what works best for you. If you’re consistent, your body and mind will start adapting to the new routine! 🚀
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Normally, students in school study in an interval wide enough and comfortable enough for them to learn, practice and digest a something.
+
+An university student example:
+```
+September to Janunary, they study:
+
+
+12 more credits on typical computer science introductory courses:
+
+_intro to c++_ (3 credits):
+_discrete mathematics_ (3 credits):
+_linear algebra_ (3 credits):
+_english language_ (3 credits):
+
+which the above 12 credits involves the following rules:
+- about 2 - 3  lectures each week ( each takes about 1.5 hour)
+- about 3 to 4 assignments in the interval from September to December, might have some small labs in-between 
+- one midterm and one final exam packed on the last month
+
+PLUS one very special course about hacking and CTF: 
+_COMP2633 Competitive Programming in Cybersecurity I_ : (6 credits for people with absolutely no prerequisites)
+- 5 hrs of lectures per week to give a brief introduction to CTF topics. For example, 1 week on linux and regex and CLI, 1 week on reverse engineering and web intro and assembly, 1 week on learning tools like ghidra and cryptography attack another week on stack migration, ROP, GOT hijacking and RSA attack etc.  
+- provide challenging CTF exercises with a time limit of 2 weeks to solve, in order to encourage students to self-explore the details on each topic  
+- about 9 weeks in total 
+```
+
+I believe with the above typical pathway design and planning for the University students, they can all learn efficiently and in a comfortable and enjoyable way that is not too frustrating
+
+# Background of myself 
+Now that the date is 8th of december, I am somebody who one week ago has absolutely no prerequisites and has nothing else to do but planned to fully focusing on just this one particular course, area about hacking:
+`Competitive Programming in Cybersecurity I(6 credits for people with absolutely no prerequisites)`
+
+I have started for a week since 1st of dec, skipped reverse fundamentals like assembly language and ghidra, ignored web challenges and concepts. But I have made quite a lot of progress on PWN with several buffer overflow challenges. I now have a brief understanding in computer memory (e.g. how stack pointers rbp and rsp works function calls)
+I have about 1 month left to learn and prepare for a pretty challenging CTF competition. 
+
+# My question is:
+
+In what way can I focus and learn effectively and digest effectively to be as competitive as, or even go beyond those typical students who immersed in courses in the course of 4 months from September to January, again I think I stood a chance because I am just focusing on this one course `Competitive Programming in Cybersecurity I` about CTF. Since now it's december, those typical students have already finished the entire syllabus `Competitive Programming in Cybersecurity I` but they are probably preparing for final exams of all other courses as well as the CTF competition simultaneously. So I think I might have a chance to catch up 
+
+TLDR: 
+So I guess my question is like asking what is the general direction of learning in such non-ordinary and compressed way, but fully focus on just one course to catch up.
+
+I don't mind, and is kind of expecting to be learning in a frustrating way because I deserved it as I heavily procrastinated. 
+by the way, not sure if this matters, but I am someone with background OCD, ADHD and asperger syndrome.
+to give you more context about the course:
+```
+Lectures
+
+
+Week #	Topics	Download	References	Class video (WITH LINK PROVIDED TO THE TEACHING VIDEOS)
+0	
+Course introduction
+Course Introduction (updated)		
+1	
+
+Basic training
+Basic Training (updated)	
+
+2	
+Basic training continued
+Basic Training continued		
+
+3	
+Reverse 101, Web security 101
+Track A: Reverse 101 (revised on slide 50, ZF=1)
+Track B: Web Security 101 (revised)	Intel 64/IA-32 software
+developermanuals	
+
+4	
+Crypto 101, PWN101
+Track B: Crypto 101
+Track A: PWN 101 (revised)		
+
+5	
+Reverse 102, SQL injections
+Track A: Reverse 102
+Track B: SQL injections		
+
+7	
+PWN 102: Shellcode and lazy binding, Cryptanalysis
+Track A: PWN 102 Shellcode and lazy binding
+Track B: Cryptanalysis		
+
+8	
+PWN103 ROP, Client-side attacks
+Track A: PWN103 ROP (revised)
+Track B: Client-side attacks
+
+9	
+Format String attacks, Fantastic RSA and How to Attack Them
+Track A: PWN105 Format String attacks
+Track B: Fantastic RSA and How to Attack Them		v
+
+12	
+Stack migration, Server side attacks
+Track A: Stack migration
+Track B: Server side attacks		
+
+13	
+Symbolic Execution, Forensics and Steganography
+Track A: Symbolic Execution
+Track B: Forensics and Steganography		
+
+
+
+CTF exercises and FAQ
+The CTF exercises are hosted at the firebird web : <URL TO CHALLENGING CTF CHALLENGES DESIGNED BY COURSE HELPERS>
+
+Question: I know this course requires me to do a lot of self-learning. Is there any good site I can explore for self-learning materials?
+
+Answer: Yes, there are a lot of websites for self-learning CTF knowledge. Here are some of the websites we have came across:
+The PWN college. It has an extensive discussion on PWN (by Ryder)
+Cryptohack. It is a platform for learning cryptopgraphy (by TWY and Ryder)
+Crytopals crypto challenges. It consists of a total of 48 crypto related challenges (by TWY and Ryder)
+Awesome CTF. It consists of a relatively comprehensive collection of CTF related materials (by TWY and Ryder)
+Capture The Flag 101. It consists of a nice collection of CTF related materials (by TWY and Ryder)
+Payloads All The Things. It consists of a nice collection of useful payloads for track B (by Albert)
+libc database. It has a database for identifying libc version by providing the address information of some of the libc symbols (by Eric)

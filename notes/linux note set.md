@@ -6,7 +6,7 @@ aliases:
   - Computer system
   - Linux
 tags:
-  - flashcard/active/ctf/testing
+  - flashcard/active/ctf/testing/temp
   - function/index
   - language/in/English
 ---
@@ -152,8 +152,8 @@ wget http://host:8000/file
 curl http://host:8000/file -o file
 ```
 
-Binary Analysis   
-??  
+Binary Analysis
+??
 ```bash
 ldd binary         # List dependencies
 readelf -a binary  # ELF file info
@@ -161,6 +161,7 @@ objdump -d binary  # Disassemble
 strace ./binary    # Trace syscalls
 ltrace ./binary    # Trace library calls
 ```
+<!--SR:!2024-12-09,1,228-->
 
 #### Shell Tips
 Command Line Shortcuts   
@@ -172,10 +173,10 @@ Command Line Shortcuts
 - Ctrl+L: {{Clear screen}}
 - Ctrl+R: {{Search command history}}
 - Ctrl+A: {{Move to start of line}}
-- Ctrl+E: {{Move to end of line}} <!--SR:!2000-01-01,1,250!2000-01-01,1,250!2000-01-01,1,250!2024-12-08,1,230!2000-01-01,1,250!2000-01-01,1,250!2000-01-01,1,250-->
+- Ctrl+E: {{Move to end of line}} <!--SR:!2000-01-01,1,250!2000-01-01,1,250!2000-01-01,1,250!2024-12-09,1,210!2000-01-01,1,250!2000-01-01,1,250!2000-01-01,1,250-->
 
-Shell Redirections   
-??  
+Shell Redirections
+??
 ```bash
 command > file     # Output to file
 command >> file    # Append to file
@@ -184,6 +185,7 @@ command 2> file    # Error to file
 command &> file    # Both output and error
 command1 | command2 # Pipe output
 ```
+<!--SR:!2024-12-09,1,228-->
 
 #### Special Files
 Device Files 
@@ -195,7 +197,7 @@ Device Files
 - /dev/urandom: {{Non-blocking random}}
 - /dev/shm: {{Shared memory}}
 - /dev/tcp/host/port: {{TCP connections}}
-- Environment Variables
+- Environment Variables <!--SR:!2000-01-01,1,250!2000-01-01,1,250!2024-12-09,1,222!2000-01-01,1,250!2000-01-01,1,250!2000-01-01,1,250-->
 
 Common Variables   
 ??  

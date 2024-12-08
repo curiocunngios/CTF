@@ -6,7 +6,7 @@ aliases:
   - Computer system
   - tools
 tags:
-  - flashcard/active/ctf/testing
+  - flashcard/active/ctf/testing/temp
   - function/index
   - language/in/English
 ---
@@ -64,7 +64,7 @@ p = gdb.debug('./binary', '''
 ```
 
 ELF Manipulation :: Loading and analyzing binaries  
-??  
+??
 ```py
 # Load binary
 elf = ELF('./binary')
@@ -78,6 +78,7 @@ puts_plt = elf.plt['puts']
 rop = ROP(elf)
 pop_rdi = rop.find_gadget(['pop rdi', 'ret']).address
 ```
+<!--SR:!2024-12-09,1,232-->
 
 Common I/O Operations   
 ??  
@@ -94,7 +95,7 @@ p.sendline(payload)      # Send data with newline
 p.sendafter(b':', payload) # Send after receiving delimiter
 ```
 
-Packing/Unpacking :: Converting between bytes and integers  
+Packing/Unpacking :: Converting between bytes and integers <!--SR:!2024-12-09,1,232-->
 ??  
 ```py
 # Pack integers to bytes (little-endian)
@@ -155,7 +156,7 @@ payload += p64(bin_sh)     # /bin/sh address
 payload += p64(system)     # system() address
 ```
 
-Finding Offset :: Determine buffer overflow offset  
+Finding Offset :: Determine buffer overflow offset <!--SR:!2024-12-12,4,270-->
 ??  
 ```py
 # Method 1: Pattern create

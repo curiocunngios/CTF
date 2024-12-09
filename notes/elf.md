@@ -7,16 +7,15 @@ aliases:
   - linux
   - binary
 tags:
-  - flashcard/active/ctf/testing/temp
+  - flashcard/active/ctf/hi
   - function/index
   - language/in/English
 ---
 
 ELF ::: binary format for Linux executables. 
 
-The ELF object helps [parse](./parsing.md) the binary,
-giving access to sections (.text, .bss, etc), symbols, and other binary information
-elf = ELF("program")
+The ELF object `elf = ELF("program")` in pwntools helps {{[parse](./parsing.md)}}the binary,
+giving access to {{sections (.text, .bss, etc), symbols}}, and other binary information
 ```py
 elf = ELF("program")
 print(elf.symbols)        # Get all function names and addresses

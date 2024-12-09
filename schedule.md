@@ -268,3 +268,25 @@ Awesome CTF. It consists of a relatively comprehensive collection of CTF related
 Capture The Flag 101. It consists of a nice collection of CTF related materials (by TWY and Ryder)
 Payloads All The Things. It consists of a nice collection of useful payloads for track B (by Albert)
 libc database. It has a database for identifying libc version by providing the address information of some of the libc symbols (by Eric)
+
+
+
+
+
+
+
+
+
+
+
+
+
+I can't wait the send the following message to the CTF discord:
+
+hello everyone, here are my overly detailed and beginner-friendly write-ups of every challenges on firebird training platform 
+
+ofc it does not have to be my first message. I can still learn and ask a lot of questions before all that
+
+
+ok i am starting to imagine some more conversaitons between me and firebird members xd. Actually maybe no one cares about me xd 
+

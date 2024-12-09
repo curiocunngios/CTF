@@ -6,7 +6,7 @@ aliases:
   - Computer system
   - assembly
 tags:
-  - flashcard/active/ctf/testing/temp
+  - flashcard/active/ctf
   - function/index
   - language/in/English
 ---
@@ -32,8 +32,8 @@ Special Purpose Registers
 - RBP: {{Base Pointer, points to base of current stack frame}}
 
 #### Basic instructions 
-`mov` destination, source ::: Used to copy data from one location to another  
-`mov` destination, source is equivalent to   
+`mov` destination, source ::: Used to copy data from one location to another    
+`mov` destination, source is equivalent to     
 ??  
 ```as
 destination = source
@@ -43,7 +43,7 @@ Source: register, immediate value, or memory location
 ```
 
 `lea` destination, source ::: Used to compute the address of a memory operand and store it in a register  
-`lea` destination, source is equivalent to
+`lea` destination, source is equivalent to  
 ??
 ```as
 destination = &source  // Note: & means "address of"
@@ -54,7 +54,7 @@ Source: A memory operand or an address calculation
 <!--SR:!2024-12-09,1,230-->
 
 `call` addr ::: used to call a {{subroutine (function)}} and transfer control to its starting address <!--SR:!2000-01-01,1,250!2024-12-12,4,270-->
-`call` is equivalent to
+`call` is equivalent to  
 ??  
 ```as
 push rip  ; Save return address
@@ -63,7 +63,7 @@ jmp addr  ; Jump to subroutine
 
 
 `push` Item ::: Pushes Item to the top of the stack  
-`push` is equivalent to
+`push` is equivalent to   
 ??  
 ```as
 sub rsp, 8     ; Decrease stack pointer (stack grows downward)
@@ -92,17 +92,16 @@ CMP operand1, operand2 ::: Performs operand1 - operand2, sets processor flags wi
 
 TEST operand1, operand2 ::: Performs operand1 AND operand2, sets flags without storing result
 
-#### Processor Flags
+#### Processor Flags  
+Key processor flags affected by CMP:  
 ??  
-Key processor flags affected by CMP:
-
 - ZF (Zero Flag): Set to 1 if comparison result is zero (values are equal)
 - SF (Sign Flag): Set to 1 if result is negative
 - CF (Carry Flag): Set to 1 if borrow needed (for unsigned numbers)
 - OF (Overflow Flag): Set to 1 if signed overflow occurs
 
 #### How CMP and Flags Work
-??
+??  
 1. CMP performs subtraction internally
 2. Results set processor flags
 3. Conditional jumps use these flags to decide whether to jump
@@ -115,10 +114,9 @@ JG  Label     ; Checks flags to see if AX>BX
 ```
 <!--SR:!2024-12-09,1,230-->
 
-#### TEST Instruction and Bits  
+#### TEST Instruction and Bits   
 ??  
-
-- A bit is {{a single binary digit (0 or 1)}}
+- A bit is {{a single binary digit (0 or 1)}}  
 - "Set" means {{bit is 1}}
 - "Reset" means {{bit is 0}}
 Example:
@@ -126,22 +124,18 @@ Example:
 TEST AL, 01h  ; Tests if lowest bit is 1
 ```
 
-#### Conditional Jumps  
+#### Conditional Jumps
+The conditional jumps are  
 ??  
-Equal/Not Equal:  
-
 - JE/JZ ::: Jump if Equal (ZF=1)
-- JNE/JNZ ::: Jump if Not Equal (ZF=0)
-- Signed Comparisons:
-
+- JNE/JNZ ::: Jump if Not Equal (ZF=0)  
 - JG/JNLE ::: Jump if Greater (signed)
 - JL/JNGE ::: Jump if Less (signed)
-- JGE/JNL ::: Jump if Greater or Equal
+- JGE/JNL ::: Jump if Greater or Equal 
 - JLE/JNG ::: Jump if Less or Equal <!--SR:!2024-12-09,1,230!2000-01-01,1,250-->
 
-#### Jump Instruction Naming  
+#### Jump Instruction Naming   
 ??  
-
 - J means {{Jump}}  
 - E means {{Equal}}  
 - N means {{Not}}  
@@ -160,7 +154,6 @@ pop rbp       ; Restore previous frame's base pointer
 `ret` ::: Return to the caller  
 `ret` is equivalent to  
 ??  
-
 ```as
 pop rip ; Pop return address into instruction pointer
 ```
@@ -182,26 +175,26 @@ ZF (Zero Flag)
 - 0 if not equal  
 
 SF (Sign Flag)  
-
+??  
 - 1 if result is negative  
 - 0 if result is positive  
   
 CF (Carry Flag)  
-??
+??  
 - 1 if borrow needed (for unsigned comparison)  
 - Set when operand1 < operand2 (unsigned)  
 
 OF (Overflow Flag)  
-??
+??  
 - 1 if signed overflow occurs  
 - Used for signed arithmetic  
 
 PF (Parity Flag)  
-??
+??  
 - 1 if result has even number of 1 bits  
 - 0 if odd number of 1 bits  
 
 AF (Auxiliary Flag)  
-??
+??  
 - 1 if borrow needed for low nibble  
 - Used for BCD arithmetic  

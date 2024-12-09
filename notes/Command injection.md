@@ -7,12 +7,12 @@ aliases:
   - Linux
   - Command injection
 tags:
-  - flashcard/active/ctf
+  - flashcard/active/ctf/hi
   - function/index
   - language/in/English
 ---
 
-Vulnerability where attacker can execute system commands together with expected input using stuff like ; | & $() etc. _(what are they called?)_ 
+Command line injection ::: vulnerability where attacker can execute system commands together with expected input using shell operators. ; | & $() 
 
 Example vulnerable code:
 ```php
@@ -22,12 +22,10 @@ system("ping " . $_GET['ip']);
 ```
 Corresponding attack:
 ```
-http://vulnerable.com/ping.php?ip=8.8.8.8; cat /etc/passwd
+http://vulnerable.com/ping.php?ip=8.8.8.8 ; cat /etc/passwd
 ```
 
-
-#flashcard what mindsets to acquire?
-
+Tips:  
 - Test different command separators. But why? {{command command separators like ;  && || ' ' would be sanitized}}
 - Use output redirection to verify execution (?)
 - Try encoding special characters. For examples, {{${IFS} for whitespace}}

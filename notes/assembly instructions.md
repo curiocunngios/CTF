@@ -7,7 +7,7 @@ aliases:
   - assembly
   - reverse engineering
 tags:
-  - flashcard/active/ctf/testing/temp
+  - flashcard/active/ctf/testing
   - function/index
   - language/in/English
 ---
@@ -51,7 +51,7 @@ push rip  ; Set up address of next instruction of the current frame to the base 
 `push` is equivalent to   
 ??
 ```as
-add rsp, 1    ; Item to be appended in the top slot, allocate space 
+sub rsp, 1    ; Item to be appended in the top slot, allocate space 
 mov rsp, Item ; Move Item to the top slot
 ```
 Item can be {{address, value, registers, instruction, etc. basically anything}}
@@ -67,7 +67,7 @@ pop rbp       ; {{normally used for restore previous base pointer}}
 
 `ret` ::: Return to the frame's caller <!--SR:!2024-12-09,1,229!2000-01-01,1,250-->
 `ret` is equivalent to  
-??
+??  
 ```as
 pop rip ; Return address goes to rip. {{rip = an address = jump to that address}}
 ```

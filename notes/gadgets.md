@@ -24,7 +24,7 @@ ret        ; take next value from stack → jump there
 
 #### Where to find gadgets 
 Using terminal    
-??
+??  
 ```bash
 # Using ROPgadget tool
 ROPgadget --all --binary program | grep "pop rdi"

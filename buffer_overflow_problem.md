@@ -27,7 +27,7 @@ Memory layout:
 The value 0x00007fffffffdca0 stays because:
 
 It points to where "UwUUwU" is found in your input (start of buffer)
-It's written after gets by the strstr call
+It's written after gets by the strstr call  
 Your overflow with "A"s comes before this value is written
 The sequence is:
 

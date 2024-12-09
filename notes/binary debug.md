@@ -16,6 +16,7 @@ tags:
 ```py
 context.log_level = 'debug' 
 ```
+
 ```py
 context.log_level = 'debug' # Sets logging level - debug shows all I/O
 r.sendline(b"Hello")

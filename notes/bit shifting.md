@@ -5,18 +5,18 @@ aliases:
   - Capture The Flag
   - Computer system
 tags:
-  - flashcard/active/ctf/
+  - flashcard/active/ctf/hi
   - function/index
   - language/in/English
 ---
 
 # Bit shift
 
-The bit shift are {{sometimes considered bitwise operations}}, because they treat a value as a {{series of bits}} rather than as a numerical quantity. In these operations, the digits are {{moved, or shifted, to the left or right}}. 
+The bit shift are {{sometimes considered bitwise operations}}, because they treat a value as a {{series of bits}} rather than as a numerical quantity. In these operations, the digits are {{moved, or shifted, to the left or right}}. <!--SR:!2000-01-01,1,250!2000-01-01,1,250!2024-12-10,1,230--> 
 
 Registers in a computer processor have a fixed width, so some bits will be "shifted out" of the register at one end, while the same number of bits are "shifted in" from the other end; the differences between bit shift operators lie in how they determine the values of the shifted-in bits. 
 
-## In python 
+## In python   
 `<<` ::: left shift
 ```py
 num = 65  # 'A'

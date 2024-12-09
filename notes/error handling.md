@@ -23,26 +23,19 @@ except EOFError:  # Handles connection errors
     conn.close()
     continue  # Goes back to start of while loop
 ```
-EOFError means "End Of File" error
-In networking, it occurs when :::
+## EOFError  
+EOFError means "End Of File" error  
 
+In networking, the error occurs when   
+??  
 - Server closes connection
 - Connection is lost
 - We try to read from a closed connection
 
-pwntool raises EOFError when :::
-
+pwntool raises EOFError when   
+??  
 - can't read more data 
 - server disconnects 
 - connection times out
 
-```py
-def demonstrate_raise():
-    try:
-        print("Starting...")
-        raise ValueError("Something went wrong!")
-        print("This won't run")  # Skipped after raise
-    except ValueError:
-        print("Caught the error")
-    print("Continuing...")
-```
+

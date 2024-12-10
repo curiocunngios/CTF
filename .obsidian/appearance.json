@@ -4,7 +4,7 @@
   "theme": "obsidian",
   "accentColor": "#ff8ac2",
   "interfaceFontFamily": "Calibri,Arial",
-  "textFontFamily": "Courier New,Times New Roman,Courier,Arial",
+  "textFontFamily": "Times New Roman,Courier New,Courier,Arial,Consolas",
   "monospaceFontFamily": "Consolas,Arial",
   "enabledCssSnippets": [
     "increase audio min width",

@@ -161,3 +161,6 @@ I totally agree with this. That's always the start of losing balance and nightma
 - make notes and fix notes for your progress of the entire week (review)
 - make handbook (future, by sending that gpt a message reveal your progress and getting a new plan)
 - again, enjoy the process of creating and the progress you have made! 
+
+
+

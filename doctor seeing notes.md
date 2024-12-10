@@ -18,4 +18,5 @@ during the period of 13/11 - 23 / 11, there was in total 5 day which I did not t
 After 23/11, my sleep goes back to normal which 
 ## How do I feel
 
-Nothing, execept in first 1-2 days when I took at night and it disturbed my sleep 
+Nothing, except in first 1-2 days when I took at night and it disturbed my sleep 
+

@@ -13,28 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2024-12-08T221322.156+0800.md",
+                "file": "2024-12-10T122543.824+0800.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024-12-08T221322.156+0800"
-            }
-          },
-          {
-            "id": "ecaa0ff69a2f295d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "handbook.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "handbook"
+              "title": "2024-12-10T122543.824+0800"
             }
           },
           {
@@ -77,8 +62,7 @@
               "title": "day 1"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -582,8 +566,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -595,9 +579,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "34fa4c4c60e49f07",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 43
+        "currentTab": 44
       }
     ],
     "direction": "horizontal",
@@ -616,25 +610,35 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "ecaa0ff69a2f295d",
+  "active": "777fb80231b543be",
   "lastOpenFiles": [
+    "2024-12-08T221322.156+0800.md",
+    "2024-12-10T122543.824+0800.md",
+    "handbook.md",
+    "illness/handbook.md",
+    "illness/mood.png",
+    "illness/image.png",
+    "status.md",
+    "illness/status.md",
+    "notes.md",
+    "illness/notes.md",
+    "illness",
+    "image.png",
+    "2024-12-09T223821.942+0800.md",
+    ".git/objects/9d/640fee5605778c1d26ccb0222efab4ce4a1393",
+    ".git/objects/61/fe00db8d8bf4877ab510a60f6171f60d5fbfcc",
+    ".git/objects/61/tmp_obj_5XNfH9",
+    ".git/objects/02/4a6104be84b6c6131a9dbfb632454a13494473",
+    ".git/objects/02/tmp_obj_nV1Iuq",
+    ".git/index.lock",
+    ".git/objects/5c/e7e943a67783937cf90eb5957911d7877cfc42",
+    ".git/objects/5c",
+    ".git/objects/7d/672e0f149c04899f1966996bb287ff883d82b7",
     "goasls.md",
-    ".git/refs/remotes/origin/main.lock",
-    ".git/objects/08/a826f605398df302754049fa8428152fd28bd5",
-    ".git/objects/20/e3b4a386c803a8e60d5c3cf35ea9d13eee5333",
-    ".git/objects/20/tmp_obj_MfOHix",
-    ".git/objects/01/1c292e5c222fc75c020b4170f97c816e7ffd1c",
-    ".git/objects/01/tmp_obj_4mw7vk",
-    ".git/objects/a3/b23bed20153f66fc3ac6d6e451ee362078a8df",
-    ".git/objects/a3/tmp_obj_FJT4qS",
-    ".git/objects/4f/bdec050066a93e1999f70dcf62953eb8994264",
-    ".git/objects/4f/tmp_obj_gX3wxA",
     "notes/void arguments.md",
     "notes/memory layout.md",
     "buffer_overflow_problem.md",
-    "2024-12-08T221322.156+0800.md",
     "Index.md",
-    "handbook.md",
     "Untitled.md",
     "reminder.md",
     "2024-12-08T013803.429+0800.md",
@@ -647,22 +651,12 @@
     "2024-12-07T192338.945+0800.md",
     "2024-12-07T143437.992+0800.md",
     "notes/two-operand instruction.md",
-    "notes/bitwise opeartions.md",
-    "notes/ord.md",
-    "notes/unnamed.md",
-    "Templates/general notes.md",
-    "notes/linux note set.md",
-    "notes/tools note set.md",
-    "notes/assembly_instructions_claude.md",
     "linked images/php_pre.png",
     "notes/php_pre.png",
     "notes/image.png",
     "attachments/Pasted image 20241126212748.png",
     "academic/COMP2012H/image.png",
     "attachments/Pasted image 20241107042306.png",
-    "academic/MATH2411/ass/graph.png",
-    "academic/MATH2411/ass/image.png",
-    "academic/COMP2012H/mergetime.png",
-    "academic/COMP2012H/circular_sentinel.png"
+    "academic/MATH2411/ass/graph.png"
   ]
 }

@@ -1,3 +1,4 @@
+---
 aliases:
   - CTF Notes
   - CTF Learning
@@ -7,7 +8,7 @@ aliases:
   - assembly 
   - registers
 tags:
-  - flashcard/active/ctf
+  - flashcard/active/ctf/yo
   - function/index
   - language/in/English
 ---
@@ -86,7 +87,7 @@ Low address
 
 intention:
 - {{save the RBP value}} to perhaps use it later so we push it on top of the frame
-- keep track of {{where each functions's  stack frame begins}}
+- keep track of {{where each functions's  stack frame begins}} <!--SR:!2024-12-14,3,250!2024-12-14,3,250-->
 
 
 

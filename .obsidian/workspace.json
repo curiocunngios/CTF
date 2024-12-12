@@ -8,33 +8,13 @@
         "type": "tabs",
         "children": [
           {
-            "id": "777fb80231b543be",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2024-12-10T122543.824+0800.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2024-12-10T122543.824+0800"
-            }
-          },
-          {
             "id": "f6ea9b167df6a996",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2024-11-26T202006.022+0800.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "2024-11-26T202006.022+0800"
+              "title": "New tab"
             }
           },
           {
@@ -576,12 +556,32 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "34fa4c4c60e49f07",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "1a60714bbe822085",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
           },
           {
-            "id": "34fa4c4c60e49f07",
+            "id": "2aca05bf2e0fd74e",
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
@@ -591,7 +591,7 @@
             }
           }
         ],
-        "currentTab": 44
+        "currentTab": 46
       }
     ],
     "direction": "horizontal",
@@ -610,10 +610,22 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "777fb80231b543be",
+  "active": "f6ea9b167df6a996",
   "lastOpenFiles": [
-    "2024-12-08T221322.156+0800.md",
+    "illness/notes2.md",
+    "illness/notes.md",
     "2024-12-10T122543.824+0800.md",
+    ".git/objects/maintenance.lock",
+    ".git/objects/1e/df9a8d5004601702d6dfcd6f4da27b02724e48",
+    ".git/objects/f5/11c763485709da880b6e5be490afbcbd00c4ea",
+    ".git/objects/f5/tmp_obj_MfZUsy",
+    ".git/objects/f5",
+    ".git/objects/6e/14e914aa3c3c816b4f3191a13c741659cc4711",
+    ".git/objects/c4/133a29b3f3b6b2f38e6975187c93b0820fdbad",
+    ".git/index.lock",
+    ".git/objects/dc/2837343c17846fcfcb13f70aa5cc61a002afe7",
+    ".git/objects/c5/9dab5f12c563ba8c4ccd4e6dc60016b7613f2f",
+    "2024-12-08T221322.156+0800.md",
     "handbook.md",
     "illness/handbook.md",
     "illness/mood.png",
@@ -621,19 +633,8 @@
     "status.md",
     "illness/status.md",
     "notes.md",
-    "illness/notes.md",
-    "illness",
     "image.png",
     "2024-12-09T223821.942+0800.md",
-    ".git/objects/9d/640fee5605778c1d26ccb0222efab4ce4a1393",
-    ".git/objects/61/fe00db8d8bf4877ab510a60f6171f60d5fbfcc",
-    ".git/objects/61/tmp_obj_5XNfH9",
-    ".git/objects/02/4a6104be84b6c6131a9dbfb632454a13494473",
-    ".git/objects/02/tmp_obj_nV1Iuq",
-    ".git/index.lock",
-    ".git/objects/5c/e7e943a67783937cf90eb5957911d7877cfc42",
-    ".git/objects/5c",
-    ".git/objects/7d/672e0f149c04899f1966996bb287ff883d82b7",
     "goasls.md",
     "notes/void arguments.md",
     "notes/memory layout.md",
@@ -650,7 +651,6 @@
     "notes/bit shifting.md",
     "2024-12-07T192338.945+0800.md",
     "2024-12-07T143437.992+0800.md",
-    "notes/two-operand instruction.md",
     "linked images/php_pre.png",
     "notes/php_pre.png",
     "notes/image.png",

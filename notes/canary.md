@@ -14,7 +14,7 @@ tags:
   - language/in/English
 ---
 
-Stack Canary ::: a security mechanism to detect buffer overflows
+Stack Canary ::: a security mechanism to detect buffer overflows <!--SR:!2024-12-12,1,230!2024-12-15,4,270-->
 
 ## How does Stack Canary prevents buffer overflow  
 ?
@@ -32,7 +32,7 @@ Memory layout:
 [ret addr]
 ```
 
-Stack canary random values usually starts with {{null-byte `0x00`}}. It is random {{per program execution}} and is stored in a [protection region](<fsgs segment register.md>), specifically at {{fs:0x28 on x86_64 Linux.}}
+Stack canary random values usually starts with {{null-byte `0x00`}}. It is random {{per program execution}} and is stored in a [protection region](<fsgs segment register.md>), specifically at {{fs:0x28 on x86_64 Linux.}} <!--SR:!2024-12-15,4,270!2024-12-12,1,230!2024-12-14,3,250-->
 
 ## The canary operations in assembly instructions
 

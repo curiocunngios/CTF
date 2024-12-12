@@ -38,13 +38,13 @@ pause()
 - Prints "[*] Paused (press any key to continue)" and wait for users input before continuing
 - To check things in debugger or verify state before proceeding <!--SR:!2024-12-12,3,250-->
 
-## Reading address  
+## Reading address
 ```py
 int.from_bytes(r.recvuntil(b'\x7f'), 'little')
 ```
 ??
 - receive bytes until '\x7f', what libc addresses typically end with e.g. `\xf0\xa7\xe4\xf7\xff\x7f`
-- convert to backwards `0x7ffff7e4a7f0 ` and to int for typical libc base address calculation('little'specifies little-endian byte order) 
+- convert to backwards `0x7ffff7e4a7f0 ` and to int for typical libc base address calculation('little'specifies little-endian byte order) <!--SR:!2024-12-15,4,271-->
 
 #### Example  
 ```py

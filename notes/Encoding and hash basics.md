@@ -9,7 +9,7 @@ aliases:
   - hash
   - basic
 tags:
-  - flashcard/active/ctf
+  - flashcard/active/ctf/hi
   - function/index
   - language/in/English
 ---

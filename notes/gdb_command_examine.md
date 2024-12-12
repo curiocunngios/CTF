@@ -14,12 +14,16 @@ tags:
   - language/in/English
 ---
 
+# How x command work  
+??  
+```
 x/s $rip+0xe3
 ^  ^ ^    ^
 |  | |    └── offset (0xe3)
 |  | └──────── rip register ($ means "register")
 |  └────────── format specifier (s = string)
 └─────────────── examine command
+```
 
 Common x formats:
 x/s ::: examine as string

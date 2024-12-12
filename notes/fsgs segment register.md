@@ -13,8 +13,8 @@ tags:
   - language/in/English
 ---
 
-# The fs/gs segment register 
-The fs/gs segment register is a {{special memory region}} that is {{specifically designated for security purposes}}. 
+# The fs/gs segment register
+The fs/gs segment register is a {{special memory region}} that is {{specifically designated for security purposes}}. <!--SR:!2024-12-15,4,270!2024-12-12,1,230-->
 
 fs/gs segement register is a memory region that:
 ?   

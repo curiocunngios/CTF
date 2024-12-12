@@ -6,11 +6,10 @@ aliases:
   - Computer system
   - pyhton
 tags:
-  - flashcard/active/ctf
+  - flashcard/active/ctf/hi
   - function/index
   - language/in/English
 ---
-
 
 ```py
 try:
@@ -23,19 +22,16 @@ except EOFError:  # Handles connection errors
     conn.close()
     continue  # Goes back to start of while loop
 ```
+## How does try block work?
+
+raise `Error` :: jumps to the error code 
+except `Error`: <content> :: program reaches here if {{ error is raised}}
 ## EOFError  
-EOFError means "End Of File" error  
+EOFError ::: "End Of File" error, which happens when {{server closes connection}}, {{Connection is lost}} or when {{We try to read from a closed connection}}
 
-In networking, the error occurs when   
-??  
-- Server closes connection
-- Connection is lost
-- We try to read from a closed connection
-
-pwntool raises EOFError when   
+pwntool raises EOFError when    
 ??  
 - can't read more data 
 - server disconnects 
 - connection times out
-
 

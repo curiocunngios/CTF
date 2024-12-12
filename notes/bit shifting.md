@@ -12,12 +12,12 @@ tags:
 
 # Bit shift
 
-The bit shift are {{sometimes considered bitwise operations}}, because they treat a value as a {{series of bits}} rather than as a numerical quantity. In these operations, the digits are {{moved, or shifted, to the left or right}}. <!--SR:!2000-01-01,1,250!2000-01-01,1,250!2024-12-10,1,230--> 
+The bit shift are {{sometimes considered bitwise operations}}, because they treat a value as a {{series of bits}} rather than as a numerical quantity. In these operations, the digits are {{moved, or shifted, to the left or right}}. <!--SR:!2024-12-12,1,228!2024-12-14,3,268!2024-12-14,3,250--> 
 
 Registers in a computer processor have a fixed width, so some bits will be "shifted out" of the register at one end, while the same number of bits are "shifted in" from the other end; the differences between bit shift operators lie in how they determine the values of the shifted-in bits. 
 
 ## In python   
-`<<` ::: left shift
+`<<` ::: left shift <!--SR:!2024-12-14,3,268!2024-12-14,3,268-->
 ```py
 num = 65  # 'A'
 print(bin(num))     # '0b1000001'
@@ -61,7 +61,7 @@ The number of bits actually grows as needed to represent the larger number. This
 - Python integers can grow to any size needed
 
 
-`>>` ::: right shift
+`>>` ::: right shift <!--SR:!2024-12-14,3,268!2024-12-14,3,268-->
 ```py
 x = 65
 print(bin(x)[2:].zfill(8))       # 01000001

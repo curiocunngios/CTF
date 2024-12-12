@@ -35,3 +35,4 @@ gets writes your input (overflow with "A"s)
 strstr runs and writes 0x00007fffffffdca0 to [rbp-0x8]
 That's why you see this value preserved despite the overflow
 If you put enough "A"s before "UwUUwU" in your input, you might see this value change because strstr would find the pattern at a different location.
+

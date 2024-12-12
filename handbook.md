@@ -28,16 +28,12 @@ Habit:
 
 - The sense of tranquility you get from reading and learning
 
-- The excitement during process of figuring out new things
+- The excitement during process of figuring out new things and fulfillment of curiosity
 
-- Th fulfillment of your curiosity
+- The process of understanding things. The pain when you don't and the fulfillment when you finally get it and feeling connection between each knowledge points 
 
-- The process of understanding things
-- The sense of achievement of being able to understand
-
-- The feeling you get when you sense the connection between different knowledge
-- The fulfillment of being able to create things
-- The sense of achievement of being able to break things
+- The fulfillment of building up notes and knowledge both digitally and in your mind
+- The sense of achievement of breaking into systems with your knowledge about it  
 - The connection between you and people in communities you are in (asking, answering questions and sharing feelings)
 
   

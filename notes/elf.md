@@ -1,15 +1,9 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - linux
-  - binary
+  - linux executable in binary 
+  - linux exe in binary 
 tags:
   - flashcard/active/ctf/hi
-  - function/index
-  - language/in/English
 ---
 
 ELF ::: binary format for Linux executables. <!--SR:!2024-12-15,4,270!2024-12-15,4,270-->

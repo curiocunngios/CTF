@@ -11,10 +11,15 @@
             "id": "f6ea9b167df6a996",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "2024-12-12T202437.560+0800.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "2024-12-12T202437.560+0800"
             }
           },
           {
@@ -576,8 +581,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -589,9 +594,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "081e444a0a790e09",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 46
+        "currentTab": 47
       }
     ],
     "direction": "horizontal",
@@ -612,45 +627,45 @@
   },
   "active": "f6ea9b167df6a996",
   "lastOpenFiles": [
+    "notes/libc function calls.md",
+    "notes/gdb commands.md",
+    "notes/pyByte.md",
+    "notes/errors.md",
+    "notes/CLinjection.md",
+    "notes/error.md",
+    "notes/fsgs.md",
+    "notes/function epilogue.md",
+    "notes/function prologue.md",
+    "notes/x86-64 assembly.md",
+    "notes/assembly_instructions_claude.md",
+    "notes/GOT leak.md",
+    "notes/pwntools_debug.md",
+    "notes/Encoding and hash basics.md",
+    "notes/Encode encrypt hash.md",
+    "2024-12-12T202437.560+0800.md",
+    "about notes.md",
+    "notes/endbr32.md",
+    "2024-12-12T202505.165+0800.md",
+    "stuffy nose.md",
+    "notes/start of function.md",
+    "notes/enbr32.md",
+    ".git/index.lock",
+    ".git/objects/maintenance.lock",
+    ".git/objects/9d/20f68d5c7d05098ca660b2611ef66bb0265acf",
+    ".git/objects/93/8e19f81cf9462d62fc5945169e5c3900933f82",
+    ".git/objects/47/977031d9a84afa8d5e77468460ec2291b74f3e",
+    ".git/objects/47",
+    ".git/objects/ac/b7f29866955ed0bd4d838febeb4ad26fd19797",
+    ".git/objects/9c/fc2d626b53f7f4bb425df038c763a97d32daff",
+    ".git/objects/55/eee4fef6984a58631ee2c6be8af8064cf63f8a",
+    ".git/objects/d5/61a8df377e33b8ac1b4295ec5af14705df9284",
+    "notes/Common c functions.md",
     "illness/notes2.md",
     "illness/notes.md",
     "2024-12-10T122543.824+0800.md",
-    ".git/objects/maintenance.lock",
-    ".git/objects/1e/df9a8d5004601702d6dfcd6f4da27b02724e48",
-    ".git/objects/f5/11c763485709da880b6e5be490afbcbd00c4ea",
-    ".git/objects/f5/tmp_obj_MfZUsy",
-    ".git/objects/f5",
-    ".git/objects/6e/14e914aa3c3c816b4f3191a13c741659cc4711",
-    ".git/objects/c4/133a29b3f3b6b2f38e6975187c93b0820fdbad",
-    ".git/index.lock",
-    ".git/objects/dc/2837343c17846fcfcb13f70aa5cc61a002afe7",
-    ".git/objects/c5/9dab5f12c563ba8c4ccd4e6dc60016b7613f2f",
-    "2024-12-08T221322.156+0800.md",
-    "handbook.md",
-    "illness/handbook.md",
     "illness/mood.png",
     "illness/image.png",
-    "status.md",
-    "illness/status.md",
-    "notes.md",
     "image.png",
-    "2024-12-09T223821.942+0800.md",
-    "goasls.md",
-    "notes/void arguments.md",
-    "notes/memory layout.md",
-    "buffer_overflow_problem.md",
-    "Index.md",
-    "Untitled.md",
-    "reminder.md",
-    "2024-12-08T013803.429+0800.md",
-    "2024-12-08T221243.850+0800.md",
-    "example note ( can just ask AI to gen for u together with flashcards format).md",
-    "writeups/ret2win.md",
-    "passion.md",
-    "day 1.md",
-    "notes/bit shifting.md",
-    "2024-12-07T192338.945+0800.md",
-    "2024-12-07T143437.992+0800.md",
     "linked images/php_pre.png",
     "notes/php_pre.png",
     "notes/image.png",

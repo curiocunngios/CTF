@@ -1,15 +1,10 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - commands 
-  - CLI
+  - Command line
+  - Command
 tags:
   - flashcard/active/ctf
-  - function/index
-  - language/in/English
+  - notes/tbc
 ---
 
 
@@ -17,36 +12,32 @@ tags:
 
 ## Core Concepts
 - CLI = Terminal = Shell = Command Prompt
-- Structure: `command parameters/arguments`
-- Help Commands:
-  ::: `man <command>`
-  ::: `<command> -h`
-  ::: `<command> --help` <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
+- Structure: `command parameters <arguments>` <!--SR:!2024-12-02,1,230-->
 
 ## Essential Commands
 ### File Management
-- `ls` ::: List files (`ls -al` for detailed view) <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
-- `cd` ::: Change directory <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
-- `mv <file> <new_loc>` ::: Move/rename file
-- `rm <file>` (`rm -rf` for recursive force) ::: Remove file <!--SR:!2000-01-01,1,250!2024-12-04,1,250-->
-- `chmod` ::: Change permissions <!--SR:!2000-01-01,1,250!2024-12-06,3,250-->
-- `touch` ::: Create blank file <!--SR:!2024-12-02,1,230!2024-12-02,1,230-->
-- `pwd` ::: Print working directory
-- `mkdir` ::: Create directory
-- `cat` ::: Show file content
-- `strings` ::: Show strings in file <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+- `ls` :: List files (`ls -al` for detailed view) <!--SR:!2024-12-14,1,213-->
+- `cd` :: Change directory <!--SR:!2024-12-14,1,210-->
+- `mv <file> <new_loc>` :: Move/rename file <!--SR:!2024-12-14,1,210-->
+- `rm <file>` (`rm -rf` for recursive force) ::: Remove file <!--SR:!2024-12-14,1,213!2024-12-14,1,230-->
+- `chmod` :: Change permissions <!--SR:!2024-12-14,1,210-->
+- `touch` :: Create blank file <!--SR:!2024-12-14,1,210-->
+- `pwd` :: Print working directory <!--SR:!2024-12-14,1,210-->
+- `mkdir` :: Create directory <!--SR:!2024-12-14,1,213-->
+- `cat` :: Show file content <!--SR:!2024-12-14,1,213-->
+- `strings` :: Show strings in file <!--SR:!2024-12-14,1,210-->
 
 ### Data Streams
-1. STDIN (0) ::: Input data <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
-2. STDOUT (1) ::: Output data <!--SR:!2024-12-02,1,230!2000-01-01,1,250-->
-3. STDERR (2) ::: Error messages <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
+1. STDIN (0) :: Input data <!--SR:!2024-12-14,1,210-->
+2. STDOUT (1) :: Output data <!--SR:!2024-12-14,1,210-->
+3. STDERR (2) :: Error messages <!--SR:!2024-12-14,1,213-->
 
 ### Stream Operators
-- `|` ::: Pipe STDOUT to STDIN
-- `>` ::: Redirect STDOUT to file
-- `<` ::: Redirect file to STDIN <!--SR:!2000-01-01,1,250!2024-12-04,1,210-->
-- `>>` ::: Append STDOUT to file
-- `2>/dev/null` ::: Redirect STDERR to null
+- `|` :: Pipe STDOUT to STDIN <!--SR:!2024-12-14,1,210-->
+- `>` :: Redirect STDOUT to file <!--SR:!2024-12-14,1,210-->
+- `<` :: Redirect file to STDIN <!--SR:!2024-12-14,1,210-->
+- `>>` :: Append STDOUT to file <!--SR:!2024-12-14,1,210-->
+- `2>/dev/null` :: Redirect STDERR to null <!--SR:!2024-12-14,1,210-->
 
 ### Stream Operators Examples
 

@@ -1,29 +1,23 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - binary
-  - binary exploitation
+  - gadgets
+  - instruction sequences
 tags:
-  - flashcard/active/ctf/yo
-  - function/index
-  - language/in/English
+  - flashcard/active/ctf
 ---
 
-gadget ::: machine instruction **sequences** that are already present in the machine's memory, it's not finding a single instruction that does both operations. <!--SR:!2000-01-01,1,250!2024-12-14,3,250-->
-Each gadget typically ends in {{a return instruction (ret)}} and is located in a subroutine (function) within the existing program and/or shared library code.  
-
+# Gadgets 
+Gadgets is a machine instruction **sequences** that are already present in the machine's memory, it's not finding a single instruction that does both operations. <!--SR:!2024-12-14,1,230-->
+Each gadget typically ends in **a return instruction (ret)** and is located in a subroutine (function) within the existing program and/or shared library code.
 Example:
 ```as
 pop rdi    ; take value from stack → put in rdi
 ret        ; take next value from stack → jump there
 ```
+<!--SR:!2024-12-14,1,230-->
 
-
-#### Where to find gadgets  
-??  
+## gadgets location
+??
 Using terminal
 ```bash
 # Using ROPgadget tool
@@ -38,23 +32,19 @@ print(rop.rdi)    # Finds pop rdi; ret
 print(rop.rsi)    # Finds pop rsi; ret
 print(rop.dumps()) # Shows all found gadgets
 ```
+<!--SR:!2024-12-14,1,230-->
 
-The output of ROPgadget is the {{starting address of the sequences of instructions aka gadgets}}
-For example,
+The output of ROPgadget is the {{starting address of the sequences of instructions}}
+For example, output would be {{0x400868}}
 ```as
 0x400868: leave          ; First instruction
 0x400869: ret           ; Second instruction
 ```
-<!--SR:!2024-12-14,3,250-->
 
 
 When ROPgadget reports this as 0x400868: leave; ret, it means:
 
-- If you jump to 0x400868, you'll execute both instructions in sequence
-- It's reporting the starting address (0x400868) of the useful sequence
+- If you jump to 0x400868, you'll execute {{both instructions in sequence}}
+- It's reporting the starting address (0x400868) of the useful sequence <!--SR:!2024-12-14,1,230-->
 
 
-To show individual instructions
-```bash
-ROPgadget --binary program --only "leave|ret"
-```

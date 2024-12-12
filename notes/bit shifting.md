@@ -1,23 +1,18 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
+  - bit shift
 tags:
-  - flashcard/active/ctf/hi
-  - function/index
-  - language/in/English
+  - flashcard/active/ctf
 ---
 
 # Bit shift
 
-The bit shift are {{sometimes considered bitwise operations}}, because they treat a value as a {{series of bits}} rather than as a numerical quantity. In these operations, the digits are {{moved, or shifted, to the left or right}}. <!--SR:!2024-12-12,1,228!2024-12-14,3,268!2024-12-14,3,250--> 
+The bit shift are {{sometimes considered bitwise operations}}, because they treat a value as a {{series of bits}} rather than as a numerical quantity. In these operations, the digits are {{moved, or shifted, to the left or right}}. 
 
 Registers in a computer processor have a fixed width, so some bits will be "shifted out" of the register at one end, while the same number of bits are "shifted in" from the other end; the differences between bit shift operators lie in how they determine the values of the shifted-in bits. 
 
 ## In python   
-`<<` ::: left shift <!--SR:!2024-12-14,3,268!2024-12-14,3,268-->
+`<<` :: left shift 
 ```py
 num = 65  # 'A'
 print(bin(num))     # '0b1000001'
@@ -61,7 +56,7 @@ The number of bits actually grows as needed to represent the larger number. This
 - Python integers can grow to any size needed
 
 
-`>>` ::: right shift <!--SR:!2024-12-14,3,268!2024-12-14,3,268-->
+`>>` :: right shift 
 ```py
 x = 65
 print(bin(x)[2:].zfill(8))       # 01000001

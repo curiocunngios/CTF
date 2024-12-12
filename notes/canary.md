@@ -1,27 +1,18 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - protection
-  - binary exploitation
-  - binary 
-  - memory
+  - Stack Canary
 tags:
-  - flashcard/active/ctf/hi
-  - function/index
-  - language/in/English
+  - flashcard/active/ctf
+  - notes/tbc
 ---
 
-Stack Canary ::: a security mechanism to detect buffer overflows <!--SR:!2024-12-12,1,230!2024-12-15,4,270-->
+Stack Canary ::: a security mechanism to detect buffer overflows <!--SR:!2024-12-14,1,210!2024-12-15,4,270-->
 
-## How does Stack Canary prevents buffer overflow  
-?
-
-- Random value placed between buffer and return address
-- Value checked before function returns
-- If changed, program terminates
+## Stack Canary's buffer overflow prevention
+Stack Canary prevents buffer overflow with:
+- Random value placed {{between buffer and return address}}
+- Value checked {{before function returns}}
+- If change in value is detected, {{program terminates}} <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
 
 ## Visualization of canary
 ```
@@ -32,7 +23,7 @@ Memory layout:
 [ret addr]
 ```
 
-Stack canary random values usually starts with {{null-byte `0x00`}}. It is random {{per program execution}} and is stored in a [protection region](<fsgs segment register.md>), specifically at {{fs:0x28 on x86_64 Linux.}} <!--SR:!2024-12-15,4,270!2024-12-12,1,230!2024-12-14,3,250-->
+Stack canary random values usually starts with {{null-byte `0x00`}}. It is random {{per program execution}} and is stored in a [protection region](<fsgs segment register.md>), specifically at {{fs:0x28 on x86_64 Linux.}} <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
 
 ## The canary operations in assembly instructions
 
@@ -48,15 +39,15 @@ je     .L2                       ; If equal, continue
 call   __stack_chk_fail@plt      ; If not, terminate
 ```
 
-## How was canary initialized  
-? 
-- OS/loader initializes the canary value during program startup
-- Stores it in thread-local storage (accessed via fs:0x28)
-- Functions then copy this value from fs:0x28 to their stack frame
+## Canary initialization
+Canary initialized under the following flow:
+- OS/loader initializes the canary value {{during program startup}}
+- Stores it in {{thread-local storage(?)}} (accessed via fs:0x28)
+- Functions then copy this value {{from fs:0x28 to their stack frame}} <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
 
 
-Creation of canary  
-?
+Creation of canary
+??
 ```json
 Program Start:
 [OS/loader] --> [sets canary in fs:0x28]
@@ -67,3 +58,4 @@ Function Entry:
 Function Exit:
 [compare stack value with fs:0x28]
 ```
+<!--SR:!2024-12-14,1,230-->

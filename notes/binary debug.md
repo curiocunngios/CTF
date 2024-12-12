@@ -1,22 +1,19 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - binary
-  - binary exploitation
+  - debugging
 tags:
   - flashcard/active/ctf
-  - function/index
-  - language/in/English
 ---
 
-# Sets logging level - debug shows {{all I/O in binary details}}
+# Binary exploitation debugging
+
+Sets logging level - debug shows all I/O in binary details
+??
 ```py
 context.log_level = 'debug' 
 ```
 
+## Example use
 ```py
 context.log_level = 'debug' # Sets logging level - debug shows all I/O
 r.sendline(b"Hello")

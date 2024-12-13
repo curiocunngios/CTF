@@ -1,20 +1,12 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - programming
+  - ord
 tags:
-  - flashcard/active/ctf/testing/temp
-  - function/index
-  - language/in/English
+  - flashcard/active/ctf
 ---
 
-
-ord(<char>) ::: convert character to ASCII or Unicode value. 'A' becomes 65 <!--SR:!2024-12-09,1,230!2000-01-01,1,250-->
-
-When does it print ASCII and when does it print Unicode?
+# ord(\<char\>)
+It {{convert character to ASCII or Unicode value}}. 'A' becomes 65
 ```python
 # ASCII example
 print(ord('A'))  # 65 (ASCII)
@@ -31,3 +23,4 @@ if ord(char) <= 127:
 else:
     print("Unicode")
 ```
+<!--SR:!2024-12-16,2,230-->

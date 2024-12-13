@@ -6,13 +6,13 @@ tags:
   - notes/tbc
 ---
 
-Stack Canary ::: a security mechanism to detect buffer overflows <!--SR:!2024-12-14,1,210!2024-12-15,4,270-->
+Stack Canary ::: a security mechanism to detect buffer overflows <!--SR:!2024-12-17,3,230!2024-12-15,4,270-->
 
 ## Stack Canary's buffer overflow prevention
 Stack Canary prevents buffer overflow with:
 - Random value placed {{between buffer and return address}}
 - Value checked {{before function returns}}
-- If change in value is detected, {{program terminates}} <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
+- If change in value is detected, {{program terminates}} <!--SR:!2024-12-17,3,250!2024-12-17,3,250!2024-12-17,3,250-->
 
 ## Visualization of canary
 ```
@@ -23,7 +23,7 @@ Memory layout:
 [ret addr]
 ```
 
-Stack canary random values usually starts with {{null-byte `0x00`}}. It is random {{per program execution}} and is stored in a [protection region](<fsgs segment register.md>), specifically at {{fs:0x28 on x86_64 Linux.}} <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
+Stack canary random values usually starts with {{null-byte `0x00`}}. It is random {{per program execution}} and is stored in a [protection region](<fsgs segment register.md>), specifically at {{fs:0x28 on x86_64 Linux.}} <!--SR:!2024-12-17,3,250!2024-12-17,3,250!2024-12-17,3,250-->
 
 ## The canary operations in assembly instructions
 
@@ -43,7 +43,7 @@ call   __stack_chk_fail@plt      ; If not, terminate
 Canary initialized under the following flow:
 - OS/loader initializes the canary value {{during program startup}}
 - Stores it in {{thread-local storage(?)}} (accessed via fs:0x28)
-- Functions then copy this value {{from fs:0x28 to their stack frame}} <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
+- Functions then copy this value {{from fs:0x28 to their stack frame}} <!--SR:!2024-12-17,3,250!2024-12-17,3,250!2024-12-17,3,250-->
 
 
 Creation of canary
@@ -58,4 +58,4 @@ Function Entry:
 Function Exit:
 [compare stack value with fs:0x28]
 ```
-<!--SR:!2024-12-14,1,230-->
+<!--SR:!2024-12-17,3,250-->

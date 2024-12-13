@@ -16,5 +16,5 @@ tags:
 ```
 - <form> defines {{where data is sent}}
 - action="login.php" means data (<input type= ....>) {{goes to login.php}}
-- method="post" means data is {{sent privately}} <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
+- method="post" means data is {{sent privately}} <!--SR:!2024-12-15,1,210!2024-12-17,3,250!2024-12-17,3,250-->
 

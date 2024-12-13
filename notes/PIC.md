@@ -6,13 +6,13 @@ tags:
 ---
 
 # Position-independent code
-Position-independent code is code that {{can run regardless of its absolute memory location}} <!--SR:!2024-12-14,1,225-->
+Position-independent code is code that {{can run regardless of its absolute memory location}} <!--SR:!2024-12-17,3,245-->
 
 ## Usage of PIC
 PIC is needed for:
 - Security {{(ASLR)}}
 - {{Shared libraries}}
-- The code needs to know its current position to {{access data/functions (PIC) relative to itself}} <!--SR:!2024-12-14,1,222!2024-12-14,1,223!2024-12-14,1,228-->
+- The code needs to know its current position to {{access data/functions (PIC) relative to itself}} <!--SR:!2024-12-17,3,242!2024-12-17,3,243!2024-12-17,3,248-->
 
 ### **Position Independent Code (PIC) Example:**
 ```c
@@ -40,4 +40,4 @@ call get_pc_thunk           ; Get current position (specifically next next instr
 add ebx, offset_to_GOT      ; Point to GOT
 mov eax, [ebx + offset]     ; Access relative to GOT
 ```
-<!--SR:!2024-12-14,1,220!2024-12-14,1,230!2024-12-14,1,220!2024-12-14,1,220!2024-12-14,1,220-->
+<!--SR:!2024-12-17,3,240!2024-12-17,3,250!2024-12-17,3,240!2024-12-17,3,240!2024-12-17,3,240-->

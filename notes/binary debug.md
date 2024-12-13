@@ -12,6 +12,7 @@ Sets logging level - debug shows all I/O in binary details
 ```py
 context.log_level = 'debug' 
 ```
+<!--SR:!2024-12-15,1,230-->
 
 ## Example use
 ```py

@@ -11,6 +11,7 @@ tags:
   - language/in/English
 ---
 
-Parsing ::: reading and interpreting structured data
+# Parsing
+It means {{reading and interpreting structured data}} <!--SR:!2024-12-16,3,250-->
 
 

@@ -6,7 +6,7 @@ tags:
   - flashcard/active/ctf
 ---
 
-ELF ::: binary format for Linux executables. 
+ELF :: binary format for Linux executables. <!--SR:!2024-12-18,4,270-->
 
 The ELF object `elf = ELF("program")` in pwntools helps {{[parse](./parsing.md)}} the binary,
 giving access to {{sections (.text, .bss, etc), symbols}}, and other binary information
@@ -17,3 +17,4 @@ print(elf.got)           # Get GOT table entries
 print(elf.plt)           # Get PLT table entries
 print(elf.sections)      # Get sections like .text, .bss
 ```
+<!--SR:!2024-12-18,4,270!2024-12-15,1,230-->

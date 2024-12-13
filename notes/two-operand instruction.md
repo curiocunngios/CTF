@@ -1,13 +1,8 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
+  - Two-operand instructions
 tags:
-  - flashcard/active/ctf/
-  - function/index
-  - language/in/English
+  - flashcard/active/ctf
 ---
 
-Two-operand instructions, such as MOV, ADD, XOR, etc., generally {{overwrite one of the two participating operands with the result.}}
+Two-operand instructions, such as MOV, ADD, XOR, etc., generally {{overwrite one of the two participating operands with the result.}} <!--SR:!2024-12-17,3,250-->

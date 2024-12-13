@@ -611,12 +611,32 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "ff2d74eda8dd4b73",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "2974f7198099e1bf",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
           },
           {
-            "id": "ff2d74eda8dd4b73",
+            "id": "a507d504601deb40",
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
@@ -626,7 +646,7 @@
             }
           }
         ],
-        "currentTab": 49
+        "currentTab": 51
       }
     ],
     "direction": "horizontal",
@@ -645,8 +665,26 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "ff2d74eda8dd4b73",
+  "active": "a507d504601deb40",
   "lastOpenFiles": [
+    "notes/string location.md",
+    "notes/send null.md",
+    "notes/register.md",
+    "notes/pwndbg commands.md",
+    "notes/pwndbg basic.md",
+    "notes/GOT.md",
+    "notes/object linking.md",
+    "notes/URL.md",
+    "notes/URL",
+    "notes/PHP.md",
+    "notes/objdump.md",
+    "notes/pyNameMain.md",
+    "notes/memory.md",
+    "notes/User Space.md",
+    "notes/kernal space.md",
+    "notes/linux.md",
+    "notes/file permission.md",
+    "notes/libc calls.md",
     ".git/objects/23/d29ac7fa14a1f7b27a84499eb9bff3d5fa34da",
     ".git/objects/7d/100eb310f022c4fec3a5f845e5310d7680aa6d",
     ".git/objects/16/5017b9014eaa96d10996c84096b3840bd2cb9e",
@@ -656,33 +694,15 @@
     ".git/objects/42/c7e226eac8742df67d2f3d6b9270e72ac8108e",
     ".git/objects/87/d3a40ffef86d822ba55ff1fce8ee7d2558ad9b",
     ".git/objects/e6/68592771ba317fd4194fff0fc244c1a4e6b14a",
-    ".git/objects/c0/dfafcce2a582fc04b6f116b15045ff85c68889",
-    ".git/objects/c0",
     "notes/Encode encrypt.md",
     "gpt prompts.md",
     "notes/pwndbg.md",
-    "notes/GOT.md",
     "notes/libc function calls.md",
     "notes/gdb commands.md",
     "notes/pyByte.md",
     "notes/errors.md",
     "notes/CLinjection.md",
     "notes/error.md",
-    "notes/fsgs.md",
-    "notes/function epilogue.md",
-    "notes/function prologue.md",
-    "notes/x86-64 assembly.md",
-    "notes/assembly_instructions_claude.md",
-    "notes/GOT leak.md",
-    "notes/pwntools_debug.md",
-    "notes/Encoding and hash basics.md",
-    "notes/Encode encrypt hash.md",
-    "2024-12-12T202437.560+0800.md",
-    "about notes.md",
-    "notes/endbr32.md",
-    "2024-12-12T202505.165+0800.md",
-    "stuffy nose.md",
-    "notes/start of function.md",
     "illness/mood.png",
     "illness/image.png",
     "image.png",

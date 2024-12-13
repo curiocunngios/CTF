@@ -7,7 +7,7 @@ tags:
 ---
 
 # Command line injection
-Command injection :: a vulnerability where attacker can execute system commands together with expected input using shell operators. ; | & $() 
+Command injection :: a vulnerability where attacker can execute system commands together with expected input using shell operators. ; | & $() <!--SR:!2024-12-18,4,270-->
 
 ### Example vulnerable code:
 ```php
@@ -19,6 +19,4 @@ system("ping " . $_GET['ip']);
 http://vulnerable.com/ping.php?ip=8.8.8.8 ; cat /etc/passwd
 ```
 
-#### Tips on Command injection:
-- Test different command separators because {{command command separators like ;  && || ' ' would be sanitized}}
-- Try encoding special characters. For examples, {{${IFS} for whitespace}} 
+ 

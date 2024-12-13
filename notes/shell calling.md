@@ -9,10 +9,6 @@ tags:
 next(libc.search(b'/bin/sh'))
 libc.sym['system']
 ```
-
-sym[] accesses symbols (functions, variables) in the binary
-If no libc, we'd need to calculate offsets manually based on leaks
-
-search() finds byte patterns in the binary
-next() gets the first matchS
-If no libc, we'd need hardcoded offsets
+- sym[] {{accesses symbols (functions, variables)}} in the binary.
+- search() {{finds byte patterns in the binary}}
+- next() {{gets the first matchS}} <!--SR:!2024-12-17,3,250!2024-12-15,1,230!2024-12-15,1,230-->

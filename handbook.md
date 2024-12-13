@@ -1,17 +1,3 @@
----
-aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - memory
-  - memory layout
-tags:
-  - flashcard/active/ctf/testing
-  - function/index
-  - language/in/English
----
-
 What to do right now and for the rest of the week:
 
 # focus management

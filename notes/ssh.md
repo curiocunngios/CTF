@@ -12,16 +12,11 @@ tags:
   - language/in/English
 ---
 
+# SSH
+Can be used to connect to remote server
+`ssh username@hostname`
 
-```
-# Connect to remote server
-ssh username@hostname
-
-# Common options:
--p PORT      # Specify port _(what is it for tho? What is the motivation of setting PORT? Why?)_
--i KEY_FILE  # Use private key file _(what is it for tho? What is the motivation of setting PORT? Why?)_
-
-# Generate SSH key pair:
-ssh-keygen -t rsa -b 4096 _(what is it for tho? What is the motivation of setting PORT? Why?)_
-```
+## Common options:
+-p PORT
+-i KEY_FILE to {{use private key file}} <!--SR:!2024-12-15,1,230-->
 

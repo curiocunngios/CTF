@@ -6,12 +6,11 @@ tags:
   - flashcard/active/ctf
 ---
 
-
 # Libc Base Address
 What is a libc base address. First think of libc like a big book of functions
 - When the program {{loads this "book" into memory}}, it needs a starting point
 - This {{starting point}} is called the "base address"
-- Due to ASLR, this starting point {{changes every time}} you run the program <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
+- Due to ASLR, this starting point {{changes every time}} you run the program <!--SR:!2024-12-17,3,250!2024-12-17,3,250!2024-12-15,1,210-->
 
 ### Example of base address with ASLR
 ```apache
@@ -21,7 +20,7 @@ Run 3: libc might load at 0x7ffff7800000
 ```
 
 ## Libc Function Address:
-Each libc function has a {{fixed offset from the base address}} <!--SR:!2024-12-14,1,230-->
+Each libc function has a {{fixed offset from the base address}} <!--SR:!2024-12-17,3,250-->
 
 Example for system function:
 ```apache 

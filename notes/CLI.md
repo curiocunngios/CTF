@@ -16,28 +16,28 @@ tags:
 
 ## Essential Commands
 ### File Management
-- `ls` :: List files (`ls -al` for detailed view) <!--SR:!2024-12-14,1,213-->
-- `cd` :: Change directory <!--SR:!2024-12-14,1,210-->
-- `mv <file> <new_loc>` :: Move/rename file <!--SR:!2024-12-14,1,210-->
-- `rm <file>` (`rm -rf` for recursive force) ::: Remove file <!--SR:!2024-12-14,1,213!2024-12-14,1,230-->
-- `chmod` :: Change permissions <!--SR:!2024-12-14,1,210-->
-- `touch` :: Create blank file <!--SR:!2024-12-14,1,210-->
-- `pwd` :: Print working directory <!--SR:!2024-12-14,1,210-->
-- `mkdir` :: Create directory <!--SR:!2024-12-14,1,213-->
-- `cat` :: Show file content <!--SR:!2024-12-14,1,213-->
-- `strings` :: Show strings in file <!--SR:!2024-12-14,1,210-->
+- `ls` :: List files (`ls -al` for detailed view) <!--SR:!2024-12-17,3,233-->
+- `cd` :: Change directory <!--SR:!2024-12-17,3,230-->
+- `mv <file> <new_loc>` :: Move/rename file <!--SR:!2024-12-17,3,230-->
+- `rm <file>` (`rm -rf` for recursive force) ::: Remove file <!--SR:!2024-12-17,3,233!2024-12-17,3,250-->
+- `chmod` :: Change permissions <!--SR:!2024-12-17,3,230-->
+- `touch` :: Create blank file <!--SR:!2024-12-17,3,230-->
+- `pwd` :: Print working directory <!--SR:!2024-12-17,3,230-->
+- `mkdir` :: Create directory <!--SR:!2024-12-17,3,233-->
+- `cat` :: Show file content <!--SR:!2024-12-17,3,233-->
+- `strings` :: Show strings in file <!--SR:!2024-12-17,3,230-->
 
 ### Data Streams
-1. STDIN (0) :: Input data <!--SR:!2024-12-14,1,210-->
-2. STDOUT (1) :: Output data <!--SR:!2024-12-14,1,210-->
-3. STDERR (2) :: Error messages <!--SR:!2024-12-14,1,213-->
+1. STDIN (0) :: Input data <!--SR:!2024-12-17,3,230-->
+2. STDOUT (1) :: Output data <!--SR:!2024-12-17,3,230-->
+3. STDERR (2) :: Error messages <!--SR:!2024-12-17,3,233-->
 
 ### Stream Operators
-- `|` :: Pipe STDOUT to STDIN <!--SR:!2024-12-14,1,210-->
-- `>` :: Redirect STDOUT to file <!--SR:!2024-12-14,1,210-->
-- `<` :: Redirect file to STDIN <!--SR:!2024-12-14,1,210-->
-- `>>` :: Append STDOUT to file <!--SR:!2024-12-14,1,210-->
-- `2>/dev/null` :: Redirect STDERR to null <!--SR:!2024-12-14,1,210-->
+- `|` :: Pipe STDOUT to STDIN <!--SR:!2024-12-17,3,230-->
+- `>` :: Redirect STDOUT to file <!--SR:!2024-12-15,1,190-->
+- `<` :: Redirect file to STDIN <!--SR:!2024-12-17,3,230-->
+- `>>` :: Append STDOUT to file <!--SR:!2024-12-17,3,230-->
+- `2>/dev/null` :: Redirect STDERR to null <!--SR:!2024-12-17,3,230-->
 
 ### Stream Operators Examples
 

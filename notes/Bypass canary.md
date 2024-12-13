@@ -13,3 +13,4 @@ Example:
 ```py
 payload = b"A"*buffer_size + leaked_canary + b"A"*8 + ret_addr
 ```
+<!--SR:!2024-12-18,4,270!2024-12-18,4,270!2024-12-18,4,270-->

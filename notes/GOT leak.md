@@ -25,20 +25,20 @@ libc.address = puts - libc.sym['puts']
 
 log.info(hex(libc.address))
 ```
-<!--SR:!2024-12-13,1,230-->
+<!--SR:!2024-12-16,3,250-->
 
 ## binary exploitation functions
 ```py
 libc.sym[<symbol>] 
 ```
 ??
-gets the offset of a symbol (function/variable) within the libc binary. Output is int <!--SR:!2024-12-13,1,230-->
+gets the offset of a symbol (function/variable) within the libc binary. Output is int <!--SR:!2024-12-17,3,230-->
 
 ```py
 log.info(<many printable things>) 
 ```
 ??
-pwntools' logging function to print information, used for debugging <!--SR:!2024-12-13,1,230-->
+pwntools' logging function to print information, used for debugging <!--SR:!2024-12-17,3,230-->
 
 ```py
 hex()
@@ -52,7 +52,7 @@ pause()
 ??
 - Temporarily stops script execution
 - Prints "[*] Paused (press any key to continue)" and wait for users input before continuing
-- To check things in debugger or verify state before proceeding <!--SR:!2024-12-13,1,230-->
+- To check things in debugger or verify state before proceeding <!--SR:!2024-12-16,3,250-->
 
 ## Reading address
 ```py
@@ -60,7 +60,7 @@ int.from_bytes(r.recvuntil(b'\x7f'), 'little')
 ```
 ??
 - receive bytes until '\x7f', what libc addresses typically end with e.g. `\xf0\xa7\xe4\xf7\xff\x7f`
-- convert to backwards `0x7ffff7e4a7f0 ` and to int for typical libc base address calculation('little'specifies little-endian byte order) <!--SR:!2024-12-13,1,230--> 
+- convert to backwards `0x7ffff7e4a7f0 ` and to int for typical libc base address calculation('little'specifies little-endian byte order) <!--SR:!2024-12-16,3,250--> 
 
 #### Example  
 ```py

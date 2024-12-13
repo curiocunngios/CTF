@@ -1,45 +1,23 @@
+---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - pwndbg
-  - assembly 
-  - buffer overflow
-  - pwn
-  - command
+  - pwndbg command
+  - gdb command
 tags:
   - flashcard/active/ctf
-  - function/index
-  - language/in/English
 ---
 
-# x command 
 
-{{Examine memory}} in format <format> starting at
-address <address> 
+# pwndbg Commands
 
-x/[number][format] <address>
+## Memory and Registers
+Format for {{examining memory}} (`x` command) :: `x/<n><s><f> <address>` <!--SR:!2024-12-17,3,250-->
+- n = number of units
+- s = size {{(b=1, h=2, w=4, g=8 bytes)}}
+- f = format {{(x=hex, u=unsigned, d=decimal, s=string, i=instruction)}} <!--SR:!2024-12-17,3,250!2024-12-17,3,250-->
 
-number: how many units to display
-format:
-- x = {{hex}} (default)
-- d = {{decimal}}
-- s = {{string}}
-- i = {{instruction}}
-- c = {{character}}
+view register information :: `info register` <!--SR:!2024-12-17,3,250-->
 
-## If you enter "AAA"
-pwndbg> x/s $rsp          # {{Print as string: "AAA"}}  
-pwndbg> x/3x $rsp         # {{Print 3 hex bytes: 0x41 0x41   0x41}}  
-pwndbg> x/3c $rsp         # {{Print 3 chars: 'A' 'A' 'A'}}  
-pwndbg> x/1wx $rsp        # {{Print one word (4 bytes) in hex:0x00414141}}  
-
-
-# break <location (memory addr, func name, etc.)>
-create a {{breakpoint}} {{which the program would stop there during runtime}}
-
-## MOre of x command
+### More of x command
 instructions have different lengths and x command {{shows chunks with fixed length}}. Therefore, not all instructions after one can be shown using x command
 ```
 0x40113a:    48 83 ec 40          sub    rsp, 0x40              # 4 bytes
@@ -47,34 +25,39 @@ instructions have different lengths and x command {{shows chunks with fixed leng
 0x401145:    48 89 c7             mov    rdi, rax               # 3 bytes
 0x401148:    b8 00 00 00 00       mov    eax, 0                 # 5 bytes
 ```
+<!--SR:!2024-12-17,3,250-->
 
-```
-sub rsp, 0x40
-48 83 ec 40
-│  │  │  │
-│  │  │  └─ immediate value (0x40)
-│  │  └──── opcode extension (ec = subtract)
-│  └────── REX.W prefix (48 = 64-bit operand)
-└───────── REX prefix
+### break <location (memory addr, func name, etc.)>
+create a {{breakpoint}} {{which the program would stop there during runtime}} <!--SR:!2024-12-17,3,250!2024-12-17,3,250-->
 
-lea rax, [rip + 0xebf]
-48 8d 05 bf 0e 00 00
-│  │  │  │  │  │  │
-│  │  │  └──┴──┴──┴── 32-bit displacement (0xebf)
-│  │  └── ModR/M byte
-│  └──── opcode (8d = lea)
-└────── REX.W prefix
+Command to list all breakpoints :: `info breakpoint` or `bl` <!--SR:!2024-12-17,3,250-->
 
-mov rdi, rax
-48 89 c7
-│  │  │
-│  │  └─ ModR/M byte (c7 = register addressing)
-│  └──── opcode (89 = mov)
-└────── REX.W prefix
+delete breakpoints :: `delete <breakpoint_number>` or just `delete` to remove all <!--SR:!2024-12-17,3,250-->
 
-mov eax, 0
-b8 00 00 00 00
-│  │  │  │  │
-│  └──┴──┴──┴── immediate value (0)
-└── opcode (b8 = mov to eax)
-```
+### Navigation
+Difference between `ni` and `si`:
+??
+- `ni`: Next instruction, executes function calls at full speed
+- `si`: Step into instruction, follows into function calls <!--SR:!2024-12-17,3,250-->
+
+continue execution :: `continue` or `c` <!--SR:!2024-12-17,3,250-->
+
+## Stack Operations
+Command to show stack frame info :: `backtrace` <!--SR:!2024-12-16,2,230-->
+
+navigate stack frames:
+??
+- `up`: Move to newer frames
+- `down`: Move to older frames <!--SR:!2024-12-17,3,250--> 
+
+## Advanced Features
+Command to check binary security options :: `checksec` <!--SR:!2024-12-16,2,230-->
+
+view memory mapping :: `vmmap` <!--SR:!2024-12-18,4,270-->
+
+Command to show stack data with custom count/offset :: `stack <count> <offset>` (e.g., `stack 30 3`) <!--SR:!2024-12-26,12,270-->
+
+enable instruction recording :: `record` <!--SR:!2024-12-17,3,250-->
+- Enables reverse debugging commands:
+- `rsi` (reverse step into)
+- `rni` (reverse next instruction)

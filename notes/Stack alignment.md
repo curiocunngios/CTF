@@ -14,4 +14,4 @@ Memory addresses should be {{multiples of certain values}} (usually 16 bytes on 
 Example: If you need 10 bytes, it might allocate 16 to keep aligned
 0x1000: [used][used][used]....[pad][pad] (16 bytes total)
 ```
-<!--SR:!2024-12-14,1,230-->
+<!--SR:!2024-12-17,3,250-->

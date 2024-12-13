@@ -6,15 +6,15 @@ tags:
   - flashcard/active/ctf
 ---
 
-# Gadgets 
-Gadgets is a machine instruction **sequences** that are already present in the machine's memory, it's not finding a single instruction that does both operations. <!--SR:!2024-12-14,1,230-->
+# Gadgets
+Gadgets is a machine instruction **sequences** that are already present in the machine's memory, it's not finding a single instruction that does both operations. 
 Each gadget typically ends in **a return instruction (ret)** and is located in a subroutine (function) within the existing program and/or shared library code.
 Example:
 ```as
 pop rdi    ; take value from stack → put in rdi
 ret        ; take next value from stack → jump there
 ```
-<!--SR:!2024-12-14,1,230-->
+<!--SR:!2024-12-17,3,250!2024-12-17,3,250-->
 
 ## gadgets location
 ??
@@ -32,7 +32,7 @@ print(rop.rdi)    # Finds pop rdi; ret
 print(rop.rsi)    # Finds pop rsi; ret
 print(rop.dumps()) # Shows all found gadgets
 ```
-<!--SR:!2024-12-14,1,230-->
+<!--SR:!2024-12-17,3,250-->
 
 The output of ROPgadget is the {{starting address of the sequences of instructions}}
 For example, output would be {{0x400868}}
@@ -40,11 +40,12 @@ For example, output would be {{0x400868}}
 0x400868: leave          ; First instruction
 0x400869: ret           ; Second instruction
 ```
+<!--SR:!2024-12-16,2,243!2024-12-17,3,263-->
 
 
 When ROPgadget reports this as 0x400868: leave; ret, it means:
 
 - If you jump to 0x400868, you'll execute {{both instructions in sequence}}
-- It's reporting the starting address (0x400868) of the useful sequence <!--SR:!2024-12-14,1,230-->
+- It's reporting the starting address (0x400868) of the useful sequence <!--SR:!2024-12-17,3,250-->
 
 

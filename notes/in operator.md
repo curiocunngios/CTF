@@ -6,7 +6,7 @@ tags:
 ---
 
 # `in` operator in python
-`in` Operator in python checks {{if something is inside of something.}}  
+`in` Operator in python checks {{if something is inside of something.}}
 Examples:
 ```py
 # String examples
@@ -32,3 +32,4 @@ if "error" in response:
 if "success" not in message:
     print("Operation failed")
 ```
+<!--SR:!2024-12-18,4,270-->

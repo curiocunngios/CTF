@@ -1,20 +1,17 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - commands 
-  - dyanmic linking
-  - C standard library
-  - library
+  - libc library naming
+  - libc 
+  - shared library 
+  - version 6
 tags:
   - flashcard/active/ctf
-  - function/index
-  - language/in/English
 ---
 
-so ::: shared library 
-.6 ::: version number <!--SR:!2000-01-01,1,250!2024-12-02,1,230-->
-#flashcard what does the file contain?
-the implementation of standard C functions like printf, scanf, etc. 
+# libc library naming
+so :: shared library <!--SR:!2024-12-15,1,228-->
+.6 :: version number <!--SR:!2024-12-17,3,250-->
+
+
+## Inside libc library file
+the file contains {{implementation of standard C functions}} like printf, scanf, etc. <!--SR:!2024-12-17,3,268-->

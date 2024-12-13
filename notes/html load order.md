@@ -13,4 +13,4 @@ HTML loads {{top to bottom}}
   - CSS (style.css)
 - \<body\> loads next
   - {{Visual elements}}
-  - Scripts, which also {{execute in order from top to bottom}} <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
+  - Scripts, which also {{execute in order from top to bottom}} <!--SR:!2024-12-17,3,250!2024-12-17,3,250!2024-12-17,3,250!2024-12-17,3,250-->

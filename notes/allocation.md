@@ -19,4 +19,4 @@ Allocation of spaces for local variables can be done with {{one assembly instruc
 ```as
 sub    esp,0x94        ; Allocate stack space (148 bytes) for local variables
 ```
-The extra spaces added are for some {{[alignment padding](./Stack%20alignment.md)}} and space for {{saved registers.}} <!--SR:!2024-12-14,1,228!2024-12-14,1,230!2024-12-14,1,228-->
+The extra spaces added are for some {{[alignment padding](./Stack%20alignment.md)}} and space for {{saved registers.}} <!--SR:!2024-12-17,3,248!2024-12-17,3,250!2024-12-17,3,248-->

@@ -10,12 +10,12 @@ Example usage:
 ```c
 memcpy(canary, global_canary, CANARY_SIZE)
 ```
-works like {{`canary = global canary`}} while CANARY_SIZE tells how bytes to copy <!--SR:!2024-12-14,1,230-->
+works like {{`canary = global canary`}} while CANARY_SIZE tells how bytes to copy <!--SR:!2024-12-17,3,250-->
 
 ## Compiler optimization
-For small, fixed sizes copy, compiler replaces {{with direct moves}} <!--SR:!2024-12-14,1,226-->
+For small, fixed sizes copy, compiler replaces {{with direct moves}} <!--SR:!2024-12-17,3,246-->
 
-Function call overhead {{would be more expensive}} than direct mov. {{Single CPU instruction (mov) is faster than function call}} <!--SR:!2024-12-14,1,226!2024-12-14,1,230-->
+Function call overhead {{would be more expensive}} than direct mov. {{Single CPU instruction (mov) is faster than function call}} <!--SR:!2024-12-17,3,246!2024-12-17,3,250-->
 
 ### Example replacement with direct `mov`
 ```as
@@ -26,5 +26,5 @@ Function call overhead {{would be more expensive}} than direct mov. {{Single CPU
 ```
 1. `mov    eax,0x804c054` ; {{loads address of global_canary}}
 2. `mov    eax,DWORD PTR [eax] ` ; gets value of global_canary
-3. `mov    DWORD PTR [ebp-0x10],eax`  ; Store into local canary <!--SR:!2024-12-14,1,226-->
+3. `mov    DWORD PTR [ebp-0x10],eax`  ; Store into local canary <!--SR:!2024-12-17,3,246-->
 

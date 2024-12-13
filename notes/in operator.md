@@ -1,19 +1,13 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - python
-  - operator
+  - in Operator
 tags:
   - flashcard/active/ctf
-  - function/index
-  - language/in/English
 ---
 
-`in` Operator in python ::: check if something is inside of something 
-
+# `in` operator in python
+`in` Operator in python checks {{if something is inside of something.}}  
+Examples:
 ```py
 # String examples
 text = "Hello World"

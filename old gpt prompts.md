@@ -536,3 +536,4 @@ main() → printf@plt → GOT → real printf (direct!)
 ```
 
 10. if the above are actually concrete examples of memory layout of source code being turned into assembly. (Or layout written in assembly automatically generated and presented using tools). Then present the assembly code to me and show detailed explanation, I understand some assembly 
+

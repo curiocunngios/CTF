@@ -1,18 +1,11 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system 
-  - Web
-  - HTML
+  - html form
 tags:
   - flashcard/active/ctf
-  - function/index
-  - language/in/English
 ---
 
-
+# html form example
 ```html
     <form role="form" action="login.php" method="post">
       <input type="text" name="username" placeholder="Username" required 
@@ -22,8 +15,6 @@ tags:
     </form>
 ```
 - <form> defines {{where data is sent}}
-
-- action="login.php" means data (inputs below) {{goes to login.php}}
-
-- method="post" means data is sent privately
+- action="login.php" means data (<input type= ....>) {{goes to login.php}}
+- method="post" means data is {{sent privately}} <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->
 

@@ -591,12 +591,32 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "081e444a0a790e09",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "8a7d28c807c40256",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
           },
           {
-            "id": "081e444a0a790e09",
+            "id": "ff2d74eda8dd4b73",
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
@@ -606,7 +626,7 @@
             }
           }
         ],
-        "currentTab": 47
+        "currentTab": 49
       }
     ],
     "direction": "horizontal",
@@ -625,8 +645,12 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "f6ea9b167df6a996",
+  "active": "ff2d74eda8dd4b73",
   "lastOpenFiles": [
+    "notes/Encode encrypt.md",
+    "gpt prompts.md",
+    "notes/pwndbg.md",
+    "notes/GOT.md",
     "notes/libc function calls.md",
     "notes/gdb commands.md",
     "notes/pyByte.md",
@@ -659,10 +683,6 @@
     ".git/objects/9c/fc2d626b53f7f4bb425df038c763a97d32daff",
     ".git/objects/55/eee4fef6984a58631ee2c6be8af8064cf63f8a",
     ".git/objects/d5/61a8df377e33b8ac1b4295ec5af14705df9284",
-    "notes/Common c functions.md",
-    "illness/notes2.md",
-    "illness/notes.md",
-    "2024-12-10T122543.824+0800.md",
     "illness/mood.png",
     "illness/image.png",
     "image.png",

@@ -1,12 +1,10 @@
-puts_got = 0x601018:
+---
+aliases:
+  - Global offset table
+tags:
+  - flashcard/active/ctf
+---
 
-- GOT (Global Offset Table) stores the real addresses of functions
-- When puts is called first time, its real address is stored here
-- We got this from your got command output:
 
-```
-pwndbg> got
-...
-[0x601018] puts@GLIBC_2.2.5 ...
-...
-```
+GOT stands for **Global Offset Table** ==stores the real addresses of functions== i.e. the function addresses in the {{libc library.}}
+When puts is called first time and after {{dynamic linker resolves the real addresses}}, that address would then be stored in GOT <!--SR:!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230!2024-12-14,1,230-->

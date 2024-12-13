@@ -1,15 +1,9 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
-  - Computer system
-  - gdb
-  - gdb commands
-  - x/ command
-  - examine command
+  - pwndbg command
+  - gdb command
 tags:
-  - flashcard/active/ctf/yo
+  - flashcard/active/ctf
 ---
 
 

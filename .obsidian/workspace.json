@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2024-12-12T202437.560+0800.md",
+                "file": "2024-12-15T040837.953+0800.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024-12-12T202437.560+0800"
+              "title": "2024-12-15T040837.953+0800"
             }
           },
           {
@@ -641,12 +641,42 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "929c963386dfdd0c",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "d64cc9af06966c59",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "fffb753ac10fb8b5",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
           },
           {
-            "id": "929c963386dfdd0c",
+            "id": "ea147f64c79c99b3",
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
@@ -656,7 +686,7 @@
             }
           }
         ],
-        "currentTab": 52
+        "currentTab": 55
       }
     ],
     "direction": "horizontal",
@@ -675,8 +705,10 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "929c963386dfdd0c",
+  "active": "ea147f64c79c99b3",
   "lastOpenFiles": [
+    "2024-12-12T202437.560+0800.md",
+    "2024-12-15T040837.953+0800.md",
     "notes/string location.md",
     "notes/send null.md",
     "notes/register.md",
@@ -711,8 +743,6 @@
     "notes/gdb commands.md",
     "notes/pyByte.md",
     "notes/errors.md",
-    "notes/CLinjection.md",
-    "notes/error.md",
     "illness/mood.png",
     "illness/image.png",
     "image.png",

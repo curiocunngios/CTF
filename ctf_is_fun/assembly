@@ -1,0 +1,75 @@
+0000000000001149 <main>:
+Spush   rbp                 # function prologue
+mov    rbp,rsp              # function prologue
+sub    rsp,0x40             # allocate 64 bytes on stack 
+lea    rax,[rip+0x2ed0]        # 4028 <input.0>                          
+mov    rsi,rax              # <input.0> (what is this?) goes into rsi
+lea    rax,[rip+0xea2]        # 2004 <_IO_stdin_used+0x4>
+mov    rdi,rax              # <_IO_stdin_used+0x4> (?) goes in rdi
+mov    eax,0x0              #  zero out lower 32 bit of rax
+call   1040 <__isoc99_scanf@plt>    # calls scanf with rdi as 1st argument and rsi as 2nd argument
+lea    rax,[rip+0x2eb2]        # 4028 <input.0>
+mov    rsi,rax              # <input.0> (what is this?) goes into rsi 
+lea    rax,[rip+0xe88]        # 2008 <_IO_stdin_used+0x8>
+mov    rdi,rax              # <_IO_stdin_used+0x4> (?) goes in rdi
+mov    eax,0x0              # zeros out again 
+call   1040 <__isoc99_scanf@plt> # calling scanf again
+mov    rax,QWORD PTR [rip+0x2e94]        # 4028 <input.0>, what is QWORD PTR and why
+mov    QWORD PTR [rbp-0x8],rax          # QWORD PTR [rbp-0x8] = QWORD PTR [rip+0x2e94]
+movabs rax,0x29c4e0426e5ae53f
+
+xor    QWORD PTR [rbp-0x8],rax
+mov    rax,QWORD PTR [rbp-0x8]
+mov    QWORD PTR [rbp-0x30],rax
+mov    DWORD PTR [rbp-0x34],0x20
+and    DWORD PTR [rbp-0x34],0x3f
+mov    eax,DWORD PTR [rbp-0x34]
+mov    rdx,QWORD PTR [rbp-0x30]
+mov    ecx,eax
+rol    rdx,cl
+mov    rax,rdx
+mov    QWORD PTR [rbp-0x8],rax
+movabs rax,0xbf272eb7a17bc158
+
+add    QWORD PTR [rbp-0x8],rax
+mov    rax,QWORD PTR [rbp-0x8]
+mov    QWORD PTR [rbp-0x20],rax
+mov    DWORD PTR [rbp-0x24],0x20
+and    DWORD PTR [rbp-0x24],0x3f
+mov    eax,DWORD PTR [rbp-0x24]
+mov    rdx,QWORD PTR [rbp-0x20]
+mov    ecx,eax
+rol    rdx,cl
+mov    rax,rdx
+mov    QWORD PTR [rbp-0x8],rax
+movabs rax,0x7204bb56150aa739
+
+add    QWORD PTR [rbp-0x8],rax
+mov    rax,QWORD PTR [rbp-0x8]
+mov    QWORD PTR [rbp-0x10],rax
+mov    DWORD PTR [rbp-0x14],0x20
+and    DWORD PTR [rbp-0x14],0x3f
+mov    eax,DWORD PTR [rbp-0x14]
+mov    rdx,QWORD PTR [rbp-0x10]
+mov    ecx,eax
+rol    rdx,cl
+mov    rax,rdx
+mov    QWORD PTR [rbp-0x8],rax
+movabs rax,0xd5912ad9c3bee799
+
+xor    QWORD PTR [rbp-0x8],rax
+movabs rax,0xd0f7ac93538ad5b5
+
+cmp    QWORD PTR [rbp-0x8],rax
+jne    1268 <main+0x11f>
+lea    rax,[rip+0xdb3]        # 200c <_IO_stdin_used+0xc>
+mov    rdi,rax
+call   1030 <puts@plt>
+mov    eax,0x0
+jmp    127c <main+0x133>
+lea    rax,[rip+0xda0]        # 200f <_IO_stdin_used+0xf>
+mov    rdi,rax
+call   1030 <puts@plt>
+mov    eax,0x0
+leave
+ret

@@ -1,0 +1,6 @@
+
+program:     file format elf64-x86-64
+
+Contents of section .rodata:
+ 2000 01000200 25356300 25386300 3a29003a  ....%5c.%8c.:).:
+ 2010 2800                                 (.              

@@ -84,3 +84,43 @@ value & 0xFFFFFFFF
 It's actually:
 value & 0x00000000FFFFFFFF
 ```
+
+
+### Zero-extensions
+2. `byte_value & 0xFF`:
+```python
+# Let's see it bit by bit:
+# 0xFF in binary:        0000 0000 0000 0000 0000 0000 1111 1111
+# Some value:            xxxx xxxx xxxx xxxx xxxx xxxx 1010 1100
+# After AND (&):         0000 0000 0000 0000 0000 0000 1010 1100
+
+# Example with negative byte:
+value = -50  # in binary representation larger than 8 bits
+print(bin(value))  # might show many bits
+# After masking:
+unsigned_byte = value & 0xFF  # keeps only lowest 8 bits
+print(bin(unsigned_byte))     # only 8 bits remain
+
+# Concrete example:
+value = -50
+print(f"Original: {bin(value)}")
+# Might show: -0b110010
+masked = value & 0xFF
+print(f"Masked:   {bin(masked)}")
+# Shows: 0b11001110 (206 in decimal)
+```
+
+The `& 0xFF` operation:
+1. 0xFF is 8 ones in binary (11111111)
+2. AND operation keeps only the rightmost 8 bits
+3. All bits beyond 8th position become 0
+4. Result is always 0-255, which is unsigned byte range
+
+This ensures unsigned interpretation because:
+- Removes any sign bits
+- Limits value to 8 bits
+- Forces value into 0-255 range
+
+
+
+

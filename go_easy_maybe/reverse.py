@@ -1,5 +1,12 @@
 import sys 
+
+
 '''
+- understand behaviour of the program 
+- understand 
+- know exactly what it does
+
+
 rbp_0x4 = 0x2 
 i = 2
 
@@ -151,7 +158,7 @@ while (p <= 0x24):
     
     
     rdx = rcx - rax # & 0xFFFFFFFFFFFFFFFF
-    #print(rdx)
+    print(rdx)
     #print("rdx here:", hex(rdx))
 
     eax = s[rdx]

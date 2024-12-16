@@ -30,8 +30,6 @@ while (i <= 0x24):
 
 
 j = 0x0
-for i in range(37):
-    print("f[%d] : %x" % (i, f[i]))
 while (j <= 0x24):
     s[j] = int.from_bytes(sys.stdin.buffer.read(1), 'little') # scanf(%c, s[j])
 
@@ -58,12 +56,12 @@ while (k <= 0x24):
     rdx = rcx & 0xFFFFFFFF  # Ensure 32-bit unsigned value for array indexing
     #print("s[%d] : %x" % (rdx, s[rdx]))
     #print(rdx)
-    print("s[%d] : %x" % (k, s[k]), end= " ")
-    print("s[%d] : %x" % (rdx, s[rdx]))
+    #print("s[%d] : %x" % (k, s[k]), end= " ")
+    #print("s[%d] : %x" % (rdx, s[rdx]))
     s[k] = s[k] ^ s[rdx]
     
-    dl = s[k]  
-    al = data[k]
+    dl = s[k] & 0xFF
+    al = data[k] & 0xFF
 
     if (dl == al):
         count = count + 1

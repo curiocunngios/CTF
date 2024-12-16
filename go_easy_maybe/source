@@ -204,8 +204,6 @@ Disassembly of section .text:
     11fd:	83 45 f8 01          	add    DWORD PTR [rbp-0x8],0x1
 
     1201:	8b 45 f8             	mov    eax,DWORD PTR [rbp-0x8]
-
-
     1204:	83 f8 24             	cmp    eax,0x24
     1207:	76 9d                	jbe    11a6 <main+0x5d>
 
@@ -213,7 +211,7 @@ Disassembly of section .text:
 
     1209:	c7 45 f4 00 00 00 00 	mov    DWORD PTR [rbp-0xc],0x0
     1210:	c7 45 f0 00 00 00 00 	mov    DWORD PTR [rbp-0x10],0x0
-    1217:	e9 8e 00 00 00       	jmp    12aa <main+0x161>
+    
 
 
 
@@ -226,13 +224,12 @@ Disassembly of section .text:
 
 
     # third loop 
+    1217:	e9 8e 00 00 00       	jmp    12aa <main+0x161>
+
     121c:	8b 45 f0             	mov    eax,DWORD PTR [rbp-0x10]
     121f:	48 98                	cdqe
     1221:	48 8d 15 b8 2e 00 00 	lea    rdx,[rip+0x2eb8]        # 40e0 <s>
     1228:	0f b6 34 10          	movzx  esi,BYTE PTR [rax+rdx*1]
-
-
-
     122c:	8b 45 f0             	mov    eax,DWORD PTR [rbp-0x10]
     122f:	48 98                	cdqe
     1231:	48 8d 48 24          	lea    rcx,[rax+0x24]

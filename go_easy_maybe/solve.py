@@ -1,22 +1,58 @@
-data = bytes([
+f = bytearray([
+    0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+]) # uninitialized
+
+s = bytearray([
     0x4b, 0x26, 0x44, 0x2d, 0x53, 0x6f, 0x57, 0x01,
     0x58, 0xd9, 0x49, 0x81, 0x64, 0x2c, 0x86, 0x50,
     0x6a, 0xde, 0x86, 0x0c, 0xc0, 0xc7, 0xa8, 0xbd,
     0x24, 0x54, 0xd2, 0x6b, 0xa3, 0xb7, 0xc0, 0x94,
     0xc0, 0x81, 0xa0, 0xad, 0x80, 0x00, 0x00, 0x00
 ])
-idx = [
-    36, -35, -34, -33, -32, -31, -30, 29, -28, 
-    -27, -26, -25, -24, -23, -22, -21, -20, -19,
-    -18, -17, -16, -15, -14, -13, -12, -11, -10,
-    -9,-8,-7,-6, -5, -4, -3, -2, -1, 0
-]
-result = ""
-for i in range(36):
-    hi = data[i] ^ data[i+idx[i]]
 
-    #print(type(chr(hi)))
-    #print(type(result))
-    result += chr(hi)
 
-print(result)
+def calculate_index(k):
+    rcx = k + 0x24
+    # mul rdx instruction - returns two values (high, low)
+    multiplied = (rcx * 0xdd67c8a60dd67c8b)
+    rdx = multiplied >> 64  # high bits
+    rdx = rdx >> 5         # shift right by 5
+    
+    rax = rdx
+    rax = (rax << 3) + rdx  # shl rax,0x3 + add
+    rax = (rax << 2) + rdx  # shl rax,0x2 + add
+    
+    idx = rcx - rax
+    return idx & 0xFF  # Keep it in byte range
+
+# Test for a specific k value
+
+i = 0x2 # i = 2
+while (i <= 0x24):
+    f[i] = (f[i - 2] + f[i - 1]) & 0xFF
+    i = i + 1
+
+# Reverse the XOR operation
+k = 0x24  # 36 decimal
+while (k >= 0):
+    if k == 0:
+        idx = 36
+    else:
+        idx = k - 1
+    s[k] = s[k] ^ s[idx]
+    print(s[k])
+    k = k - 1
+
+
+# Reverse the addition of f[j]
+j = 0x24
+while (j >= 0x0):
+    s[j] = (s[j] - f[j]) & 0xFF
+    j = j - 1
+
+# The original input of s[] is now stored in the 's' bytearray
+print(''.join(map(chr, s)), end='')

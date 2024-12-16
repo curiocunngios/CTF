@@ -1,21 +1,11 @@
-import sys 
-
-'''
-- understand behaviour of the program 
-- understand 
-- know exactly what it does
-- we go agane
-'''
-
-f = data = bytearray([
+f = bytearray([
     0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00
 ]) # uninitialized
-s = bytearray(0x100000)
-data = bytes([
+s = bytearray([
     0x4b, 0x26, 0x44, 0x2d, 0x53, 0x6f, 0x57, 0x01,
     0x58, 0xd9, 0x49, 0x81, 0x64, 0x2c, 0x86, 0x50,
     0x6a, 0xde, 0x86, 0x0c, 0xc0, 0xc7, 0xa8, 0xbd,
@@ -25,24 +15,10 @@ data = bytes([
 i = 0x2 # i = 2
 while (i <= 0x24):
     f[i] = (f[i - 2] + f[i - 1]) & 0xFF
-
     i = i + 1
 
-
-j = 0x0
-for i in range(37):
-    print("f[%d] : %x" % (i, f[i]))
-while (j <= 0x24):
-    s[j] = int.from_bytes(sys.stdin.buffer.read(1), 'little') # scanf(%c, s[j])
-
-    s[j] = (s[j] + f[j]) & 0xFF
-    print("s[%d] : %x" % (j, s[j]))
-    j = j + 1
-
-
-count = 0
-k = 0
-
+# reverse the weird XOR thingy  
+k = 0x0
 while (k <= 0x24):
     rcx = k + 0x24
     mul = rcx * 0xdd67c8a60dd67c8b
@@ -55,23 +31,24 @@ while (k <= 0x24):
     rax = rax << 2 
     rax = rax + rdx 
     rcx = rcx - rax
-    rdx = rcx & 0xFFFFFFFF  # Ensure 32-bit unsigned value for array indexing
-    #print("s[%d] : %x" % (rdx, s[rdx]))
-    #print(rdx)
+    rdx = rcx & 0xFFFFFFFF  # make it 32-bit unsigned 
+
+    # print(rdx)
     print("s[%d] : %x" % (k, s[k]), end= " ")
     print("s[%d] : %x" % (rdx, s[rdx]))
     s[k] = s[k] ^ s[rdx]
     
-    dl = s[k]  
-    al = data[k]
 
-    if (dl == al):
-        count = count + 1
+
     k = k + 1
 
+# reverse the addition
 
-if (count == 0x25):
-    print(":D")
-else:
-    print(":(")
+j = 0x0
+while (j <= 0x24):
+    #print(f[j])
+    s[j] = (s[j] - f[j]) & 0xFF
+    j = j + 1
 
+# The original input of s[] is now stored in the 's' bytearray
+print(''.join(chr(x) for x in s))

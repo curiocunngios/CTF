@@ -116,6 +116,8 @@ int main()
 	return 0;
 }
 ```
+
+
 From the source code, we can easily observe a few differences from the easier version of this `UwUOF+`. For stuff covered in the writeup of `UwUOF+`, they are not going to be mentioned here. For example, bypassing the filters of `UwU` and basic overflow techniques
 ## Passcode
 First of all, there is a randomized passcode

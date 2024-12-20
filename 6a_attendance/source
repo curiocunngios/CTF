@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void UwU_main() {
+    char UwU[0x18];
+    unsigned long long *ptr = UwU+0x18;
+    puts("");
+    puts("");
+    printf("                     %p            \n", &UwU);
+    printf("                   %p           \n", *ptr);
+    printf("                 ----             ----                       \n");
+    printf("                     \\___________/                           \n");
+    printf("                       |_|_|_|_|                             \n");
+    printf("                       |   ♛ <-|------ yeah this is a crown\n");
+    printf("                       |  UwU  |                             \n");
+    printf("               -------------------------                     \n");
+    printf("              /         /     \\         \\                    \n");
+    printf("             /   UwU◞⚙ /       \\ ⚙◟UwU   \\                   \n");
+    printf("            /         /         \\         \\                  \n");
+    printf("           /   UwU◞⚚ /           \\ ⚚◟UwU   \\                 \n");
+    printf("          /         /             \\         \\                \n");
+    printf("         /   UwU◞♱ /               \\ ♱◟UwU   \\               \n");
+    printf("        /         /                 \\         \\              \n");
+    printf("       /   UwU◞⚡/                   \\⚡◟UwU   \\             \n");
+    printf("      /         /                     \\         \\            \n");
+    printf("     /   UwU◞∛ /                       \\ 🀐◟UwU   \\           \n");
+    printf("    /         /        UwU◞⚔◟UwU        \\         \\          \n");
+    puts("");
+    puts("");
+
+    puts("Trying to deliver shellcode to the King of UwU? Let me check it before you pass!");
+    gets(UwU);
+    puts("Thank you for your cooperation!");
+}
+
+int main() {
+	setvbuf(stdin,NULL,2,0);
+	setvbuf(stdout,NULL,2,0);
+	setvbuf(stderr,NULL,2,0);
+	UwU_main();
+	return 0;
+}
+
+

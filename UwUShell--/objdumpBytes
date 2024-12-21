@@ -1,0 +1,15 @@
+
+code.bin:     file format binary
+
+
+Disassembly of section .data:
+
+0000000000000000 <.data>:
+   0:	48 b8 2f 62 69 6e 2f 	movabs $0x68732f6e69622f,%rax
+   7:	73 68 00 
+   a:	50                   	push   %rax
+   b:	48 89 e7             	mov    %rsp,%rdi
+   e:	be 00 00 00 00       	mov    $0x0,%esi
+  13:	ba 00 00 00 00       	mov    $0x0,%edx
+  18:	b8 3b 00 00 00       	mov    $0x3b,%eax
+  1d:	0f 05                	syscall

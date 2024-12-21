@@ -681,8 +681,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -694,9 +694,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "2b4c07cf7e6762fc",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 56
+        "currentTab": 57
       }
     ],
     "direction": "horizontal",
@@ -715,7 +725,7 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "f6ea9b167df6a996",
+  "active": "2b4c07cf7e6762fc",
   "lastOpenFiles": [
     ".git/objects/1c/1b88dab0f357e72d4a8d93f3f71839eda0305b",
     ".git/objects/9a/9b106448a0aa0b8a406cd50ee5de9f3bf8fb71",

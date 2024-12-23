@@ -1,0 +1,12 @@
+- morning 23/12/2024 
+- I have just realized that i have always been feeling absolutely shit after waking but I just didn't care 
+- I just my current mode of studying CTF is a bit too stressful 
+- full focusing is good, but do it in a smart way 
+- new rules: set time limits:25 minutes full focus on going through a particular part of the question 
+- for example, 25 minutes of exploration, testing
+- 25 minutes of solution thinking
+- 25 minutes of solve script writing 
+- final 25 minutes to think, if u still have no clue 
+- skip, relax, go to other topics and come back only after feeling refreshed 
+- prioritize sleep 
+- whenever you feel stress, rethink what you are doing, you should be doing something wrong 

@@ -1,0 +1,1464 @@
+
+GameOfUwU:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000001000 <_init>:
+    1000:	f3 0f 1e fa          	endbr64
+    1004:	48 83 ec 08          	sub    rsp,0x8
+    1008:	48 8b 05 d9 4f 00 00 	mov    rax,QWORD PTR [rip+0x4fd9]        # 5fe8 <__gmon_start__@Base>
+    100f:	48 85 c0             	test   rax,rax
+    1012:	74 02                	je     1016 <_init+0x16>
+    1014:	ff d0                	call   rax
+    1016:	48 83 c4 08          	add    rsp,0x8
+    101a:	c3                   	ret
+
+Disassembly of section .plt:
+
+0000000000001020 <.plt>:
+    1020:	ff 35 e2 4f 00 00    	push   QWORD PTR [rip+0x4fe2]        # 6008 <_GLOBAL_OFFSET_TABLE_+0x8>
+    1026:	f2 ff 25 e3 4f 00 00 	bnd jmp QWORD PTR [rip+0x4fe3]        # 6010 <_GLOBAL_OFFSET_TABLE_+0x10>
+    102d:	0f 1f 00             	nop    DWORD PTR [rax]
+    1030:	f3 0f 1e fa          	endbr64
+    1034:	68 00 00 00 00       	push   0x0
+    1039:	f2 e9 e1 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    103f:	90                   	nop
+    1040:	f3 0f 1e fa          	endbr64
+    1044:	68 01 00 00 00       	push   0x1
+    1049:	f2 e9 d1 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    104f:	90                   	nop
+    1050:	f3 0f 1e fa          	endbr64
+    1054:	68 02 00 00 00       	push   0x2
+    1059:	f2 e9 c1 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    105f:	90                   	nop
+    1060:	f3 0f 1e fa          	endbr64
+    1064:	68 03 00 00 00       	push   0x3
+    1069:	f2 e9 b1 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    106f:	90                   	nop
+    1070:	f3 0f 1e fa          	endbr64
+    1074:	68 04 00 00 00       	push   0x4
+    1079:	f2 e9 a1 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    107f:	90                   	nop
+    1080:	f3 0f 1e fa          	endbr64
+    1084:	68 05 00 00 00       	push   0x5
+    1089:	f2 e9 91 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    108f:	90                   	nop
+    1090:	f3 0f 1e fa          	endbr64
+    1094:	68 06 00 00 00       	push   0x6
+    1099:	f2 e9 81 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    109f:	90                   	nop
+    10a0:	f3 0f 1e fa          	endbr64
+    10a4:	68 07 00 00 00       	push   0x7
+    10a9:	f2 e9 71 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    10af:	90                   	nop
+    10b0:	f3 0f 1e fa          	endbr64
+    10b4:	68 08 00 00 00       	push   0x8
+    10b9:	f2 e9 61 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    10bf:	90                   	nop
+    10c0:	f3 0f 1e fa          	endbr64
+    10c4:	68 09 00 00 00       	push   0x9
+    10c9:	f2 e9 51 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    10cf:	90                   	nop
+    10d0:	f3 0f 1e fa          	endbr64
+    10d4:	68 0a 00 00 00       	push   0xa
+    10d9:	f2 e9 41 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    10df:	90                   	nop
+    10e0:	f3 0f 1e fa          	endbr64
+    10e4:	68 0b 00 00 00       	push   0xb
+    10e9:	f2 e9 31 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    10ef:	90                   	nop
+    10f0:	f3 0f 1e fa          	endbr64
+    10f4:	68 0c 00 00 00       	push   0xc
+    10f9:	f2 e9 21 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    10ff:	90                   	nop
+    1100:	f3 0f 1e fa          	endbr64
+    1104:	68 0d 00 00 00       	push   0xd
+    1109:	f2 e9 11 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    110f:	90                   	nop
+    1110:	f3 0f 1e fa          	endbr64
+    1114:	68 0e 00 00 00       	push   0xe
+    1119:	f2 e9 01 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    111f:	90                   	nop
+    1120:	f3 0f 1e fa          	endbr64
+    1124:	68 0f 00 00 00       	push   0xf
+    1129:	f2 e9 f1 fe ff ff    	bnd jmp 1020 <_init+0x20>
+    112f:	90                   	nop
+
+Disassembly of section .plt.got:
+
+0000000000001130 <__cxa_finalize@plt>:
+    1130:	f3 0f 1e fa          	endbr64
+    1134:	f2 ff 25 bd 4e 00 00 	bnd jmp QWORD PTR [rip+0x4ebd]        # 5ff8 <__cxa_finalize@GLIBC_2.2.5>
+    113b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+Disassembly of section .plt.sec:
+
+0000000000001140 <strcpy@plt>:
+    1140:	f3 0f 1e fa          	endbr64
+    1144:	f2 ff 25 cd 4e 00 00 	bnd jmp QWORD PTR [rip+0x4ecd]        # 6018 <strcpy@GLIBC_2.2.5>
+    114b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000001150 <puts@plt>:
+    1150:	f3 0f 1e fa          	endbr64
+    1154:	f2 ff 25 c5 4e 00 00 	bnd jmp QWORD PTR [rip+0x4ec5]        # 6020 <puts@GLIBC_2.2.5>
+    115b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000001160 <system@plt>:
+    1160:	f3 0f 1e fa          	endbr64
+    1164:	f2 ff 25 bd 4e 00 00 	bnd jmp QWORD PTR [rip+0x4ebd]        # 6028 <system@GLIBC_2.2.5>
+    116b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000001170 <printf@plt>:
+    1170:	f3 0f 1e fa          	endbr64
+    1174:	f2 ff 25 b5 4e 00 00 	bnd jmp QWORD PTR [rip+0x4eb5]        # 6030 <printf@GLIBC_2.2.5>
+    117b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000001180 <strcspn@plt>:
+    1180:	f3 0f 1e fa          	endbr64
+    1184:	f2 ff 25 ad 4e 00 00 	bnd jmp QWORD PTR [rip+0x4ead]        # 6038 <strcspn@GLIBC_2.2.5>
+    118b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000001190 <srand@plt>:
+    1190:	f3 0f 1e fa          	endbr64
+    1194:	f2 ff 25 a5 4e 00 00 	bnd jmp QWORD PTR [rip+0x4ea5]        # 6040 <srand@GLIBC_2.2.5>
+    119b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+00000000000011a0 <fgets@plt>:
+    11a0:	f3 0f 1e fa          	endbr64
+    11a4:	f2 ff 25 9d 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e9d]        # 6048 <fgets@GLIBC_2.2.5>
+    11ab:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+00000000000011b0 <strcmp@plt>:
+    11b0:	f3 0f 1e fa          	endbr64
+    11b4:	f2 ff 25 95 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e95]        # 6050 <strcmp@GLIBC_2.2.5>
+    11bb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+00000000000011c0 <getchar@plt>:
+    11c0:	f3 0f 1e fa          	endbr64
+    11c4:	f2 ff 25 8d 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e8d]        # 6058 <getchar@GLIBC_2.2.5>
+    11cb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+00000000000011d0 <time@plt>:
+    11d0:	f3 0f 1e fa          	endbr64
+    11d4:	f2 ff 25 85 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e85]        # 6060 <time@GLIBC_2.2.5>
+    11db:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+00000000000011e0 <setvbuf@plt>:
+    11e0:	f3 0f 1e fa          	endbr64
+    11e4:	f2 ff 25 7d 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e7d]        # 6068 <setvbuf@GLIBC_2.2.5>
+    11eb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+00000000000011f0 <__isoc99_scanf@plt>:
+    11f0:	f3 0f 1e fa          	endbr64
+    11f4:	f2 ff 25 75 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e75]        # 6070 <__isoc99_scanf@GLIBC_2.7>
+    11fb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000001200 <sprintf@plt>:
+    1200:	f3 0f 1e fa          	endbr64
+    1204:	f2 ff 25 6d 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e6d]        # 6078 <sprintf@GLIBC_2.2.5>
+    120b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000001210 <exit@plt>:
+    1210:	f3 0f 1e fa          	endbr64
+    1214:	f2 ff 25 65 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e65]        # 6080 <exit@GLIBC_2.2.5>
+    121b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000001220 <sleep@plt>:
+    1220:	f3 0f 1e fa          	endbr64
+    1224:	f2 ff 25 5d 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e5d]        # 6088 <sleep@GLIBC_2.2.5>
+    122b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000001230 <rand@plt>:
+    1230:	f3 0f 1e fa          	endbr64
+    1234:	f2 ff 25 55 4e 00 00 	bnd jmp QWORD PTR [rip+0x4e55]        # 6090 <rand@GLIBC_2.2.5>
+    123b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+Disassembly of section .text:
+
+0000000000001240 <_start>:
+    1240:	f3 0f 1e fa          	endbr64
+    1244:	31 ed                	xor    ebp,ebp
+    1246:	49 89 d1             	mov    r9,rdx
+    1249:	5e                   	pop    rsi
+    124a:	48 89 e2             	mov    rdx,rsp
+    124d:	48 83 e4 f0          	and    rsp,0xfffffffffffffff0
+    1251:	50                   	push   rax
+    1252:	54                   	push   rsp
+    1253:	45 31 c0             	xor    r8d,r8d
+    1256:	31 c9                	xor    ecx,ecx
+    1258:	48 8d 3d e9 09 00 00 	lea    rdi,[rip+0x9e9]        # 1c48 <main>
+    125f:	ff 15 73 4d 00 00    	call   QWORD PTR [rip+0x4d73]        # 5fd8 <__libc_start_main@GLIBC_2.34>
+    1265:	f4                   	hlt
+    1266:	66 2e 0f 1f 84 00 00 	cs nop WORD PTR [rax+rax*1+0x0]
+    126d:	00 00 00 
+
+0000000000001270 <deregister_tm_clones>:
+    1270:	48 8d 3d 29 4f 00 00 	lea    rdi,[rip+0x4f29]        # 61a0 <stdout@GLIBC_2.2.5>
+    1277:	48 8d 05 22 4f 00 00 	lea    rax,[rip+0x4f22]        # 61a0 <stdout@GLIBC_2.2.5>
+    127e:	48 39 f8             	cmp    rax,rdi
+    1281:	74 15                	je     1298 <deregister_tm_clones+0x28>
+    1283:	48 8b 05 56 4d 00 00 	mov    rax,QWORD PTR [rip+0x4d56]        # 5fe0 <_ITM_deregisterTMCloneTable@Base>
+    128a:	48 85 c0             	test   rax,rax
+    128d:	74 09                	je     1298 <deregister_tm_clones+0x28>
+    128f:	ff e0                	jmp    rax
+    1291:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+    1298:	c3                   	ret
+    1299:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+
+00000000000012a0 <register_tm_clones>:
+    12a0:	48 8d 3d f9 4e 00 00 	lea    rdi,[rip+0x4ef9]        # 61a0 <stdout@GLIBC_2.2.5>
+    12a7:	48 8d 35 f2 4e 00 00 	lea    rsi,[rip+0x4ef2]        # 61a0 <stdout@GLIBC_2.2.5>
+    12ae:	48 29 fe             	sub    rsi,rdi
+    12b1:	48 89 f0             	mov    rax,rsi
+    12b4:	48 c1 ee 3f          	shr    rsi,0x3f
+    12b8:	48 c1 f8 03          	sar    rax,0x3
+    12bc:	48 01 c6             	add    rsi,rax
+    12bf:	48 d1 fe             	sar    rsi,1
+    12c2:	74 14                	je     12d8 <register_tm_clones+0x38>
+    12c4:	48 8b 05 25 4d 00 00 	mov    rax,QWORD PTR [rip+0x4d25]        # 5ff0 <_ITM_registerTMCloneTable@Base>
+    12cb:	48 85 c0             	test   rax,rax
+    12ce:	74 08                	je     12d8 <register_tm_clones+0x38>
+    12d0:	ff e0                	jmp    rax
+    12d2:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+    12d8:	c3                   	ret
+    12d9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+
+00000000000012e0 <__do_global_dtors_aux>:
+    12e0:	f3 0f 1e fa          	endbr64
+    12e4:	80 3d dd 4e 00 00 00 	cmp    BYTE PTR [rip+0x4edd],0x0        # 61c8 <completed.0>
+    12eb:	75 2b                	jne    1318 <__do_global_dtors_aux+0x38>
+    12ed:	55                   	push   rbp
+    12ee:	48 83 3d 02 4d 00 00 	cmp    QWORD PTR [rip+0x4d02],0x0        # 5ff8 <__cxa_finalize@GLIBC_2.2.5>
+    12f5:	00 
+    12f6:	48 89 e5             	mov    rbp,rsp
+    12f9:	74 0c                	je     1307 <__do_global_dtors_aux+0x27>
+    12fb:	48 8b 3d a6 4d 00 00 	mov    rdi,QWORD PTR [rip+0x4da6]        # 60a8 <__dso_handle>
+    1302:	e8 29 fe ff ff       	call   1130 <__cxa_finalize@plt>
+    1307:	e8 64 ff ff ff       	call   1270 <deregister_tm_clones>
+    130c:	c6 05 b5 4e 00 00 01 	mov    BYTE PTR [rip+0x4eb5],0x1        # 61c8 <completed.0>
+    1313:	5d                   	pop    rbp
+    1314:	c3                   	ret
+    1315:	0f 1f 00             	nop    DWORD PTR [rax]
+    1318:	c3                   	ret
+    1319:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+
+0000000000001320 <frame_dummy>:
+    1320:	f3 0f 1e fa          	endbr64
+    1324:	e9 77 ff ff ff       	jmp    12a0 <register_tm_clones>
+
+0000000000001329 <print_team>:
+    1329:	f3 0f 1e fa          	endbr64
+    132d:	55                   	push   rbp
+    132e:	48 89 e5             	mov    rbp,rsp
+    1331:	48 83 ec 10          	sub    rsp,0x10
+    1335:	48 8d 05 d4 1e 00 00 	lea    rax,[rip+0x1ed4]        # 3210 <UwU_NAME+0x1f0>
+    133c:	48 89 c7             	mov    rdi,rax
+    133f:	e8 0c fe ff ff       	call   1150 <puts@plt>
+    1344:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [rbp-0x4],0x0
+    134b:	eb 36                	jmp    1383 <print_team+0x5a>
+    134d:	8b 45 fc             	mov    eax,DWORD PTR [rbp-0x4]
+    1350:	48 98                	cdqe
+    1352:	48 c1 e0 04          	shl    rax,0x4
+    1356:	48 89 c2             	mov    rdx,rax
+    1359:	48 8d 05 60 4d 00 00 	lea    rax,[rip+0x4d60]        # 60c0 <TEAM>
+    1360:	48 01 c2             	add    rdx,rax
+    1363:	8b 45 fc             	mov    eax,DWORD PTR [rbp-0x4]
+    1366:	83 c0 01             	add    eax,0x1
+    1369:	89 c6                	mov    esi,eax
+    136b:	48 8d 05 f0 1e 00 00 	lea    rax,[rip+0x1ef0]        # 3262 <UwU_NAME+0x242>
+    1372:	48 89 c7             	mov    rdi,rax
+    1375:	b8 00 00 00 00       	mov    eax,0x0
+    137a:	e8 f1 fd ff ff       	call   1170 <printf@plt>
+    137f:	83 45 fc 01          	add    DWORD PTR [rbp-0x4],0x1
+    1383:	8b 05 9b 4d 00 00    	mov    eax,DWORD PTR [rip+0x4d9b]        # 6124 <MAX_TEAM_SIZE>
+    1389:	39 45 fc             	cmp    DWORD PTR [rbp-0x4],eax
+    138c:	7c bf                	jl     134d <print_team+0x24>
+    138e:	48 8d 05 7b 1e 00 00 	lea    rax,[rip+0x1e7b]        # 3210 <UwU_NAME+0x1f0>
+    1395:	48 89 c7             	mov    rdi,rax
+    1398:	e8 b3 fd ff ff       	call   1150 <puts@plt>
+    139d:	90                   	nop
+    139e:	c9                   	leave
+    139f:	c3                   	ret
+
+00000000000013a0 <edit_nickname>:
+    13a0:	f3 0f 1e fa          	endbr64
+    13a4:	55                   	push   rbp
+    13a5:	48 89 e5             	mov    rbp,rsp
+    13a8:	53                   	push   rbx
+    13a9:	48 83 ec 18          	sub    rsp,0x18
+    13ad:	48 8d 05 c4 1e 00 00 	lea    rax,[rip+0x1ec4]        # 3278 <UwU_NAME+0x258>
+    13b4:	48 89 c7             	mov    rdi,rax
+    13b7:	e8 94 fd ff ff       	call   1150 <puts@plt>
+    13bc:	48 8d 05 0d 1f 00 00 	lea    rax,[rip+0x1f0d]        # 32d0 <UwU_NAME+0x2b0>
+    13c3:	48 89 c7             	mov    rdi,rax
+    13c6:	b8 00 00 00 00       	mov    eax,0x0
+    13cb:	e8 a0 fd ff ff       	call   1170 <printf@plt>
+    13d0:	48 8d 45 ec          	lea    rax,[rbp-0x14]
+    13d4:	48 89 c6             	mov    rsi,rax
+    13d7:	48 8d 05 33 1f 00 00 	lea    rax,[rip+0x1f33]        # 3311 <UwU_NAME+0x2f1>
+    13de:	48 89 c7             	mov    rdi,rax
+    13e1:	b8 00 00 00 00       	mov    eax,0x0
+    13e6:	e8 05 fe ff ff       	call   11f0 <__isoc99_scanf@plt>
+    13eb:	e8 d0 fd ff ff       	call   11c0 <getchar@plt>
+    13f0:	8b 55 ec             	mov    edx,DWORD PTR [rbp-0x14]
+    13f3:	8b 05 27 4d 00 00    	mov    eax,DWORD PTR [rip+0x4d27]        # 6120 <TEAM_SIZE>
+    13f9:	39 c2                	cmp    edx,eax
+    13fb:	0f 8f d9 00 00 00    	jg     14da <edit_nickname+0x13a>
+    1401:	be 01 00 00 00       	mov    esi,0x1
+    1406:	48 8d 05 07 1f 00 00 	lea    rax,[rip+0x1f07]        # 3314 <UwU_NAME+0x2f4>
+    140d:	48 89 c7             	mov    rdi,rax
+    1410:	e8 d0 08 00 00       	call   1ce5 <print_ui>
+    1415:	b8 00 00 00 00       	mov    eax,0x0
+    141a:	e8 0a ff ff ff       	call   1329 <print_team>
+    141f:	48 8d 05 52 1e 00 00 	lea    rax,[rip+0x1e52]        # 3278 <UwU_NAME+0x258>
+    1426:	48 89 c7             	mov    rdi,rax
+    1429:	e8 22 fd ff ff       	call   1150 <puts@plt>
+    142e:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+    1431:	83 e8 01             	sub    eax,0x1
+    1434:	48 98                	cdqe
+    1436:	48 c1 e0 04          	shl    rax,0x4
+    143a:	48 89 c2             	mov    rdx,rax
+    143d:	48 8d 05 7c 4c 00 00 	lea    rax,[rip+0x4c7c]        # 60c0 <TEAM>
+    1444:	48 01 d0             	add    rax,rdx
+    1447:	48 89 c6             	mov    rsi,rax
+    144a:	48 8d 05 cf 1e 00 00 	lea    rax,[rip+0x1ecf]        # 3320 <UwU_NAME+0x300>
+    1451:	48 89 c7             	mov    rdi,rax
+    1454:	b8 00 00 00 00       	mov    eax,0x0
+    1459:	e8 12 fd ff ff       	call   1170 <printf@plt>
+    145e:	48 8b 05 4b 4d 00 00 	mov    rax,QWORD PTR [rip+0x4d4b]        # 61b0 <stdin@GLIBC_2.2.5>
+    1465:	8b 55 ec             	mov    edx,DWORD PTR [rbp-0x14]
+    1468:	83 ea 01             	sub    edx,0x1
+    146b:	48 63 d2             	movsxd rdx,edx
+    146e:	48 89 d1             	mov    rcx,rdx
+    1471:	48 c1 e1 04          	shl    rcx,0x4
+    1475:	48 8d 15 44 4c 00 00 	lea    rdx,[rip+0x4c44]        # 60c0 <TEAM>
+    147c:	48 01 d1             	add    rcx,rdx
+    147f:	48 89 c2             	mov    rdx,rax
+    1482:	be 10 00 00 00       	mov    esi,0x10
+    1487:	48 89 cf             	mov    rdi,rcx
+    148a:	e8 11 fd ff ff       	call   11a0 <fgets@plt>
+    148f:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+    1492:	8d 58 ff             	lea    ebx,[rax-0x1]
+    1495:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+    1498:	83 e8 01             	sub    eax,0x1
+    149b:	48 98                	cdqe
+    149d:	48 c1 e0 04          	shl    rax,0x4
+    14a1:	48 89 c2             	mov    rdx,rax
+    14a4:	48 8d 05 15 4c 00 00 	lea    rax,[rip+0x4c15]        # 60c0 <TEAM>
+    14ab:	48 01 d0             	add    rax,rdx
+    14ae:	48 8d 15 a8 1e 00 00 	lea    rdx,[rip+0x1ea8]        # 335d <UwU_NAME+0x33d>
+    14b5:	48 89 d6             	mov    rsi,rdx
+    14b8:	48 89 c7             	mov    rdi,rax
+    14bb:	e8 c0 fc ff ff       	call   1180 <strcspn@plt>
+    14c0:	48 89 c2             	mov    rdx,rax
+    14c3:	48 63 c3             	movsxd rax,ebx
+    14c6:	48 c1 e0 04          	shl    rax,0x4
+    14ca:	48 01 c2             	add    rdx,rax
+    14cd:	48 8d 05 ec 4b 00 00 	lea    rax,[rip+0x4bec]        # 60c0 <TEAM>
+    14d4:	48 01 d0             	add    rax,rdx
+    14d7:	c6 00 00             	mov    BYTE PTR [rax],0x0
+    14da:	90                   	nop
+    14db:	48 8b 5d f8          	mov    rbx,QWORD PTR [rbp-0x8]
+    14df:	c9                   	leave
+    14e0:	c3                   	ret
+
+00000000000014e1 <play>:
+    14e1:	f3 0f 1e fa          	endbr64
+    14e5:	55                   	push   rbp
+    14e6:	48 89 e5             	mov    rbp,rsp
+    14e9:	48 83 ec 10          	sub    rsp,0x10
+    14ed:	e8 3e fd ff ff       	call   1230 <rand@plt>
+    14f2:	89 c2                	mov    edx,eax
+    14f4:	48 63 c2             	movsxd rax,edx
+    14f7:	48 69 c0 ab aa aa 2a 	imul   rax,rax,0x2aaaaaab
+    14fe:	48 c1 e8 20          	shr    rax,0x20
+    1502:	89 d6                	mov    esi,edx
+    1504:	c1 fe 1f             	sar    esi,0x1f
+    1507:	89 c1                	mov    ecx,eax
+    1509:	29 f1                	sub    ecx,esi
+    150b:	89 c8                	mov    eax,ecx
+    150d:	01 c0                	add    eax,eax
+    150f:	01 c8                	add    eax,ecx
+    1511:	01 c0                	add    eax,eax
+    1513:	89 d1                	mov    ecx,edx
+    1515:	29 c1                	sub    ecx,eax
+    1517:	48 63 c1             	movsxd rax,ecx
+    151a:	48 c1 e0 04          	shl    rax,0x4
+    151e:	48 89 c2             	mov    rdx,rax
+    1521:	48 8d 05 f8 1a 00 00 	lea    rax,[rip+0x1af8]        # 3020 <UwU_NAME>
+    1528:	48 01 d0             	add    rax,rdx
+    152b:	48 89 c6             	mov    rsi,rax
+    152e:	48 8d 05 ab 4c 00 00 	lea    rax,[rip+0x4cab]        # 61e0 <encountered>
+    1535:	48 89 c7             	mov    rdi,rax
+    1538:	e8 03 fc ff ff       	call   1140 <strcpy@plt>
+    153d:	be 01 00 00 00       	mov    esi,0x1
+    1542:	48 8d 05 16 1e 00 00 	lea    rax,[rip+0x1e16]        # 335f <UwU_NAME+0x33f>
+    1549:	48 89 c7             	mov    rdi,rax
+    154c:	e8 94 07 00 00       	call   1ce5 <print_ui>
+    1551:	48 8d 05 10 1e 00 00 	lea    rax,[rip+0x1e10]        # 3368 <UwU_NAME+0x348>
+    1558:	48 89 c7             	mov    rdi,rax
+    155b:	b8 00 00 00 00       	mov    eax,0x0
+    1560:	e8 0b fc ff ff       	call   1170 <printf@plt>
+    1565:	48 8d 45 fc          	lea    rax,[rbp-0x4]
+    1569:	48 89 c6             	mov    rsi,rax
+    156c:	48 8d 05 9e 1d 00 00 	lea    rax,[rip+0x1d9e]        # 3311 <UwU_NAME+0x2f1>
+    1573:	48 89 c7             	mov    rdi,rax
+    1576:	b8 00 00 00 00       	mov    eax,0x0
+    157b:	e8 70 fc ff ff       	call   11f0 <__isoc99_scanf@plt>
+    1580:	e8 3b fc ff ff       	call   11c0 <getchar@plt>
+    1585:	8b 45 fc             	mov    eax,DWORD PTR [rbp-0x4]
+    1588:	83 f8 03             	cmp    eax,0x3
+    158b:	0f 84 15 01 00 00    	je     16a6 <play+0x1c5>
+    1591:	83 f8 03             	cmp    eax,0x3
+    1594:	0f 8f 67 04 00 00    	jg     1a01 <play+0x520>
+    159a:	83 f8 01             	cmp    eax,0x1
+    159d:	74 0a                	je     15a9 <play+0xc8>
+    159f:	83 f8 02             	cmp    eax,0x2
+    15a2:	74 2d                	je     15d1 <play+0xf0>
+    15a4:	e9 58 04 00 00       	jmp    1a01 <play+0x520>
+    15a9:	48 8d 05 fa 1d 00 00 	lea    rax,[rip+0x1dfa]        # 33aa <UwU_NAME+0x38a>
+    15b0:	48 89 c7             	mov    rdi,rax
+    15b3:	e8 a8 fb ff ff       	call   1160 <system@plt>
+    15b8:	be 00 00 00 00       	mov    esi,0x0
+    15bd:	48 8d 05 ec 1d 00 00 	lea    rax,[rip+0x1dec]        # 33b0 <UwU_NAME+0x390>
+    15c4:	48 89 c7             	mov    rdi,rax
+    15c7:	e8 19 07 00 00       	call   1ce5 <print_ui>
+    15cc:	e9 e3 04 00 00       	jmp    1ab4 <play+0x5d3>
+    15d1:	48 8d 05 d2 1d 00 00 	lea    rax,[rip+0x1dd2]        # 33aa <UwU_NAME+0x38a>
+    15d8:	48 89 c7             	mov    rdi,rax
+    15db:	e8 80 fb ff ff       	call   1160 <system@plt>
+    15e0:	8b 05 42 4b 00 00    	mov    eax,DWORD PTR [rip+0x4b42]        # 6128 <CHOSEN>
+    15e6:	83 e8 01             	sub    eax,0x1
+    15e9:	48 98                	cdqe
+    15eb:	48 c1 e0 04          	shl    rax,0x4
+    15ef:	48 89 c2             	mov    rdx,rax
+    15f2:	48 8d 05 c7 4a 00 00 	lea    rax,[rip+0x4ac7]        # 60c0 <TEAM>
+    15f9:	48 01 d0             	add    rax,rdx
+    15fc:	48 89 c6             	mov    rsi,rax
+    15ff:	48 8d 05 da 4b 00 00 	lea    rax,[rip+0x4bda]        # 61e0 <encountered>
+    1606:	48 89 c7             	mov    rdi,rax
+    1609:	e8 cb 0d 00 00       	call   23d9 <battle_ui2>
+    160e:	b8 00 00 00 00       	mov    eax,0x0
+    1613:	e8 11 fd ff ff       	call   1329 <print_team>
+    1618:	48 8d 05 99 1d 00 00 	lea    rax,[rip+0x1d99]        # 33b8 <UwU_NAME+0x398>
+    161f:	48 89 c7             	mov    rdi,rax
+    1622:	e8 29 fb ff ff       	call   1150 <puts@plt>
+    1627:	48 8d 05 e2 1d 00 00 	lea    rax,[rip+0x1de2]        # 3410 <UwU_NAME+0x3f0>
+    162e:	48 89 c7             	mov    rdi,rax
+    1631:	b8 00 00 00 00       	mov    eax,0x0
+    1636:	e8 35 fb ff ff       	call   1170 <printf@plt>
+    163b:	48 8d 05 e6 4a 00 00 	lea    rax,[rip+0x4ae6]        # 6128 <CHOSEN>
+    1642:	48 89 c6             	mov    rsi,rax
+    1645:	48 8d 05 c5 1c 00 00 	lea    rax,[rip+0x1cc5]        # 3311 <UwU_NAME+0x2f1>
+    164c:	48 89 c7             	mov    rdi,rax
+    164f:	b8 00 00 00 00       	mov    eax,0x0
+    1654:	e8 97 fb ff ff       	call   11f0 <__isoc99_scanf@plt>
+    1659:	8b 05 c9 4a 00 00    	mov    eax,DWORD PTR [rip+0x4ac9]        # 6128 <CHOSEN>
+    165f:	83 f8 06             	cmp    eax,0x6
+    1662:	7e 0a                	jle    166e <play+0x18d>
+    1664:	c7 05 ba 4a 00 00 01 	mov    DWORD PTR [rip+0x4aba],0x1        # 6128 <CHOSEN>
+    166b:	00 00 00 
+    166e:	48 8d 05 35 1d 00 00 	lea    rax,[rip+0x1d35]        # 33aa <UwU_NAME+0x38a>
+    1675:	48 89 c7             	mov    rdi,rax
+    1678:	e8 e3 fa ff ff       	call   1160 <system@plt>
+    167d:	b8 00 00 00 00       	mov    eax,0x0
+    1682:	e8 eb 0f 00 00       	call   2672 <run_away>
+    1687:	e8 a4 fb ff ff       	call   1230 <rand@plt>
+    168c:	99                   	cdq
+    168d:	c1 ea 1f             	shr    edx,0x1f
+    1690:	01 d0                	add    eax,edx
+    1692:	83 e0 01             	and    eax,0x1
+    1695:	29 d0                	sub    eax,edx
+    1697:	83 c0 02             	add    eax,0x2
+    169a:	89 c7                	mov    edi,eax
+    169c:	e8 7f fb ff ff       	call   1220 <sleep@plt>
+    16a1:	e9 0e 04 00 00       	jmp    1ab4 <play+0x5d3>
+    16a6:	48 8d 05 fd 1c 00 00 	lea    rax,[rip+0x1cfd]        # 33aa <UwU_NAME+0x38a>
+    16ad:	48 89 c7             	mov    rdi,rax
+    16b0:	e8 ab fa ff ff       	call   1160 <system@plt>
+    16b5:	8b 05 6d 4a 00 00    	mov    eax,DWORD PTR [rip+0x4a6d]        # 6128 <CHOSEN>
+    16bb:	83 e8 01             	sub    eax,0x1
+    16be:	48 98                	cdqe
+    16c0:	48 c1 e0 04          	shl    rax,0x4
+    16c4:	48 89 c2             	mov    rdx,rax
+    16c7:	48 8d 05 f2 49 00 00 	lea    rax,[rip+0x49f2]        # 60c0 <TEAM>
+    16ce:	48 01 d0             	add    rax,rdx
+    16d1:	48 89 c6             	mov    rsi,rax
+    16d4:	48 8d 05 05 4b 00 00 	lea    rax,[rip+0x4b05]        # 61e0 <encountered>
+    16db:	48 89 c7             	mov    rdi,rax
+    16de:	e8 f6 0c 00 00       	call   23d9 <battle_ui2>
+    16e3:	48 8d 05 1f 1a 00 00 	lea    rax,[rip+0x1a1f]        # 3109 <UwU_NAME+0xe9>
+    16ea:	48 89 c6             	mov    rsi,rax
+    16ed:	48 8d 05 5a 1d 00 00 	lea    rax,[rip+0x1d5a]        # 344e <UwU_NAME+0x42e>
+    16f4:	48 89 c7             	mov    rdi,rax
+    16f7:	e8 0b 0f 00 00       	call   2607 <text_box_ui>
+    16fc:	48 8d 05 b5 1c 00 00 	lea    rax,[rip+0x1cb5]        # 33b8 <UwU_NAME+0x398>
+    1703:	48 89 c7             	mov    rdi,rax
+    1706:	e8 45 fa ff ff       	call   1150 <puts@plt>
+    170b:	e8 20 fb ff ff       	call   1230 <rand@plt>
+    1710:	99                   	cdq
+    1711:	c1 ea 1f             	shr    edx,0x1f
+    1714:	01 d0                	add    eax,edx
+    1716:	83 e0 01             	and    eax,0x1
+    1719:	29 d0                	sub    eax,edx
+    171b:	66 0f ef c9          	pxor   xmm1,xmm1
+    171f:	f2 0f 2a c8          	cvtsi2sd xmm1,eax
+    1723:	f2 0f 10 05 b5 2a 00 	movsd  xmm0,QWORD PTR [rip+0x2ab5]        # 41e0 <UwU_NAME+0x11c0>
+    172a:	00 
+    172b:	f2 0f 58 c1          	addsd  xmm0,xmm1
+    172f:	f2 48 0f 2c c0       	cvttsd2si rax,xmm0
+    1734:	89 c7                	mov    edi,eax
+    1736:	e8 e5 fa ff ff       	call   1220 <sleep@plt>
+    173b:	e8 f0 fa ff ff       	call   1230 <rand@plt>
+    1740:	83 e0 01             	and    eax,0x1
+    1743:	85 c0                	test   eax,eax
+    1745:	0f 84 d0 01 00 00    	je     191b <play+0x43a>
+    174b:	8b 05 cf 49 00 00    	mov    eax,DWORD PTR [rip+0x49cf]        # 6120 <TEAM_SIZE>
+    1751:	83 f8 05             	cmp    eax,0x5
+    1754:	0f 8f ed 00 00 00    	jg     1847 <play+0x366>
+    175a:	48 8d 05 49 1c 00 00 	lea    rax,[rip+0x1c49]        # 33aa <UwU_NAME+0x38a>
+    1761:	48 89 c7             	mov    rdi,rax
+    1764:	e8 f7 f9 ff ff       	call   1160 <system@plt>
+    1769:	8b 05 b9 49 00 00    	mov    eax,DWORD PTR [rip+0x49b9]        # 6128 <CHOSEN>
+    176f:	83 e8 01             	sub    eax,0x1
+    1772:	48 98                	cdqe
+    1774:	48 c1 e0 04          	shl    rax,0x4
+    1778:	48 89 c2             	mov    rdx,rax
+    177b:	48 8d 05 3e 49 00 00 	lea    rax,[rip+0x493e]        # 60c0 <TEAM>
+    1782:	48 01 d0             	add    rax,rdx
+    1785:	48 89 c6             	mov    rsi,rax
+    1788:	48 8d 05 51 4a 00 00 	lea    rax,[rip+0x4a51]        # 61e0 <encountered>
+    178f:	48 89 c7             	mov    rdi,rax
+    1792:	e8 42 0c 00 00       	call   23d9 <battle_ui2>
+    1797:	48 8d 05 42 4a 00 00 	lea    rax,[rip+0x4a42]        # 61e0 <encountered>
+    179e:	48 89 c2             	mov    rdx,rax
+    17a1:	48 8d 05 bd 1c 00 00 	lea    rax,[rip+0x1cbd]        # 3465 <UwU_NAME+0x445>
+    17a8:	48 89 c6             	mov    rsi,rax
+    17ab:	48 8d 05 4e 4a 00 00 	lea    rax,[rip+0x4a4e]        # 6200 <buffer1>
+    17b2:	48 89 c7             	mov    rdi,rax
+    17b5:	b8 00 00 00 00       	mov    eax,0x0
+    17ba:	e8 41 fa ff ff       	call   1200 <sprintf@plt>
+    17bf:	c6 05 9a 4a 00 00 00 	mov    BYTE PTR [rip+0x4a9a],0x0        # 6260 <buffer2>
+    17c6:	48 8d 05 93 4a 00 00 	lea    rax,[rip+0x4a93]        # 6260 <buffer2>
+    17cd:	48 89 c6             	mov    rsi,rax
+    17d0:	48 8d 05 29 4a 00 00 	lea    rax,[rip+0x4a29]        # 6200 <buffer1>
+    17d7:	48 89 c7             	mov    rdi,rax
+    17da:	e8 28 0e 00 00       	call   2607 <text_box_ui>
+    17df:	48 8d 05 d2 1b 00 00 	lea    rax,[rip+0x1bd2]        # 33b8 <UwU_NAME+0x398>
+    17e6:	48 89 c7             	mov    rdi,rax
+    17e9:	e8 62 f9 ff ff       	call   1150 <puts@plt>
+    17ee:	8b 05 2c 49 00 00    	mov    eax,DWORD PTR [rip+0x492c]        # 6120 <TEAM_SIZE>
+    17f4:	48 98                	cdqe
+    17f6:	48 c1 e0 04          	shl    rax,0x4
+    17fa:	48 89 c2             	mov    rdx,rax
+    17fd:	48 8d 05 bc 48 00 00 	lea    rax,[rip+0x48bc]        # 60c0 <TEAM>
+    1804:	48 01 d0             	add    rax,rdx
+    1807:	48 8d 15 d2 49 00 00 	lea    rdx,[rip+0x49d2]        # 61e0 <encountered>
+    180e:	48 89 d6             	mov    rsi,rdx
+    1811:	48 89 c7             	mov    rdi,rax
+    1814:	e8 27 f9 ff ff       	call   1140 <strcpy@plt>
+    1819:	8b 05 01 49 00 00    	mov    eax,DWORD PTR [rip+0x4901]        # 6120 <TEAM_SIZE>
+    181f:	83 c0 01             	add    eax,0x1
+    1822:	89 05 f8 48 00 00    	mov    DWORD PTR [rip+0x48f8],eax        # 6120 <TEAM_SIZE>
+    1828:	e8 03 fa ff ff       	call   1230 <rand@plt>
+    182d:	99                   	cdq
+    182e:	c1 ea 1f             	shr    edx,0x1f
+    1831:	01 d0                	add    eax,edx
+    1833:	83 e0 01             	and    eax,0x1
+    1836:	29 d0                	sub    eax,edx
+    1838:	83 c0 02             	add    eax,0x2
+    183b:	89 c7                	mov    edi,eax
+    183d:	e8 de f9 ff ff       	call   1220 <sleep@plt>
+    1842:	e9 6d 02 00 00       	jmp    1ab4 <play+0x5d3>
+    1847:	48 8d 05 5c 1b 00 00 	lea    rax,[rip+0x1b5c]        # 33aa <UwU_NAME+0x38a>
+    184e:	48 89 c7             	mov    rdi,rax
+    1851:	e8 0a f9 ff ff       	call   1160 <system@plt>
+    1856:	8b 05 cc 48 00 00    	mov    eax,DWORD PTR [rip+0x48cc]        # 6128 <CHOSEN>
+    185c:	83 e8 01             	sub    eax,0x1
+    185f:	48 98                	cdqe
+    1861:	48 c1 e0 04          	shl    rax,0x4
+    1865:	48 89 c2             	mov    rdx,rax
+    1868:	48 8d 05 51 48 00 00 	lea    rax,[rip+0x4851]        # 60c0 <TEAM>
+    186f:	48 01 d0             	add    rax,rdx
+    1872:	48 89 c6             	mov    rsi,rax
+    1875:	48 8d 05 64 49 00 00 	lea    rax,[rip+0x4964]        # 61e0 <encountered>
+    187c:	48 89 c7             	mov    rdi,rax
+    187f:	e8 55 0b 00 00       	call   23d9 <battle_ui2>
+    1884:	48 8d 05 55 49 00 00 	lea    rax,[rip+0x4955]        # 61e0 <encountered>
+    188b:	48 89 c2             	mov    rdx,rax
+    188e:	48 8d 05 d0 1b 00 00 	lea    rax,[rip+0x1bd0]        # 3465 <UwU_NAME+0x445>
+    1895:	48 89 c6             	mov    rsi,rax
+    1898:	48 8d 05 61 49 00 00 	lea    rax,[rip+0x4961]        # 6200 <buffer1>
+    189f:	48 89 c7             	mov    rdi,rax
+    18a2:	b8 00 00 00 00       	mov    eax,0x0
+    18a7:	e8 54 f9 ff ff       	call   1200 <sprintf@plt>
+    18ac:	48 8d 05 2d 49 00 00 	lea    rax,[rip+0x492d]        # 61e0 <encountered>
+    18b3:	48 89 c2             	mov    rdx,rax
+    18b6:	48 8d 05 c3 1b 00 00 	lea    rax,[rip+0x1bc3]        # 3480 <UwU_NAME+0x460>
+    18bd:	48 89 c6             	mov    rsi,rax
+    18c0:	48 8d 05 99 49 00 00 	lea    rax,[rip+0x4999]        # 6260 <buffer2>
+    18c7:	48 89 c7             	mov    rdi,rax
+    18ca:	b8 00 00 00 00       	mov    eax,0x0
+    18cf:	e8 2c f9 ff ff       	call   1200 <sprintf@plt>
+    18d4:	48 8d 05 85 49 00 00 	lea    rax,[rip+0x4985]        # 6260 <buffer2>
+    18db:	48 89 c6             	mov    rsi,rax
+    18de:	48 8d 05 1b 49 00 00 	lea    rax,[rip+0x491b]        # 6200 <buffer1>
+    18e5:	48 89 c7             	mov    rdi,rax
+    18e8:	e8 1a 0d 00 00       	call   2607 <text_box_ui>
+    18ed:	48 8d 05 c4 1a 00 00 	lea    rax,[rip+0x1ac4]        # 33b8 <UwU_NAME+0x398>
+    18f4:	48 89 c7             	mov    rdi,rax
+    18f7:	e8 54 f8 ff ff       	call   1150 <puts@plt>
+    18fc:	e8 2f f9 ff ff       	call   1230 <rand@plt>
+    1901:	99                   	cdq
+    1902:	c1 ea 1f             	shr    edx,0x1f
+    1905:	01 d0                	add    eax,edx
+    1907:	83 e0 01             	and    eax,0x1
+    190a:	29 d0                	sub    eax,edx
+    190c:	83 c0 02             	add    eax,0x2
+    190f:	89 c7                	mov    edi,eax
+    1911:	e8 0a f9 ff ff       	call   1220 <sleep@plt>
+    1916:	e9 99 01 00 00       	jmp    1ab4 <play+0x5d3>
+    191b:	48 8d 05 88 1a 00 00 	lea    rax,[rip+0x1a88]        # 33aa <UwU_NAME+0x38a>
+    1922:	48 89 c7             	mov    rdi,rax
+    1925:	e8 36 f8 ff ff       	call   1160 <system@plt>
+    192a:	8b 05 f8 47 00 00    	mov    eax,DWORD PTR [rip+0x47f8]        # 6128 <CHOSEN>
+    1930:	83 e8 01             	sub    eax,0x1
+    1933:	48 98                	cdqe
+    1935:	48 c1 e0 04          	shl    rax,0x4
+    1939:	48 89 c2             	mov    rdx,rax
+    193c:	48 8d 05 7d 47 00 00 	lea    rax,[rip+0x477d]        # 60c0 <TEAM>
+    1943:	48 01 d0             	add    rax,rdx
+    1946:	48 89 c6             	mov    rsi,rax
+    1949:	48 8d 05 90 48 00 00 	lea    rax,[rip+0x4890]        # 61e0 <encountered>
+    1950:	48 89 c7             	mov    rdi,rax
+    1953:	e8 81 0a 00 00       	call   23d9 <battle_ui2>
+    1958:	48 8d 05 81 48 00 00 	lea    rax,[rip+0x4881]        # 61e0 <encountered>
+    195f:	48 89 c2             	mov    rdx,rax
+    1962:	48 8d 05 41 1b 00 00 	lea    rax,[rip+0x1b41]        # 34aa <UwU_NAME+0x48a>
+    1969:	48 89 c6             	mov    rsi,rax
+    196c:	48 8d 05 8d 48 00 00 	lea    rax,[rip+0x488d]        # 6200 <buffer1>
+    1973:	48 89 c7             	mov    rdi,rax
+    1976:	b8 00 00 00 00       	mov    eax,0x0
+    197b:	e8 80 f8 ff ff       	call   1200 <sprintf@plt>
+    1980:	c6 05 d9 48 00 00 00 	mov    BYTE PTR [rip+0x48d9],0x0        # 6260 <buffer2>
+    1987:	48 8d 05 d2 48 00 00 	lea    rax,[rip+0x48d2]        # 6260 <buffer2>
+    198e:	48 89 c6             	mov    rsi,rax
+    1991:	48 8d 05 68 48 00 00 	lea    rax,[rip+0x4868]        # 6200 <buffer1>
+    1998:	48 89 c7             	mov    rdi,rax
+    199b:	e8 67 0c 00 00       	call   2607 <text_box_ui>
+    19a0:	48 8d 05 11 1a 00 00 	lea    rax,[rip+0x1a11]        # 33b8 <UwU_NAME+0x398>
+    19a7:	48 89 c7             	mov    rdi,rax
+    19aa:	e8 a1 f7 ff ff       	call   1150 <puts@plt>
+    19af:	e8 7c f8 ff ff       	call   1230 <rand@plt>
+    19b4:	99                   	cdq
+    19b5:	c1 ea 1f             	shr    edx,0x1f
+    19b8:	01 d0                	add    eax,edx
+    19ba:	83 e0 01             	and    eax,0x1
+    19bd:	29 d0                	sub    eax,edx
+    19bf:	83 c0 02             	add    eax,0x2
+    19c2:	89 c7                	mov    edi,eax
+    19c4:	e8 57 f8 ff ff       	call   1220 <sleep@plt>
+    19c9:	48 8d 05 da 19 00 00 	lea    rax,[rip+0x19da]        # 33aa <UwU_NAME+0x38a>
+    19d0:	48 89 c7             	mov    rdi,rax
+    19d3:	e8 88 f7 ff ff       	call   1160 <system@plt>
+    19d8:	b8 00 00 00 00       	mov    eax,0x0
+    19dd:	e8 90 0c 00 00       	call   2672 <run_away>
+    19e2:	e8 49 f8 ff ff       	call   1230 <rand@plt>
+    19e7:	99                   	cdq
+    19e8:	c1 ea 1f             	shr    edx,0x1f
+    19eb:	01 d0                	add    eax,edx
+    19ed:	83 e0 01             	and    eax,0x1
+    19f0:	29 d0                	sub    eax,edx
+    19f2:	83 c0 02             	add    eax,0x2
+    19f5:	89 c7                	mov    edi,eax
+    19f7:	e8 24 f8 ff ff       	call   1220 <sleep@plt>
+    19fc:	e9 b3 00 00 00       	jmp    1ab4 <play+0x5d3>
+    1a01:	48 8d 05 a2 19 00 00 	lea    rax,[rip+0x19a2]        # 33aa <UwU_NAME+0x38a>
+    1a08:	48 89 c7             	mov    rdi,rax
+    1a0b:	e8 50 f7 ff ff       	call   1160 <system@plt>
+    1a10:	8b 05 12 47 00 00    	mov    eax,DWORD PTR [rip+0x4712]        # 6128 <CHOSEN>
+    1a16:	83 e8 01             	sub    eax,0x1
+    1a19:	48 98                	cdqe
+    1a1b:	48 c1 e0 04          	shl    rax,0x4
+    1a1f:	48 89 c2             	mov    rdx,rax
+    1a22:	48 8d 05 97 46 00 00 	lea    rax,[rip+0x4697]        # 60c0 <TEAM>
+    1a29:	48 01 d0             	add    rax,rdx
+    1a2c:	48 89 c6             	mov    rsi,rax
+    1a2f:	48 8d 05 aa 47 00 00 	lea    rax,[rip+0x47aa]        # 61e0 <encountered>
+    1a36:	48 89 c7             	mov    rdi,rax
+    1a39:	e8 9b 09 00 00       	call   23d9 <battle_ui2>
+    1a3e:	48 8d 05 c4 16 00 00 	lea    rax,[rip+0x16c4]        # 3109 <UwU_NAME+0xe9>
+    1a45:	48 89 c6             	mov    rsi,rax
+    1a48:	48 8d 05 79 1a 00 00 	lea    rax,[rip+0x1a79]        # 34c8 <UwU_NAME+0x4a8>
+    1a4f:	48 89 c7             	mov    rdi,rax
+    1a52:	e8 b0 0b 00 00       	call   2607 <text_box_ui>
+    1a57:	48 8d 05 5a 19 00 00 	lea    rax,[rip+0x195a]        # 33b8 <UwU_NAME+0x398>
+    1a5e:	48 89 c7             	mov    rdi,rax
+    1a61:	e8 ea f6 ff ff       	call   1150 <puts@plt>
+    1a66:	e8 c5 f7 ff ff       	call   1230 <rand@plt>
+    1a6b:	99                   	cdq
+    1a6c:	c1 ea 1f             	shr    edx,0x1f
+    1a6f:	01 d0                	add    eax,edx
+    1a71:	83 e0 01             	and    eax,0x1
+    1a74:	29 d0                	sub    eax,edx
+    1a76:	83 c0 02             	add    eax,0x2
+    1a79:	89 c7                	mov    edi,eax
+    1a7b:	e8 a0 f7 ff ff       	call   1220 <sleep@plt>
+    1a80:	48 8d 05 23 19 00 00 	lea    rax,[rip+0x1923]        # 33aa <UwU_NAME+0x38a>
+    1a87:	48 89 c7             	mov    rdi,rax
+    1a8a:	e8 d1 f6 ff ff       	call   1160 <system@plt>
+    1a8f:	b8 00 00 00 00       	mov    eax,0x0
+    1a94:	e8 d9 0b 00 00       	call   2672 <run_away>
+    1a99:	e8 92 f7 ff ff       	call   1230 <rand@plt>
+    1a9e:	99                   	cdq
+    1a9f:	c1 ea 1f             	shr    edx,0x1f
+    1aa2:	01 d0                	add    eax,edx
+    1aa4:	83 e0 01             	and    eax,0x1
+    1aa7:	29 d0                	sub    eax,edx
+    1aa9:	83 c0 02             	add    eax,0x2
+    1aac:	89 c7                	mov    edi,eax
+    1aae:	e8 6d f7 ff ff       	call   1220 <sleep@plt>
+    1ab3:	90                   	nop
+    1ab4:	90                   	nop
+    1ab5:	c9                   	leave
+    1ab6:	c3                   	ret
+
+0000000000001ab7 <meun>:
+    1ab7:	f3 0f 1e fa          	endbr64
+    1abb:	55                   	push   rbp
+    1abc:	48 89 e5             	mov    rbp,rsp
+    1abf:	48 83 ec 10          	sub    rsp,0x10
+    1ac3:	c6 45 f7 00          	mov    BYTE PTR [rbp-0x9],0x0
+    1ac7:	be 01 00 00 00       	mov    esi,0x1
+    1acc:	48 8d 05 41 18 00 00 	lea    rax,[rip+0x1841]        # 3314 <UwU_NAME+0x2f4>
+    1ad3:	48 89 c7             	mov    rdi,rax
+    1ad6:	e8 0a 02 00 00       	call   1ce5 <print_ui>
+    1adb:	80 7d f7 00          	cmp    BYTE PTR [rbp-0x9],0x0
+    1adf:	74 0f                	je     1af0 <meun+0x39>
+    1ae1:	b8 00 00 00 00       	mov    eax,0x0
+    1ae6:	e8 3e f8 ff ff       	call   1329 <print_team>
+    1aeb:	e9 9a 00 00 00       	jmp    1b8a <meun+0xd3>
+    1af0:	e8 3b f7 ff ff       	call   1230 <rand@plt>
+    1af5:	89 c2                	mov    edx,eax
+    1af7:	48 63 c2             	movsxd rax,edx
+    1afa:	48 69 c0 ab aa aa 2a 	imul   rax,rax,0x2aaaaaab
+    1b01:	48 c1 e8 20          	shr    rax,0x20
+    1b05:	89 d1                	mov    ecx,edx
+    1b07:	c1 f9 1f             	sar    ecx,0x1f
+    1b0a:	29 c8                	sub    eax,ecx
+    1b0c:	89 45 fc             	mov    DWORD PTR [rbp-0x4],eax
+    1b0f:	8b 4d fc             	mov    ecx,DWORD PTR [rbp-0x4]
+    1b12:	89 c8                	mov    eax,ecx
+    1b14:	01 c0                	add    eax,eax
+    1b16:	01 c8                	add    eax,ecx
+    1b18:	01 c0                	add    eax,eax
+    1b1a:	29 c2                	sub    edx,eax
+    1b1c:	89 55 fc             	mov    DWORD PTR [rbp-0x4],edx
+    1b1f:	8b 45 fc             	mov    eax,DWORD PTR [rbp-0x4]
+    1b22:	48 98                	cdqe
+    1b24:	48 c1 e0 04          	shl    rax,0x4
+    1b28:	48 89 c2             	mov    rdx,rax
+    1b2b:	48 8d 05 0e 46 00 00 	lea    rax,[rip+0x460e]        # 6140 <Tips>
+    1b32:	48 8b 04 02          	mov    rax,QWORD PTR [rdx+rax*1]
+    1b36:	48 89 c6             	mov    rsi,rax
+    1b39:	48 8d 05 c0 46 00 00 	lea    rax,[rip+0x46c0]        # 6200 <buffer1>
+    1b40:	48 89 c7             	mov    rdi,rax
+    1b43:	e8 f8 f5 ff ff       	call   1140 <strcpy@plt>
+    1b48:	8b 45 fc             	mov    eax,DWORD PTR [rbp-0x4]
+    1b4b:	48 98                	cdqe
+    1b4d:	48 c1 e0 04          	shl    rax,0x4
+    1b51:	48 89 c2             	mov    rdx,rax
+    1b54:	48 8d 05 ed 45 00 00 	lea    rax,[rip+0x45ed]        # 6148 <Tips+0x8>
+    1b5b:	48 8b 04 02          	mov    rax,QWORD PTR [rdx+rax*1]
+    1b5f:	48 89 c6             	mov    rsi,rax
+    1b62:	48 8d 05 f7 46 00 00 	lea    rax,[rip+0x46f7]        # 6260 <buffer2>
+    1b69:	48 89 c7             	mov    rdi,rax
+    1b6c:	e8 cf f5 ff ff       	call   1140 <strcpy@plt>
+    1b71:	48 8d 05 e8 46 00 00 	lea    rax,[rip+0x46e8]        # 6260 <buffer2>
+    1b78:	48 89 c6             	mov    rsi,rax
+    1b7b:	48 8d 05 7e 46 00 00 	lea    rax,[rip+0x467e]        # 6200 <buffer1>
+    1b82:	48 89 c7             	mov    rdi,rax
+    1b85:	e8 7d 0a 00 00       	call   2607 <text_box_ui>
+    1b8a:	c6 45 f7 00          	mov    BYTE PTR [rbp-0x9],0x0
+    1b8e:	48 8d 05 e3 16 00 00 	lea    rax,[rip+0x16e3]        # 3278 <UwU_NAME+0x258>
+    1b95:	48 89 c7             	mov    rdi,rax
+    1b98:	e8 b3 f5 ff ff       	call   1150 <puts@plt>
+    1b9d:	48 8d 05 84 19 00 00 	lea    rax,[rip+0x1984]        # 3528 <UwU_NAME+0x508>
+    1ba4:	48 89 c7             	mov    rdi,rax
+    1ba7:	b8 00 00 00 00       	mov    eax,0x0
+    1bac:	e8 bf f5 ff ff       	call   1170 <printf@plt>
+    1bb1:	48 8d 45 f8          	lea    rax,[rbp-0x8]
+    1bb5:	48 89 c6             	mov    rsi,rax
+    1bb8:	48 8d 05 52 17 00 00 	lea    rax,[rip+0x1752]        # 3311 <UwU_NAME+0x2f1>
+    1bbf:	48 89 c7             	mov    rdi,rax
+    1bc2:	b8 00 00 00 00       	mov    eax,0x0
+    1bc7:	e8 24 f6 ff ff       	call   11f0 <__isoc99_scanf@plt>
+    1bcc:	e8 ef f5 ff ff       	call   11c0 <getchar@plt>
+    1bd1:	8b 45 f8             	mov    eax,DWORD PTR [rbp-0x8]
+    1bd4:	83 f8 03             	cmp    eax,0x3
+    1bd7:	74 36                	je     1c0f <meun+0x158>
+    1bd9:	83 f8 03             	cmp    eax,0x3
+    1bdc:	0f 8f e5 fe ff ff    	jg     1ac7 <meun+0x10>
+    1be2:	83 f8 02             	cmp    eax,0x2
+    1be5:	74 22                	je     1c09 <meun+0x152>
+    1be7:	83 f8 02             	cmp    eax,0x2
+    1bea:	0f 8f d7 fe ff ff    	jg     1ac7 <meun+0x10>
+    1bf0:	85 c0                	test   eax,eax
+    1bf2:	74 45                	je     1c39 <meun+0x182>
+    1bf4:	83 f8 01             	cmp    eax,0x1
+    1bf7:	0f 85 ca fe ff ff    	jne    1ac7 <meun+0x10>
+    1bfd:	b8 00 00 00 00       	mov    eax,0x0
+    1c02:	e8 da f8 ff ff       	call   14e1 <play>
+    1c07:	eb 3a                	jmp    1c43 <meun+0x18c>
+    1c09:	c6 45 f7 01          	mov    BYTE PTR [rbp-0x9],0x1
+    1c0d:	eb 34                	jmp    1c43 <meun+0x18c>
+    1c0f:	be 01 00 00 00       	mov    esi,0x1
+    1c14:	48 8d 05 f9 16 00 00 	lea    rax,[rip+0x16f9]        # 3314 <UwU_NAME+0x2f4>
+    1c1b:	48 89 c7             	mov    rdi,rax
+    1c1e:	e8 c2 00 00 00       	call   1ce5 <print_ui>
+    1c23:	b8 00 00 00 00       	mov    eax,0x0
+    1c28:	e8 fc f6 ff ff       	call   1329 <print_team>
+    1c2d:	b8 00 00 00 00       	mov    eax,0x0
+    1c32:	e8 69 f7 ff ff       	call   13a0 <edit_nickname>
+    1c37:	eb 0a                	jmp    1c43 <meun+0x18c>
+    1c39:	bf 00 00 00 00       	mov    edi,0x0
+    1c3e:	e8 cd f5 ff ff       	call   1210 <exit@plt>
+    1c43:	e9 7f fe ff ff       	jmp    1ac7 <meun+0x10>
+
+0000000000001c48 <main>:
+    1c48:	f3 0f 1e fa          	endbr64
+    1c4c:	55                   	push   rbp
+    1c4d:	48 89 e5             	mov    rbp,rsp
+    1c50:	bf 00 00 00 00       	mov    edi,0x0
+    1c55:	e8 76 f5 ff ff       	call   11d0 <time@plt>
+    1c5a:	89 c7                	mov    edi,eax
+    1c5c:	e8 2f f5 ff ff       	call   1190 <srand@plt>
+    1c61:	48 8b 05 48 45 00 00 	mov    rax,QWORD PTR [rip+0x4548]        # 61b0 <stdin@GLIBC_2.2.5>
+    1c68:	b9 00 00 00 00       	mov    ecx,0x0
+    1c6d:	ba 02 00 00 00       	mov    edx,0x2
+    1c72:	be 00 00 00 00       	mov    esi,0x0
+    1c77:	48 89 c7             	mov    rdi,rax
+    1c7a:	e8 61 f5 ff ff       	call   11e0 <setvbuf@plt>
+    1c7f:	48 8b 05 1a 45 00 00 	mov    rax,QWORD PTR [rip+0x451a]        # 61a0 <stdout@GLIBC_2.2.5>
+    1c86:	b9 00 00 00 00       	mov    ecx,0x0
+    1c8b:	ba 02 00 00 00       	mov    edx,0x2
+    1c90:	be 00 00 00 00       	mov    esi,0x0
+    1c95:	48 89 c7             	mov    rdi,rax
+    1c98:	e8 43 f5 ff ff       	call   11e0 <setvbuf@plt>
+    1c9d:	48 8b 05 1c 45 00 00 	mov    rax,QWORD PTR [rip+0x451c]        # 61c0 <stderr@GLIBC_2.2.5>
+    1ca4:	b9 00 00 00 00       	mov    ecx,0x0
+    1ca9:	ba 02 00 00 00       	mov    edx,0x2
+    1cae:	be 00 00 00 00       	mov    esi,0x0
+    1cb3:	48 89 c7             	mov    rdi,rax
+    1cb6:	e8 25 f5 ff ff       	call   11e0 <setvbuf@plt>
+    1cbb:	be 01 00 00 00       	mov    esi,0x1
+    1cc0:	48 8d 05 9d 18 00 00 	lea    rax,[rip+0x189d]        # 3564 <UwU_NAME+0x544>
+    1cc7:	48 89 c7             	mov    rdi,rax
+    1cca:	e8 16 00 00 00       	call   1ce5 <print_ui>
+    1ccf:	e8 ec f4 ff ff       	call   11c0 <getchar@plt>
+    1cd4:	b8 00 00 00 00       	mov    eax,0x0
+    1cd9:	e8 d9 fd ff ff       	call   1ab7 <meun>
+    1cde:	b8 00 00 00 00       	mov    eax,0x0
+    1ce3:	5d                   	pop    rbp
+    1ce4:	c3                   	ret
+
+0000000000001ce5 <print_ui>:
+    1ce5:	f3 0f 1e fa          	endbr64
+    1ce9:	55                   	push   rbp
+    1cea:	48 89 e5             	mov    rbp,rsp
+    1ced:	48 83 ec 10          	sub    rsp,0x10
+    1cf1:	48 89 7d f8          	mov    QWORD PTR [rbp-0x8],rdi
+    1cf5:	89 f0                	mov    eax,esi
+    1cf7:	88 45 f4             	mov    BYTE PTR [rbp-0xc],al
+    1cfa:	80 7d f4 00          	cmp    BYTE PTR [rbp-0xc],0x0
+    1cfe:	74 0f                	je     1d0f <print_ui+0x2a>
+    1d00:	48 8d 05 a3 16 00 00 	lea    rax,[rip+0x16a3]        # 33aa <UwU_NAME+0x38a>
+    1d07:	48 89 c7             	mov    rdi,rax
+    1d0a:	e8 51 f4 ff ff       	call   1160 <system@plt>
+    1d0f:	48 8b 45 f8          	mov    rax,QWORD PTR [rbp-0x8]
+    1d13:	48 8d 15 4a 18 00 00 	lea    rdx,[rip+0x184a]        # 3564 <UwU_NAME+0x544>
+    1d1a:	48 89 d6             	mov    rsi,rdx
+    1d1d:	48 89 c7             	mov    rdi,rax
+    1d20:	e8 8b f4 ff ff       	call   11b0 <strcmp@plt>
+    1d25:	85 c0                	test   eax,eax
+    1d27:	0f 85 13 01 00 00    	jne    1e40 <print_ui+0x15b>
+    1d2d:	48 8d 05 dc 14 00 00 	lea    rax,[rip+0x14dc]        # 3210 <UwU_NAME+0x1f0>
+    1d34:	48 89 c7             	mov    rdi,rax
+    1d37:	e8 14 f4 ff ff       	call   1150 <puts@plt>
+    1d3c:	48 8d 05 2d 18 00 00 	lea    rax,[rip+0x182d]        # 3570 <UwU_NAME+0x550>
+    1d43:	48 89 c7             	mov    rdi,rax
+    1d46:	e8 05 f4 ff ff       	call   1150 <puts@plt>
+    1d4b:	48 8d 05 76 18 00 00 	lea    rax,[rip+0x1876]        # 35c8 <UwU_NAME+0x5a8>
+    1d52:	48 89 c7             	mov    rdi,rax
+    1d55:	e8 f6 f3 ff ff       	call   1150 <puts@plt>
+    1d5a:	48 8d 05 bf 18 00 00 	lea    rax,[rip+0x18bf]        # 3620 <UwU_NAME+0x600>
+    1d61:	48 89 c7             	mov    rdi,rax
+    1d64:	e8 e7 f3 ff ff       	call   1150 <puts@plt>
+    1d69:	48 8d 05 08 19 00 00 	lea    rax,[rip+0x1908]        # 3678 <UwU_NAME+0x658>
+    1d70:	48 89 c7             	mov    rdi,rax
+    1d73:	e8 d8 f3 ff ff       	call   1150 <puts@plt>
+    1d78:	48 8d 05 51 19 00 00 	lea    rax,[rip+0x1951]        # 36d0 <UwU_NAME+0x6b0>
+    1d7f:	48 89 c7             	mov    rdi,rax
+    1d82:	e8 c9 f3 ff ff       	call   1150 <puts@plt>
+    1d87:	48 8d 05 9a 19 00 00 	lea    rax,[rip+0x199a]        # 3728 <UwU_NAME+0x708>
+    1d8e:	48 89 c7             	mov    rdi,rax
+    1d91:	e8 ba f3 ff ff       	call   1150 <puts@plt>
+    1d96:	48 8d 05 e3 19 00 00 	lea    rax,[rip+0x19e3]        # 3780 <UwU_NAME+0x760>
+    1d9d:	48 89 c7             	mov    rdi,rax
+    1da0:	e8 ab f3 ff ff       	call   1150 <puts@plt>
+    1da5:	48 8d 05 c4 17 00 00 	lea    rax,[rip+0x17c4]        # 3570 <UwU_NAME+0x550>
+    1dac:	48 89 c7             	mov    rdi,rax
+    1daf:	e8 9c f3 ff ff       	call   1150 <puts@plt>
+    1db4:	48 8d 05 b5 17 00 00 	lea    rax,[rip+0x17b5]        # 3570 <UwU_NAME+0x550>
+    1dbb:	48 89 c7             	mov    rdi,rax
+    1dbe:	e8 8d f3 ff ff       	call   1150 <puts@plt>
+    1dc3:	48 8d 05 a6 17 00 00 	lea    rax,[rip+0x17a6]        # 3570 <UwU_NAME+0x550>
+    1dca:	48 89 c7             	mov    rdi,rax
+    1dcd:	e8 7e f3 ff ff       	call   1150 <puts@plt>
+    1dd2:	48 8d 05 97 17 00 00 	lea    rax,[rip+0x1797]        # 3570 <UwU_NAME+0x550>
+    1dd9:	48 89 c7             	mov    rdi,rax
+    1ddc:	e8 6f f3 ff ff       	call   1150 <puts@plt>
+    1de1:	48 8d 05 88 17 00 00 	lea    rax,[rip+0x1788]        # 3570 <UwU_NAME+0x550>
+    1de8:	48 89 c7             	mov    rdi,rax
+    1deb:	e8 60 f3 ff ff       	call   1150 <puts@plt>
+    1df0:	48 8d 05 79 17 00 00 	lea    rax,[rip+0x1779]        # 3570 <UwU_NAME+0x550>
+    1df7:	48 89 c7             	mov    rdi,rax
+    1dfa:	e8 51 f3 ff ff       	call   1150 <puts@plt>
+    1dff:	48 8d 05 6a 17 00 00 	lea    rax,[rip+0x176a]        # 3570 <UwU_NAME+0x550>
+    1e06:	48 89 c7             	mov    rdi,rax
+    1e09:	e8 42 f3 ff ff       	call   1150 <puts@plt>
+    1e0e:	48 8d 05 fb 13 00 00 	lea    rax,[rip+0x13fb]        # 3210 <UwU_NAME+0x1f0>
+    1e15:	48 89 c7             	mov    rdi,rax
+    1e18:	e8 33 f3 ff ff       	call   1150 <puts@plt>
+    1e1d:	48 8d 05 94 15 00 00 	lea    rax,[rip+0x1594]        # 33b8 <UwU_NAME+0x398>
+    1e24:	48 89 c7             	mov    rdi,rax
+    1e27:	e8 24 f3 ff ff       	call   1150 <puts@plt>
+    1e2c:	48 8d 05 9f 19 00 00 	lea    rax,[rip+0x199f]        # 37d2 <UwU_NAME+0x7b2>
+    1e33:	48 89 c7             	mov    rdi,rax
+    1e36:	e8 15 f3 ff ff       	call   1150 <puts@plt>
+    1e3b:	e9 87 04 00 00       	jmp    22c7 <print_ui+0x5e2>
+    1e40:	48 8b 45 f8          	mov    rax,QWORD PTR [rbp-0x8]
+    1e44:	48 8d 15 c9 14 00 00 	lea    rdx,[rip+0x14c9]        # 3314 <UwU_NAME+0x2f4>
+    1e4b:	48 89 d6             	mov    rsi,rdx
+    1e4e:	48 89 c7             	mov    rdi,rax
+    1e51:	e8 5a f3 ff ff       	call   11b0 <strcmp@plt>
+    1e56:	85 c0                	test   eax,eax
+    1e58:	0f 85 f5 00 00 00    	jne    1f53 <print_ui+0x26e>
+    1e5e:	48 8d 05 ab 13 00 00 	lea    rax,[rip+0x13ab]        # 3210 <UwU_NAME+0x1f0>
+    1e65:	48 89 c7             	mov    rdi,rax
+    1e68:	e8 e3 f2 ff ff       	call   1150 <puts@plt>
+    1e6d:	48 8d 05 7c 19 00 00 	lea    rax,[rip+0x197c]        # 37f0 <UwU_NAME+0x7d0>
+    1e74:	48 89 c7             	mov    rdi,rax
+    1e77:	e8 d4 f2 ff ff       	call   1150 <puts@plt>
+    1e7c:	48 8d 05 c5 19 00 00 	lea    rax,[rip+0x19c5]        # 3848 <UwU_NAME+0x828>
+    1e83:	48 89 c7             	mov    rdi,rax
+    1e86:	e8 c5 f2 ff ff       	call   1150 <puts@plt>
+    1e8b:	48 8d 05 0e 1a 00 00 	lea    rax,[rip+0x1a0e]        # 38a0 <UwU_NAME+0x880>
+    1e92:	48 89 c7             	mov    rdi,rax
+    1e95:	e8 b6 f2 ff ff       	call   1150 <puts@plt>
+    1e9a:	48 8d 05 57 1a 00 00 	lea    rax,[rip+0x1a57]        # 38f8 <UwU_NAME+0x8d8>
+    1ea1:	48 89 c7             	mov    rdi,rax
+    1ea4:	e8 a7 f2 ff ff       	call   1150 <puts@plt>
+    1ea9:	48 8d 05 a0 1a 00 00 	lea    rax,[rip+0x1aa0]        # 3950 <UwU_NAME+0x930>
+    1eb0:	48 89 c7             	mov    rdi,rax
+    1eb3:	e8 98 f2 ff ff       	call   1150 <puts@plt>
+    1eb8:	48 8d 05 e9 1a 00 00 	lea    rax,[rip+0x1ae9]        # 39a8 <UwU_NAME+0x988>
+    1ebf:	48 89 c7             	mov    rdi,rax
+    1ec2:	e8 89 f2 ff ff       	call   1150 <puts@plt>
+    1ec7:	48 8d 05 32 1b 00 00 	lea    rax,[rip+0x1b32]        # 3a00 <UwU_NAME+0x9e0>
+    1ece:	48 89 c7             	mov    rdi,rax
+    1ed1:	e8 7a f2 ff ff       	call   1150 <puts@plt>
+    1ed6:	48 8d 05 7b 1b 00 00 	lea    rax,[rip+0x1b7b]        # 3a58 <UwU_NAME+0xa38>
+    1edd:	48 89 c7             	mov    rdi,rax
+    1ee0:	e8 6b f2 ff ff       	call   1150 <puts@plt>
+    1ee5:	48 8d 05 c4 1b 00 00 	lea    rax,[rip+0x1bc4]        # 3ab0 <UwU_NAME+0xa90>
+    1eec:	48 89 c7             	mov    rdi,rax
+    1eef:	e8 5c f2 ff ff       	call   1150 <puts@plt>
+    1ef4:	48 8d 05 0d 1c 00 00 	lea    rax,[rip+0x1c0d]        # 3b08 <UwU_NAME+0xae8>
+    1efb:	48 89 c7             	mov    rdi,rax
+    1efe:	e8 4d f2 ff ff       	call   1150 <puts@plt>
+    1f03:	48 8d 05 56 1c 00 00 	lea    rax,[rip+0x1c56]        # 3b60 <UwU_NAME+0xb40>
+    1f0a:	48 89 c7             	mov    rdi,rax
+    1f0d:	e8 3e f2 ff ff       	call   1150 <puts@plt>
+    1f12:	48 8d 05 9f 1c 00 00 	lea    rax,[rip+0x1c9f]        # 3bb8 <UwU_NAME+0xb98>
+    1f19:	48 89 c7             	mov    rdi,rax
+    1f1c:	e8 2f f2 ff ff       	call   1150 <puts@plt>
+    1f21:	48 8d 05 e8 1c 00 00 	lea    rax,[rip+0x1ce8]        # 3c10 <UwU_NAME+0xbf0>
+    1f28:	48 89 c7             	mov    rdi,rax
+    1f2b:	e8 20 f2 ff ff       	call   1150 <puts@plt>
+    1f30:	48 8d 05 31 1d 00 00 	lea    rax,[rip+0x1d31]        # 3c68 <UwU_NAME+0xc48>
+    1f37:	48 89 c7             	mov    rdi,rax
+    1f3a:	e8 11 f2 ff ff       	call   1150 <puts@plt>
+    1f3f:	48 8d 05 ca 12 00 00 	lea    rax,[rip+0x12ca]        # 3210 <UwU_NAME+0x1f0>
+    1f46:	48 89 c7             	mov    rdi,rax
+    1f49:	e8 02 f2 ff ff       	call   1150 <puts@plt>
+    1f4e:	e9 74 03 00 00       	jmp    22c7 <print_ui+0x5e2>
+    1f53:	48 8b 45 f8          	mov    rax,QWORD PTR [rbp-0x8]
+    1f57:	48 8d 15 01 14 00 00 	lea    rdx,[rip+0x1401]        # 335f <UwU_NAME+0x33f>
+    1f5e:	48 89 d6             	mov    rsi,rdx
+    1f61:	48 89 c7             	mov    rdi,rax
+    1f64:	e8 47 f2 ff ff       	call   11b0 <strcmp@plt>
+    1f69:	85 c0                	test   eax,eax
+    1f6b:	0f 85 d2 01 00 00    	jne    2143 <print_ui+0x45e>
+    1f71:	48 8d 05 68 42 00 00 	lea    rax,[rip+0x4268]        # 61e0 <encountered>
+    1f78:	48 89 c7             	mov    rdi,rax
+    1f7b:	e8 4a 03 00 00       	call   22ca <battle_ui1>
+    1f80:	48 8d 05 59 42 00 00 	lea    rax,[rip+0x4259]        # 61e0 <encountered>
+    1f87:	48 89 c2             	mov    rdx,rax
+    1f8a:	48 8d 05 29 1d 00 00 	lea    rax,[rip+0x1d29]        # 3cba <UwU_NAME+0xc9a>
+    1f91:	48 89 c6             	mov    rsi,rax
+    1f94:	48 8d 05 65 42 00 00 	lea    rax,[rip+0x4265]        # 6200 <buffer1>
+    1f9b:	48 89 c7             	mov    rdi,rax
+    1f9e:	b8 00 00 00 00       	mov    eax,0x0
+    1fa3:	e8 58 f2 ff ff       	call   1200 <sprintf@plt>
+    1fa8:	c6 05 b1 42 00 00 00 	mov    BYTE PTR [rip+0x42b1],0x0        # 6260 <buffer2>
+    1faf:	48 8d 05 aa 42 00 00 	lea    rax,[rip+0x42aa]        # 6260 <buffer2>
+    1fb6:	48 89 c6             	mov    rsi,rax
+    1fb9:	48 8d 05 40 42 00 00 	lea    rax,[rip+0x4240]        # 6200 <buffer1>
+    1fc0:	48 89 c7             	mov    rdi,rax
+    1fc3:	e8 3f 06 00 00       	call   2607 <text_box_ui>
+    1fc8:	48 8d 05 e9 13 00 00 	lea    rax,[rip+0x13e9]        # 33b8 <UwU_NAME+0x398>
+    1fcf:	48 89 c7             	mov    rdi,rax
+    1fd2:	e8 79 f1 ff ff       	call   1150 <puts@plt>
+    1fd7:	e8 54 f2 ff ff       	call   1230 <rand@plt>
+    1fdc:	99                   	cdq
+    1fdd:	c1 ea 1f             	shr    edx,0x1f
+    1fe0:	01 d0                	add    eax,edx
+    1fe2:	83 e0 01             	and    eax,0x1
+    1fe5:	29 d0                	sub    eax,edx
+    1fe7:	83 c0 02             	add    eax,0x2
+    1fea:	89 c7                	mov    edi,eax
+    1fec:	e8 2f f2 ff ff       	call   1220 <sleep@plt>
+    1ff1:	48 8d 05 b2 13 00 00 	lea    rax,[rip+0x13b2]        # 33aa <UwU_NAME+0x38a>
+    1ff8:	48 89 c7             	mov    rdi,rax
+    1ffb:	e8 60 f1 ff ff       	call   1160 <system@plt>
+    2000:	48 8d 05 d9 41 00 00 	lea    rax,[rip+0x41d9]        # 61e0 <encountered>
+    2007:	48 89 c7             	mov    rdi,rax
+    200a:	e8 bb 02 00 00       	call   22ca <battle_ui1>
+    200f:	8b 05 13 41 00 00    	mov    eax,DWORD PTR [rip+0x4113]        # 6128 <CHOSEN>
+    2015:	83 e8 01             	sub    eax,0x1
+    2018:	48 98                	cdqe
+    201a:	48 c1 e0 04          	shl    rax,0x4
+    201e:	48 89 c2             	mov    rdx,rax
+    2021:	48 8d 05 98 40 00 00 	lea    rax,[rip+0x4098]        # 60c0 <TEAM>
+    2028:	48 01 d0             	add    rax,rdx
+    202b:	48 89 c2             	mov    rdx,rax
+    202e:	48 8d 05 97 1c 00 00 	lea    rax,[rip+0x1c97]        # 3ccc <UwU_NAME+0xcac>
+    2035:	48 89 c6             	mov    rsi,rax
+    2038:	48 8d 05 c1 41 00 00 	lea    rax,[rip+0x41c1]        # 6200 <buffer1>
+    203f:	48 89 c7             	mov    rdi,rax
+    2042:	b8 00 00 00 00       	mov    eax,0x0
+    2047:	e8 b4 f1 ff ff       	call   1200 <sprintf@plt>
+    204c:	c6 05 0d 42 00 00 00 	mov    BYTE PTR [rip+0x420d],0x0        # 6260 <buffer2>
+    2053:	48 8d 05 06 42 00 00 	lea    rax,[rip+0x4206]        # 6260 <buffer2>
+    205a:	48 89 c6             	mov    rsi,rax
+    205d:	48 8d 05 9c 41 00 00 	lea    rax,[rip+0x419c]        # 6200 <buffer1>
+    2064:	48 89 c7             	mov    rdi,rax
+    2067:	e8 9b 05 00 00       	call   2607 <text_box_ui>
+    206c:	48 8d 05 45 13 00 00 	lea    rax,[rip+0x1345]        # 33b8 <UwU_NAME+0x398>
+    2073:	48 89 c7             	mov    rdi,rax
+    2076:	e8 d5 f0 ff ff       	call   1150 <puts@plt>
+    207b:	e8 b0 f1 ff ff       	call   1230 <rand@plt>
+    2080:	99                   	cdq
+    2081:	c1 ea 1f             	shr    edx,0x1f
+    2084:	01 d0                	add    eax,edx
+    2086:	83 e0 01             	and    eax,0x1
+    2089:	29 d0                	sub    eax,edx
+    208b:	83 c0 02             	add    eax,0x2
+    208e:	89 c7                	mov    edi,eax
+    2090:	e8 8b f1 ff ff       	call   1220 <sleep@plt>
+    2095:	48 8d 05 0e 13 00 00 	lea    rax,[rip+0x130e]        # 33aa <UwU_NAME+0x38a>
+    209c:	48 89 c7             	mov    rdi,rax
+    209f:	e8 bc f0 ff ff       	call   1160 <system@plt>
+    20a4:	8b 05 7e 40 00 00    	mov    eax,DWORD PTR [rip+0x407e]        # 6128 <CHOSEN>
+    20aa:	83 e8 01             	sub    eax,0x1
+    20ad:	48 98                	cdqe
+    20af:	48 c1 e0 04          	shl    rax,0x4
+    20b3:	48 89 c2             	mov    rdx,rax
+    20b6:	48 8d 05 03 40 00 00 	lea    rax,[rip+0x4003]        # 60c0 <TEAM>
+    20bd:	48 01 d0             	add    rax,rdx
+    20c0:	48 89 c6             	mov    rsi,rax
+    20c3:	48 8d 05 16 41 00 00 	lea    rax,[rip+0x4116]        # 61e0 <encountered>
+    20ca:	48 89 c7             	mov    rdi,rax
+    20cd:	e8 07 03 00 00       	call   23d9 <battle_ui2>
+    20d2:	8b 05 50 40 00 00    	mov    eax,DWORD PTR [rip+0x4050]        # 6128 <CHOSEN>
+    20d8:	83 e8 01             	sub    eax,0x1
+    20db:	48 98                	cdqe
+    20dd:	48 c1 e0 04          	shl    rax,0x4
+    20e1:	48 89 c2             	mov    rdx,rax
+    20e4:	48 8d 05 d5 3f 00 00 	lea    rax,[rip+0x3fd5]        # 60c0 <TEAM>
+    20eb:	48 01 d0             	add    rax,rdx
+    20ee:	48 89 c2             	mov    rdx,rax
+    20f1:	48 8d 05 dc 1b 00 00 	lea    rax,[rip+0x1bdc]        # 3cd4 <UwU_NAME+0xcb4>
+    20f8:	48 89 c6             	mov    rsi,rax
+    20fb:	48 8d 05 fe 40 00 00 	lea    rax,[rip+0x40fe]        # 6200 <buffer1>
+    2102:	48 89 c7             	mov    rdi,rax
+    2105:	b8 00 00 00 00       	mov    eax,0x0
+    210a:	e8 f1 f0 ff ff       	call   1200 <sprintf@plt>
+    210f:	c6 05 4a 41 00 00 00 	mov    BYTE PTR [rip+0x414a],0x0        # 6260 <buffer2>
+    2116:	48 8d 05 43 41 00 00 	lea    rax,[rip+0x4143]        # 6260 <buffer2>
+    211d:	48 89 c6             	mov    rsi,rax
+    2120:	48 8d 05 d9 40 00 00 	lea    rax,[rip+0x40d9]        # 6200 <buffer1>
+    2127:	48 89 c7             	mov    rdi,rax
+    212a:	e8 d8 04 00 00       	call   2607 <text_box_ui>
+    212f:	48 8d 05 82 12 00 00 	lea    rax,[rip+0x1282]        # 33b8 <UwU_NAME+0x398>
+    2136:	48 89 c7             	mov    rdi,rax
+    2139:	e8 12 f0 ff ff       	call   1150 <puts@plt>
+    213e:	e9 84 01 00 00       	jmp    22c7 <print_ui+0x5e2>
+    2143:	48 8b 45 f8          	mov    rax,QWORD PTR [rbp-0x8]
+    2147:	48 8d 15 62 12 00 00 	lea    rdx,[rip+0x1262]        # 33b0 <UwU_NAME+0x390>
+    214e:	48 89 d6             	mov    rsi,rdx
+    2151:	48 89 c7             	mov    rdi,rax
+    2154:	e8 57 f0 ff ff       	call   11b0 <strcmp@plt>
+    2159:	85 c0                	test   eax,eax
+    215b:	0f 85 66 01 00 00    	jne    22c7 <print_ui+0x5e2>
+    2161:	8b 05 c1 3f 00 00    	mov    eax,DWORD PTR [rip+0x3fc1]        # 6128 <CHOSEN>
+    2167:	83 e8 01             	sub    eax,0x1
+    216a:	48 98                	cdqe
+    216c:	48 c1 e0 04          	shl    rax,0x4
+    2170:	48 89 c2             	mov    rdx,rax
+    2173:	48 8d 05 46 3f 00 00 	lea    rax,[rip+0x3f46]        # 60c0 <TEAM>
+    217a:	48 01 d0             	add    rax,rdx
+    217d:	48 89 c6             	mov    rsi,rax
+    2180:	48 8d 05 59 40 00 00 	lea    rax,[rip+0x4059]        # 61e0 <encountered>
+    2187:	48 89 c7             	mov    rdi,rax
+    218a:	e8 4a 02 00 00       	call   23d9 <battle_ui2>
+    218f:	8b 05 93 3f 00 00    	mov    eax,DWORD PTR [rip+0x3f93]        # 6128 <CHOSEN>
+    2195:	83 e8 01             	sub    eax,0x1
+    2198:	48 98                	cdqe
+    219a:	48 c1 e0 04          	shl    rax,0x4
+    219e:	48 89 c2             	mov    rdx,rax
+    21a1:	48 8d 05 18 3f 00 00 	lea    rax,[rip+0x3f18]        # 60c0 <TEAM>
+    21a8:	48 01 d0             	add    rax,rdx
+    21ab:	48 89 c2             	mov    rdx,rax
+    21ae:	48 8d 05 30 1b 00 00 	lea    rax,[rip+0x1b30]        # 3ce5 <UwU_NAME+0xcc5>
+    21b5:	48 89 c6             	mov    rsi,rax
+    21b8:	48 8d 05 41 40 00 00 	lea    rax,[rip+0x4041]        # 6200 <buffer1>
+    21bf:	48 89 c7             	mov    rdi,rax
+    21c2:	b8 00 00 00 00       	mov    eax,0x0
+    21c7:	e8 34 f0 ff ff       	call   1200 <sprintf@plt>
+    21cc:	c6 05 8d 40 00 00 00 	mov    BYTE PTR [rip+0x408d],0x0        # 6260 <buffer2>
+    21d3:	48 8d 05 86 40 00 00 	lea    rax,[rip+0x4086]        # 6260 <buffer2>
+    21da:	48 89 c6             	mov    rsi,rax
+    21dd:	48 8d 05 1c 40 00 00 	lea    rax,[rip+0x401c]        # 6200 <buffer1>
+    21e4:	48 89 c7             	mov    rdi,rax
+    21e7:	e8 1b 04 00 00       	call   2607 <text_box_ui>
+    21ec:	48 8d 05 c5 11 00 00 	lea    rax,[rip+0x11c5]        # 33b8 <UwU_NAME+0x398>
+    21f3:	48 89 c7             	mov    rdi,rax
+    21f6:	e8 55 ef ff ff       	call   1150 <puts@plt>
+    21fb:	e8 30 f0 ff ff       	call   1230 <rand@plt>
+    2200:	99                   	cdq
+    2201:	c1 ea 1f             	shr    edx,0x1f
+    2204:	01 d0                	add    eax,edx
+    2206:	83 e0 01             	and    eax,0x1
+    2209:	29 d0                	sub    eax,edx
+    220b:	83 c0 02             	add    eax,0x2
+    220e:	89 c7                	mov    edi,eax
+    2210:	e8 0b f0 ff ff       	call   1220 <sleep@plt>
+    2215:	48 8d 05 8e 11 00 00 	lea    rax,[rip+0x118e]        # 33aa <UwU_NAME+0x38a>
+    221c:	48 89 c7             	mov    rdi,rax
+    221f:	e8 3c ef ff ff       	call   1160 <system@plt>
+    2224:	8b 05 fe 3e 00 00    	mov    eax,DWORD PTR [rip+0x3efe]        # 6128 <CHOSEN>
+    222a:	83 e8 01             	sub    eax,0x1
+    222d:	48 98                	cdqe
+    222f:	48 c1 e0 04          	shl    rax,0x4
+    2233:	48 89 c2             	mov    rdx,rax
+    2236:	48 8d 05 83 3e 00 00 	lea    rax,[rip+0x3e83]        # 60c0 <TEAM>
+    223d:	48 01 d0             	add    rax,rdx
+    2240:	48 89 c6             	mov    rsi,rax
+    2243:	48 8d 05 96 3f 00 00 	lea    rax,[rip+0x3f96]        # 61e0 <encountered>
+    224a:	48 89 c7             	mov    rdi,rax
+    224d:	e8 87 01 00 00       	call   23d9 <battle_ui2>
+    2252:	48 8d 05 b0 0e 00 00 	lea    rax,[rip+0xeb0]        # 3109 <UwU_NAME+0xe9>
+    2259:	48 89 c6             	mov    rsi,rax
+    225c:	48 8d 05 96 1a 00 00 	lea    rax,[rip+0x1a96]        # 3cf9 <UwU_NAME+0xcd9>
+    2263:	48 89 c7             	mov    rdi,rax
+    2266:	e8 9c 03 00 00       	call   2607 <text_box_ui>
+    226b:	48 8d 05 46 11 00 00 	lea    rax,[rip+0x1146]        # 33b8 <UwU_NAME+0x398>
+    2272:	48 89 c7             	mov    rdi,rax
+    2275:	e8 d6 ee ff ff       	call   1150 <puts@plt>
+    227a:	e8 b1 ef ff ff       	call   1230 <rand@plt>
+    227f:	99                   	cdq
+    2280:	c1 ea 1f             	shr    edx,0x1f
+    2283:	01 d0                	add    eax,edx
+    2285:	83 e0 01             	and    eax,0x1
+    2288:	29 d0                	sub    eax,edx
+    228a:	83 c0 02             	add    eax,0x2
+    228d:	89 c7                	mov    edi,eax
+    228f:	e8 8c ef ff ff       	call   1220 <sleep@plt>
+    2294:	48 8d 05 0f 11 00 00 	lea    rax,[rip+0x110f]        # 33aa <UwU_NAME+0x38a>
+    229b:	48 89 c7             	mov    rdi,rax
+    229e:	e8 bd ee ff ff       	call   1160 <system@plt>
+    22a3:	b8 00 00 00 00       	mov    eax,0x0
+    22a8:	e8 c5 03 00 00       	call   2672 <run_away>
+    22ad:	e8 7e ef ff ff       	call   1230 <rand@plt>
+    22b2:	99                   	cdq
+    22b3:	c1 ea 1f             	shr    edx,0x1f
+    22b6:	01 d0                	add    eax,edx
+    22b8:	83 e0 01             	and    eax,0x1
+    22bb:	29 d0                	sub    eax,edx
+    22bd:	83 c0 02             	add    eax,0x2
+    22c0:	89 c7                	mov    edi,eax
+    22c2:	e8 59 ef ff ff       	call   1220 <sleep@plt>
+    22c7:	90                   	nop
+    22c8:	c9                   	leave
+    22c9:	c3                   	ret
+
+00000000000022ca <battle_ui1>:
+    22ca:	f3 0f 1e fa          	endbr64
+    22ce:	55                   	push   rbp
+    22cf:	48 89 e5             	mov    rbp,rsp
+    22d2:	48 83 ec 10          	sub    rsp,0x10
+    22d6:	48 89 7d f8          	mov    QWORD PTR [rbp-0x8],rdi
+    22da:	48 8d 05 2f 0f 00 00 	lea    rax,[rip+0xf2f]        # 3210 <UwU_NAME+0x1f0>
+    22e1:	48 89 c7             	mov    rdi,rax
+    22e4:	e8 67 ee ff ff       	call   1150 <puts@plt>
+    22e9:	48 8b 45 f8          	mov    rax,QWORD PTR [rbp-0x8]
+    22ed:	48 89 c6             	mov    rsi,rax
+    22f0:	48 8d 05 11 1a 00 00 	lea    rax,[rip+0x1a11]        # 3d08 <UwU_NAME+0xce8>
+    22f7:	48 89 c7             	mov    rdi,rax
+    22fa:	b8 00 00 00 00       	mov    eax,0x0
+    22ff:	e8 6c ee ff ff       	call   1170 <printf@plt>
+    2304:	48 8d 05 4d 1a 00 00 	lea    rax,[rip+0x1a4d]        # 3d58 <UwU_NAME+0xd38>
+    230b:	48 89 c7             	mov    rdi,rax
+    230e:	e8 3d ee ff ff       	call   1150 <puts@plt>
+    2313:	48 8d 05 96 1a 00 00 	lea    rax,[rip+0x1a96]        # 3db0 <UwU_NAME+0xd90>
+    231a:	48 89 c7             	mov    rdi,rax
+    231d:	e8 2e ee ff ff       	call   1150 <puts@plt>
+    2322:	48 8d 05 df 1a 00 00 	lea    rax,[rip+0x1adf]        # 3e08 <UwU_NAME+0xde8>
+    2329:	48 89 c7             	mov    rdi,rax
+    232c:	e8 1f ee ff ff       	call   1150 <puts@plt>
+    2331:	48 8d 05 28 1b 00 00 	lea    rax,[rip+0x1b28]        # 3e60 <UwU_NAME+0xe40>
+    2338:	48 89 c7             	mov    rdi,rax
+    233b:	e8 10 ee ff ff       	call   1150 <puts@plt>
+    2340:	48 8d 05 29 12 00 00 	lea    rax,[rip+0x1229]        # 3570 <UwU_NAME+0x550>
+    2347:	48 89 c7             	mov    rdi,rax
+    234a:	e8 01 ee ff ff       	call   1150 <puts@plt>
+    234f:	48 8d 05 1a 12 00 00 	lea    rax,[rip+0x121a]        # 3570 <UwU_NAME+0x550>
+    2356:	48 89 c7             	mov    rdi,rax
+    2359:	e8 f2 ed ff ff       	call   1150 <puts@plt>
+    235e:	48 8d 05 0b 12 00 00 	lea    rax,[rip+0x120b]        # 3570 <UwU_NAME+0x550>
+    2365:	48 89 c7             	mov    rdi,rax
+    2368:	e8 e3 ed ff ff       	call   1150 <puts@plt>
+    236d:	48 8d 05 fc 11 00 00 	lea    rax,[rip+0x11fc]        # 3570 <UwU_NAME+0x550>
+    2374:	48 89 c7             	mov    rdi,rax
+    2377:	e8 d4 ed ff ff       	call   1150 <puts@plt>
+    237c:	48 8d 05 ed 11 00 00 	lea    rax,[rip+0x11ed]        # 3570 <UwU_NAME+0x550>
+    2383:	48 89 c7             	mov    rdi,rax
+    2386:	e8 c5 ed ff ff       	call   1150 <puts@plt>
+    238b:	48 8d 05 26 1b 00 00 	lea    rax,[rip+0x1b26]        # 3eb8 <UwU_NAME+0xe98>
+    2392:	48 89 c7             	mov    rdi,rax
+    2395:	e8 b6 ed ff ff       	call   1150 <puts@plt>
+    239a:	48 8d 05 6f 1b 00 00 	lea    rax,[rip+0x1b6f]        # 3f10 <UwU_NAME+0xef0>
+    23a1:	48 89 c7             	mov    rdi,rax
+    23a4:	e8 a7 ed ff ff       	call   1150 <puts@plt>
+    23a9:	48 8d 05 60 1b 00 00 	lea    rax,[rip+0x1b60]        # 3f10 <UwU_NAME+0xef0>
+    23b0:	48 89 c7             	mov    rdi,rax
+    23b3:	e8 98 ed ff ff       	call   1150 <puts@plt>
+    23b8:	48 8d 05 51 1b 00 00 	lea    rax,[rip+0x1b51]        # 3f10 <UwU_NAME+0xef0>
+    23bf:	48 89 c7             	mov    rdi,rax
+    23c2:	e8 89 ed ff ff       	call   1150 <puts@plt>
+    23c7:	48 8d 05 42 0e 00 00 	lea    rax,[rip+0xe42]        # 3210 <UwU_NAME+0x1f0>
+    23ce:	48 89 c7             	mov    rdi,rax
+    23d1:	e8 7a ed ff ff       	call   1150 <puts@plt>
+    23d6:	90                   	nop
+    23d7:	c9                   	leave
+    23d8:	c3                   	ret
+
+00000000000023d9 <battle_ui2>:
+    23d9:	f3 0f 1e fa          	endbr64
+    23dd:	55                   	push   rbp
+    23de:	48 89 e5             	mov    rbp,rsp
+    23e1:	48 83 ec 10          	sub    rsp,0x10
+    23e5:	48 89 7d f8          	mov    QWORD PTR [rbp-0x8],rdi
+    23e9:	48 89 75 f0          	mov    QWORD PTR [rbp-0x10],rsi
+    23ed:	48 8d 05 1c 0e 00 00 	lea    rax,[rip+0xe1c]        # 3210 <UwU_NAME+0x1f0>
+    23f4:	48 89 c7             	mov    rdi,rax
+    23f7:	e8 54 ed ff ff       	call   1150 <puts@plt>
+    23fc:	48 8b 45 f8          	mov    rax,QWORD PTR [rbp-0x8]
+    2400:	48 89 c6             	mov    rsi,rax
+    2403:	48 8d 05 fe 18 00 00 	lea    rax,[rip+0x18fe]        # 3d08 <UwU_NAME+0xce8>
+    240a:	48 89 c7             	mov    rdi,rax
+    240d:	b8 00 00 00 00       	mov    eax,0x0
+    2412:	e8 59 ed ff ff       	call   1170 <printf@plt>
+    2417:	48 8d 05 3a 19 00 00 	lea    rax,[rip+0x193a]        # 3d58 <UwU_NAME+0xd38>
+    241e:	48 89 c7             	mov    rdi,rax
+    2421:	e8 2a ed ff ff       	call   1150 <puts@plt>
+    2426:	48 8d 05 83 19 00 00 	lea    rax,[rip+0x1983]        # 3db0 <UwU_NAME+0xd90>
+    242d:	48 89 c7             	mov    rdi,rax
+    2430:	e8 1b ed ff ff       	call   1150 <puts@plt>
+    2435:	48 8d 05 cc 19 00 00 	lea    rax,[rip+0x19cc]        # 3e08 <UwU_NAME+0xde8>
+    243c:	48 89 c7             	mov    rdi,rax
+    243f:	e8 0c ed ff ff       	call   1150 <puts@plt>
+    2444:	48 8d 05 15 1a 00 00 	lea    rax,[rip+0x1a15]        # 3e60 <UwU_NAME+0xe40>
+    244b:	48 89 c7             	mov    rdi,rax
+    244e:	e8 fd ec ff ff       	call   1150 <puts@plt>
+    2453:	48 8d 05 16 11 00 00 	lea    rax,[rip+0x1116]        # 3570 <UwU_NAME+0x550>
+    245a:	48 89 c7             	mov    rdi,rax
+    245d:	e8 ee ec ff ff       	call   1150 <puts@plt>
+    2462:	48 8d 05 07 11 00 00 	lea    rax,[rip+0x1107]        # 3570 <UwU_NAME+0x550>
+    2469:	48 89 c7             	mov    rdi,rax
+    246c:	e8 df ec ff ff       	call   1150 <puts@plt>
+    2471:	48 8d 05 f8 10 00 00 	lea    rax,[rip+0x10f8]        # 3570 <UwU_NAME+0x550>
+    2478:	48 89 c7             	mov    rdi,rax
+    247b:	e8 d0 ec ff ff       	call   1150 <puts@plt>
+    2480:	48 8d 05 e9 10 00 00 	lea    rax,[rip+0x10e9]        # 3570 <UwU_NAME+0x550>
+    2487:	48 89 c7             	mov    rdi,rax
+    248a:	e8 c1 ec ff ff       	call   1150 <puts@plt>
+    248f:	48 8d 05 d2 1a 00 00 	lea    rax,[rip+0x1ad2]        # 3f68 <UwU_NAME+0xf48>
+    2496:	48 89 c7             	mov    rdi,rax
+    2499:	e8 b2 ec ff ff       	call   1150 <puts@plt>
+    249e:	48 8d 05 1b 1b 00 00 	lea    rax,[rip+0x1b1b]        # 3fc0 <UwU_NAME+0xfa0>
+    24a5:	48 89 c7             	mov    rdi,rax
+    24a8:	e8 a3 ec ff ff       	call   1150 <puts@plt>
+    24ad:	48 8b 45 f0          	mov    rax,QWORD PTR [rbp-0x10]
+    24b1:	48 89 c6             	mov    rsi,rax
+    24b4:	48 8d 05 5d 1b 00 00 	lea    rax,[rip+0x1b5d]        # 4018 <UwU_NAME+0xff8>
+    24bb:	48 89 c7             	mov    rdi,rax
+    24be:	b8 00 00 00 00       	mov    eax,0x0
+    24c3:	e8 a8 ec ff ff       	call   1170 <printf@plt>
+    24c8:	48 8d 05 99 1b 00 00 	lea    rax,[rip+0x1b99]        # 4068 <UwU_NAME+0x1048>
+    24cf:	48 89 c7             	mov    rdi,rax
+    24d2:	e8 79 ec ff ff       	call   1150 <puts@plt>
+    24d7:	48 8d 05 e2 1b 00 00 	lea    rax,[rip+0x1be2]        # 40c0 <UwU_NAME+0x10a0>
+    24de:	48 89 c7             	mov    rdi,rax
+    24e1:	e8 6a ec ff ff       	call   1150 <puts@plt>
+    24e6:	48 8d 05 23 0d 00 00 	lea    rax,[rip+0xd23]        # 3210 <UwU_NAME+0x1f0>
+    24ed:	48 89 c7             	mov    rdi,rax
+    24f0:	e8 5b ec ff ff       	call   1150 <puts@plt>
+    24f5:	90                   	nop
+    24f6:	c9                   	leave
+    24f7:	c3                   	ret
+
+00000000000024f8 <battle_ui3>:
+    24f8:	f3 0f 1e fa          	endbr64
+    24fc:	55                   	push   rbp
+    24fd:	48 89 e5             	mov    rbp,rsp
+    2500:	48 83 ec 10          	sub    rsp,0x10
+    2504:	48 89 7d f8          	mov    QWORD PTR [rbp-0x8],rdi
+    2508:	48 8d 05 01 0d 00 00 	lea    rax,[rip+0xd01]        # 3210 <UwU_NAME+0x1f0>
+    250f:	48 89 c7             	mov    rdi,rax
+    2512:	e8 39 ec ff ff       	call   1150 <puts@plt>
+    2517:	48 8d 05 fa 1b 00 00 	lea    rax,[rip+0x1bfa]        # 4118 <UwU_NAME+0x10f8>
+    251e:	48 89 c7             	mov    rdi,rax
+    2521:	e8 2a ec ff ff       	call   1150 <puts@plt>
+    2526:	48 8d 05 eb 1b 00 00 	lea    rax,[rip+0x1beb]        # 4118 <UwU_NAME+0x10f8>
+    252d:	48 89 c7             	mov    rdi,rax
+    2530:	e8 1b ec ff ff       	call   1150 <puts@plt>
+    2535:	48 8d 05 dc 1b 00 00 	lea    rax,[rip+0x1bdc]        # 4118 <UwU_NAME+0x10f8>
+    253c:	48 89 c7             	mov    rdi,rax
+    253f:	e8 0c ec ff ff       	call   1150 <puts@plt>
+    2544:	48 8d 05 25 1c 00 00 	lea    rax,[rip+0x1c25]        # 4170 <UwU_NAME+0x1150>
+    254b:	48 89 c7             	mov    rdi,rax
+    254e:	e8 fd eb ff ff       	call   1150 <puts@plt>
+    2553:	48 8d 05 16 10 00 00 	lea    rax,[rip+0x1016]        # 3570 <UwU_NAME+0x550>
+    255a:	48 89 c7             	mov    rdi,rax
+    255d:	e8 ee eb ff ff       	call   1150 <puts@plt>
+    2562:	48 8d 05 07 10 00 00 	lea    rax,[rip+0x1007]        # 3570 <UwU_NAME+0x550>
+    2569:	48 89 c7             	mov    rdi,rax
+    256c:	e8 df eb ff ff       	call   1150 <puts@plt>
+    2571:	48 8d 05 f8 0f 00 00 	lea    rax,[rip+0xff8]        # 3570 <UwU_NAME+0x550>
+    2578:	48 89 c7             	mov    rdi,rax
+    257b:	e8 d0 eb ff ff       	call   1150 <puts@plt>
+    2580:	48 8d 05 e9 0f 00 00 	lea    rax,[rip+0xfe9]        # 3570 <UwU_NAME+0x550>
+    2587:	48 89 c7             	mov    rdi,rax
+    258a:	e8 c1 eb ff ff       	call   1150 <puts@plt>
+    258f:	48 8d 05 da 0f 00 00 	lea    rax,[rip+0xfda]        # 3570 <UwU_NAME+0x550>
+    2596:	48 89 c7             	mov    rdi,rax
+    2599:	e8 b2 eb ff ff       	call   1150 <puts@plt>
+    259e:	48 8d 05 c3 19 00 00 	lea    rax,[rip+0x19c3]        # 3f68 <UwU_NAME+0xf48>
+    25a5:	48 89 c7             	mov    rdi,rax
+    25a8:	e8 a3 eb ff ff       	call   1150 <puts@plt>
+    25ad:	48 8d 05 0c 1a 00 00 	lea    rax,[rip+0x1a0c]        # 3fc0 <UwU_NAME+0xfa0>
+    25b4:	48 89 c7             	mov    rdi,rax
+    25b7:	e8 94 eb ff ff       	call   1150 <puts@plt>
+    25bc:	48 8b 45 f8          	mov    rax,QWORD PTR [rbp-0x8]
+    25c0:	48 89 c6             	mov    rsi,rax
+    25c3:	48 8d 05 4e 1a 00 00 	lea    rax,[rip+0x1a4e]        # 4018 <UwU_NAME+0xff8>
+    25ca:	48 89 c7             	mov    rdi,rax
+    25cd:	b8 00 00 00 00       	mov    eax,0x0
+    25d2:	e8 99 eb ff ff       	call   1170 <printf@plt>
+    25d7:	48 8d 05 8a 1a 00 00 	lea    rax,[rip+0x1a8a]        # 4068 <UwU_NAME+0x1048>
+    25de:	48 89 c7             	mov    rdi,rax
+    25e1:	e8 6a eb ff ff       	call   1150 <puts@plt>
+    25e6:	48 8d 05 d3 1a 00 00 	lea    rax,[rip+0x1ad3]        # 40c0 <UwU_NAME+0x10a0>
+    25ed:	48 89 c7             	mov    rdi,rax
+    25f0:	e8 5b eb ff ff       	call   1150 <puts@plt>
+    25f5:	48 8d 05 14 0c 00 00 	lea    rax,[rip+0xc14]        # 3210 <UwU_NAME+0x1f0>
+    25fc:	48 89 c7             	mov    rdi,rax
+    25ff:	e8 4c eb ff ff       	call   1150 <puts@plt>
+    2604:	90                   	nop
+    2605:	c9                   	leave
+    2606:	c3                   	ret
+
+0000000000002607 <text_box_ui>:
+    2607:	f3 0f 1e fa          	endbr64
+    260b:	55                   	push   rbp
+    260c:	48 89 e5             	mov    rbp,rsp
+    260f:	48 83 ec 10          	sub    rsp,0x10
+    2613:	48 89 7d f8          	mov    QWORD PTR [rbp-0x8],rdi
+    2617:	48 89 75 f0          	mov    QWORD PTR [rbp-0x10],rsi
+    261b:	48 8d 05 ee 0b 00 00 	lea    rax,[rip+0xbee]        # 3210 <UwU_NAME+0x1f0>
+    2622:	48 89 c7             	mov    rdi,rax
+    2625:	e8 26 eb ff ff       	call   1150 <puts@plt>
+    262a:	48 8b 45 f8          	mov    rax,QWORD PTR [rbp-0x8]
+    262e:	48 89 c6             	mov    rsi,rax
+    2631:	48 8d 05 8a 1b 00 00 	lea    rax,[rip+0x1b8a]        # 41c2 <UwU_NAME+0x11a2>
+    2638:	48 89 c7             	mov    rdi,rax
+    263b:	b8 00 00 00 00       	mov    eax,0x0
+    2640:	e8 2b eb ff ff       	call   1170 <printf@plt>
+    2645:	48 8b 45 f0          	mov    rax,QWORD PTR [rbp-0x10]
+    2649:	48 89 c6             	mov    rsi,rax
+    264c:	48 8d 05 6f 1b 00 00 	lea    rax,[rip+0x1b6f]        # 41c2 <UwU_NAME+0x11a2>
+    2653:	48 89 c7             	mov    rdi,rax
+    2656:	b8 00 00 00 00       	mov    eax,0x0
+    265b:	e8 10 eb ff ff       	call   1170 <printf@plt>
+    2660:	48 8d 05 a9 0b 00 00 	lea    rax,[rip+0xba9]        # 3210 <UwU_NAME+0x1f0>
+    2667:	48 89 c7             	mov    rdi,rax
+    266a:	e8 e1 ea ff ff       	call   1150 <puts@plt>
+    266f:	90                   	nop
+    2670:	c9                   	leave
+    2671:	c3                   	ret
+
+0000000000002672 <run_away>:
+    2672:	f3 0f 1e fa          	endbr64
+    2676:	55                   	push   rbp
+    2677:	48 89 e5             	mov    rbp,rsp
+    267a:	8b 05 a8 3a 00 00    	mov    eax,DWORD PTR [rip+0x3aa8]        # 6128 <CHOSEN>
+    2680:	83 e8 01             	sub    eax,0x1
+    2683:	48 98                	cdqe
+    2685:	48 c1 e0 04          	shl    rax,0x4
+    2689:	48 89 c2             	mov    rdx,rax
+    268c:	48 8d 05 2d 3a 00 00 	lea    rax,[rip+0x3a2d]        # 60c0 <TEAM>
+    2693:	48 01 d0             	add    rax,rdx
+    2696:	48 89 c7             	mov    rdi,rax
+    2699:	e8 5a fe ff ff       	call   24f8 <battle_ui3>
+    269e:	48 8d 05 3b 3b 00 00 	lea    rax,[rip+0x3b3b]        # 61e0 <encountered>
+    26a5:	48 89 c2             	mov    rdx,rax
+    26a8:	48 8d 05 1e 1b 00 00 	lea    rax,[rip+0x1b1e]        # 41cd <UwU_NAME+0x11ad>
+    26af:	48 89 c6             	mov    rsi,rax
+    26b2:	48 8d 05 47 3b 00 00 	lea    rax,[rip+0x3b47]        # 6200 <buffer1>
+    26b9:	48 89 c7             	mov    rdi,rax
+    26bc:	b8 00 00 00 00       	mov    eax,0x0
+    26c1:	e8 3a eb ff ff       	call   1200 <sprintf@plt>
+    26c6:	c6 05 93 3b 00 00 00 	mov    BYTE PTR [rip+0x3b93],0x0        # 6260 <buffer2>
+    26cd:	48 8d 05 8c 3b 00 00 	lea    rax,[rip+0x3b8c]        # 6260 <buffer2>
+    26d4:	48 89 c6             	mov    rsi,rax
+    26d7:	48 8d 05 22 3b 00 00 	lea    rax,[rip+0x3b22]        # 6200 <buffer1>
+    26de:	48 89 c7             	mov    rdi,rax
+    26e1:	e8 21 ff ff ff       	call   2607 <text_box_ui>
+    26e6:	48 8d 05 cb 0c 00 00 	lea    rax,[rip+0xccb]        # 33b8 <UwU_NAME+0x398>
+    26ed:	48 89 c7             	mov    rdi,rax
+    26f0:	e8 5b ea ff ff       	call   1150 <puts@plt>
+    26f5:	90                   	nop
+    26f6:	5d                   	pop    rbp
+    26f7:	c3                   	ret
+
+Disassembly of section .fini:
+
+00000000000026f8 <_fini>:
+    26f8:	f3 0f 1e fa          	endbr64
+    26fc:	48 83 ec 08          	sub    rsp,0x8
+    2700:	48 83 c4 08          	add    rsp,0x8
+    2704:	c3                   	ret

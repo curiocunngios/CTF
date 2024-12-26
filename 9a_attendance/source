@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int visited = 0;
+void bare() {
+    char buf[16];
+    if (visited) {
+        exit(0);
+    }
+    visited = 1;
+    puts("What is your name?");
+    gets(buf);
+}
+
+int main() {
+    setvbuf(stdin,NULL,2,0);
+	setvbuf(stdout,NULL,2,0);
+	setvbuf(stderr,NULL,2,0);
+    bare();
+    return 0;
+}

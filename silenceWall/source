@@ -1,0 +1,54 @@
+
+int collapsed = 0;
+void my_read(void *buffer, size_t size)
+
+{
+    read(0, buffer, size);
+    return;
+}
+
+void leave_messages_with_great_care(void)
+
+{
+    undefined message[48];
+
+    if (collapsed != 0)
+    {
+        puts("There\'s nothing left but ruins...");
+        /* WARNING: Subroutine does not return */
+        exit(0);
+    }
+    puts("Write some words right in the center of the wall with GREAT care:");
+    my_read(message, 0x60);
+    collapsed = 1;
+    return;
+}
+
+
+int main(void)
+
+{
+    char buffer[48];
+
+    setvbuf(stdin,(char *)0x0,2,0);
+    setvbuf(stdout,(char *)0x0,2,0);
+    setvbuf(stderr,(char *)0x0,2,0);
+    if (collapsed != 0) {
+    puts("There\'s nothing left but ruins...");
+                    /* WARNING: Subroutine does not return */
+    exit(0);
+    }
+    print_wall();
+    puts("Welcome to the even more popular attraction in UwU Kingdom, the Silence Wall!");
+
+    puts("Write some words on the top right corner of the wall:");
+    my_read(buffer,0x30);
+    print_wall_broken();
+    puts("Oops....");
+    puts("I think I need to reduce the strength of my writing...");
+    leave_messages_with_great_care();
+    puts("Booooooooooomm!!!");
+
+    return 0;
+}
+

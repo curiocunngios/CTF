@@ -1,0 +1,80 @@
+import os, random
+
+MESSAGE_LENGTH = 228
+
+def activate_neurons(speech: str) -> list[int]:
+    neuron_data = [ord(i) for i in speech]
+    # data preprocessing in your brain!!
+    for i in range(len(neuron_data) - 1):
+        neuron_data[i] = neuron_data[i] ^ neuron_data[i + 1]
+    return neuron_data
+
+def bake_pie(speech: str, stamina: int) -> list[int]:
+    neuron_data = activate_neurons(speech)
+    steps = []
+    # how to design a pie:
+    # Think: Makes sense? Have fun? Design is professional?
+    for i, j in zip(neuron_data[stamina - 100:], neuron_data[stamina - 99: stamina - 99 + 128]):
+        steps.append(i + j + stamina)
+    return steps
+
+flag = os.getenv("FLAG")
+
+stamina = random.randint(100, 200)  # Setsuna is always very energetic!
+
+print(f"Setsuna wants to bake a cherry pie! She is {stamina}% energetic today.")
+print()
+
+# there is no 100% right or wrong way to encourage people... maybe.
+word_of_encouragement = open('word_of_encouragement.txt').read()
+perfect_recipe = bake_pie(word_of_encouragement, stamina)
+
+print("Rina-chan has calculated the perfect cherry pie recipe for you.")
+print("Perfect recipe:")
+for i, step in zip(range(len(perfect_recipe)), perfect_recipe):
+    if step % 4 == 0:
+        print(f"{i+1}: Add {step} cherries")
+    elif step % 4 == 1:
+        print(f"{i+1}: Add {step} grams of flour")
+    elif step % 4 == 2:
+        print(f"{i+1}: Add {step} grams of butter")
+    elif step % 4 == 3:
+        print(f"{i+1}: Knead the dough {step} times")
+print()
+print("(You: What even is this cursed recipe... Do I really have to follow this?)")
+print("(Rina: Pwease? *https://64.media.tumblr.com/61e089232161e2a093a510178edc2524/tumblr_inline_os8ojnK5CL1tiprmj_400.png*)")
+print("(You: Ok🥺)")
+print()
+
+print("Before baking the pie, you should probably give Setsuna some words of encouragement!")
+word_of_encouragement = input().rjust(MESSAGE_LENGTH, '\0')[:MESSAGE_LENGTH]
+your_recipe = bake_pie(word_of_encouragement, stamina)
+print()
+
+print("Let's start baking!")
+for i, step in zip(range(len(your_recipe)), your_recipe):
+    if step % 4 == 0:
+        print(f"Setsuna: I love cherries! Let's add a cherry!")
+        if step != perfect_recipe[i]:
+            print("Your pie has the wrong number of cherries, it doesn't taste good at all...")
+            exit(1)
+    elif step % 4 == 1:
+        print(f"Setsuna: Time to add some flour!")
+        if step != perfect_recipe[i]:
+            print("Your pie has the wrong amount of flour. The pastry doesn't even look like a pastry!")
+            exit(2)
+    elif step % 4 == 2:
+        print(f"Setsuna: Rub some butter into the pastry...")
+        if step != perfect_recipe[i]:
+            print("Your pie has the wrong amount of butter. The whole pie doesn't really stick together...")
+            exit(3)
+    elif step % 4 == 3:
+        print(f"Setsuna: I'm gonna knead the dough!")
+        if step != perfect_recipe[i]:
+            print("You aren't kneading the dough correctly! The pastry isn't flaky at all.")
+            exit(4)
+
+print()
+print("Wow, the pie looks gorgeous after baking!")
+print(f"You successfully made a perfect cherry pie!")
+print(f"After this precious experience, you learnt this valuable lesson:\n{flag}")

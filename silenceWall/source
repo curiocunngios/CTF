@@ -1,5 +1,3 @@
-
-int collapsed = 0;
 void my_read(void *buffer, size_t size)
 
 {
@@ -25,7 +23,7 @@ void leave_messages_with_great_care(void)
 }
 
 
-int main(void)
+undefined main(void)
 
 {
     char buffer[48];

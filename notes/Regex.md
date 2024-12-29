@@ -1,47 +1,54 @@
 ---
 aliases:
-  - REgex
+  - typical address
+  - memory address range
+  - address range
+  - tbc 
 tags:
-  - flashcard/active/ctf
+  - flashcard/active/ctf/A
 ---
+# `+`
+- **one or more** of previous element <!--SR:!2024-12-30,1,224-->
 
-# Regular Expressions Basics
+# `\d`
+- **digits** <!--SR:!2024-12-30,1,224-->
 
-## Character Classes
-- `.` :: Any character except line break <!--SR:!2024-12-15,1,230-->
-- `\w` :: Letters, numbers, underscore <!--SR:!2024-12-15,1,230-->
-- `\d` :: Digit <!--SR:!2024-12-15,1,230-->
-- `[a-z]` :: Lowercase letters <!--SR:!2024-12-18,4,270-->
-- `[A-Z]` :: Uppercase letters <!--SR:!2024-12-18,4,270-->
-- `[0-9]` :: Numbers <!--SR:!2024-12-18,4,270-->
-- `[a-zA-Z0-9]` :: Alphanumeric <!--SR:!2024-12-15,1,230-->
+# `\d+`
+- **one or more digits** <!--SR:!2024-12-30,1,224-->
 
-## Quantifiers
-- `+` :: One or more <!--SR:!2024-12-15,1,230-->
-- `*` :: Zero or more <!--SR:!2024-12-15,1,230-->
-- `?` :: One or none <!--SR:!2024-12-15,1,230-->
-- `{5}` :: Exactly 5 times <!--SR:!2024-12-18,4,270-->
-- `{3,7}` :: 3 to 7 times <!--SR:!2024-12-15,1,230-->
+# `[...]`
+- creates a character class that **matches any single characters in the brackets`[]`** <!--SR:!2024-12-30,1,230-->
 
-## Anchors
-- `^` :: Start of line/string <!--SR:!2024-12-15,1,230-->
-- `$` :: End of line/string <!--SR:!2024-12-15,1,230-->
-- `[...]` :: One character in brackets <!--SR:!2024-12-18,4,270-->
-- `[^...]` :: Not in brackets <!--SR:!2024-12-18,4,270-->
+# ` <`
+- just a {{literal space and literal `<`}} <!--SR:!2024-12-30,1,230-->
 
-## Groups and Logic
-- `|` :: OR operator <!--SR:!2024-12-15,1,230-->
-- `(...)` :: Capture group <!--SR:!2024-12-15,1,230-->
-- `(?:...)` :: Non-capture group <!--SR:!2024-12-15,1,230-->
-- `\1` :: Reference group 1 <!--SR:!2024-12-18,4,270-->
+# `(...)`
+- creates a capture group that {{can be extracted later}} <!--SR:!2024-12-30,1,230-->
 
-## Common Patterns
-- Email :: `^[a-z]{3,7}@(connect\.)?ust\.hk$` <!--SR:!2024-12-15,1,230-->
-- Avoid greedy matching:
-??
-- Use `[^}]*` instead of `.*`
-- Use `.*?` for lazy matching <!--SR:!2024-12-15,1,230-->
+# `>:`
+- just a {{literal `>` and a literal `:`}} <!--SR:!2024-12-30,1,224--> 
 
-## Testing Tools
-- https://regex101.com/
-- grep with regex: `grep -E 'pattern' file`
+# `\s`
+- matches whitespace
+
+# `*`
+- **zero or more** <!--SR:!2024-12-30,1,218-->
+
+# python regex  
+
+## `r'...'`
+- a **raw string**
+- prevents python from reading `\` as **escape character** so that something like `\[` can get passed to {{regex engine which is independent from python}}. <!--SR:!2024-12-30,1,218!2024-12-30,1,218!2024-12-30,1,218-->
+
+## `re.match`
+- attempts to match pattern at the **beginning** of string <!--SR:!2024-12-30,1,218--> 
+
+## `re.search`
+- look for matches **anywhere** in the string <!--SR:!2024-12-30,1,218-->
+
+# Examples
+> ## `node_match = re.match(r'[0-9a-f]+ <(node\d+)>:', line)`
+This matches something like `000000000000114a <node0>:`
+- `[0-9a-f]+` look for one or more **hexadecimal number**. Using the above assembly code as example : `000000000000114a`
+- `<(node\d+)>:` look for node name enclosed with `<>` and ending with a `:`. <!--SR:!2024-12-30,1,224-->
+

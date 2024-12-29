@@ -4,8 +4,7 @@
     "flashcardGoodText": "Good",
     "flashcardHardText": "Hard",
     "flashcardTags": [
-      "#flashcard/active/ctf",
-      ""
+      "#flashcard/active/ctf/A"
     ],
     "convertFoldersToDecks": false,
     "cardCommentOnSameLine": true,
@@ -44,7 +43,7 @@
     "singlelineCardSeparator": "::",
     "singlelineReversedCardSeparator": ":::"
   },
-  "buryDate": "2024-12-21",
+  "buryDate": "2024-12-29",
   "buryList": [],
   "historyDeck": null
 }

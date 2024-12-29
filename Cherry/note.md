@@ -437,3 +437,118 @@ You successfully made a perfect cherry pie!
 After this precious experience, you learnt this valuable lesson:
 flag{wh47_h4pp3n5_wh3n_y0u_l37_h3r_c00k:https://www.youtube.com/watch?v=A2Igz66sZSA}
 ```
+
+
+
+
+
+
+
+
+
+
+
+```py
+from pwn import *
+import re
+import z3
+
+def get_one_sample():
+    """Get one recipe sample from the server"""
+    r = remote('chal.firebird.sh', 35055)
+    
+    # Get the initial output until we see "encouragement!"
+    data = r.recvuntil(b"encouragement!").decode()
+    r.close()
+    
+    # Get stamina value (e.g., "150%" -> 150)
+    stamina = int(re.search(r"(\d+)%", data).group(1))
+    
+    # Extract all numbers from recipe steps
+    recipe_steps = []
+    for line in data.split('\n'):
+        if 'Add' in line or 'Knead' in line:
+            number = int(re.search(r'\d+:', line).group()[:-1])
+            value = int(re.search(r'\d+$', line).group())
+            recipe_steps.append(value)
+    
+    return stamina, recipe_steps
+
+def collect_samples(num_needed=30):
+    """Collect multiple different samples"""
+    samples = {}  # stamina -> recipe_steps
+    
+    while len(samples) < num_needed:
+        stamina, steps = get_one_sample()
+        if stamina not in samples:  # only keep new stamina values
+            samples[stamina] = steps
+            print(f"Got sample with stamina {stamina}. Total: {len(samples)}")
+    
+    return samples
+
+def find_message(samples):
+    """Use Z3 solver to find the original message"""
+    # Create variables for each character in the message
+    solver = z3.Solver()
+    chars = [z3.Int(f'c{i}') for i in range(228)]
+    
+    # Each char must be valid ASCII
+    for c in chars:
+        solver.add(c >= 0)
+        solver.add(c <= 255)
+    
+    # Add constraints from each sample
+    for stamina, recipe in samples.items():
+        start = stamina - 100  # starting index for this sample
+        for i in range(len(recipe)):
+            # recipe[i] = chars[start+i] + chars[start+i+1] + stamina
+            solver.add(recipe[i] == chars[start+i] + chars[start+i+1] + stamina)
+    
+    # Solve
+    print("Solving...")
+    if solver.check() == z3.sat:
+        model = solver.model()
+        # Get values and convert to list
+        values = [model[c].as_long() for c in chars]
+        return values
+    return None
+
+def decode_message(encoded):
+    """Decode the XORed message"""
+    message = [''] * len(encoded)
+    # Last character isn't XORed
+    message[-1] = chr(encoded[-1])
+    
+    # Reverse the XOR operations from right to left
+    for i in range(len(encoded)-2, -1, -1):
+        message[i] = chr(encoded[i] ^ ord(message[i+1]))
+    
+    return ''.join(message)
+
+def main():
+    # 1. Collect samples
+    print("Collecting samples...")
+    samples = collect_samples(30)  # 30 samples should be enough
+    
+    # 2. Find the encoded message
+    encoded = find_message(samples)
+    if not encoded:
+        print("Failed to find solution")
+        return
+    
+    # 3. Decode the message
+    message = decode_message(encoded)
+    print("\nFound message:", message)
+    
+    # 4. Test the message
+    print("\nTesting message...")
+    r = remote('chal.firebird.sh', 35055)
+    r.recvuntil(b"encouragement!")
+    r.sendline(message.encode())
+    print(r.recvall().decode())
+    r.close()
+
+if __name__ == "__main__":
+    main()
+
+```

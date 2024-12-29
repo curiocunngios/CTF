@@ -7,6 +7,7 @@ def activate_neurons(speech: str) -> list[int]:
     # data preprocessing in your brain!!
     for i in range(len(neuron_data) - 1):
         neuron_data[i] = neuron_data[i] ^ neuron_data[i + 1]
+    print(len(neuron_data))
     return neuron_data
 
 def bake_pie(speech: str, stamina: int) -> list[int]:
@@ -31,6 +32,7 @@ perfect_recipe = bake_pie(word_of_encouragement, stamina)
 
 print("Rina-chan has calculated the perfect cherry pie recipe for you.")
 print("Perfect recipe:")
+print(len(perfect_recipe))
 for i, step in zip(range(len(perfect_recipe)), perfect_recipe):
     if step % 4 == 0:
         print(f"{i+1}: Add {step} cherries")

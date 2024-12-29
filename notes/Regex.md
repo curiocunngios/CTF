@@ -29,10 +29,17 @@ tags:
 - just a {{literal `>` and a literal `:`}} <!--SR:!2024-12-30,1,224--> 
 
 # `\s`
-- matches whitespace
+- matches {{whitespace}}
 
 # `*`
 - **zero or more** <!--SR:!2024-12-30,1,218-->
+
+# `.`
+- **any character except newline**
+
+# `?`
+- mark the previous element {{non-greedy, stop as soon as next element matches even if previous also matches}}
+
 
 # python regex  
 

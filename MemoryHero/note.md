@@ -126,80 +126,6 @@
     at this point I do not think I have sufficient knowledge about assembly and binaries to move on. 
 
 
-    Could you briefly tell me what this challenge is about, if there are similar ones you know. Or let me know in what ways I could explore the binary further and efficiently so that I can give you more information!
-
-
-
-
-
-
-
-
-
-def map_node(addr, input_val):
-    # Dictionary of nodes and their possible transitions
-    nodes = {
-        # addr: dictionary of {input_value: next_node_addr}
-        0x114a: {'inputs': {
-            0x85: 0x33a7,  # if input is 133 (0x85), go to node 0x33a7
-            0x3c: 0x218c,  # if input is 60 (0x3c), go to node 0x218c
-            0xdc: 0x4e32   # if input is 220 (0xdc), go to node 0x4e32
-        }},
-        # Add more nodes...
-    }
-    
-    # Get the node, then get its inputs dict, then get the next node for input_val
-    return nodes.get(addr, {}).get('inputs', {}).get(input_val)
-
-# Usage example:
-current_node = 0x114a
-user_input = 0x85
-next_node = map_node(current_node, user_input)
-print(f"Input {user_input} at node {current_node:x} leads to node {next_node:x}")
-
-
-To use this:
-
-    Build the nodes dictionary by analyzing the binary
-    Track current node
-    For each input, check where it leads
-    Build a path that avoids fail_code
-
-
-
-import subprocess
-
-def find_write_instructions():
-    cmd = "objdump -d ./program"
-    output = subprocess.check_output(cmd.split()).decode()
-    
-    write_locations = []
-    for line in output.splitlines():
-        if "mov" in line and "BYTE PTR" in line:
-            addr = int(line.split(':')[0].strip(), 16)
-            write_locations.append(addr)
-    
-    return write_locations
-
-
-
-# Example addresses where flag bytes are written
-write_offsets = [
-    0x1151,  # node0
-    0x33ae,  # node133
-    0x2193,  # node60
-    # ... more nodes
-]
-
-# In GDB:
-for offset in write_offsets:
-    gdb.execute(f'b *{offset}')
-
-
-- Use GDB to track character writes
-- Document the sequence of nodes that write valid flag characters
-- Find inputs that lead to those nodes
-- Verify with fai_check.py
 
 
 ```as
@@ -248,43 +174,6 @@ Stack:
 
 - hmm can we just simulate this process in python by detecting this particular line `mov    BYTE PTR [rax+rbx*1],` and somehow verifying that the node is correct i.e. inputing correct characters 
 
-# Where is instructions written 
-```
-115f:	48 89 e6             	mov    rsi,rsp
-1162:	31 c0                	xor    eax,eax
-1164:	ff 15 66 9e 00 00    	call   QWORD PTR [rip+0x9e66]        # afd0 <scanf@GLIBC_2.2.5>
-116a:	48 8b 04 24          	mov    rax,QWORD PTR [rsp]
-```
-There are two instructions in between the stack, they don't get written to the stack so it wouldn't affect the value of rsp 
-Instead, the instructions gets 
-- written to {{text segment (code section)}}
-- They're loaded into memory when program starts
-- But they're in a different memory region from the stack
-Layout:
-```json
-High addresses
-    [Stack]        <- rsp points here (grows down)
-    [Heap]
-    [BSS]
-    [Data]
-    [Text/Code]    <- instructions are here
-Low addresses
-```
-Although there was a function call 
-> `call   QWORD PTR [rip + 0x9e66]    <scanf>`
-it was a PLT/GOT call, not direct call. SO the address does not get pushed onto rsp
-
-This is different from a regular call instruction because:
-
-    It's an indirect call through the PLT (Procedure Linkage Table)
-    The actual call mechanics are handled by the dynamic linker
-    The return address handling is done differently since it's a libc function call
-
-When calling external functions like scanf:
-
-    The PLT/GOT mechanism is used to resolve the actual function address
-    The calling convention for external functions may preserve RSP
-    The libc function manages its own stack frame independently
 
 
 so the challenge is not that easy :

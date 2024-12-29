@@ -2,7 +2,7 @@ from pwn import *
 
 binary = "./program"
 context.arch = 'amd64'
-#p = process(binary)
+p = process(binary)
 p = remote("chal.firebird.sh", 35028)
 context.log_level = 'debug'
 s = 'b* UwU_main+546'

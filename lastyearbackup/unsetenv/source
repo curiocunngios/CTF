@@ -1,0 +1,61 @@
+undefined8 main(void)
+
+{
+  char *env;
+  long in_FS_OFFSET;
+  int i;
+  char buffer [8];
+  long canary;
+  
+  canary = *(long *)(in_FS_OFFSET + 0x28);
+  setbuf(stdin,(char *)0x0);
+  setbuf(stdout,(char *)0x0);
+  setbuf(stderr,(char *)0x0);
+  unsetenv("FLAG");
+  i = 3;
+  while( true ) {       
+    if (i == 0) break;
+    printf("Enter the name of an environment variable: ");
+    read(0,buffer,0x20);
+    env = getenv(buffer);
+    printf("The value of the environment variable %s is %s.\n",buffer,env);
+    // can be used to dereference stuff you want here
+    i = i + -1;
+  }
+  puts("Enter feedback for this challenge below:");
+  read(0,buffer,0x30);
+  puts("Thanks for your feedback!");
+  if (canary != *(long *)(in_FS_OFFSET + 0x28)) {
+                    /* WARNING: Subroutine does not return */
+    __stack_chk_fail(); 
+  }
+  return 0;
+
+
+  // might be able to create ROP chain and ret2libc here
+}
+
+
+undefined8 main(void)
+
+{
+  long fs_offset;
+  char *output;
+  FILE *f;
+  long canary;
+  
+  canary = *(long *)(fs_offset + 0x28);
+  f = fopen("/app/flag.txt","r");
+  output = (char *)0x0;
+  __isoc99_fscanf(f,&%ms,&output);
+  fclose(f);
+  setenv("FLAG",output,1);
+  free(output);
+  setuid(1000);
+  execl("/app/unsetenv","unsetenv",0);
+  if (canary != *(long *)(fs_offset + 0x28)) {
+                    /* WARNING: Subroutine does not return */
+    __stack_chk_fail();
+  }
+  return 0;
+}

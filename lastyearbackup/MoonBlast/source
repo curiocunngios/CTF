@@ -1,0 +1,50 @@
+void initialize(void)
+
+{
+    time_t tVar1;
+
+    setvbuf(stdin, (char *)0x0, 2, 0);
+    setvbuf(stdout, (char *)0x0, 2, 0);
+    setvbuf(stderr, (char *)0x0, 2, 0);
+    tVar1 = time((time_t *)0x0);
+    srand((uint)tVar1);
+    passcode = rand();
+    return;
+}
+
+
+void command(void)
+
+{
+  undefined buffer [112];
+  
+  puts("Welcome to the Commander\'s console!");
+  printf("Please enter your command: ");
+  read(0,buffer,0x100);
+  puts("Command received!");
+  return;
+}
+
+undefined8 main(void)
+
+{
+    int passcode;
+    int i;
+
+    initialize();
+    puts("Welcome to the Moon Blaster Railgun Management System!");
+    printf("Please enter the passcode: ");
+    __isoc99_scanf(%d, &passcode);
+    getchar();
+    if (passcode != ::passcode)
+    {
+        puts("Invalid passcode!");
+        /* WARNING: Subroutine does not return */
+        exit(1);
+    }
+    for (i = 0; i < 3; i = i + 1)
+    {
+        command();
+    }
+    return 0;
+}

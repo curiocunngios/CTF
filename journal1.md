@@ -39,4 +39,15 @@ below are symptoms I have had chronically which I might not have brought up in o
 - always cannot maintain focus for long. 
 - daytime consistently jumping between being super tired and overly energized not happily energized, more like stressed-induced, cannot focus and think properly, which also feel like shit (actually I have been like this more or less everyday throughout the last few years)
 - always feel stress and heart palpitations starts out of nowhere for being static, whenever I move something. For example, going for a walk, shaking my legs, intensively typical, gaming or moving my fingers, I feel calm. This heavily disturbs my studying 
-- 
+
+
+
+## Studying 
+- if you feel like you are rereading something, even if it's the second time, mark that thing down 
+
+## General flow of studying
+You kinda have to do this one, it has to be a game changer
+1. hands on exercises
+2. make notes, mark down stuff while doing it 
+3. refine the notes and add flashcards syntax
+4. review previous flashcards 

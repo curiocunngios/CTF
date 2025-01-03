@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 #define ZOO_SIZE 10
+#define MAX_NAME_SIZE 0x40
 
 typedef struct Panda Panda;
 typedef struct Parrot Parrot;
@@ -27,6 +28,10 @@ struct Zoo
     Animal* animals[ZOO_SIZE];
 } zoo = { .numOfAnimal = 0 };
 
+void get_shell() {
+    system("/bin/sh");
+}
+
 void print(char* str) {
     system("/usr/bin/date +\"%Y/%m/%d %H:%M.%S\" | tr -d '\n'");
     printf(": %s\n", str);
@@ -45,7 +50,7 @@ void init() {
 
 int menu() {
     int choice = -1;
-    print("Welcome to abc Zoo!!!");
+    print("Welcome to ABC Zoo!!!");
     print("1) Add animal");
     print("2) Remove animal");
     print("3) Report animal Name");
@@ -102,11 +107,20 @@ void add_animal() {
     }
 
     animal->speak = speak;
-    animal->name = (char*) malloc(0x18);
+    print("How long is the name? (max: 64 characters)");   
+    while (1) {
+        printf("> ");
+        scanf("%d", &size);
+        if (size >= 0 && size < MAX_NAME_SIZE) {
+            animal->name = (char*) malloc(size);
+            break;
+        } 
+        printf("??\n");
+    }
 
     print("Name of animal?");
     printf("> ");
-    read(0, animal->name, 0x18);
+    read(0, animal->name, size);
 
     zoo.animals[idx] = animal;
     printf("> [DEBUG] Animal is added to zone %d\n", idx);

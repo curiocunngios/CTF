@@ -32,7 +32,7 @@ def debug(breakpoint=''):
 
 elf = ELF("./MercuryBlast")
 libc = ELF("./libc-2.31.so")
-context(arch = elf.arch ,log_level = 'debug', os = 'linux')
+context(arch = elf.arch ,log_level = 'debug', os = 'linux',terminal = ['tmux', 'splitw', '-hp','62'])
 
 def add_record(temp, size, data):
     sla("Your choice: ", "1")
@@ -46,7 +46,7 @@ def print_record():
 
 def delete_record(idx):
     sla("Your choice: ", "3")
-    sla("Input Index:", str(idx))   
+    sla("Input Index:", str(idx))
 
 def edit_record(idx, temp, size, data):
     sla("Your choice: ", "4")
@@ -62,12 +62,6 @@ def blast(data):
 read_bp = 0x167a
 
 def exp1():
-    add_record(1, 0x200, b'AAAAAAAA')
-    debug('''
-    b * delete_record
-    b * delete_record+63
-    ''')
-    delete_record(0)
     p.interactive()
 
 

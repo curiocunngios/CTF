@@ -4,3 +4,6 @@
 *.obsidian/workspace
 *.tmp
 *.gdb_history
+core
+*.core
+core.*

@@ -711,8 +711,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -724,9 +724,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "e4be8cf8ca6b3354",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 59
+        "currentTab": 60
       }
     ],
     "direction": "horizontal",
@@ -745,7 +755,7 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "f6ea9b167df6a996",
+  "active": "e4be8cf8ca6b3354",
   "lastOpenFiles": [
     "notes/regex.md",
     "MemoryHero/pyNote.md",

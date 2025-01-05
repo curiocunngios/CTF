@@ -721,8 +721,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -734,9 +734,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "ddc7c3b9a561ca7a",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 60
+        "currentTab": 61
       }
     ],
     "direction": "horizontal",
@@ -755,20 +765,21 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "e4be8cf8ca6b3354",
+  "active": "ddc7c3b9a561ca7a",
   "lastOpenFiles": [
+    ".git/objects/e4/88d61d6758986c7fac6dfd14d40491c4e6683c",
+    ".git/objects/ef/6ccfadcb639d44a2348be89e7ef3fff5d92794",
+    ".git/objects/3f/45e4ace53e929211e3e7b1984c98beefbb9e91",
+    ".git/objects/3a/a9899453e366d82d5a3224514ee7b676ffd095",
+    ".git/objects/d1/d0f14dacee546d9011fed946e89941f9d03bf6",
+    ".git/index.lock",
+    ".git/objects/0c/887bac718958e3525c96b2fc72f8aa14207af1",
+    ".git/objects/a3/845c61df023473c629ab34a5b171e567a30b4f",
+    ".git/objects/53/a91fe0538996b48b6d9afd8f414c18f81ea87c",
+    ".git/objects/7c/8f2ff91331a0e1f80dfb9822994b57efce111a",
+    ".git/objects/7a/cc1844fc8b4d852231ff5b08b61dcdb055ff7a",
     "notes/regex.md",
     "MemoryHero/pyNote.md",
-    ".git/objects/1c/1b88dab0f357e72d4a8d93f3f71839eda0305b",
-    ".git/objects/9a/9b106448a0aa0b8a406cd50ee5de9f3bf8fb71",
-    ".git/objects/4e/470b170e6fe29240ee1c6eb8927a94cda3e2ed",
-    ".git/objects/44/69651bfd0b9b9a4ae1e55976cb07146850d99a",
-    ".git/objects/46/83ee518c78ef0032a3ba2ce28e6c1895e12b6b",
-    ".git/objects/46/tmp_obj_dJqsbk",
-    ".git/index.lock",
-    ".git/objects/e4/46d02f9199b85f9a22491b9ccecfb8e09a6c1e",
-    ".git/objects/a9/01e35437e8dd598a771692b29e98437cf38d94",
-    ".git/objects/d4/08ae6455294a384f0a12ff84d66b39dc4f3e78",
     "2024-12-15T040837.953+0800.md",
     "2024-12-16T050812.498+0800.md",
     "2024-12-12T202437.560+0800.md",
@@ -792,7 +803,6 @@
     "notes/Encode encrypt.md",
     "gpt prompts.md",
     "notes/pwndbg.md",
-    "notes/libc function calls.md",
     "illness/mood.png",
     "illness/image.png",
     "image.png",

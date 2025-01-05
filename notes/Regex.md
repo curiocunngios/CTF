@@ -29,13 +29,13 @@ tags:
 - just a {{literal `>` and a literal `:`}} <!--SR:!2025-01-07,3,244--> 
 
 # `\s`
-- matches {{whitespace}} <!--SR:!2025-01-05,1,212-->
+- matches {{whitespace}} <!--SR:!2025-01-08,3,232-->
 
 # `*`
 - **zero or more** <!--SR:!2025-01-07,3,238-->
 
 # `.`
-- **any character except newline** <!--SR:!2025-01-05,1,212-->
+- **any character except newline** <!--SR:!2025-01-08,3,232-->
 
 # `?`
 - mark the previous element {{non-greedy, stop as soon as next element matches even if previous also matches}} <!--SR:!2025-01-06,2,232-->

@@ -45,7 +45,7 @@ for i in range(8):
         continue
     delete_record(i)
 
-# using 7 here would merge with top chunk 
+# using 7 here would merge with to p chunk 
 delete_record(6)
 
 #gdb.attach(p, s)

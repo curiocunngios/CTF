@@ -37,8 +37,8 @@ here are the potential sections:
 # chronic symptoms
 below are symptoms I have had chronically which I might not have brought up in our first meeting 
 - always cannot maintain focus for long. 
-- daytime consistently jumping between being super tired and overly energized not happily energized, more like stressed-induced, cannot focus and think properly, which also feel like shit (actually I have been like this more or less everyday throughout the last few years)
-- always feel stress and heart palpitations starts out of nowhere for being static, whenever I move something. For example, going for a walk, shaking my legs, intensively typical, gaming or moving my fingers, I feel calm. This heavily disturbs my studying 
+- **daytime** consistently jumping between being super tired and overly energized not happily energized, more like stressed-induced, cannot focus and think properly, which also feel like shit (actually I have been like this more or less everyday throughout the last few years)
+- **alway**s feel stress and heart palpitations starts out of nowhere for being static, whenever I move something. For example, going for a walk, shaking my legs, intensively typical, gaming or moving my fingers, I feel calm. This heavily disturbs my studying 
 
 
 
@@ -51,3 +51,13 @@ You kinda have to do this one, it has to be a game changer
 2. make notes, mark down stuff while doing it 
 3. refine the notes and add flashcards syntax
 4. review previous flashcards 
+
+5/1/2025:
+- I am now shaking my legs and getting reminded of restless leg syndrome and magnesium solve (haven't buy yet)
+- I am thinking whether sleep was the main root cause, like averaging 6 hours of sleep for years and waking up in the middle of the night for years 
+- suspecting myself to have adhd because I always feel stress simply sitting and being static
+- overall feeling to the meds: no change at all lol 
+- I am starting to feel a bit demotivated (after finishing all track A homework)
+- I am starting to feel more stressful lately and have a feeling that my "addictions" are becoming back
+- maybe stressful because of the difficulty level up in CTF, I am not sure
+

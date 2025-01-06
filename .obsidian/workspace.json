@@ -731,12 +731,32 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "ddc7c3b9a561ca7a",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "395abec12e899ef9",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
           },
           {
-            "id": "ddc7c3b9a561ca7a",
+            "id": "83b3031b40cc318e",
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
@@ -746,7 +766,7 @@
             }
           }
         ],
-        "currentTab": 61
+        "currentTab": 63
       }
     ],
     "direction": "horizontal",
@@ -765,19 +785,20 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "ddc7c3b9a561ca7a",
+  "active": "83b3031b40cc318e",
   "lastOpenFiles": [
-    ".git/objects/e4/88d61d6758986c7fac6dfd14d40491c4e6683c",
-    ".git/objects/ef/6ccfadcb639d44a2348be89e7ef3fff5d92794",
-    ".git/objects/3f/45e4ace53e929211e3e7b1984c98beefbb9e91",
-    ".git/objects/3a/a9899453e366d82d5a3224514ee7b676ffd095",
-    ".git/objects/d1/d0f14dacee546d9011fed946e89941f9d03bf6",
+    "schedule1.md",
+    "pwn.md",
     ".git/index.lock",
-    ".git/objects/0c/887bac718958e3525c96b2fc72f8aa14207af1",
-    ".git/objects/a3/845c61df023473c629ab34a5b171e567a30b4f",
-    ".git/objects/53/a91fe0538996b48b6d9afd8f414c18f81ea87c",
-    ".git/objects/7c/8f2ff91331a0e1f80dfb9822994b57efce111a",
-    ".git/objects/7a/cc1844fc8b4d852231ff5b08b61dcdb055ff7a",
+    ".git/objects/60/19c7a9d8a33bf9e2bf918ade504a2e4cf5299c",
+    ".git/objects/8c/ab2aefc80c047fe45cbf3f4d6444245a927530",
+    ".git/objects/6b/7138635a592a41c0b081cbb03a00cd93ff3686",
+    ".git/objects/81/3004c62e6be35be962388e14d76bee190a8847",
+    ".git/objects/fc/2286ba5d9ea5457e22d7b84110d3f92b19ef92",
+    ".git/objects/5c/3c5aeba308dbd81bde66728ea4136ce142b3da",
+    ".git/objects/5f/b5bc7dbca20594f43ef0d6079164705a06e16e",
+    ".git/objects/6a/1ed25bbe45476f5772dcf008a3846b901cac0c",
+    ".git/objects/a7/44a1829e99a2ee497eaa581ee86406c2ddc941",
     "notes/regex.md",
     "MemoryHero/pyNote.md",
     "2024-12-15T040837.953+0800.md",
@@ -802,7 +823,6 @@
     "notes/libc calls.md",
     "notes/Encode encrypt.md",
     "gpt prompts.md",
-    "notes/pwndbg.md",
     "illness/mood.png",
     "illness/image.png",
     "image.png",

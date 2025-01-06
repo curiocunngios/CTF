@@ -37,8 +37,8 @@ here are the potential sections:
 # chronic symptoms
 below are symptoms I have had chronically which I might not have brought up in our first meeting 
 - always cannot maintain focus for long. 
-- **daytime** consistently jumping between being super tired and overly energized not happily energized, more like stressed-induced, cannot focus and think properly, which also feel like shit (actually I have been like this more or less everyday throughout the last few years)
-- **alway**s feel stress and heart palpitations starts out of nowhere for being static, whenever I move something. For example, going for a walk, shaking my legs, intensively typical, gaming or moving my fingers, I feel calm. This heavily disturbs my studying 
+- **daytime** either being super tired or overly energized not happily energized, more like stressed-induced, cannot focus and think properly. Rarely feel calm. (had been like this for years but recently it gets to be more serious)
+- **always** feel stress and heart palpitations starts out of nowhere for being static, whenever I move something. For example, going for a walk (my favourite thing and I feel the most peaceful and happy doing it), shaking my legs, intensively movements of fingers, I feel calm. This heavily disturbs my reading stage during my studying.  
 
 
 
@@ -61,3 +61,27 @@ You kinda have to do this one, it has to be a game changer
 - I am starting to feel more stressful lately and have a feeling that my "addictions" are becoming back
 - maybe stressful because of the difficulty level up in CTF, I am not sure
 
+# "Addictions" 
+video games: clean for nearly a month and not feeling itach, starting to feel itach now  
+porn: clean for nearly a month, not feeling itach  
+masturbastion: balanced, once every 2 to 3 days   
+fast food: clean for nearly a month and feeling itach to eat unhelathy food more or less every day  
+twitch: have been clean for 2 weeks. Balanced now, at most 2 hours a week.  
+social media: very rarely (nearly never) scroll instagram, reddit, lihkg like how I used to be   
+
+# Sleep 
+time takes to fall asleep: nearly instantly  
+sleep duration: 5-6 hours everyday  
+sleep time: ranges from 9 pm - 1 am, for a month  
+Energy level after sleep: Feels decent first, get tired and sleepy very quickly  
+My thoughts: Genuinely feel happy for waking early and start my studying on CTF early. So, I did not care much about my sleep duration until the daytime fatigue I get from poor sleep duration became obvious.  
+
+# Reactions to meds 
+- feels like nothing, both abilify 10 mg and lorans 0.5 mg (never taken at day time, always taking at night). Tho they might have contributed to my relatively healthier lifestyle right now.
+
+
+# chronic symptoms
+below are symptoms I have had chronically which I might not have brought up in our first meeting 
+- always cannot maintain focus for long. 
+- **daytime** either being super tired or overly energized not happily energized, more like stressed-induced, cannot focus and think properly. Rarely feel calm. (had been like this for years but recently it gets to be more serious)
+- **always** feel stress and heart palpitations starts out of nowhere for being static, whenever I move something. For example, going for a walk (my favourite thing and I feel the most peaceful and happy doing it), shaking my legs, intensively movements of fingers, I feel calm. This heavily disturbs my reading stage during my studying.  

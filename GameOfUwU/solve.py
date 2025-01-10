@@ -3,7 +3,7 @@ import time
 binary = ("./GameOfUwU_patched")
 
 p = process(binary)
-p = remote("chal.firebird.sh", 35029)
+#p = remote("chal.firebird.sh", 35029)
 libc = ELF('./libc.so.6')
 
 elf = ELF(binary)

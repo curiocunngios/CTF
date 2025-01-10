@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void UwU_main() {
+    char UwU[0x8];
+    unsigned long long shellcode_size;
+
+    puts("");
+    puts("");
+    printf("             O                O       \n");
+    printf("             |\\      cɔ      /|       \n");
+    printf("             | \\     /\\     / |            \n");
+    printf("             |  \\   /  \\   /  |    <- What a beautiful crown, isn't it?\n");
+    printf("             |   \\ /    \\ /   |               \n");
+    printf("             |    V      V    |               \n");
+    printf("             |                |               \n");
+    printf("               %p               \n", &shellcode_size);
+    printf("             %p             \n", *(unsigned long long *)(UwU + 0x8));
+    puts("");
+    printf("||        ||                    ||        ||\n");
+    printf("||        ||                    ||        ||\n");
+    printf("||        ||                    ||        ||\n");
+    printf("||        ||                    ||        ||\n");
+    printf("||        ||                    ||        ||\n");
+    printf("||        ||                    ||        ||\n");
+    printf("||        ||     ||      ||     ||        ||\n");
+    printf("||        ||     ||  ||  ||     ||        ||\n");
+    printf("||        ||     ||  ||  ||     ||        ||\n");
+    printf("  ========         ==  ==         ========  \n");
+    puts("");
+    puts("");
+
+    puts("King of UwU is here to witness the power of your shellcode!");
+    puts("how long is your shellcode?");
+
+    if (scanf("%llu", &shellcode_size) != 1) {
+        puts("Invaild shellcode size will destroy my world, I wouldn't let you do that UwU.");
+        exit(0);
+    }
+
+    getchar();
+
+    if (shellcode_size > 0x30) {
+        puts("No No No.Your shellcode is tooooooo long. 0x30 bytes should be enough UwU.");
+        puts("Show me your shellcode!");
+        fgets(UwU, 0x30, stdin);
+        
+    }
+    else {
+        puts("Wow, it seems your shellcode is going to be very powerful. I'm looking forward to seeing its full potential!");
+        fgets(UwU, shellcode_size, stdin);
+    }
+
+}
+
+int main() {
+	setvbuf(stdin,NULL,2,0);
+	setvbuf(stdout,NULL,2,0);
+	setvbuf(stderr,NULL,2,0);
+	UwU_main();
+    puts("hmmmmm seems that your shellcode isn't powerful enough.");
+	return 0;
+}

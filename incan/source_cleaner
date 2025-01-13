@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void UwU_read(char* buffer, size_t max_len) {
+    size_t pos = 0;
+    int c;
+    
+    while (1) {
+        if (pos > max_len) {
+            return;
+        }
+        
+        c = getchar();
+        if (c == -1) break;  // EOF
+        if (c == '\n') {
+            buffer[pos] = '\0';
+            return;
+        }
+        
+        buffer[pos] = (char)c;
+        pos++;
+    }
+}
+
+void UwU_incantation(void) {
+    char buffer[8];  // local_10
+    
+    puts("Let me witness your incantation prowess!");
+    UwU_read(buffer, 8);
+    return;
+}
+
+void UwU_main(void) {
+    double power_level;  // local_18
+    char name[8];       // local_10
+    
+    // ASCII art of the "King of UwU"
+    // ... (artwork remains the same)
+    
+    puts("The King of UwU is here to witness the power of your incantation!");
+    puts("Sorcerer, what name do you bear UwU?");
+    
+    UwU_read(name, 8);
+    
+    printf("%s! A domineering name! Tell me, sorcerer, at what level does your incantation stand? UwU\n", name);
+    scanf("%lf", &power_level);
+    
+    if (power_level > 26.33) {
+        printf("level %lf! It appears I can look forward to beholding this mighty incantation! UwU\n", power_level);
+        getchar();  // Consume newline
+        UwU_incantation();
+    } else {
+        printf("level %lf... Emmm... The King of UwU has lost interest in you... Try to master a stronger incantation and come back UwU.\n", power_level);
+        exit(0);
+    }
+}
+
+int main(void) {
+    // Disable buffering for stdin, stdout, and stderr
+    setvbuf(stdin, NULL, _IONBF, 0);
+    setvbuf(stdout, NULL, _IONBF, 0);
+    setvbuf(stderr, NULL, _IONBF, 0);
+    
+    UwU_main();
+    return 0;
+}

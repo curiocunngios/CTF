@@ -50,3 +50,4 @@ r.interactive()
 7. also write down a brief to-do list for your first attempt
 8. be calm, patient and observant in the binaries. Keep your mind full focus on the challenge
 9.  work? keep going. Doesn't work? figure out why and perhaps change strategy
+

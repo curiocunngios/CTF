@@ -1,0 +1,88 @@
+void UwU_incantation(void)
+
+{
+  undefined local_10 [8];
+  
+  puts("Let me witness your incantation prowess!");
+  UwU_read(local_10,8);
+  return;
+}
+
+
+long UwU_read(long param_1,ulong param_2)
+
+{
+  int iVar1;
+  ulong local_10;
+  
+  local_10 = 0;
+  while( true ) {
+    if (param_2 < local_10) {
+      return param_1;
+    }
+    iVar1 = getchar();
+    if (iVar1 == -1) break;
+    if (iVar1 == 10) {
+      *(undefined *)(local_10 + param_1) = 0;
+      return param_1;
+    }
+    *(char *)(local_10 + param_1) = (char)iVar1;
+    local_10 = local_10 + 1;
+  }
+  return param_1;
+}
+
+
+void UwU_main(void)
+
+{
+  double local_18;
+  undefined local_10 [8];
+  
+  puts("");
+  puts("");
+  puts("                     W   <-----------(yeah this is the crown)");
+  puts("");
+  puts("||        ||                    ||        ||");
+  puts("||        ||                    ||        ||");
+  puts("||        ||                    ||        ||");
+  puts("||        ||                    ||        ||");
+  puts("||        ||                    ||        ||");
+  puts("||        ||                    ||        ||");
+  puts("||        ||                    ||        ||");
+  puts("||        ||     ||      ||     ||        ||");
+  puts("||        ||     ||  ||  ||     ||        ||");
+  puts("||        ||     ||  ||  ||     ||        ||");
+  puts("  ========         ==  ==         ========  ");
+  puts("");
+  puts("");
+  puts("The King of UwU is here to witness the power of your incantation!");
+  puts("Sorcerer, what name do you bear UwU?");
+  UwU_read(local_10,8);
+  printf("%s! A domineering name! Tell me, sorcerer, at what level does your incantation stand? UwU\ n"
+         ,local_10);
+  __isoc99_scanf(&DAT_00102203,&local_18);
+  if (26.33 < local_18) {
+    printf("level %lf! It appears I can look forward to beholding this mighty incantation! UwU\n",
+           local_18);
+    getchar();
+    UwU_incantation();
+    return;
+  }
+  printf("level %lf... Emmm... The King of UwU has lost interest in you... Try to master a stronger incantation and come back UwU.\n"
+         ,local_18);
+                    /* WARNING: Subroutine does not return */
+  exit(0);
+}
+
+
+undefined8 main(void)
+
+{
+  setvbuf(stdin,(char *)0x0,2,0);
+  setvbuf(stdout,(char *)0x0,2,0);
+  setvbuf(stderr,(char *)0x0,2,0);
+  UwU_main();
+  return 0;
+}
+

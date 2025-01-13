@@ -17,3 +17,6 @@
 1. fortune cookie 1 https://hackmd.io/@1ptrKd-hTF-40MNeKRIoSw/Bkj0fcRDY#Step-1-Fund-the-vulnerability
 2. fortune cookie 2 https://hackmd.io/@1ptrKd-hTF-40MNeKRIoSw/Bkj0fcRDY#Fortune-Cookie-2
 3. easyheap https://hackmd.io/@1ptrKd-hTF-40MNeKRIoSw/Bkj0fcRDY?utm_source=preview-mode&utm_medium=rec#Easyheap
+
+
+# only find the vulnerabilities 

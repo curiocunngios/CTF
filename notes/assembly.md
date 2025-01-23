@@ -1,6 +1,6 @@
 ---
 aliases:
-  - Address Space Layout Randomization
+  - assembly
 tags:
   - flashcard/active/ctf/A
 ---

@@ -1,6 +1,6 @@
 ---
 aliases:
-  - assembly
+  - assembly 
 tags:
   - flashcard/active/ctf/A
 ---

@@ -20,7 +20,7 @@ is basically the same thing, but the later you are just doing it during a ROP ch
 this needs to be written to the next buffer/payload/input address 
 ## `leave ; ret`
 - at the end of payload of a frame 
-- used to control rbp, move it to "restore" the nxt buffer address at the base of the frame
+- used to control rbp, move it to "restore" the next buffer address at the base of the frame
 - used to contorl rsp at well, moving it to top of next frame. After `pop rbp`, `rsp` points back to something with `ret` and continue the ROP chain
 
 ## gets@plt

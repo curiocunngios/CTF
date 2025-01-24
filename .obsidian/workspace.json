@@ -751,8 +751,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -764,9 +764,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "477719ee8939824d",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 63
+        "currentTab": 64
       }
     ],
     "direction": "horizontal",
@@ -785,8 +795,9 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "83b3031b40cc318e",
+  "active": "f6ea9b167df6a996",
   "lastOpenFiles": [
+    ".git/objects/maintenance.lock",
     "schedule1.md",
     "pwn.md",
     ".git/index.lock",
@@ -822,7 +833,6 @@
     "notes/file permission.md",
     "notes/libc calls.md",
     "notes/Encode encrypt.md",
-    "gpt prompts.md",
     "illness/mood.png",
     "illness/image.png",
     "image.png",

@@ -2,7 +2,7 @@
 aliases:
   - Registers
 tags:
-  - flashcard/active/ctf/HTB
+  - flashcard/active/ctf/
 ---
 
 # Registers

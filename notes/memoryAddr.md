@@ -2,7 +2,7 @@
 aliases:
   - Memory Addresses
 tags:
-  - flashcard/active/ctf/HTB
+  - flashcard/active/ctf/ 
 ---
 
 # Memory Addresses

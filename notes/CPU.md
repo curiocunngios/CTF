@@ -2,7 +2,7 @@
 aliases:
   - CPU Architecture
 tags:
-  - flashcard/active/ctf/HTB
+  - flashcard/active/ctf/
 ---
 
 # CPU Architecture

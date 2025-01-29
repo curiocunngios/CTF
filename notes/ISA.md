@@ -2,7 +2,7 @@
 aliases:
   - Instruction Set Architectures
 tags:
-  - flashcard/active/ctf/HTB
+  - flashcard/active/ctf/
 ---
 
 An **Instruction Set Architecture (ISA)** specifies the syntax and semantics of the assembly language on each architecture. It is not just a different syntax but is built in the core design of a processor, as it affects the way and order instructions are executed and their level of complexity. ISA mainly consists of the following components:

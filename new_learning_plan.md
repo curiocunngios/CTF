@@ -11,3 +11,12 @@
 # learning advanced 
 1. choose topics / challenges, e.g. heap, house of spirit, partial overwrite on Nightmare's page
 2. document claude {{}}, write writeups
+
+
+plan for tomorrow (31/1/2025):
+- h0mbre assignments
+- Nightmare's reverse problems 
+- one simple PWN from nightmare
+- start track B (start small), from reading the pdf and watching the demo first
+- pick a firebird pwn challenge you've done before and make C notes 
+

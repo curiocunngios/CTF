@@ -861,12 +861,72 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "8fb973bd6e163b0f",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "633d2c13e6c8522a",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "d4b275d6893c99bd",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "9735558dbd8b1188",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "b22ff9367a516b78",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "00aad62c7d1799d5",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
           },
           {
-            "id": "8fb973bd6e163b0f",
+            "id": "62686dd1e4520ab1",
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
@@ -876,7 +936,7 @@
             }
           }
         ],
-        "currentTab": 74
+        "currentTab": 80
       }
     ],
     "direction": "horizontal",
@@ -895,7 +955,7 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "8fb973bd6e163b0f",
+  "active": "62686dd1e4520ab1",
   "lastOpenFiles": [
     ".git/objects/maintenance.lock",
     "linked images/CISCRISC.png",

@@ -921,12 +921,32 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "62686dd1e4520ab1",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "b6829ebeb55a899b",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
           },
           {
-            "id": "62686dd1e4520ab1",
+            "id": "524a4f9405a2b681",
             "type": "leaf",
             "state": {
               "type": "review-queue-list-view",
@@ -936,7 +956,7 @@
             }
           }
         ],
-        "currentTab": 80
+        "currentTab": 82
       }
     ],
     "direction": "horizontal",
@@ -955,7 +975,7 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "62686dd1e4520ab1",
+  "active": "524a4f9405a2b681",
   "lastOpenFiles": [
     ".git/objects/maintenance.lock",
     "linked images/CISCRISC.png",

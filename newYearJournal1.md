@@ -52,3 +52,23 @@ Afternoon: I layed video games, Mini World with my little brother until around 1
 
 Night: the fried eggs were salty as hell holy shit. I played the remaining fireworks with my little brother and I also played Mini world again with him, it was soooooooooooo boring lol. I kept mamking excuses of not playing by saying that I need some rest. Then, I told him to have rest as well and we went down stairs the watch TV together with grandmother. nothing special happened today. I went back here and I 
 jerked off to a manga called rosen garden saga.
+
+
+## day 5 
+
+morning: woke up at around 9:42, woken up by my little brother 李rui again. Had a terrible breakfast, I don't know what that is, it's too sweet
+
+afternoon: had lunch with 姑姑 x 2, didn't have too much interactions with them. I remember trying to pretend being focused on my "homework" and readings but in fact I weren't able to focus at all, because I was not feeling very comfrotable around many people and since it was a bit noisy. After they're gone, I came back my room to have a 1 hour nap. Then, I had some thoughts in my braina nd it took a while since I was able to get my mind back on the reverse task. Unfortunately, I failed the task and I had to read the answer lol. Then, here it came, finally the time that I wanted to take a shit and shower time, perfect. The poop taking awas not very successful since I was exhausted after taking just a little bit of shit but it was enough. Next, dinner time right after my bath. I am 100% sure that the chopsticks I used was dirty as fuck lol, but I did not care and continued eating. Since I don't want to be somebody annoying telling them to swap my chopsticks. 
+
+night: played video games with 李rui, it was boring at the start playing mini world with him. But later it gets fun since we switched back to 2p games 1v1. I feel a bit disappointed in myself after losing tic tac toe to him.
+
+
+## day 6
+
+morning: woke up early to eat yummy af noodles with yummmmmmmmmmmmmy af meatballs. My sister went on the car at around 9 am with the black git . Then, at around 10:00 am, we went to a place which was boring af so I brought out my computer to play
+
+afternoon: after having lunch at that place, I played 飛行棋 with my little brother 李rui, won all that and the computer ran out of battery. Then, 叔 brought me to the place to get on the car bcack to hong kong. I slept pretty well on the car and there was a bit of traffic constipation at the end
+
+night: brought some food (油豆腐) to my aunt's restaurant and got on 277X back home. I was feeling uncomfrotable on the 277X as I have a huge GIT with me on the second floor, I learnt tha tI shouldn't rbing it to the second floor
+
+thoughts overall. I missed the place. Especially that huge comfortable bed I slept with. I missed the cute pikachu pillow, I missed the pillow I slept with, I missed the smell of the bed that I can't help but ket smelling my the clothes I slept with (that has the smell) when I am back to HK. And I missed 李rui and a little of my grandmother of course. Really do looking forward to go back next year. The only bad thing is the toilet and the food and the socialising part, nothing else.  

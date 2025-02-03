@@ -7,11 +7,11 @@ tags:
 ---
 
 # File pointer
-A file pointer is like a {{bookmark or cursor that keeps track of your position in a file}}. It contains:
+A file pointer is like a bookmark or cursor that keeps track of your position in a file. It contains:
 - The {{current position in the file}}
 - The file's path/name
 - Mode (read/write)
-- Buffering information <!--SR:!2025-02-02,3,250!2025-02-02,3,250-->
+- Buffering information <!--SR:!2025-02-13,9,270-->
 
 ```C
 FILE *f = fopen("test.txt", "r");

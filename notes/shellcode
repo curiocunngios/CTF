@@ -1,0 +1,96 @@
+```
+push rdi          # push string to stack
+mov rdi, rsp      # first arg points to stack string
+```
+
+why need these two lines, also your version is not adding null as well?
+
+
+
+Let me explain carefully:
+
+`execve()` needs a pointer to the string `/bin/sh` in memory. Just having the bytes in `rdi` register is not enough because:
+- `rdi` contains the actual bytes `0x68732f6e69622f`
+- But `execve` expects `rdi` to contain a memory address where these bytes are stored
+
+That's why we need:
+```nasm
+mov rdi, 0x68732f6e69622f  # rdi = raw bytes of "/bin/sh"
+push rdi                   # put these bytes on stack
+mov rdi, rsp              # rdi = address where bytes are stored
+```
+
+You're right - my version still doesn't explicitly add NULL. Here's the fully correct version:
+```nasm
+shellcode = asm('''
+xor rdx, rdx      # third arg (envp = NULL)
+xor rsi, rsi      # second arg (argv = NULL)
+mov rdi, 0x68732f6e69622f  # "/bin/sh"
+push rsi          # push NULL (string terminator)
+push rdi          # push string to stack
+mov rdi, rsp      # first arg points to stack string
+push 0x3b 
+pop rax           # syscall number
+syscall
+''', arch='amd64')
+```
+
+Now we:
+1. First push NULL (using zeroed rsi)
+2. Then push our string
+3. Point rdi to this NULL-terminated string
+
+This explicitly creates a proper NULL-terminated string in memory.
+
+
+
+The string is currently in a register but needs to be accessible in memory for execve
+
+
+
+
+
+For 32-bit (i386), the syscall argument registers are:
+1. `ebx` - first argument
+2. `ecx` - second argument
+3. `edx` - third argument
+
+For 64-bit (amd64), the syscall argument registers are:
+1. `rdi` - first argument
+2. `rsi` - second argument
+3. `rdx` - third argument
+
+In your case, both shellcodes are 32-bit (using `arch='i386'`), so:
+- First shellcode correctly uses `ecx` for the second argument
+- Second shellcode incorrectly uses `esi` (which is the lower 32 bits of `rsi`)
+
+I should correct my earlier explanation. The second shellcode actually has a mistake - it's using `esi` in 32-bit mode when it should use `ecx`. The fact that it still works might be due to:
+1. The value in `ecx` happens to be NULL already
+2. Or the particular environment/system being forgiving about this error
+
+To be strictly correct in 32-bit mode, it should be:
+```nasm
+xor edx, edx    # third arg
+xor ecx, ecx    # second arg (not esi!)
+push 0x68732f
+push 0x6e69622f
+mov ebx, esp    # first arg
+push 0xb 
+pop eax
+int 0x80
+```
+
+
+
+
+
+| Aspect                    | 32-bit (i386)                                                                  | 64-bit (amd64)                                                                                            |
+| ------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| Registers                 | `eax`, `ebx`, `ecx`, `edx`, etc.                                               | `rax`, `rdi`, `rsi`, `rdx`, etc.                                                                          |
+| Syscall Number for execve | `0xb` (11)                                                                     | `0x3b` (59)                                                                                               |
+| First Argument Register   | `ebx`                                                                          | `rdi`                                                                                                     |
+| Other Arguments           | Zero out `esi`, `edx`                                                          | Zero out `rsi`, `rdx`                                                                                     |
+| Syscall Instruction       | `int 0x80`                                                                     | `syscall`                                                                                                 |
+| String Loading            | Split "/bin/sh" into:<br>`push 0x68732f` ("sh/")<br>`push 0x6e69622f` ("/bin") | Can use same split method,<br>or often done with `mov rax` since<br>64-bit registers can hold full string |
+
+Your understanding is correct! The only addition I'd make is that in 64-bit, because you have larger registers, you sometimes see the string loaded differently (can fit the whole string in one register), but the split method still works fine in 64-bit too.

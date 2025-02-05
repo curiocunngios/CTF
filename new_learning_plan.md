@@ -12,6 +12,10 @@
 1. choose topics / challenges, e.g. heap, house of spirit, partial overwrite on Nightmare's page
 2. document claude {{}}, write writeups
 
+# web 
+1. Read the slides and perhaps watch demo. Just treat it like reading books casually, learn a bit and. At least know
+
+
 
 plan for tomorrow (31/1/2025):
 - h0mbre assignments
@@ -20,3 +24,26 @@ plan for tomorrow (31/1/2025):
 - start track B (start small), from reading the pdf and watching the demo first
 - pick a firebird pwn challenge you've done before and make C notes 
 
+
+plan for the day (5/2/2025) (Wed):
+CTF
+- Nightmare's problems (ROP) (finish all)
+- Nightmare's reverse ( One more)
+- h0mbre assignments
+- start reading track B 
+
+
+SCHOOL:
+- read lecture notes of ELEC before the lecture
+- read lecture notes of phys1112 before the lecture 
+- read lecture notes of comp2011 before the lecture 
+
+- read lecture notes of ELEC after the lecture
+- read lecture notes of phys1112 after the lecture 
+- read lecture notes of comp2011 after the lecture 
+
+- make notes of ELEC after the lecture
+- make notes notes of phys1112 after the lecture 
+- make notes notes of comp2011 after the lecture 
+
+- try out homework, if any

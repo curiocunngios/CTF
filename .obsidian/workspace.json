@@ -15,8 +15,17 @@
               "state": {
                 "file": "2024-12-16T050812.498+0800.md",
                 "mode": "source",
+                "source": false,
                 "backlinks": true,
-                "source": false
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
               },
               "icon": "lucide-file",
               "title": "2024-12-16T050812.498+0800"
@@ -62,8 +71,33 @@
               "icon": "file-text",
               "title": "Changelog"
             }
+          },
+          {
+            "id": "0c48ac0ad14db32d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "new_learning_plan.md",
+                "mode": "preview",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "new_learning_plan"
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -82,7 +116,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -94,7 +129,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:flashcard/active/ctf/testing",
+                "query": "new_learn",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -105,7 +140,8 @@
               "title": "Search"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -967,8 +1003,8 @@
             "state": {
               "type": "review-queue-list-view",
               "state": {},
-              "icon": "SpacedRepIcon",
-              "title": "Notes Review Queue"
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
@@ -980,9 +1016,19 @@
               "icon": "SpacedRepIcon",
               "title": "Notes Review Queue"
             }
+          },
+          {
+            "id": "71c47c8517df5d59",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {},
+              "icon": "SpacedRepIcon",
+              "title": "Notes Review Queue"
+            }
           }
         ],
-        "currentTab": 83
+        "currentTab": 84
       }
     ],
     "direction": "horizontal",
@@ -1001,19 +1047,22 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "f87b1c37c085dfc8",
+  "active": "0c48ac0ad14db32d",
   "lastOpenFiles": [
-    "important.md",
+    "new_learning_plan.pdf",
+    "notes/c_functions6.md",
+    "3633.md",
+    "MemoryHero/.gitignore",
+    ".git/objects/bd/1328192527157b5851974359fd711416eecc7d",
+    ".git/objects/bd",
+    ".git/objects/0d/a1d3d3a5e3cbf632c832de515cf1b90d91591c",
+    ".git/objects/0d",
     ".git/refs/remotes/origin/main.lock",
-    ".git/objects/maintenance.lock",
-    ".git/packed-refs.lock",
-    ".git/HEAD.lock",
-    ".git/objects/f9/173bb2e45322adf740f3c0f613d065d5d9bd57",
-    ".git/objects/f9/tmp_obj_jcURbx",
-    ".git/objects/f9",
-    ".git/objects/e0/7097c2b854e53dc46fec7e465daa367d88bbcf",
-    ".git/objects/e0",
-    ".git/objects/e1/3848c982145d127b1f82edd30e1e6366dca714",
+    ".git/objects/63/5df016e2be10a0812db9a20bf98b010dc9aac4",
+    ".git/objects/63",
+    ".git/objects/dd/3feb048c2b005b79f5dd5482f673993dec256f",
+    ".git/objects/dd",
+    "important.md",
     "notes/c_functions5.md",
     "notes/GOThijack.md",
     "notes/functionParamters.md",
@@ -1038,9 +1087,6 @@
     "notes/GOT.md",
     "notes/object linking.md",
     "notes/URL.md",
-    "notes/PHP.md",
-    "notes/objdump.md",
-    "notes/pyNameMain.md",
     "illness/mood.png",
     "illness/image.png",
     "image.png",

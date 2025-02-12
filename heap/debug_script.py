@@ -18,7 +18,7 @@ c
 
 try:
     # Start program in debug mode
-    p = gdb.debug('./calc_tcache_idx', gdbscript)
+    p = gdb.debug('./fastbin_dup_into_stack', gdbscript)
     p.interactive()
 except Exception as e:
     print(f"Failed to start debugger: {e}")

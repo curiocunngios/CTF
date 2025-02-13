@@ -1,140 +1,134 @@
-typedef struct Node {
-    char* word_ptr;          // puVar1[0]
-    int word_size;           // puVar1[1]
-    char* sentence_ptr;      // puVar1[2]
-    int sentence_size;       // puVar1[3]
-    struct Node* next;       // puVar1[4]
-} Node;
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-Node* global_head = NULL;    // DAT_006020b8
+struct WordNode {
+    char* word;           // Word pointer
+    int word_length;      // Length of the word
+    char* sentence;       // Original sentence
+    int sentence_length;  // Length of sentence
+    struct WordNode* next;
+};
 
-void add_sentence(void) {
-    int sentence_size;
-    char* sentence_buffer;
-    Node* node;
-    int word_length;
-    long current_pos;
-    
-    puts("Enter the sentence size:");
-    sentence_size = get_num();
-    
-    if (sentence_size - 1 >= 0xfffe) {
-        FUN_00400990("Invalid size");
-    }
-    
-    puts("Enter the sentence:");
-    sentence_buffer = malloc(sentence_size);
-    input(sentence_buffer, sentence_size, 0);
-    
-    // Initialize first node
-    current_pos = (long)sentence_buffer + 1;
-    node = malloc(0x28);
-    word_length = 0;
-    
-    node->word_ptr = sentence_buffer;
-    node->word_size = 0;
-    node->sentence_ptr = sentence_buffer;
-    node->sentence_size = sentence_size;
-    
-    // Process sentence character by character
-    do {
-        if (*(char*)(current_pos - 1) == ' ') {
-            if (word_length == 0) {
-                node->word_ptr = (char*)current_pos;
-            }
-            else {
-                // Link current node and create new one
-                node->next = global_head;
-                global_head = node;
-                
-                node = malloc(0x28);
-                word_length = 0;
-                node->word_ptr = (char*)current_pos;
-                node->word_size = 0;
-                node->sentence_ptr = sentence_buffer;
-                node->sentence_size = sentence_size;
-            }
-        }
-        else {
-            word_length++;
-            node->word_size = word_length;
-        }
-        current_pos++;
-    } while (current_pos != (long)sentence_buffer + sentence_size + 1);
-    
-    // Handle last node
-    if (word_length == 0) {
-        free(node);
-    }
-    else {
-        node->next = global_head;
-        global_head = node;
-    }
-    
-    puts("Added sentence");
-}
+struct WordNode* head = NULL;  // Global head of linked list (equivalent to DAT_006020b8)
 
-void search_word(void) {
-    Node* current;
-    int word_size;
-    int compare_result;
-    void* search_word;
-    char response[24];
-    
-    puts("Enter the word size:");
-    word_size = get_num();
-    
-    if (word_size - 1 >= 0xfffe) {
-        FUN_00400990("Invalid size");
-    }
-    
-    puts("Enter the word:");
-    search_word = malloc(word_size);
-    input(search_word, word_size, 0);
-    
-    for (current = global_head; current != NULL; current = current->next) {
-        if (current->sentence_ptr[0] != '\0' && 
-            current->word_size == word_size && 
-            memcmp(current->word_ptr, search_word, word_size) == 0) {
-            
-            printf("Found %d: ", current->sentence_size);
-            fwrite(current->sentence_ptr, 1, current->sentence_size, stdout);
-            putchar('\n');
-            
-            puts("Delete this sentence (y/n)?");
-            input(response, 2, 1);
-            
-            if (response[0] == 'y') {
-                memset(current->sentence_ptr, 0, current->sentence_size);
-                free(current->sentence_ptr);
-                puts("Deleted!");
-            }
-        }
-    }
-    
-    free(search_word);
+void print_menu(void) {
+    printf("1. Search word\n");
+    printf("2. Add sentence\n");
+    printf("3. Exit\n");
 }
 
 void menu(void) {
     int choice;
-    
-    global_head = NULL;
     
     while (1) {
         print_menu();
         choice = get_num();
         
         if (choice == 1) {
-            search_word();
+            searchWord();
         }
         else if (choice == 2) {
-            add_sentence();
+            addSentence();
         }
         else if (choice == 3) {
             return;
         }
         else {
-            FUN_00400990("Invalid option");
+            error_exit("Invalid option");
         }
     }
+}
+
+void searchWord(void) {
+    char response[24];
+    int word_size;
+    
+    printf("Enter the word size:\n");
+    word_size = get_num();
+    
+    if (word_size - 1 >= 0xfffe) {
+        error_exit("Invalid size");
+    }
+    
+    printf("Enter the word:\n");
+    char* search_word = malloc(word_size); 
+    input(search_word, word_size, 0);
+    
+    struct WordNode* current = head;
+    while (current != NULL) {
+        if (current->sentence[0] != '\0' && 
+            current->word_length == word_size && 
+            memcmp(current->word, search_word, word_size) == 0) {
+	
+            printf("Found %d: ", current->sentence_length);
+            fwrite(current->sentence, 1, current->sentence_length, stdout);
+            putchar('\n');
+            
+            printf("Delete this sentence (y/n)?\n");
+            input(response, 2, 1);
+            
+            if (response[0] == 'y') {
+                memset(current->sentence, 0, current->sentence_length);
+                free(current->sentence);  // Vulnerability: UAF - pointer remains in list
+                printf("Deleted!\n");
+            }
+        }
+        current = current->next;
+    }
+    
+    free(search_word);
+}
+
+void addSentence(void) {
+    int sentence_size;
+    
+    printf("Enter the sentence size:\n");
+    sentence_size = get_num();
+    
+    if (sentence_size - 1 >= 0xfffe) {
+        error_exit("Invalid size");
+    }
+    
+    printf("Enter the sentence:\n");
+    char* sentence = malloc(sentence_size);
+    input(sentence, sentence_size, 0);
+    
+    struct WordNode* new_word = malloc(sizeof(struct WordNode));
+    new_word->word = sentence;
+    new_word->word_length = 0;
+    new_word->sentence = sentence;
+    new_word->sentence_length = sentence_size;
+    
+    int current_length = 0;
+    for (int i = 0; i < sentence_size - 1; i++) {
+        if (sentence[i] == ' ') {
+            if (current_length == 0) {
+                new_word->word = &sentence[i + 1];
+            } else {
+                new_word->word_length = current_length;
+                new_word->next = head;
+                head = new_word;
+                
+                new_word = malloc(sizeof(struct WordNode));
+                new_word->word = &sentence[i + 1];
+                new_word->word_length = 0;
+                new_word->sentence = sentence;
+                new_word->sentence_length = sentence_size;
+                current_length = 0;
+            }
+        } else {
+            current_length++;
+            new_word->word_length = current_length;
+        }
+    }
+    
+    if (current_length == 0) {
+        free(new_word);
+    } else {
+        new_word->next = head;
+        head = new_word;
+    }
+    
+    printf("Added sentence\n");
 }

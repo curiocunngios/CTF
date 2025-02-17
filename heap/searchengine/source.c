@@ -45,32 +45,41 @@ void searchWord(void) {
     int word_size;
     
     printf("Enter the word size:\n");
-    word_size = get_num();
+    word_size = get_num(); // add this function later, this seems to be important as well 
     
     if (word_size - 1 >= 0xfffe) {
         error_exit("Invalid size");
     }
     
+    // allocating a chunk specifically for the sentence, not a node 
     printf("Enter the word:\n");
-    char* search_word = malloc(word_size); 
+    char* search_word = malloc(word_size); // a pointer to the starting address of the allocated chunk
     input(search_word, word_size, 0);
     
     struct WordNode* current = head;
     while (current != NULL) {
-        if (current->sentence[0] != '\0' && 
-            current->word_length == word_size && 
-            memcmp(current->word, search_word, word_size) == 0) {
+        if (current->sentence[0] != '\0' && // if the sentence hasn't been deleted 
+            current->word_length == word_size &&  // length matches
+            memcmp(current->word, search_word, word_size) == 0) { // word matches as well 
 	
+		// just printing out the sentence 
             printf("Found %d: ", current->sentence_length);
             fwrite(current->sentence, 1, current->sentence_length, stdout);
             putchar('\n');
             
+            
+            
+            // getting the response of whether deleting the above printed sentence or not
             printf("Delete this sentence (y/n)?\n");
             input(response, 2, 1);
             
+            
+            // "deleting" the sentence 
             if (response[0] == 'y') {
+            	// zeroing out the sentence, all becomes null. Nothing there, really? how about the word? 
                 memset(current->sentence, 0, current->sentence_length);
-                free(current->sentence);  // Vulnerability: UAF - pointer remains in list
+                // gets puts into the free list, which is like being marked as available to use
+                free(current->sentence);  
                 printf("Deleted!\n");
             }
         }

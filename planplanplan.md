@@ -41,3 +41,44 @@ https://blog.csdn.net/qq_41683953/article/details/136767925
 adjustment and adaptation is also very important. Since you are basically fantasizing yourself being able to manage studying and cramming a ton of knowledge and challenges. 
 
 I kinda afraid that I may lost the 幹勁 that I have right now 
+
+
+
+
+
+
+
+
+
+
+# Daily to do:
+1. 2-3 hours of coursework in the morning 
+2. explore the world of ctf
+3. misc (e.g. registering activities, events, etc.)
+4. guitar, walk, fruits, forsen, anime
+## To do after coursework
+
+1. actively research into the heap topic - fastbin dup
+- https://github.com/shellphish/how2heap/tree/master
+- google more
+- claude more
+- make notes
+- try out the challenges, spend days on it. Take breaks
+
+
+2. Improve pwn skills (heap) 
+- pwn college dynamic allocator misuse   
+https://pwn.college/program-security/dynamic-allocator-misuse/  
+try out the challenges and watch the videos
+
+3. Improve reverse skills (foundation building)
+- pwn college reverse engineering module from program security 
+https://pwn.college/program-security/reverse-engineering/
+
+4. Improve programming skills and help comp2011 (foundation building)
+- leetcode problems
+
+
+again, you are now just probably fantasizing yourself being able to learn effectively with the above materials and together with claude. But it might not be the case. Always adapt and micro adjust.
+
+Take your time to learn slowly during the process

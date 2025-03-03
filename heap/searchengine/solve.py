@@ -18,7 +18,7 @@ def addsentence(size, sentence):
 	p.sendlineafter(b"sentence:\n", sentence)
 	
 	
-addsentence(b"4", b"AAAA")
+addsentence(b"14", b"AAAA BBBB CCCC")
 addsentence(b"4", b"AAAA")
 addsentence(b"4", b"AAAA")
 addsentence(b"4", b"AAAA")

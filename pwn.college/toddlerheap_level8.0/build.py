@@ -1,12 +1,15 @@
-from pwn import * 
+from pwn import *
 
 binary = './a.out'
-p = process(binary)
 
-s = '''
-start
-b 1
-c
+# Set up the GDB script
+gdbscript = '''
+break main
+continue
 '''
-p = gdb.debug(binary, s)
+
+# Launch the process with GDB attached
+p = gdb.debug(binary, gdbscript)
+
+# Give control to the user
 p.interactive()

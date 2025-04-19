@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu@sha256:6042500cf4b44023ea1894effe7890666b0c5c7871ed83a97c36c76ae560bb9b
 RUN apt-get update && DEBIAN_FRONTEND=noninractive apt-get -y install \
         tini xinetd \
     && rm -rf /var/lib/apt/lists/*

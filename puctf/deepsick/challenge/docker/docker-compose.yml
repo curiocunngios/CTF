@@ -1,0 +1,11 @@
+version: '3'
+services:
+  test:
+    build: ../
+    environment:
+      # flag
+      FLAG: "flag{fake_flag}"
+    ports:
+
+      - 9999:9999
+    restart: unless-stopped

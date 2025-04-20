@@ -8,7 +8,7 @@ binary = './chal'
 elf = ELF(binary)
 
 p = process(binary)
-p = remote('chal.polyuctf.com', 32499)
+p = remote('chal.polyuctf.com', 32255)
 context.arch = 'amd64'
 win = 0x40123b
 elf_base = elf.bss() + 0x100

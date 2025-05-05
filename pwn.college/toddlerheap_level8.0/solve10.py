@@ -12,6 +12,8 @@ b * free
 
 for i in range(0, 7):
 	p.sendline(f"malloc {i} 248")
+
+
 p.sendline("malloc 7 248")
 p.sendline("malloc 8 248")
 p.sendline("malloc 9 248")

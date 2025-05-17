@@ -10,14 +10,10 @@ p = process(['qemu-ppc', binary])
 
 # Set breakpoint
 s = '''
-set architecture powerpc
-break main
 '''
 
 gdb.attach(p, s)
 
-# Wait a moment to ensure GDB has time to attach
-sleep(1)
 
 p.sendline(b"A" * 0x30)
 p.interactive()

@@ -27,7 +27,7 @@ def exploit():
         try:
             # Send 3 attacks and check for name prompt
             for _ in range(3):
-                p.send(b"a", timeout=1)
+                p.sendline(b"a", timeout=1)
             
             # Check if we reached the name prompt
             if p.recvuntil(b"What is your name", timeout=0.1):

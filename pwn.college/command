@@ -1,6 +1,0 @@
-mkdir babyfile_level14 ; scp -i key hacker@dojo.pwn.college:/challenge/babyfile_level14 ./babyfile_level14
-
-
-scp -i key hacker@dojo.pwn.college:/lib/x86_64-linux-gnu/libc.so.6 ./babyfile_level21/libc.so.6
-
-

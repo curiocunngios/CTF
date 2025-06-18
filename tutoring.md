@@ -1,1 +1,0 @@
-Usually I teach them by topic so that I will first ask what topics are their weaknesses or what topics they want to learn more about. （like one lesson for one chapter）And then when we start the lesson, I first tell them that I usually go through the textbook or notes, and then have a test or past papers for them to practice. And also discuss what they want me to do.

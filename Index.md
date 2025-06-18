@@ -1,12 +1,8 @@
 ---
 aliases:
-  - CTF Notes
-  - CTF Learning
-  - Capture The Flag
+  - CTF
 tags:
   - flashcard/active/ctf/main
-  - function/index
-  - language/in/English
 ---
 
 

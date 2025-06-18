@@ -1,4 +1,0 @@
->$$\begin{aligned}
->
->
->\end{aligned}$$

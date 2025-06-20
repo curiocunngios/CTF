@@ -5,6 +5,10 @@ binary = './babyfile_level21_patched'
 p = process(binary)
 
 s = '''
+b * main+199
+b * main+90
+b * main+129
+b * main+166
 b* setcontext+61
 b * setcontext+334
 '''

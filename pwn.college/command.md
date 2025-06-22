@@ -25,3 +25,9 @@ scp -i key hacker@dojo.pwn.college:/lib/x86_64-linux-gnu/libc.so.6 ./babyfile_le
 - mkdir babykernel_level1.0 ; scp -i key hacker@dojo.pwn.college:/challenge/babykernel_level1.0.ko ./babykernel_level1.0
 
 - cp CTF/pwn.college/babykernel_level1.0/babykernel_level1.0.ko .
+
+
+# advanced kernel
+
+- mkdir kernel_level1 ; scp -i key hacker@dojo.pwn.college:/challenge/challenge1.ko ./kernel_level1
+

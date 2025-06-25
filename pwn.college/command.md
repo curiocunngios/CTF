@@ -31,3 +31,7 @@ scp -i key hacker@dojo.pwn.college:/lib/x86_64-linux-gnu/libc.so.6 ./babyfile_le
 
 - mkdir kernel_level1 ; scp -i key hacker@dojo.pwn.college:/challenge/challenge1.ko ./kernel_level1
 
+
+# microarchitecture 
+
+- mkdir babyarch1 ; scp -i key hacker@dojo.pwn.college:/challenge/babyarch_babyspectre1 ./babyarch1

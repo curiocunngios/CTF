@@ -51,9 +51,14 @@ solution: when looping through data, mangle the index to confuse the CPU so that
 # code
 
 ```
+void victim_function(size_t idx) {
+	volatile char x = buffer[idx * CAHCE_LINE_SIZE];
+}
 void pre_work() {
 	uint8_t *addr;
-	memset(buffer, 0, sizeof(buffer)); // ensure that the virtual memory is backed by physical memory. Ensure that it does exists. Since if it is not, it will cause page fault
+	// ensure that the virtual memory is backed by physical memory.
+	// Ensure that it does exists. Since if it is not, it will cause page fault
+	memset(buffer, 0, sizeof(buffer));  
 	for (int j = 0; j < BUFF_SIZE * CACHE_LINE_SIZE; j++) {
 		addr = buffer + j;
 		_mm_clflush(addr); // every clflush flushes 64 bytes
@@ -72,7 +77,7 @@ uint64_t time_access_no_flsuh(void *p) {
 }
 
 
-post_work_inner_work(int mix_i) {
+void post_work_inner_work(int mix_i) {
 	uint8_t *addr;
 	size_t cache_hit_threshold = CACHE_HIT_THRESHOLD;
 	index index;
@@ -85,11 +90,33 @@ post_work_inner_work(int mix_i) {
 	}
 }
 
-post_work() {
+void post_work() {
 	for (size_t i = 0; i < BUFFER_SIZE;i++) {
-		int mix_i = ((i * 167) + 13) & 255; // ensure that CPU does prefetch and add entries to cache
+		// ensure that CPU does NOT prefetch and add entries to cache
+		int mix_i = ((i * 167) + 13) & 255; 
 		post_work_inner_work(mix_i);
 	}	
+}
+
+int main(int argc, char **argv) {
+	if (argc != 2) {
+		exit(1);
+	}
+	int index = atoi(argv[1]);
+	
+	if (index > BUFF_SIZE) {
+		exit(2);
+	}
+	
+	pre_work();
+	printf("Done with pre-work\n");
+	
+	victim_function(index);
+	
+	printf("Done with post-work\n");
+	
+	post_work();
+	return 0;
 }
 ```
 

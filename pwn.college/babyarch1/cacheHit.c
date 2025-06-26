@@ -28,6 +28,15 @@ int main(int argc, char** argv) {
 	// basically putting a virtual memory address in x
 	// volatile to prevent optimization
 	volatile uint64_t x = buffer[((buffer[0] + 4) ^ 1) ^ 1];
+
+
+
+	// Here it comes _mm_mfence()!
+	// This stops the CPU until the memory loads (accessing buffer) finishes
+	// without _mm_mfence(), CPU might optimizes the performance
+	// by executing __rdtsc() first while waiting for the memory access (from RAM)
+	// which is called reordering of instruction of the CPU, or speculation
+	// So it is a good practice to put _mm_mfence() after memory loads (accessing something)
 	_mm_mfence();
 	
 	// Get High resolution end time

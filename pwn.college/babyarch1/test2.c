@@ -163,8 +163,10 @@ void exploit(int len) {
                 // work loop 
                 for (int j = 0; j < 4000; j++) {
                     pre_work();
+                    usleep(100);
                     train_target();
                     pre_work();
+                    usleep(100);
                     speculate(i);
                     post_work(stats);
                 }

@@ -35,3 +35,19 @@ scp -i key hacker@dojo.pwn.college:/lib/x86_64-linux-gnu/libc.so.6 ./babyfile_le
 # microarchitecture 
 
 - mkdir babyarch1 ; scp -i key hacker@dojo.pwn.college:/challenge/babyarch_babyspectre1 ./babyarch1
+
+- mkdir babyarch8 ; scp -i key hacker@dojo.pwn.college:/challenge/babyarch_spooky_spectre2.ko ./babyarch8
+
+
+- mkdir babyarch9 ; scp -i key hacker@dojo.pwn.college:/challenge/babyarch_yan85_reloaded.ko ./babyarch9
+
+
+# reverse
+
+babyrev-level-12-0
+
+- mkdir rev12 ; scp -i key hacker@dojo.pwn.college:/challenge/babyrev-level-12-0 ./rev12 
+
+
+
+
